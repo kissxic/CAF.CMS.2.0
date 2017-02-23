@@ -1,0 +1,14 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\bin\Debug\CachingFramework.Redis.Json.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\bin\Debug\CachingFramework.Redis.Json.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\bin\Debug\CachingFramework.Redis.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\bin\Debug\Newtonsoft.Json.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\bin\Debug\StackExchange.Redis.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\bin\Debug\CachingFramework.Redis.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\bin\Debug\CachingFramework.Redis.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\bin\Debug\Newtonsoft.Json.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\bin\Debug\StackExchange.Redis.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CachingFramework.Redis.Json.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CachingFramework.Redis.Json.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\obj\Debug\CachingFramework.Redis.Json.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\obj\Debug\CachingFramework.Redis.Json.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis.Json\obj\Debug\CachingFramework.Redis.Json.pdb

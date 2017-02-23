@@ -1,0 +1,151 @@
+﻿@model ProductAttributeModel
+
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+@Html.CafSite().TabStrip().Name("productattributes-edit").Items(x =>
+{
+    x.Add().Text(T("Admin.ContentManagement.ProductAttributes.Info").Text).Content(TabInfo()).Selected(true);
+    x.Add().Text(T("Admin.ContentManagement.ProductAttributes.Values").Text).Content(TabValues());
+
+    //generate an event
+    EngineContext.Current.Resolve<IEventPublisher>().Publish(new TabStripCreated(x, "productattributes-edit", this.Html, this.Model));
+
+
+})
+@helper TabInfo()
+{
+
+    @(Html.LocalizedEditor<ProductAttributeModel, ProductAttributeLocalizedModel>("productattributes-localized",
+    @<div class="form-body">
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Locales[item].Name)
+            </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => Model.Locales[item].Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Locales[item].Name)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Locales[item].Description)
+            </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Locales[item].Description, Html.RichEditorFlavor(), new { height = 200 })
+                @Html.ValidationMessageFor(model => model.Locales[item].Description)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+
+            </label>
+            <div class="col-md-6">
+                @Html.HiddenFor(model => model.Locales[item].LanguageId)
+            </div>
+        </div>
+    </div>
+         ,
+    @<div class="form-body">
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Name)
+            </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Description)
+            </label>
+            <div class="col-md-6">
+                @Html.EditorFor(x => x.Description, Html.RichEditorFlavor(), new { height = 200 })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+    </div>))
+
+    <div class="form-body">
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Alias)
+            </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Alias, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Alias)
+
+            </div>
+        </div>
+
+    </div>
+}
+
+@helper TabValues()
+{
+
+var g = Html.GridToolKit<ProductAttributeOptionModel>();
+var grid = g.DataGrid("productattributeoptionsgrid", g.Param(x => x.ProductAttributeId)).TableId("table-id").GridKey("Id").MainGrid(
+g.GridColumn(x => x.Name, 300),
+g.GridColumn(x => x.DisplayOrder, 300),
+g.GridColumn("operation", "" + T("Admin.Common.Operation").Text + "", 100).DefaultContent("<a onclick='javascript:OpenWindow(\"" + @Url.Content("/Admin/ProductAttribute/OptionEditPopup/") + "#Id#?btnId=btnRefresh&formId=productattribute-form\", 800, 300, true); return false;'  class='btn default btn-xs purple'><i class='fa fa-pencil'></i></a> <a href='/Admin/ProductAttribute/OptionDelete?optionId=#Id#&productattributeid=#ProductAttributeId#&' class='btn default btn-xs black delete'><i class='fa fa-trash-o'></i></a>"))
+.Url(Url.Action("OptionList", "ProductAttribute", new { productAttributeId = Model.Id })).DefaultTableClass();
+if (Model.Id > 0)
+{
+        <script type="text/javascript">
+            $(document).ready(function () {
+                @(grid)
+                $('#btnRefresh').click(function () {
+                    //refresh grid
+                    var grid = productattributeoptionsgrid.reload();
+                    //return false to don't reload a page
+                    return false;
+                });
+            });
+        </script>
+    /*TODO display the following warning if values are not supported by selected attribute control type
+     'Values are not required for this attribute control type'
+     */
+    <div class="row">
+        <div class="table-container">
+            <table id="@grid.GetTableId" class="@grid.GetDefaultTableClass" @Html.Raw(grid.GetFixedLayout ? "style='table-layout:fixed'" : "")>
+                <thead>
+                    <tr>
+                        @foreach (var column in grid.GetColumns)
+                        {
+                            <th class="@column.CssClassHeader">@column.DisplayName</th>
+
+                        }
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                @if (grid.GetIsFoot)
+                {
+                    <tfoot>
+                        <tr>
+                            @foreach (var column in grid.GetColumns)
+                            {
+                                <th class="@column.CssClassHeader">@column.DisplayName</th>
+
+                            }
+                        </tr>
+                    </tfoot>
+                }
+            </table>
+            <button type="submit" id="btnAddNewValue" name="btnAddNewValue" class="btn btn-below"
+                    onclick="javascript:OpenWindow('@(Url.Action("OptionCreatePopup", "ProductAttribute", new { productAttributeId = Model.Id, btnId = "btnRefresh", formId = "productattribute-form" }))', 800, 300, true); return false;">
+                <i class="fa fa-plus"></i>&nbsp;@T("Admin.ContentManagement.ProductAttributes.Options.AddNew")
+            </button>
+
+            <button class="btn btn-default" id="btnRefresh" style="display:none"></button>
+        </div>
+    </div>
+
+}
+else
+{
+        @T("Admin.SaveBeforeEdit")
+}
+}

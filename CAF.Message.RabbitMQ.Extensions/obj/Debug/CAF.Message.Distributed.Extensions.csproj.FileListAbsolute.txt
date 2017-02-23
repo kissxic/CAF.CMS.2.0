@@ -1,0 +1,6 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Message.Distributed.Extensions.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Message.Distributed.Extensions.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Message.Distributed.Extensions.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.Message.RabbitMQ.Extensions\obj\Debug\CAF.Message.Distributed.Extensions.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.Message.RabbitMQ.Extensions\obj\Debug\CAF.Message.Distributed.Extensions.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.Message.RabbitMQ.Extensions\obj\Debug\CAF.Message.Distributed.Extensions.pdb

@@ -1,0 +1,286 @@
+﻿@model ManufacturerModel
+
+@Html.ValidationSummary(false)
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[id="@Html.FieldIdFor(model => model.AllowUsersToSelectPageSize)"]').on('switchChange.bootstrapSwitch', function (event, state) {
+            togglePageSize(state);
+        });
+        togglePageSize(@Model.AllowUsersToSelectPageSize.ToString().ToLower());
+
+
+    });
+
+    function togglePageSize(state) {
+        if (state) {
+            $('#pnlPageSize').hide();
+            $('#pnlPageSizeOptions').show();
+        }
+        else {
+            $('#pnlPageSize').show();
+            $('#pnlPageSizeOptions').hide();
+        }
+    }
+
+</script>
+@Html.HiddenFor(model => model.Id)
+@Html.CafSite().TabStrip().Name("manufacturer-edit").Items(x =>
+{
+    x.Add().Text(T("Admin.Common.Info").Text).Content(TabInfo()).Selected(true);
+    x.Add().Text(T("Admin.Common.SEO").Text).Content(TabSeo());
+
+    //generate an event
+    EngineContext.Current.Resolve<IEventPublisher>().Publish(new TabStripCreated(x, "manufacturer-edit", this.Html, this.Model));
+})
+@helper TabInfo()
+{
+    @(Html.LocalizedEditor<ManufacturerModel, ManufacturerLocalizedModel>("manufacturer-info-localized",
+    @<div class="form-body">
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Locales[item].Name)
+            </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => Model.Locales[item].Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Locales[item].Name)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Locales[item].Description)
+            </label>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Locales[item].Description, Html.RichEditorFlavor(), new { ForceRootBlock = false })
+                @Html.ValidationMessageFor(model => model.Locales[item].Description)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+
+            </label>
+            <div class="col-md-6">
+                @Html.HiddenFor(model => model.Locales[item].LanguageId)
+            </div>
+        </div>
+    </div>
+     ,
+    @<div class="form-body">
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Name)
+            </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Description)
+            </label>
+            <div class="col-md-9">
+                @Html.EditorFor(x => x.Description, Html.RichEditorFlavor(), new { ForceRootBlock = false })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+    </div>))
+    <div class="form-body">
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.PictureId)
+            </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PictureId, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PictureId)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Published)
+            </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Published)
+                @Html.ValidationMessageFor(model => model.Published)
+
+            </div>
+        </div>
+        <div id="pnlPasswordEnabled" class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.DisplayOrder)
+            </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.DisplayOrder, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DisplayOrder)
+
+            </div>
+        </div>
+        @if (Model.CreatedOnUtc.HasValue)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.CreatedOnUtc)
+                </label>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.CreatedOnUtc)
+                </div>
+            </div>
+        }
+        @if (Model.ModifiedOnUtc.HasValue)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.ModifiedOnUtc)
+                </label>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.ModifiedOnUtc)
+                </div>
+            </div>
+        }
+        @if (Model.Id > 0)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Id)
+                </label>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Id)
+                    @Html.ValidationMessageFor(model => model.Id)
+                </div>
+            </div>
+        }
+    </div>
+     
+}
+@helper TabSeo()
+{
+    @(Html.LocalizedEditor<ManufacturerModel, ManufacturerLocalizedModel>("manufacturer-seo-localized",
+    @<div class="form-body">
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Locales[item].MetaTitle)
+            </label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Locales[item].MetaTitle, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Locales[item].MetaTitle)
+                @Html.HiddenFor(model => model.Locales[item].LanguageId)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Locales[item].MetaKeywords)
+            </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Locales[item].MetaKeywords, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Locales[item].MetaKeywords)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Locales[item].MetaDescription)
+            </label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Locales[item].MetaDescription, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Locales[item].MetaDescription)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Locales[item].SeName)
+            </label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Locales[item].SeName)
+                @Html.ValidationMessageFor(model => model.Locales[item].SeName)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Locales[item].MetaDescription)
+            </label>
+            <div class="col-md-6">
+                @Html.HiddenFor(model => model.Locales[item].LanguageId)
+
+            </div>
+        </div>
+    </div>
+         ,
+    @<div class="form-body">
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.MetaTitle)
+            </label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(x => x.MetaTitle, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MetaTitle)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.MetaKeywords)
+            </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.MetaKeywords, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MetaKeywords)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.MetaDescription)
+            </label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(x => x.MetaDescription, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MetaDescription)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.SeName)
+            </label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(x => x.SeName, new { @class = "form-control" })
+                @*@if (Model.Id != 0)
+                    {
+                        @Html.Action("NamesPerEntity", "UrlRecord", new { entityName = "Manufacturer", entityId = @Model.Id })
+                    }*@
+                @Html.ValidationMessageFor(model => model.SeName)
+            </div>
+        </div>
+    </div>))
+
+    <div class="form-body">
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.AllowUsersToSelectPageSize)
+            </label>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.AllowUsersToSelectPageSize)
+                @Html.ValidationMessageFor(model => model.AllowUsersToSelectPageSize)
+
+            </div>
+        </div>
+        <div class="form-group" id="pnlPageSize">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.PageSize)
+            </label>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.PageSize)
+                @Html.ValidationMessageFor(model => model.PageSize)
+
+            </div>
+        </div>
+        <div class="form-group" id="pnlPageSizeOptions">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.PageSizeOptions)
+            </label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.PageSizeOptions, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PageSizeOptions)
+
+            </div>
+        </div>
+    </div>
+}

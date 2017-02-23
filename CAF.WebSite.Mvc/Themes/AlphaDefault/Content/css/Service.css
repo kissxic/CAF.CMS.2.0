@@ -1,0 +1,130 @@
+
+
+a:hover{color: #26c0a5;text-decoration: none;}
+/* 服务页列页头部 */
+.serc_top{padding:20px 0;overflow:hidden}
+.serc_top ul{margin:43px 0 0 80px}
+.serc_top ul li{float:left;}
+.serc_top ul li a{font-size:16px;margin-left:30px;color:#666666}
+.serc_top ul li a:hover{color:#666666}
+/* 服务页列表 */
+.hui_box{height:475px;background:#ebebeb}
+.top_Banner{position: relative;top:35px}
+.top_Banner a{position: absolute;}
+.banner_1{top:0;left:0}
+.banner_2{top:308px;left:0}
+.banner_3{top:0;left:400px}
+.banner_4{top:249px;left:400px}
+.banner_5{top:0;left:812px}
+.banner_6{top:189px;left:812px}
+.class_list{margin-top:85px;}
+.class_list .class_title{font-size:18px;margin-bottom:10px}
+.class_box{height:91px;padding:10px 0 10px 10px;background:#ebebeb;border:1px solid #d7d7d7}
+.class_box ul li{width:74px;height:71px;background:#fff;text-align:center;float:left;margin-right:15px}
+.class_box ul li a:hover{background:#4dd3bc;color:#fff;border:1px solid #4dd3bc}
+.class_box ul li a{height:100%;border:1px solid #c8c8c8;padding-top:10px;font-size:14px;display:block;}
+.class_list .class_box .on {background:#4dd3bc;color:#fff;border:1px solid #4dd3bc}
+.Service_list{width:1240px;overflow:hidden}
+.Service_list ul li{margin:20px 14px;border:1px solid #e4e4e4;width:385px;float:left;padding-bottom:5px}
+.Service_list ul li:hover{border:1px solid #4dd3bc;}
+.class_words{margin:0 15px;line-height:25px}
+.class_words .title{margin:10px 0;font-size:16px;height:50px}
+.Service_list .Label{font-size:14px}
+.Service_list .Label span,.Company_Label span{background:#26c0a5;color:#fff;padding:2px 5px}
+.Ser_phone{background:url("../images/Icon_9.png") no-repeat 0 center;color:#999999;text-indent:25px;font-size:14px}
+.Ser_Address{background:url("../images/Icon_10.png") no-repeat 2px center;}
+.Ser_page{text-align:center;margin-top:50px;margin-bottom:70px}
+.Ser_page span,.Ser_page a{padding:5px 12px;border:1px solid #dddddd;margin:0 5px}
+.Ser_page span{background:#26c0a5;color:#fff}
+.Ser_page .Ser_page_num{background:none;color:#999999;border:0}
+.Ser_page input{width:68px;height:27px;margin-left:10px;border:1px solid #e6e6e6}
+.footer_class{height:186px;background:#f4f4f4;padding-top:23px}
+.footer_box dl{width:200px;float:left}
+.footer_box dt{font-size:16px;line-height:46px;}
+.footer_box dd{font-size:14px;line-height:20px;}
+.footer_box .Ser_Contact{margin:30px 50px 0 0;width:330px}
+.Ser_Contact dd{color:#666666;font-size:16px;}
+.Ser_Contact .Ser_400{font-size:45px;color:#26c0a5;font-weight:bold;margin:20px 0}
+.Ser_link{padding:5px 0;line-height:25px;border-top:1px solid #dddddd;border-bottom:1px solid #dddddd;overflow:hidden;margin-top:55px}
+.Ser_link li{float:left;}
+.Ser_link li a{margin:0 10px}
+.Copyright{line-height:25px}
+.Copyright a{color:#6c6c6c;margin:0 10px}
+.Copyright span{margin-left:10px;color:#a9a9a9}
+/* end 服务页列表 */
+/* 公司产品列表页 */
+.top_border{border-bottom:1px solid #d9d9d9}
+.ser_map{font-size:12px;color:#666666;margin:20px 0}
+.ser_map a{color:#00cecc}
+.Company_show{height:308px;border:1px solid #d2d2d2}
+.Company_show ul li{float:left;height:306px;font-size:14px}
+.Company_show ul .Company_left{width:383px;}
+.Company_show ul .Company_center{width:431px;background:#f1f1f1;padding:75px 30px 0 30px;text-indent:28px}
+.Company_show ul .Company_right{width:396px;padding:45px 45px 0 45px;line-height:30px}
+.Company_right .title{font-size:24px}
+.Company_Label{margin:20px 0}
+.Company_Label span{padding:3px 10px;margin-right:10px}
+.company_web{background:url("../images/Icon_11.png") no-repeat 0 center;}
+.company_Mail{background:url("../images/Icon_12.png") no-repeat 0 center;}
+.Produc_title{margin:20px 0}
+.Product_list{width:1232px;overflow:hidden}
+.Product_list ul li{float:left;margin:0 10px;text-align:center;line-height:60px;width:288px}
+.Product_list ul li img{border:1px solid #d8d8d8}
+.ser_content{padding:20px;border:1px solid #ccc;margin-bottom:20px }
+.btnfoucus {color:#fff;background:#26c0a5;border:1px solid #26c0a5}
+
+/*站内服务*/
+.main{ overflow:hidden; width:1210px; margin:12px auto 0 auto; font-family:"Simsun"; padding-bottom:10px;*font-size: 12px;}
+.main em{ font-style:normal;}
+/*面包屑*/
+.bread-nav { font-size:12px; padding:20px 0 15px 0;}
+.bread-nav span{ padding:0 7px;}
+
+.itemChoose h2,.itemChoose h3{padding:0px; margin:0px;}
+/*左边导航*/
+.left-nav{ width:198px; border:1px solid #dfdfdf; border-bottom:0; float:left;}
+.itemChoose {overflow:hidden; border-top:0; border-bottom:0;}
+.itemChoose h2 {font-size:16px; text-indent:13px;  background:#f7f7f7; height:40px; line-height:40px;}
+.itemChoose h2 span{ display:block; height:38px; border:1px solid #fff; }
+.itemChoose h2 ,.itemChoose h3 ,.itemChoose ul{ border-bottom:1px solid #dfdfdf;}
+.itemChoose h3 { font-weight:normal; background:#fafafa; height:38px; line-height:38px; cursor:pointer;}
+.itemChoose ul {padding: 7px 0;overflow: hidden;}
+.itemChoose li {line-height: 25px;white-space: nowrap;padding: 0 5px 0 38px;}
+.itemChoose .icon_btn { padding-left:20px; font-family:"SimSun"; }
+.icon_btn{ background:url(../images/icon.png) no-repeat left -36px; margin-left:18px;}
+.itemChoose h3.open a{ background-position:left -76px;}
+/*.itemChoose .hon{ background:#f1f0f0;}
+.itemChoose .hon a{ color:#333;}*/
+.itemChoose .ons a{ color:#1369c0; font-weight:bold;}
+.itemChoose ul a:hover{color:#1369c0;}
+.itemChoose .lvbg{ background:#f1f0f0;}
+.itemChoose .lvbg a{ background-position:left -11px; color:#333;}
+.dan h3{ padding-left:42px;}
+/*右边内容*/
+.right-con{ width:980px; float:right; padding-top:8px; font-size:14px; padding-bottom:80px;}
+.min-bread em{ display:block; height:13px; width:3px; float:left; background:#1369c0;}
+.min-bread { line-height:15px; border-bottom:1px solid #dfdfdf; padding-bottom:18px;}
+.min-bread a{margin:0 13px;}
+.min-bread a:hover{ color:#666;}
+.dgfs{ padding-left:19px;}
+.dgfs h3{ font-weight:400; font-size:18px; margin-bottom:21px; font-family:"microsoft yahei";}
+
+/*网上订购*/
+.wsdg{ padding-top:18px;}
+.wsdg li{ height:75px; float:left; background:#f5f5f5;}
+.wsdg ul{ overflow:hidden;}
+.ws-txt{ padding:11px 10px 0 28px; float:left;}
+.ws-txt span{ color:#999;}
+.wsbox1 .ws-txt{ padding-left:20px;}
+.ws-txt strong{ display:block; line-height:28px;}
+.wsdg .fs{ margin-bottom:3px;}
+.wsdg .ljxq{ float:right; font-weight:bold; margin-top:26px; text-decoration:underline;}
+/*电话订购*/
+.dgfs2{ padding:66px 0 0 0;}
+.dgfs2 .wsbox1 span{ font-family:"Arial"; font-size:28px; line-height:25px; color:#666;}
+.dgfs2 .wsbox1 .ws-txt{ padding-right:20px;}
+/*在线客服*/
+.dgfs3{ padding-bottom:30px;}
+.dgfs3 li{ height:160px;}
+.dgfs3 .ws-txt{ padding-top:55px;}
+.dgfs3 .wsbox1 .ws-txt{ padding-top:11px;}

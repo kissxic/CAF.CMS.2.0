@@ -1,0 +1,111 @@
+﻿@model UserInfoModel
+@{
+    Layout = "~/Themes/AlphaDefault/Views/Shared/_ColumnsTwoLeft.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Account").Text);
+}
+@section left
+{
+    @Html.Partial("MyAccountNavigation", Model.NavigationModel, new ViewDataDictionary())
+}
+<!--代理商首页Start-->
+<div id="agentindex">
+    <div class="right_welcome">
+        <span>您好！<font class="red">@Model.UserName</font>欢迎登录药坊网网</span>
+        <label>登入时间：@Model.LastLoginDateUtc.ToString()<a class="red" href="@Url.RouteUrl("Logout")">【退出登录】</a> </label>
+        <div class="topvip">
+            <i></i>
+            <div class="txtscroll">
+                <div class="bd">
+                    <div class="tempWrap" style="overflow:hidden; position:relative; height:44px">
+                        <ul style="top: -44px; position: relative; padding: 0px; margin: 0px;">
+                            <li style="height: 44px;"><span>加入<font class="red">VIP会员1</font>您将获得更多专享特权，更多服务！</span></li>
+                            <li style="height: 44px;"><span>加入<font class="red">VIP会员2</font>您将获得更多专享特权，更多服务！</span></li>
+                            <li style="height: 44px;"><span>加入<font class="red">VIP会员3</font>您将获得更多专享特权，更多服务！</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="member_function ">
+        <div class="member_info">
+            <ul>
+                <li>
+                    <div class="memberitem">
+                        <div class="infotitle infologo2">
+                            <i class="infologo1"></i>
+                            <label>我的消息</label>
+                        </div>
+                        <div class="infocontent infobg2">
+                            <span>0</span>
+                            <label><a href="http://www.goodyao.com/Message/">查看消息  &gt;</a></label>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="memberitem">
+                        <div class="infotitle infologo3">
+                            <i class="infologo1"></i>
+                            <label>我的关注</label>
+                        </div>
+                        <div class="infocontent infobg3">
+                            <span>0</span>
+                            <label><a href="http://www.goodyao.com/Myattention/">查看关注  &gt;</a></label>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="memberitem">
+                        <div class="infotitle infologo4">
+                            <i class="infologo1"></i>
+                            <label>发布代理</label>
+                        </div>
+                        <div class="infocontent infobg4">
+                            <span>1</span>
+                            <label><a href="http://www.goodyao.com/Agentproductpublish/">立即发布  &gt;</a></label>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="memberitem">
+                        <div class="infotitle infologo5">
+                            <i class="infologo1"></i>
+                            <label>我的收藏</label>
+                        </div>
+                        <div class="infocontent infobg5">
+                            <span>0</span>
+                            <label><a href="http://www.goodyao.com/Mycollection/">查看收藏  &gt;</a></label>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+
+    </div>
+</div>
+<!--代理商首页End-->
+@section FootScript
+{
+    <script>
+        $(function () {
+            slidcontent(".user_nav > ul > li", 200, ".child-nav");
+           
+            //menu等选项卡
+            $("#navtrade li").mouseover(function () {
+                $("#navtrade li").removeClass("lihover");
+                $(this).addClass("lihover");
+                $(".navitems_child").find("div").addClass("disappear");
+                var indexspan = $(this).index();
+                $(".navitems_child").find('div:eq(' + indexspan + ')').removeClass("disappear");
+            });
+
+            //文字轮播
+            jQuery(".txtscroll").slide({ mainCell: ".bd ul", autoPage: true, effect: "top", autoPlay: true, vis: 1 });
+        });
+       
+    </script>
+}

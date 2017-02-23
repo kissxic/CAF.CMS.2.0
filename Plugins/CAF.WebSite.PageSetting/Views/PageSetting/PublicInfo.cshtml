@@ -1,0 +1,20 @@
+﻿@model SmartStore.CustomBanner.Models.PublicInfoModel
+@{
+    Layout = "";
+}
+
+<div style="@(Model.ShowBorderTop == true ? "border-top: 1px solid " + Model.BorderTopColor + ";" : "" )@(Model.ShowBorderTop == true ? "border-top: 1px solid " + Model.BorderTopColor  : "" )">
+    @if (System.String.IsNullOrEmpty(Model.Url))
+    { 
+        <img src="@Model.PicturePath" style="max-height:@(Model.MaxBannerHeight)px;@(Model.StretchPicture == true ? "width: 100%" : "" )">
+    }
+    else
+    { 
+        <a href="@Model.Url">
+            <img src="@Model.PicturePath" style="max-height:@(Model.MaxBannerHeight)px;@(Model.StretchPicture == true ? "width: 100%" : "" )">
+        </a>
+    }
+</div>
+
+
+

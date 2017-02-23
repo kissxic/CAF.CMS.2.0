@@ -1,0 +1,8 @@
+﻿@model LinkModel
+ 
+<div class="ui-tab-panel active">
+    @foreach (var link in Model.LinkBlocks)
+    {
+        <a target="_blank" href="@link.LinkUrl" title="@link.Name" rel="nofollow">@link.Name</a>
+    }
+</div>

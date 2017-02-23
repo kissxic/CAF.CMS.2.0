@@ -1,0 +1,85 @@
+﻿@model UserNavigationModel
+<!--左侧导航及个人信息-->
+<script>
+    $(function () {
+        $(".user_nav > ul > li").click(function () {
+            $(".user_nav > ul > li").find(".child-nav").slideUp(200);
+            $(".user_nav > ul > li").find("a:eq(0)").removeClass("navhover");
+            if ($(this).find(".child-nav").css("display") == "none") {
+                $(this).find(".child-nav").slideDown(200);
+                $(this).find("a:eq(0)").addClass("navhover");
+            } else {
+                $(this).find(".child-nav").slideUp(200);
+                $(this).find("a:eq(0)").removeClass("navhover");
+            }
+
+        })
+    })
+</script>
+
+
+<div class="user_nav">
+    <ul>
+        <li><a class='navhover' href='javascript:;' style='color:red'><i class='memberindex'></i>个人中心</a></li>
+        <!--账户管理权限Start-->
+
+        <li><a href="@Url.Action("Info")"><i class="storeset"></i>基本信息设置</a></li>
+        <li><a href="/Member/Message/"><i class="myinfo"></i>我的消息<span>0</span></a></li>
+        <li><a href="/Member/Myattention/"><i class="insertme"></i>我的关注<span>0</span></a></li>
+        <li><a href="/Member/Mycollection/"><i class="mycollection"></i>我的收藏</a></li>
+        <li>
+            <a href="javascript:;"><i class="accountsetup"></i>账户设置<b></b></a>
+            <ul class="child-nav disappear">
+                @*<li><a href="/Member/Usernamereset/"><i></i>修改账户名</a></li>*@
+                <li><a href="@Url.Action("Avatar")"><i></i>上传头像</a></li>
+                <li><a href="@Url.Action("ChangePassword")"><i></i>修改密码</a></li>
+            </ul>
+        </li>
+
+        <li><a href="@(Model.HideSellerAdmin?"/Seller":"/Member/OpenSeller")"><i class="certification"></i>企业管理</a><ul class="child-nav disappear"></ul></li>
+    </ul>
+</div>
+@*<div class="user_nav" style="margin-top:10px">
+
+        <ul>
+            <li><a disabled="true" class="navhover" href="javascript:alert('请先进行资格认证！');"><i class="memberindex"></i>广告商中心</a></li>
+            <!--会员个人中心管理权限Start-->
+            <li><a disabled="true" href="javascript::alert('请先进行资格认证！');"><i class="recharge"></i>充值</a></li>
+            <li>
+                <a disabled="true" href="javascript:;"><i class="publish"></i>产品管理<b></b></a>
+                <ul class="child-nav disappear">
+                    <li><a disabled="true" href="javascript:;"><i></i>发布产品</a></li>
+                    <li><a disabled="true" href="javascript:;"><i></i>产品列表</a></li>
+                </ul>
+            </li>
+            <!--分类频道管理Start-->
+            <li>
+                <a disabled="true" href="javascript:;"><i class="accountsetup"></i>分类信息频道<b></b></a>
+                <ul class="child-nav disappear">
+                    <li><a disabled='true' href='javascript:;'><i></i>招商</a></li>
+                    <li><a disabled='true' href='javascript:;'><i></i>代理</a></li>
+                    <li><a disabled='true' href='javascript:;'><i></i>供应</a></li>
+                    <li><a disabled='true' href='javascript:;'><i></i>求购</a></li>
+                    <li><a disabled='true' href='javascript:;'><i></i>转让</a></li>
+                    <li><a disabled='true' href='javascript:;'><i></i>培训</a></li>
+                    <li><a disabled='true' href='javascript:;'><i></i>招聘</a></li>
+                    <li><a disabled='true' href='javascript:;'><i></i>求职</a></li>
+                    <li><a disabled='true' href='javascript:;'><i></i>展会</a></li>
+                </ul>
+            </li>
+            <!--分类频道管理End-->
+
+            <li><a disabled="true" href="javascript:;"><i class="storeset"></i>店铺设置</a></li>
+
+            <li>
+                <a disabled="true" href="javascript:;"><i class="advbuy"></i>广告位购买<b></b></a>
+                <ul class="child-nav  disappear">
+                    <li><a disabled="true" href="javascript:;"><i></i>广告购买</a></li>
+                    <li><a disabled="true" href="javascript:;"><i></i>广告管理</a></li>
+                </ul>
+            </li>
+
+            <li><a disabled="true" href="javascript:;"><i class="insertme"></i>关注我的<span>0</span></a></li>
+
+        </ul>
+    </div>*@

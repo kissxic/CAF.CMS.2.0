@@ -1,0 +1,766 @@
+﻿@model ArticleModel
+@using CAF.Infrastructure.Core.Domain.Cms.Articles;
+@using CAF.Infrastructure.Core.Domain.Cms.Channels;
+@using CAF.Infrastructure.Core;
+@using CAF.Infrastructure.Core.Utilities;
+@if (Model.ShowExtendedAttribute)
+{
+
+    if (Model.StateProvinceEnabled)
+    {
+        var ipAddress = EngineContext.Current.Resolve<IWebHelper>().GetCurrentIpAddress();
+
+        <script type="text/javascript">
+            var  CountryId=23;  //默认中国
+            var provinceId = @(Model.StateProvinceId.HasValue?Model.StateProvinceId.Value:0);
+            var cityId = @(Model.CityId.HasValue ? Model.CityId.Value : 0);
+            var districtId = @(Model.DistrictId.HasValue ? Model.DistrictId.Value : 0);
+            var currentIP = '@ipAddress', province = '', city = '', district = '';
+            $(function () {
+                var ddlStates = $("#@Html.FieldIdFor(model => model.StateProvinceId)");
+                var drpCity = $("#@Html.FieldIdFor(model => model.CityId)");
+                var drpDistrict = $("#@Html.FieldIdFor(model => model.DistrictId)");
+                // ==== 填充 省 列表 == start =====
+                $.ajax({
+                    type: "GET",
+                    url: "@(Url.Action("GetStatesByCountryId", "Country"))",
+                    data: { "countryId": CountryId, "addEmptyStateIfRequired": "true" },
+                }).done(function (data) {
+                    if ($.isArray(data)) {
+                        ddlStates.html('');
+                        $.each(data, function (id, option) {
+                            ddlStates.append($('<option></option>').val(option.id).html(option.name));
+                        });
+                        if (data) { //定位到已选择的省ID
+                            var selectedIndex = getSelectedIndex(data, provinceId);
+                            if (selectedIndex > 0) {
+                                ddlStates.val(provinceId);
+                            }
+
+                            ddlStates.trigger("change");
+                        }
+
+                    }
+                });
+
+                $("#@Html.FieldIdFor(model => model.StateProvinceId)").change(function (evt, param) {
+                    var selectedItem = $(this).val();
+                    $.ajax({
+                        cache: false,
+                        type: "GET",
+                        url: "@(Url.Action("GetCitysByProvinceId", "Country"))",
+                        data: { "stateId": selectedItem, "addEmptyStateIfRequired": "true" },
+                        success: function (data) {
+                            drpCity.html('');
+                            $.each(data, function (id, option) {
+                                drpCity.append($('<option></option>').val(option.id).html(option.name));
+                            });
+                            if (data) {
+                                //定位到已选择的市ID
+                                var selectedIndex = getSelectedIndex(data, cityId);
+                                if (selectedIndex > 0) {
+                                    drpCity.val(cityId);
+                                }
+                                drpCity.trigger('change');
+                            }
+
+
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            alert('Failed to retrieve states.');
+                        }
+                    });
+                    $("#@Html.FieldIdFor(model => model.CityId)").change(function (evt, param) {
+                        var selectedItem = $(this).val();
+                        $.ajax({
+                            cache: false,
+                            type: "GET",
+                            url: "@(Url.Action("GetDistrictsByCityId", "Country"))",
+                            data: { "cityId": selectedItem, "addEmptyStateIfRequired": "true" },
+                            success: function (data) {
+                                drpDistrict.html('');
+                                $.each(data, function (id, option) {
+                                    drpDistrict.append($('<option></option>').val(option.id).html(option.name));
+                                });
+                                if (data) {
+                                    //定位到已选择的区ID
+                                    var selectedIndex = getSelectedIndex(data, districtId);
+                                    if (selectedIndex > 0) {
+                                        drpDistrict.val(districtId);
+
+                                    }
+                                    drpDistrict.trigger("change");
+                                }
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert('Failed to retrieve states.');
+                            }
+                        });
+                    });
+                });
+            });
+            function getSelectedIndex(data, id) {
+                var selectedIndex = -1;
+                var selected = false;
+                if (id) {
+                    for (var j = 0; j < data.length; j++) {
+                        if (data[j].id == id.toString()) {
+                            selected = true;
+                            selectedIndex = j;
+                            break;
+                        }
+                    }
+                }
+                return selectedIndex;
+            }
+
+
+        </script>
+    }
+    <div class="form-body">
+
+        @if (Model.ProductCategoryShowType == ProductCategoryShowType.DropDownList)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.ProductCategoryId)
+                </label>
+                <div class="col-md-6">
+                    @* codehint: sm-edit *@
+                    @(Html.HiddenFor(x => x.ProductCategoryId, new
+                {
+                    style = "min-width: 200px",
+                    @class = "form-control",
+                    placeholder = "[" + T("Common.Unspecified") + "]",
+                    data_select = true,
+                    data_select_lazy = true,
+                    data_select_init_text = Model.ProductCategoryBreadcrumb,
+                    data_select_url = Url.Action("AllCategories", "ProductCategory", new { area = "", channelId = Model.ChannelId, label = T("Common.Unspecified") })
+                }))
+                    @Html.ValidationMessageFor(model => model.ProductCategoryId)
+
+                </div>
+            </div>
+        }
+        @if (Model.ProductCategoryShowType != ProductCategoryShowType.No)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.ManufacturerId)
+                </label>
+                <div class="col-md-6">
+                    @* codehint: sm-edit *@
+                    @(Html.HiddenFor(x => x.ManufacturerId, new
+                {
+                    style = "min-width: 200px",
+                    @class = "form-control",
+                    placeholder = "[" + T("Common.Unspecified") + "]",
+                    data_select = true,
+                    data_select_lazy = true,
+                    data_select_init_text = Model.ManufacturerBreadcrumb,
+                    data_select_url = Url.Action("AllManufacturers", "Manufacturer", new { area = "", label = T("Common.Unspecified") })
+                }))
+                    @Html.ValidationMessageFor(model => model.ManufacturerId)
+
+                </div>
+            </div>
+        }
+        @if (Model.StateProvinceEnabled)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">  @Html.LangLabelFor(model => model.StateProvinceId)</label>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.StateProvinceId, Model.AvailableStates, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StateProvinceId)
+                </div>
+            </div>
+        }
+        @if (Model.StateProvinceEnabled && Model.CityEnabled)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">  @Html.LangLabelFor(model => model.CityId)</label>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.CityId, Model.AvailableCitys, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CityId)
+                </div>
+            </div>
+
+        }
+        @if (Model.StateProvinceEnabled && Model.CityEnabled && Model.DistrictEnabled)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">  @Html.LangLabelFor(model => model.DistrictId)</label>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.DistrictId, Model.AvailableDistricts, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DistrictId)
+                </div>
+            </div>
+
+        }
+        @*<div class="form-group" style="display:none;">
+                <label class="control-label col-md-2">
+                    推荐类型
+                </label>
+                <div class="col-md-6">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn @(Model.AllowComments ? "btn-default active" : "btn btn-default")" style="display:none;">
+                            @Html.CheckBoxFor(model => model.AllowComments, new { @class = "toggle" }) @Html.DisplayNameFor(model => model.AllowComments)
+                        </label>
+                        <label class="btn @(Model.IsTop?"btn-default active":"btn btn-default")" style="display:none;">
+                            @Html.CheckBoxFor(model => model.IsTop, new { @class = "toggle" }) @Html.DisplayNameFor(model => model.IsTop)
+                        </label>
+                        <label class="btn @(Model.IsRed?"btn-default active":"btn btn-default")" style="display:none;">
+                            @Html.CheckBoxFor(model => model.IsRed, new { @class = "toggle" }) @Html.DisplayNameFor(model => model.IsRed)
+                        </label>
+                        <label class="btn @(Model.IsHot?"btn-default active":"btn btn-default")" style="display:none;">
+                            @Html.CheckBoxFor(model => model.IsHot, new { @class = "toggle" }) @Html.DisplayNameFor(model => model.IsHot)
+                        </label>
+                        <label class="btn @(Model.IsSlide?"btn-default active":"btn btn-default")" style="display:none;">
+                            @Html.CheckBoxFor(model => model.IsSlide, new { @class = "toggle" }) @Html.DisplayNameFor(model => model.IsSlide)
+                        </label>
+                    </div>
+                </div>
+            </div>*@
+        @*<div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.LinkUrl)
+                </label>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.LinkUrl, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LinkUrl)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Author)
+                </label>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.Author, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Author)
+                </div>
+            </div>*@
+        @*<div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.ArticleTags)
+                </label>
+                <div class="col-md-6">
+
+                    @Html.HiddenFor(model => model.ArticleTags, new { @class = "form-control select2 tag-chooser" })
+                    @Html.ValidationMessageFor(model => model.ArticleTags)
+                </div>
+            </div>*@
+        @*<div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Click)
+                </label>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Click)
+                    @Html.ValidationMessageFor(model => model.Click)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.AllowUserReviews)
+                </label>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.AllowUserReviews)
+                    @Html.ValidationMessageFor(model => model.AllowUserReviews)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.IsPasswordProtected)
+                </label>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.IsPasswordProtected)
+                    @Html.ValidationMessageFor(model => model.IsPasswordProtected)
+
+                </div>
+            </div>
+
+            <div class="form-group" id="pnlPasswordEnabled">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Password)
+                </label>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Password)
+                    @Html.ValidationMessageFor(model => model.Password)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.IsDownload)
+                </label>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.IsDownload)
+                    @Html.ValidationMessageFor(model => model.IsDownload)
+
+                </div>
+            </div>
+
+            <div class="form-group" id="pnlDownloadFile">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.DownloadId)
+                </label>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.DownloadId)
+                    @Html.ValidationMessageFor(model => model.DownloadId)
+
+                </div>
+            </div>
+
+            <div class="form-group" id="pnlUnlimitedDownloads">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.UnlimitedDownloads)
+                </label>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.UnlimitedDownloads)
+                    @Html.ValidationMessageFor(model => model.UnlimitedDownloads)
+
+                </div>
+            </div>
+
+            <div class="form-group" id="pnlMaxNumberOfDownloads">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.MaxNumberOfDownloads)
+                </label>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.MaxNumberOfDownloads)
+                    @Html.ValidationMessageFor(model => model.MaxNumberOfDownloads)
+
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.StartDate)
+            </label>
+            <div class="col-md-6">
+
+                @Html.EditorFor(model => model.StartDate)
+                @Html.ValidationMessageFor(model => model.StartDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.EndDate)
+            </label>
+            <div class="col-md-6">
+
+                @Html.EditorFor(model => model.EndDate)
+                @Html.ValidationMessageFor(model => model.EndDate)
+            </div>
+        </div>
+    </div>
+
+    if (Model.ArticleExtendedAttributes.Count > 0)
+    {
+        <div class="form-body">
+            <div class="form-vertical">
+                @foreach (var attribute in Model.ArticleExtendedAttributes)
+                {
+                    string controlId = string.Format("extended_attribute_{0}", attribute.Id);
+                    string textPrompt = !string.IsNullOrEmpty(attribute.TextPrompt) ? attribute.TextPrompt : attribute.Name;
+
+                    <div class="form-group">
+                        <label for="@controlId" class='col-md-2 control-label@(attribute.IsRequired ? " required" : "")'>@textPrompt</label>
+
+                        @switch (attribute.AttributeControlType)
+                        {
+                            case AttributeControlType.DropdownList:
+                                {
+                                    <div class="col-md-6 controls">
+                                        <select name="@(controlId)" id="@(controlId)" style="width:100%" class="form-control@(attribute.IsRequired ? " required" : "")">
+                                            @if (!attribute.IsRequired)
+                                            {
+                                                <option value="0">@T("Common.Unspecified")</option>
+                                            }
+                                            else if (attribute.Values.Count > 0 && !attribute.Values.Any(x => x.IsPreSelected))
+                                            {
+                                                <option value="0">@T("Common.PleaseSelect")</option>
+                                            }
+                                            @foreach (var pvaValue in attribute.Values)
+                                            {
+                                                <option value="@pvaValue.Id" @Html.Attr("selected", "selected", pvaValue.IsPreSelected)>@(pvaValue.Name)</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                }
+                                break;
+                            case AttributeControlType.RadioList:
+                                {
+                                    <div class="col-md-10 controls">
+                                        <div class="radio-list">
+                                            @foreach (var caValue in attribute.Values)
+                                            {
+                                                <label for="@(controlId)_@(caValue.Id)" class="radio-inline">
+                                                    <input id="@(controlId)_@(caValue.Id)" type="radio" class="form-control@(attribute.IsRequired ? " required" : "")" name="@(controlId)" value="@caValue.Id" checked="@caValue.IsPreSelected" />
+                                                    @caValue.Name
+                                                </label>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                                break;
+                            case AttributeControlType.Checkboxes:
+                                {
+                                    <div class="col-md-10 controls">
+                                        <div class="input-group">
+                                            <div class="icheck-inline">
+                                                @foreach (var caValue in attribute.Values)
+                                                {
+                                                    <label for="@(controlId)_@(caValue.Id)" class="checkbox">
+                                                        <input id="@(controlId)_@(caValue.Id)" type="checkbox" class="form-control@(attribute.IsRequired ? " required" : "")" name="@(controlId)" value="@caValue.Id" checked="@caValue.IsPreSelected" />
+                                                        @caValue.Name
+                                                    </label>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                break;
+                            case AttributeControlType.TextBox:
+                                {
+                                    <div class="col-md-6 controls">
+                                        <input name="@(controlId)" type="text" @(attribute.IsRequired ? " data-val=true  data-val-required=" + @textPrompt + "" : "") class="form-control input-block-level@(attribute.IsRequired ? " required" : "")" id="@(controlId)" value="@attribute.DefaultValue" />
+                                    </div>
+                                }
+                                break;
+                            case AttributeControlType.MultilineTextbox:
+                                {
+                                    <div class="col-md-6 controls">
+                                        <textarea id="@(controlId)" class="form-control input-block-level@(attribute.IsRequired ? " required" : "")" name="@(controlId)">@attribute.DefaultValue</textarea>
+                                    </div>
+                                }
+                                break;
+                            case AttributeControlType.Datepicker:
+                                {
+                                    <div class="col-md-6 controls">
+                                        @Html.DatePickerDropDowns(controlId + "_day", controlId + "_month", controlId + "_year", DateTime.Now.Year - 20, DateTime.Now.Year + 1, attribute.SelectedDay, attribute.SelectedMonth, attribute.SelectedYear)
+                                    </div>
+                                }
+                                break;
+                            case AttributeControlType.FileUpload:
+                                {
+                                    var randomNumber = CommonHelper.GenerateRandomInteger();
+                                    var clientId = "download" + randomNumber;
+                                    var downloadService = EngineContext.Current.Resolve<CAF.WebSite.Application.Services.Media.IDownloadService>
+                                        ();
+                                    var download = downloadService.GetDownloadById(attribute.DefaultValue.ToInt());
+                                    <div class="col-md-6 controls">
+                                        <div style="font-weight: bold; margin-bottom: 3px">@(download != null ? download.Filename : "")</div>
+                                        <div class="well well-small">
+                                            <table class="adminContent">
+                                                <colgroup>
+                                                    <col width="100px">
+                                                    <col width="*">
+                                                </colgroup>
+
+                                                <tr id="pnlDownloadFile@(randomNumber)">
+                                                    <td class="adminTitle">
+                                                        @T("Admin.Download.UploadFile"):
+                                                    </td>
+                                                    <td class="adminData">
+                                                        <div>
+                                                            <div id="@clientId" class="fileupload">
+
+                                                                @Html.Hidden(controlId, attribute.DefaultValue, new { @class = "hidden" })
+                                                                <button class="btn red remove" @Html.Attr("style", "display:none", download == null)>
+                                                                    <i class="fa fa-trash-o"></i>
+                                                                    @T("Admin.Download.RemoveDownload")
+                                                                </button>
+                                                                <span class="btn btn-primary fileinput-button">
+                                                                    <i class="fa fa-upload"></i>
+                                                                    <span>@T("Common.Fileuploader.Upload")</span>
+                                                                    <input id="fileupload-@randomNumber" type="file" name="file" />
+                                                                </span>
+                                                                <button class="btn btn-warning cancel">
+                                                                    <i class="fa fa-times"></i>
+                                                                    <span>@T("Common.Fileuploader.Cancel")</span>
+                                                                </button>
+                                                                <!-- The global progress information -->
+                                                                <div class="span5 fileupload-progress fade">
+                                                                    <!-- The global progress bar -->
+                                                                    <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                                                        <div class="bar" style="width:0%;"></div>
+                                                                    </div>
+                                                                    <!-- The extended global progress information -->
+                                                                    <div class="progress-extended">&nbsp;</div>
+                                                                </div>
+                                                            </div>
+                                                            <script type="text/javascript">
+                                                                $(function () {
+                                                                    $(function () {
+
+                                                                        var el = $('#@clientId'),
+                                                                            elHidden = el.find('.hidden'),
+                                                                            elRemove = el.find('.remove');
+
+                                                                        $('#@clientId').fileupload({
+                                                                            url: '@(Url.Content("~/Admin/Download/AsyncUpload"))',
+                                                                            dataType: 'json',
+                                                                            acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|rar|zip|doc|xls|txt)$/i,
+                                                                            done: function (e, data) {
+                                                                                var result = data.result;
+                                                                                if (result.success) {
+                                                                                    $('#@(clientId + "downloadurl")').html('<a href="' + result.downloadUrl + '">@T("Admin.Download.DownloadUploadedFile"): <strong>' + result.fileName + '</strong></a>');
+                                                                                    elHidden.val(result.downloadId);
+                                                                                    elRemove.show();
+                                                                                }
+                                                                            },
+
+                                                                            error: function (jqXHR, textStatus, errorThrown) {
+                                                                                if (errorThrown === 'abort') {
+                                                                                    //alert('File Upload has been canceled');
+                                                                                }
+                                                                            }
+                                                                        });
+
+                                                                        elRemove.click(function (e) {
+                                                                            $('#@(clientId + "downloadurl")').html("&nbsp;");
+                                                                            elHidden.val(0);
+                                                                            $(this).hide();
+                                                                            e.preventDefault();
+                                                                        });
+
+
+                                                                    });
+                                                                });
+                                                            </script>
+                                                        </div>
+                                                        <div id="@(clientId + "downloadurl")">
+                                                            @if (download != null)
+                                                            {
+                                                                <a href="@(Url.Action("DownloadFile", "Download", new { downloadId = attribute.DefaultValue }))">@T("Admin.Download.DownloadUploadedFile"): <strong>@download.Filename@download.Extension</strong></a>
+                                                            }
+                                                        </div>
+                                                        <div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                }
+                                break;
+                            case AttributeControlType.VideoUpload:
+                                {
+                                    var randomNumber = CommonHelper.GenerateRandomInteger();
+                                    var clientId = "download" + randomNumber;
+                                    var downloadService = EngineContext.Current.Resolve<CAF.WebSite.Application.Services.Media.IDownloadService>
+                                        ();
+                                    var download = downloadService.GetDownloadById(attribute.DefaultValue.ToInt());
+                                    <div class="col-md-6 controls">
+                                        <div style="font-weight: bold; margin-bottom: 3px">@(download != null ? download.Filename : "")</div>
+                                        <div class="well well-small">
+                                            <table class="adminContent">
+                                                <colgroup>
+                                                    <col width="100px">
+                                                    <col width="*">
+                                                </colgroup>
+
+                                                <tr id="pnlDownloadFile@(randomNumber)">
+                                                    <td class="adminTitle">
+                                                        @T("Admin.Download.UploadFile"):
+                                                    </td>
+                                                    <td class="adminData">
+                                                        <div>
+                                                            <div id="@clientId" class="fileupload">
+
+                                                                @Html.Hidden(controlId, attribute.DefaultValue, new { @class = "hidden" })
+                                                                <button class="btn red remove" @Html.Attr("style", "display:none", download == null)>
+                                                                    <i class="fa fa-trash-o"></i>
+                                                                    @T("Admin.Download.RemoveDownload")
+                                                                </button>
+                                                                <span class="btn btn-primary fileinput-button">
+                                                                    <i class="fa fa-upload"></i>
+                                                                    <span>@T("Common.Fileuploader.Upload")</span>
+                                                                    <input id="fileupload-@randomNumber" type="file" name="file" />
+                                                                </span>
+                                                                <button class="btn btn-warning cancel">
+                                                                    <i class="fa fa-times"></i>
+                                                                    <span>@T("Common.Fileuploader.Cancel")</span>
+                                                                </button>
+                                                                <!-- The global progress information -->
+                                                                <div class="span5 fileupload-progress fade">
+                                                                    <!-- The global progress bar -->
+                                                                    <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                                                        <div class="bar" style="width:0%;"></div>
+                                                                    </div>
+                                                                    <!-- The extended global progress information -->
+                                                                    <div class="progress-extended">&nbsp;</div>
+                                                                </div>
+                                                            </div>
+                                                            <script type="text/javascript">
+                                                                $(function () {
+                                                                    $(function () {
+
+                                                                        var el = $('#@clientId'),
+                                                                            elHidden = el.find('.hidden'),
+                                                                            elRemove = el.find('.remove');
+
+                                                                        $('#@clientId').fileupload({
+                                                                            url: '@(Url.Content("~/Admin/Download/AsyncUpload"))',
+                                                                            dataType: 'json',
+                                                                            acceptFileTypes: /(\.|\/)(flv|mp3|mp4|avi)$/i,
+                                                                            done: function (e, data) {
+                                                                                var result = data.result;
+                                                                                if (result.success) {
+                                                                                    $('#@(clientId + "downloadurl")').html('<a href="' + result.downloadUrl + '">@T("Admin.Download.DownloadUploadedFile"): <strong>' + result.fileName + '</strong></a>');
+                                                                                    elHidden.val(result.downloadId);
+                                                                                    elRemove.show();
+                                                                                }
+                                                                            },
+
+                                                                            error: function (jqXHR, textStatus, errorThrown) {
+                                                                                if (errorThrown === 'abort') {
+                                                                                    //alert('File Upload has been canceled');
+                                                                                }
+                                                                            }
+                                                                        });
+
+                                                                        elRemove.click(function (e) {
+                                                                            $('#@(clientId + "downloadurl")').html("&nbsp;");
+                                                                            elHidden.val(0);
+                                                                            $(this).hide();
+                                                                            e.preventDefault();
+                                                                        });
+
+
+                                                                    });
+                                                                });
+                                                            </script>
+                                                        </div>
+                                                        <div id="@(clientId + "downloadurl")">
+                                                            @if (download != null)
+                                                            {
+                                                                <a href="@(Url.Action("DownloadFile", "Download", new { downloadId = attribute.DefaultValue }))">@T("Admin.Download.DownloadUploadedFile"): <strong>@download.Filename@download.Extension</strong></a>
+                                                            }
+                                                        </div>
+                                                        <div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                }
+                                break;
+                            case AttributeControlType.ColorSquares:
+                                {
+                                    <div class="col-md-6 controls">
+                                        <div class="input-group color colorpicker-default" data-color="#3865a8">
+                                            <input type="text" id="@(controlId)" name="@(controlId)" class="form-control" value="@attribute.DefaultValue" readonly>
+                                            <span class="input-group-btn">
+                                                <button class="btn default" type="button"><i style="background-color: @attribute.DefaultValue;"></i>&nbsp;</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $('.colorpicker-default').colorpicker()
+                                        });
+                                    </script>
+
+                                }
+                                break;
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info fade in">
+            <button class="close" data-dismiss="alert">x</button>
+            没有扩展属性.
+        </div>
+    }
+}
+
+
+@if (Model.CategoryShowType != CategoryShowType.CheckBox && Model.ShowSpecificationAttributes)
+{
+    if (Model.ArticleSpecificationAttributeModels.Count > 0)
+    {
+        <script type="text/javascript">
+            $(function () {
+                var count=@Model.ArticleSpecificationAttributeModels.Count;
+                if (count > 0)
+                {
+                    getdata();
+                }
+            });
+
+            $(document).ready(function () {
+
+                //改变时修改数据
+                $(document).on("change", "#addfare tbody tr input,#addfare tbody tr select", function () {
+                    getdata();
+                })
+            });
+
+
+            //拿数据
+            function getdata() {
+                var trs = $("#addfare tbody tr");
+                var trArr = [];
+                $.each(trs, function (e) {
+                    var trObj = {};
+                    trObj.SpecificationAttributeOptionId = $(this).find("select.spaoption-select").val();
+                    trObj.AllowFiltering = $(this).find("input.s_allowfiltering").prop("checked")?"true":"false";
+                    trObj.ShowOnArticlePage = $(this).find("input.s_showonarticlepage").prop("checked")?"true":"false";
+                    trObj.DisplayOrder = $(this).find("input.s_displayorder").val();
+                    trArr.push(trObj);
+                })
+                $("input[name='SpaValues']").val(JSON.stringify(trArr));
+            }
+        </script>
+        <div class="form-body">
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i>内容属性</span>
+                </label>
+                <div class="col-md-6">
+                    <input type="hidden" name="SpaValues" value="[]">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <section class="panel panel-default">
+
+                                <div class="table-responsive">
+                                    <table class="table  b-t b-light" id="addfare">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 120px">属性</th>
+                                                <th>属性值</th>
+                                                <th class="" style="width: 120px;display:none;">允许过滤</th>
+                                                <th class="" style="width: 120px;display:none;">在内容页面显示</th>
+                                                <th class="" style="width: 120px;display:none;">排序</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @Html.Partial("_SpecificationAttributes", Model.ArticleSpecificationAttributeModels)
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <footer class="panel-footer"></footer>
+                            </section>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+}

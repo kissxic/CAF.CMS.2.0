@@ -1,0 +1,126 @@
+﻿@model SiteBarModel
+
+@{
+    string accountUrl = Model.IsAuthenticated ? Url.Action("Info", "User") : Url.RouteUrl("Login");
+    //register URL with return URL (if specified)
+    var registerUrl = Url.RouteUrl("Register");
+    if (!String.IsNullOrEmpty(this.Context.Request.QueryString["returnUrl"]))
+    {
+        var webHelper = EngineContext.Current.Resolve<IWebHelper>();
+        registerUrl = webHelper.ModifyQueryString(registerUrl, "returnurl=" + HttpUtility.UrlEncode(this.Context.Request.QueryString["returnUrl"]), null);
+    }
+}
+
+<div class="jkn_head_top">
+    <div class="jkn_head_t">
+        <div class="jkn_head_t_l" id="loginfo">
+            <a class="jk_mr11" href="javascript:void(0);" onClick="AddFavorite('药坊网-做中国最大网上药品信息服务平台,专业的网上药店,网上买药,网上药房,网上购药网站',location.href)" title="收藏网站">收藏网站</a>
+            <span class="jk_mr27">欢迎来到药坊网上药店！</span>
+            @if (Model.IsAuthenticated)
+            {
+                <span>欢迎您:@Model.UserEmailUserName</span>
+                <a class="red" href="@Url.RouteUrl("Logout")">【退出登录】</a>
+            }
+            else
+            {
+                <a href="@Url.RouteUrl("login")" rel="nofollow">请登录</a><text>&nbsp;</text>
+                <a href="@Url.RouteUrl("register")" rel="nofollow">免费注册</a>
+
+            }
+        </div>
+        <ul class="jkn_head_t_r">
+            <li class="site_nav">
+                <p class="jk_anniu"><em></em>网站导航</p>
+                <div class="site_navbox clearfix">
+                    <!--健康资讯开始-->
+                    <dl class="jk_dl_5 clearfix">
+                        <dt>健康资讯</dt>
+                        <dd><a href="#" title="资讯"><span>资讯</span></a></dd>
+
+                    </dl>
+                    <!--健康资讯结束-->
+                    <!--健康频道开始-->
+                    <dl class="jk_dl_3 clearfix">
+                        <dt>健康频道</dt>
+                        <dd><a href="#" title="药划算"><span>药划算</span></a></dd>
+
+                    </dl>
+                    <!--健康频道结束-->
+                    <!--健康服务开始-->
+                    <dl class="jk_dl_1 clearfix">
+                        <dt>健康服务</dt>
+                        <dd><a href="#" title="健康问答"><span>健康问答</span></a></dd>
+
+                    </dl>
+                    <!--健康服务结束-->
+                    <!--商城开始-->
+                    <dl class="jk_dl_last clearfix">
+                        <dt>商城</dt>
+                        <dd><a href="#" title="保健商城">保健商城</a></dd>
+
+                    </dl>
+                    <!--商城结束-->
+                </div>
+            </li>
+            @*<li class="shopping_cart" onMouseOver="this.className='shopping_cart myshopping_cart'" onMouseOut="this.className='shopping_cart'">
+                    <em></em>
+                    <a href="#"><div class="shopp_an"></div></a>
+                    <a class="jk_s_on" href="#t " title="购物车"  >购物车<span class="jkn_red" id="topCount"><span>0</span>件</span></a>
+
+                    <div class="shopping_xx" id="shopcar">
+
+                    </div>
+
+                </li>*@
+
+            <li class="my_jianke" onMouseOver="this.className='my_jianke myjk_hover'" onMouseOut="this.className='my_jianke'">
+                <a href="#" title="客户服务">客户服务</a><span></span>
+                <ul class="myjk">
+                    <li><a href="@Url.RouteUrl("HelpeArticle", new { SeName = "73" })" title="购物保障">购物保障</a></li>
+                    <li><a href="#" title="配送方式">配送方式</a></li>
+                    <li><a href="#" title="支付方式">支付方式</a></li>
+                    <li><a href="#" title="售后服务">售后服务</a></li>
+                </ul>
+            </li>
+            <li class="my_jianke" onMouseOver="this.className='my_jianke myjk_hover'" onMouseOut="this.className='my_jianke'">
+                <a href="@Url.Action("Agentcenter","Member")" title="我的药坊">我的药坊</a><span></span>
+                @*<ul class="myjk">
+                        <li><a href="#" id="myorder"   title="我的订单">我的订单</a></li>
+                        <li><a href="#" id="myintegral"   title="我的积分">我的积分</a></li>
+                        <li><a href="#" id="mycoupon"   title="我的优惠券">我的优惠券</a></li>
+                        <li><a href="#" id="myanswer"   title="我的问答">我的问答</a></li>
+                    </ul>*@
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(function () {
+        //网站地图开始
+        $('.site_nav').mousemove(function () {
+            $(this).addClass('mysite_nav');
+        });
+        $('.site_nav').mouseleave(function () {
+            $(this).removeClass('mysite_nav');
+        });
+        //网站地图结束
+
+
+
+    });
+    function AddFavorite(title, url) {
+        try {
+            window.external.addFavorite(url, title);
+        }
+        catch (e) {
+            try {
+                window.sidebar.addPanel(title, url, "");
+            }
+            catch (e) {
+                alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
+            }
+        }
+    }
+
+</script>

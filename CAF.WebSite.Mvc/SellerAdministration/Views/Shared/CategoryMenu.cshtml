@@ -1,0 +1,29 @@
+﻿@model  List<MenuModel>
+@{
+    ViewBag.Title = T("Seller.ContentManagement.Articles").Text;
+
+}
+<li name="PMenu" class="hsub">
+    <a name="item" href="#" class="dropdown-toggle" icon="fa-puzzle-piece" tagid="@Guid.NewGuid().ToString()">
+        <i class="menu-icon fa fa-puzzle-piece"></i>
+        <span class="menu-text">信息管理</span>
+        <b class="arrow fa fa-angle-down"></b>
+    </a>
+    <b class="arrow"></b>
+    <ul class="submenu">
+        @foreach (var node in Model)
+        {
+            var currentId = Guid.NewGuid().ToString();
+            var hasChildren = node.Childitems.Any();
+            <li class="menuclick">
+                <a name="item" href="#" class="" icon="@(string.IsNullOrEmpty(node.IconName)? "fa-white" : node.IconName)" url="@node.Href.TrimStart('/')" @Html.Attr("objid", Guid.NewGuid().ToString(), false) objid="@Guid.NewGuid().ToString()" tagid="@Guid.NewGuid().ToString()">
+                    <i class="menu-icon fa @(string.IsNullOrEmpty(node.IconName)?"fa-list":node.IconName) "></i>
+                    @node.Text
+                </a>
+            </li>
+        }
+    </ul>
+</li>
+
+
+ 

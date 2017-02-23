@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "";
+}
+@model CAF.WebSite.Im.Models.IMModel
+
+@using (Html.BeginForm())
+{
+    <div class="form-body" id="LanguageEditTable">
+
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.Enabled)
+            </label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Enabled)
+                @Html.ValidationMessageFor(model => model.Enabled)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.MongoServerSettings)
+            </label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.MongoServerSettings)
+                @Html.ValidationMessageFor(model => model.MongoServerSettings)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.RabbitMqUri)
+            </label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.RabbitMqUri)
+                @Html.ValidationMessageFor(model => model.RabbitMqUri)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.RabbitUserName)
+            </label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.RabbitUserName)
+                @Html.ValidationMessageFor(model => model.RabbitUserName)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.RabbitPassword)
+            </label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.RabbitPassword)
+                @Html.ValidationMessageFor(model => model.RabbitPassword)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                &nbsp;
+            </label>
+            <div class="col-md-4">
+                <button type="submit" name="save" value="save" class="btn btn-primary">
+                    <i class="fa fa-check"></i>&nbsp;@T("Admin.Common.Save")
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+}

@@ -1,0 +1,73 @@
+﻿@model ArticlePostModel
+@using CAF.Infrastructure.Core.Domain.Cms.Articles;
+@using CAF.Infrastructure.Core.Domain.Seo;
+@using CAF.Infrastructure.Core.Domain.Cms.Media;
+@using CAF.Infrastructure.Core;
+@{
+    Layout = "~/Themes/AlphaDefault/Views/Shared/_Layout.Info.cshtml";
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    int pictureSize = EngineContext.Current.Resolve<MediaSettings>().DetailsPictureSize;
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl("Article", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(productUrl);
+    }
+    Html.AppendCssFileParts(ResourceLocation.Head,
+        "~/Themes/AlphaDefault/Content/css/detailpage.css",
+        "~/Themes/AlphaDefault/Content/css/Category.css",
+        "~/Themes/AlphaDefault/Content/css/Service.css");
+    Html.AppendScriptParts(ResourceLocation.Head,
+        "~/Scripts/underscore.min.js",
+        "~/Scripts/underscore.mixins.js",
+        "~/Scripts/yaofang.eventbroker.js",
+        "~/Themes/AlphaDefault/Content/js/jquery.jqzoom.js",
+        "~/Themes/AlphaDefault/Content/js/yaofang.imagezoom.js",
+        "~/Themes/AlphaDefault/Content/js/detailpage.js");
+}
+<div class="warp">
+    @Html.Action("ArticleBreadcrumb", "ArticleCatalog", new { articleId = Model.Id })
+
+    <div class="Cate_show_left fl">
+        @Html.Partial("_ArticleBox.Info", Model)
+    </div>
+
+    <div class="Cate_show_right fr">
+        <div class="Cate_message">
+            <a href="">
+                <img src="@Model.VendorModel.LogoPictureUrl" alt='' />
+            </a>
+            @if (Model.VendorModel.Id == 0)
+            {
+                <p class="title">药坊网自营</p>
+            }
+            else
+            {
+                <p class="title">@Model.VendorModel.Name</p>
+                    @*<p class="C_reg_time">注册时间：0-0-0 0:0:0</p>*@
+            }
+            <a class="btnreach">私信留言</a>
+
+        </div>
+        <div class="Clright_1 Clright_1_xg">
+            <div class="title">最新信息</div>
+            <ul>
+                @Html.Action("RecentlyArticleViewed", "ArticleCatalog", new
+               {
+                   area = "",
+                   partialView = "RecentlyAdded.Info",
+                   categoryId = Model.CategroyId,
+                   articleThumbPictureSize = 100,
+                   PageSize = 10,
+                   OrderBy = (int)ArticleSortingEnum.CreatedOn
+               })
+            </ul>
+        </div>
+    </div>
+
+
+</div> 

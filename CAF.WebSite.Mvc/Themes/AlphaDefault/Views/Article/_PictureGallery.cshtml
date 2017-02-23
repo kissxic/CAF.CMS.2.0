@@ -1,0 +1,26 @@
+﻿@model ArticleDetailsPictureModel
+
+@{
+
+}
+
+
+@if (Model.PictureModels.Count > 0)
+{
+    <ul id="etalage">
+        @for (int i = 0; i < Model.PictureModels.Count; i++)
+        {
+            var picture = Model.PictureModels[i];
+
+            <li>
+                <img class="etalage_thumb_image" src="@picture.ImageUrl" alt="@picture.AlternateText" title="@picture.Title" />
+                <img class="etalage_source_image" src="@picture.FullSizeImageUrl" alt="@picture.AlternateText" title="@picture.Title" />
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <img class="etalage_source_image" src="@Model.DefaultPictureModel.FullSizeImageUrl" alt="@Model.DefaultPictureModel.AlternateText" title="@Model.DefaultPictureModel.Title" />
+}
+

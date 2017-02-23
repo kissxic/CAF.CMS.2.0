@@ -1,0 +1,43 @@
+﻿@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core;
+@model MemberInfo
+@{
+    Layout = "~/SellerAdministration/Views/Shared/_AdminLeftMenu.cshtml";
+    ViewBag.Title = T("Seller.Dashboard").Text;
+    string[] dashboardColor = new string[] { "blue", "red", "green", "pink" };
+    int index = 0;
+}
+<div class="row">
+    <div class="widget-box">
+        <div class="widget-header widget-header-flat">
+            <h4 class="widget-title lighter">
+                <i class="ace-icon fa fa-star orange"></i>
+                会员统计
+            </h4>
+        </div>
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="col-sm-12 infobox-container">
+                    @foreach (var item in Model.UserArticlePublicNumModels)
+                    {
+                        index++;
+                        var colorIndex = index % 4;
+
+
+                        <div class="infobox infobox-@(dashboardColor[colorIndex])">
+                            <div class="infobox-icon">
+                                <i class="ace-icon fa fa-comments"></i>
+                            </div>
+
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">总数(@item.PublicNum)-- 已发(@item.PublicedNum)</span>
+                                <div class="infobox-content">@item.ChannelName</div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

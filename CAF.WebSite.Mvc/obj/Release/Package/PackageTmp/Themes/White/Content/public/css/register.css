@@ -1,0 +1,87 @@
+@charset "utf-8";
+/* CSS Document */
+
+.Y_all{max-width:1000px; min-width:1000px; width:1000px;}
+body{background:#f8f8f8;}
+.mail_ico,.mobile_ico{display:inline-block;width:20px;height:23px;background:url("../img/reg_method_s.png") no-repeat 0 0; vertical-align: middle;margin-right:9px;}
+.mobile_ico{background-position:0 -24px;}
+.register_warp{width:1000px; background:#FFF; margin:40px auto;}
+	.register_warp .register{padding:40px;}
+	.register h1{font-size:20px; font-weight:700; padding-bottom:30px; margin-bottom:30px; border-bottom:1px solid #E9E9E9;}
+	.register .other_reg{padding:0 0 30px 0;}
+		.register .other_reg h3,.register .reg h3{font-size:16px; color:#666; margin-bottom:30px;}
+		.register .other_reg ul{margin:0 0 30px 270px;}
+		.register .other_reg li{float:left; height:32px; line-height:32px; margin-right:20px;}
+		.or_reg{border-bottom:1px solid #E9E9E9; position:relative; margin-bottom:30px;}
+			.or_reg em{font-size:16px; background:#FFF; padding:0 30px; position:absolute; top:-10px; left:43%; color:#999;}
+		.reg dl{padding:15px 0;}
+			.reg dl.current{background:#FAFAFA;}
+			.reg .input{width:300px; margin-right:20px;}
+		.reg dt{width:180px; margin-right:20px; line-height:40px; text-align:right; font-size:14px;}
+			.reg dt i{color:#F00;font-family:"SimSun";padding-right:4px;}
+			.reg dd span.pop_showmsg{font-family:"SimSun"; padding:12px 10px 10px; line-height:20px; width: 284px;}
+			.reg dd .icon{vertical-align:middle; margin-top:-4px;}
+			.reg dd .icon.Y_fl{margin-top:1px;}
+			.reg dd .icon_succM{margin-top:8px;}
+			.reg .anquan{background-color:#999; height:10px; width:240px; margin:2px 0 0 10px;}
+			.reg .anquan em.r{background-color:#ff2121; width:60px; display:block; height:10px;}
+			.reg .anquan em.r2{background-color:#39afea; width:120px; display:block; height:10px;}
+			.reg .anquan em.r3{background-color:#f9aa0b; width:180px; display:block; height:10px;}
+			.reg .anquan em.r4{background-color:#5db734; width:240px; display:block; height:10px;}
+		.aq{padding-bottom:5px !important;}
+			.aq dt{line-height:24px;}
+		.pincode .btn{font-size:12px; font-family:"SimSun"; height:auto; line-height:inherit; width:120px; text-align:center; padding:17px 14px 14px; margin-right:20px; cursor:pointer;}
+			.pincode .input{width:130px;}
+			.pincode .btn:hover{text-decoration:none; background-color:#1e8fc6; color:#FFF !important;}
+			.pincode .btn.disabled,.pincode .btn.disabled:hover{color:#999 !important; padding:15px 14px 14px; cursor:default;}
+			
+.protocol{line-height:200%; font-size:14px;}
+.show_pd{
+	position: absolute;
+	right: 25px;
+	top: 2px;
+	width: 40px;
+	height: 40px;
+	background: url(/static/images/show_pd.png) no-repeat 0 -40px transparent;
+}
+.show_pd.show{
+	background-position: 0 0;
+}
+
+
+
+/*iframe注册*/
+@media (max-width: 800px){
+	#Y_head_nav,
+	#Y_head_sub,
+	.footer,
+	.register .reg h3,
+	.register .other_reg,
+	.register .or_reg,
+	.mobile_ico,
+	.mail_ico,
+	#Y_top{display: none;}
+
+	body{background-color: #fff;}
+	.register_warp .register{padding: 0;position:relative;padding: 100px 0;min-height: 440px;}
+	.register_warp .register h1{background: url(//static.yaozh.com/images/project/db/xiaozhi_girl.png) no-repeat 0 0 transparent;width: 100px;height: 100px;padding: 0;position: absolute;z-index:1;left: 50%;margin-left: -32px;text-indent: -999px;top: 42px;overflow: hidden;}
+	.reg{position: relative;z-index: 10;background-color: #fff;}
+	.register_warp{width: 500px;margin: 0 auto;}
+	.reg dl{padding: 0;line-height: 12px;margin-bottom: 6px;}
+	.reg dl.current{background-color: transparent;}
+	.reg dt{margin-right: 10px;width:100px;line-height: 38px;}
+	.aq dt{line-height: 12px;}
+	.reg dd .icon_succM{margin-top: 2px;}
+	.reg .input{line-height: 30px;height: 30px;padding: 3px;width:290px;margin-right: 10px;}
+	.reg dd span.pop_showmsg{padding: 6px;line-height: 12px;width: 284px;margin: 6px 0 0 110px;}
+	.reg dd .icon{display: none;}
+	.reg dl img{height:38px;}
+	.aq .Y_fl .btn{height: 36px;line-height: 36px;width: 298px;display: inline-block;}
+	.reg .anquan{margin:1px 0 0 10px;}
+
+	.pincode .btn{margin-right: 10px;}
+	.pincode .btn.disabled,.iframe .pincode .btn.disabled:hover{padding:12px;}
+	.reg .pincode .input{width:134px;}
+}
+
+

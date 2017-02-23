@@ -1,0 +1,211 @@
+﻿@model ProductCategoryModel
+
+@Html.HiddenFor(model => model.Id)
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="form-body">
+            <h2 class="margin-bottom-20">  @Html.ValidationSummary(true)</h2>
+
+            <div id="divCategory" class="form-group">
+                <label class="control-label col-md-3">
+                    @Html.LangLabelFor(model => model.ParentCategoryId)
+                </label>
+                <div class="col-md-9">
+                    @* codehint: sm-edit *@
+                    @(Html.HiddenFor(x => x.ParentCategoryId, new
+            {
+                style = "min-width: 200px",
+                @class = "form-control",
+                placeholder = "[" + T("Common.Unspecified") + "]",
+                data_select = true,
+                data_select_lazy = true,
+                data_select_init_text = Model.ParentCategoryBreadcrumb,
+                data_select_url = Url.Action("AllCategories", "ProductCategory")
+            }))
+                    @Html.ValidationMessageFor(model => model.ParentCategoryId)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    @Html.LangLabelFor(model => model.DisplayOrder) <span class="required" aria-required="true">*</span>
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.DisplayOrder)
+                    @Html.ValidationMessageFor(model => model.DisplayOrder)
+
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    @Html.LangLabelFor(model => model.Published)
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Published)
+                    @Html.ValidationMessageFor(model => model.Published)
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    @Html.LangLabelFor(model => model.AllowUsersToSelectPageSize)
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AllowUsersToSelectPageSize)
+                    @Html.ValidationMessageFor(model => model.AllowUsersToSelectPageSize)
+
+                </div>
+            </div>
+            <div class="form-group" id="pnlPageSize">
+                <label class="control-label col-md-3">
+                    @Html.LangLabelFor(model => model.PageSize)
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.PageSize)
+                    @Html.ValidationMessageFor(model => model.PageSize)
+
+                </div>
+            </div>
+            <div class="form-group" id="pnlPageSizeOptions">
+                <label class="control-label col-md-3">
+                    @Html.LangLabelFor(model => model.PageSizeOptions)
+                </label>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(model => model.PageSizeOptions, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PageSizeOptions)
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    @Html.LangLabelFor(model => model.PictureId)
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.PictureId, new { transientUpload = true })
+                    @Html.ValidationMessageFor(model => model.PictureId)
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-8">
+
+        @(Html.LocalizedEditor<ProductCategoryModel, ProductCategoryLocalizedModel>("category-info-localized",
+        @<div class="form-body">
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Locales[item].Name)
+                </label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => Model.Locales[item].Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Locales[item].Name)
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Locales[item].FullName)
+                </label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => Model.Locales[item].FullName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Locales[item].FullName)
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Locales[item].Description)
+                </label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Locales[item].Description, Html.RichEditorFlavor())
+                    @Html.ValidationMessageFor(model => model.Locales[item].Description)
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+
+                </label>
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.Locales[item].LanguageId)
+                </div>
+            </div>
+             <div class="form-group" style="display:none;">
+                 <label class="control-label col-md-2">
+
+                 </label>
+                 <div class="col-md-10">
+                     @Html.EditorFor(model => model.Locales[item].SeName)
+                 </div>
+             </div>
+        </div>
+     ,
+        @<div class="form-body">
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Name)
+                </label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.FullName)
+                </label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FullName)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Description)
+                </label>
+                <div class="col-md-10">
+                    @Html.EditorFor(x => x.Description, Html.RichEditorFlavor())
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
+             <div class="form-group" style="display:none;">
+                 <label class="control-label col-md-2">
+                    
+                 </label>
+                 <div class="col-md-10">
+                     @Html.EditorFor(x => x.SeName)
+                 </div>
+             </div>
+        </div>))
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[id="@Html.FieldIdFor(model => model.AllowUsersToSelectPageSize)"]').on('switchChange.bootstrapSwitch', function (event, state) {
+            togglePageSize(state);
+        });
+        togglePageSize(@Model.AllowUsersToSelectPageSize.ToString().ToLower());
+
+    
+    });
+    function togglePageSize(state) {
+        if (state) {
+            $('#pnlPageSize').hide();
+            $('#pnlPageSizeOptions').show();
+        }
+        else {
+            $('#pnlPageSize').show();
+            $('#pnlPageSizeOptions').hide();
+        }
+    }
+
+</script>

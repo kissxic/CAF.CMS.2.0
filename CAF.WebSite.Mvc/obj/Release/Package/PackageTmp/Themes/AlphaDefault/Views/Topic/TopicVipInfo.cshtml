@@ -1,0 +1,191 @@
+﻿@{
+    Layout = null;
+
+    Html.AddTitleParts(T("PageTitle.Vip").Text);
+
+    // add css assets
+    var MediaRootPath = "~/Themes/AlphaDefault/";
+    Html.AppendCssFileParts(
+       MediaRootPath + "Content/css/global.css",
+       MediaRootPath + "Content/css/vip.css",
+       MediaRootPath + "Content/css/bootstrap.min.css"
+       );
+    // add js assets (Head)
+    Html.AppendScriptParts(ResourceLocation.Head,
+        MediaRootPath + "Content/js/jquery.js",
+        MediaRootPath + "Content/js/common.js",
+         MediaRootPath + "Content/js/jquery.SuperSlide.2.1.1.js"
+       );
+
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    @Html.MetaAcceptLanguage()
+    @Html.WorkCssFiles(this.Url, ResourceLocation.Head)
+    @Html.WorkScripts(this.Url, ResourceLocation.Head)
+    <link rel="shortcut icon" href="~/favicon.ico" />
+</head>
+<body>
+    <div class="section">
+        @Html.Action("SiteBar", "Common", new { area = "" })
+        <div class="become_vip_item bg1">
+            <div class="w" id="bg1">
+                <div id="slideBox" class="slideBox">
+                    <div class="hd">
+                        <ul><li></li><!-- <li></li> --></ul>
+                    </div>
+                    <div class="bd">
+                        <ul>
+                            <!-- <li><img src="http://www.goodyao.com/application/views/images/vip_top_1_01.jpg" /></li> -->
+                            <li><img src="http://www.goodyao.com/application/views/images/vip_top.jpg" /></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <script type="text/javascript">
+		jQuery(".slideBox").slide({mainCell:".bd ul",autoPlay:true,effect:"left",delayTime:1000,pnLoop:false,interTime:5000});
+                </script>
+
+            </div>
+        </div>
+        <div class="become_vip_item">
+            <div class="w">
+                <div class="sub_title">
+                    <span class="h1">合作流程</span>
+                    <span class="h2">COOPERATION PROCESS</span>
+                </div>
+                <div class="process"></div>
+                <div class="sub_title">
+                    <span class="h1">合作特权</span>
+                    <span class="h2">COOPERATIVE PRIVILEGE</span>
+                </div>
+                <div class="privilege">
+                    <div class="demo1">
+                        <dl class="dl1">
+                            <dt>服务项目</dt>
+                            <dd>信息服务平台入驻</dd>
+                            <dd>三方交易平台入驻</dd>
+                            <dd>企业认证</dd>
+                            <dd>发布招商等企业信息</dd>
+                            <dd>企业联系方式</dd>
+                            <dd>代理商信息</dd>
+                            <dd>查看代理意向留言</dd>
+                            <dd>代理商数据查询</dd>
+                            <dd>QQ群营销</dd>
+                            <dd>微信公众号推广</dd>
+                            <dd>微博推广</dd>
+                            <dd>博客推广</dd>
+                            <dd> 免费批文、商标、股权转让服务</dd>
+                            <dd>招商效果</dd>
+                        </dl>
+                        <dl class="dl2">
+                            <dt>VIP会员</dt>
+                            <dd>开放</dd>
+                            <dd>开放</dd>
+                            <dd class="diffent">金牌认证</dd>
+                            <dd>无限制</dd>
+                            <dd>公开</dd>
+                            <dd>可查看</dd>
+                            <dd>可查看</dd>
+                            <dd class="diffent">50条/天</dd>
+                            <dd class="diffent">1次/天</dd>
+                            <dd class="diffent">1次/月</dd>
+                            <dd class="diffent">1次/周</dd>
+                            <dd class="diffent">1次/月</dd>
+                            <dd>提供</dd>
+                            <dd class="diffent">★★★★★</dd>
+                        </dl>
+                        <dl class="dl3">
+                            <dt>普通会员</dt>
+                            <dd>开放</dd>
+                            <dd>开放</dd>
+                            <dd>普通认证</dd>
+                            <dd>无限制</dd>
+                            <dd>公开</dd>
+                            <dd>可查看</dd>
+                            <dd>可查看</dd>
+                            <dd>不可查询</dd>
+                            <dd>无</dd>
+                            <dd>无</dd>
+                            <dd>无</dd>
+                            <dd>无</dd>
+                            <dd>提供</dd>
+                            <dd>★★★☆☆</dd>
+                        </dl>
+                    </div>
+                    <div class="demo"><a href="http://www.goodyao.com/Upvip/" title="立即升级VIP">立即升级VIP</a> </div>
+
+
+
+                </div>
+
+                <div class="sub_title">
+                    <span class="h1">合作商家</span>
+                    <span class="h2">COOPERATION MERCHANTS</span>
+                </div>
+                <div class="marchants">
+                    <ul>
+                        <li><a href="#" title="太极集团"><img src="http://www.goodyao.com/application/views/images/taiji.png"></a></li>
+                        <li><a href="#" title="三九企业集团"><img src="http://www.goodyao.com/application/views/images/39jituan.png"></a></li>
+                        <li><a href="#" title="吉林敖东"><img src="http://www.goodyao.com/application/views/images/aodong.png"></a></li>
+                        <li><a href="#" title="哈药"><img src="http://www.goodyao.com/application/views/images/hayao.png"></a></li>
+                        <li><a href="#" title="丽珠医药"><img src="http://www.goodyao.com/application/views/images/lizhu.png"></a></li>
+                        <li><a href="#" title="万和制药"><img src="http://www.goodyao.com/application/views/images/wanhezhiyao.png"></a></li>
+                        <li><a href="#" title="养正生物"><img src="http://www.goodyao.com/application/views/images/yangzheng.png"></a></li>
+                        <li><a href="#" title="DeNovo"><img src="http://www.goodyao.com/application/views/images/denovo.png"></a></li>
+                    </ul>
+                </div>
+                <div class="sub_title">
+                    <span class="h1">会员须知</span>
+                    <span class="h2">MEMBER INFORMATION</span>
+                </div>
+                <div class="information" style="color:#777;line-height:40px">
+                    <b style="color:red;font-size:24px">
+                        升级VIP，特惠共享
+                    </b><br>
+
+                    <span style="color:red;font-size:18px">惠享时间：</span>即日起至2016年9月31日升级成为金牌会员即可享受千元礼包大优惠：<br>
+                    <span style="color:red;font-size:18px">惠享一：</span>每月百元即可畅享平台优质服务，即日购买特惠买三送一，购买三个月即可享受4个月的优质服务；<br>
+                    <span style="color:red;font-size:18px">惠享二：</span>畅享平台优势，免费入驻信息服务、三方交易平台；<br>
+                    <span style="color:red;font-size:18px">惠享三：</span>定制专属交易服务平台免费拥有；<br>
+                    <span style="color:red;font-size:18px">惠享四：</span>在线平台交易信息免费拥有；<br>
+                    <span style="color:red;font-size:18px">惠享五：</span>无限制企业信息免费发布。
+
+                    <br>
+                    <br>
+                    <br>
+                    <b>
+                        汇集全国信息，扩展企业机遇，用最少的钱，做最有效的宣传
+                    </b><br>
+                    全程贴心服务，诚邀您加入药坊医药网<br>
+                    <b>1、如何成为药坊医药网VIP会员</b><br>
+                    如果您需要在药坊医药网发布招商、代理、等信息。<br>需要您注册成为普通会员，免费注册后即可登录发布相应信息，若需增加服务申请成为VIP会员，可以直接联系在线客服。<br>
+                    <br>
+                    <b>2、关于VIP会员的优质服务</b><br>
+                    1) 发布招商信息、供应信息、求购信息，数量不限，同一天内发布招商信息排列在药坊普通会员之前。 可查看代理、求购信息的联系方式。<br>
+                    2) 每个产品包装盒图片、彩页、说明书定制设计精美页面<br>
+                    3) 定制企业商铺，拥有独立企业网上商铺。<br>
+                    4) 各大论坛软文免费发布，增加知名度<br>
+                    5) 旗下QQ群，微信平台不定期推荐<br><br>
+
+
+                    <b>3、如何计算VIP会员有效期</b><br>
+                    自VIP会员申请成功之后，时间按自然日计算。<br><br>
+
+                    <b>VIP尊享，定制您的专属特权</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

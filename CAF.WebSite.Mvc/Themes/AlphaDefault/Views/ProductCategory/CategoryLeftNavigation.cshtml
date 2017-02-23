@@ -1,0 +1,35 @@
+﻿@model NavigationModel
+@using CAF.Infrastructure.Core.Collections
+@if (Model.Root.HasChildren)
+{
+    <div class="itemChooseBox">
+        <h2>@Model.Root.Value.Text</h2>
+        @CreateMenu(Model.Root.Children, "")
+
+    </div>
+    <input id="classcode" type="hidden" value="@Model.SelectedMenuItem.EntityId">
+}
+@helper CreateMenu(IEnumerable<TreeNode<MenuItem>> nodes, string menuSelector)
+        {
+foreach (var node in nodes)
+{
+        <h3 class="no_bd_b">
+            <a href="javascript:void(0);" class="icon_btn ">@node.Value.Text</a>
+        </h3>
+        <ul class="list_ul" style="display: none">
+            @CreateChildrenMenu(node.Children, "")
+        </ul>
+}
+}
+@helper CreateChildrenMenu(IEnumerable<TreeNode<MenuItem>> nodes, string menuSelector)
+        {
+
+foreach (var node in nodes)
+{
+        <li id="@node.Value.EntityId">
+            <a style="@(node.Value.EntityId==Model.SelectedMenuItem.EntityId?"color:#e4393c":"")" href="@Url.RouteUrl("ProductCategory",new {channelId=1,categoryId=node.Value.EntityId })">@node.Value.Text</a>
+        </li>
+}
+}
+
+

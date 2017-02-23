@@ -1,0 +1,40 @@
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45697/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-08-03T06:09:02.2213656Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45697/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-08-05T02:38:42.9942344Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45697/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-08-05T05:30:07.1709228Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45697/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-08-11T06:18:16.6340618Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45697/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-08-16T06:09:05.6887513Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45697/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-08-29T06:07:29.6883415Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-08-30T06:20:15.4096787Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-08-31T06:06:48.3652943Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-01T05:30:12.5345219Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-02T09:30:26.8536984Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-06T06:07:04.0802451Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-12T06:05:10.0393742Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-13T05:30:12.7767893Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-19T05:26:30.5629645Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-19T05:30:12.4237412Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-21T07:18:42.5304881Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-29T08:59:04.5355143Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-29T09:50:48.5592957Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-30T07:03:41.3960915Z
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-30T07:50:20.0643334Z

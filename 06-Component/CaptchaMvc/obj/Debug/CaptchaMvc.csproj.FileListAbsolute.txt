@@ -1,0 +1,5 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CaptchaMvc.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CaptchaMvc.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\CaptchaMvc\obj\Debug\CaptchaMvc.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\CaptchaMvc\obj\Debug\CaptchaMvc.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\CaptchaMvc\obj\Debug\CaptchaMvc.csprojResolveAssemblyReference.cache

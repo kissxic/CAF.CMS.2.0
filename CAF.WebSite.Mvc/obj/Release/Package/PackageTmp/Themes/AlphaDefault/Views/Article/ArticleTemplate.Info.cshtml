@@ -1,0 +1,87 @@
+﻿@model ArticlePostModel
+@using CAF.Infrastructure.Core.Domain.Orders;
+@using CAF.Infrastructure.Core.Domain.Seo;
+@using CAF.Infrastructure.Core.Domain.Cms.Media;
+@using CAF.Infrastructure.Core;
+@{
+    Layout = "~/Themes/AlphaDefault/Views/Shared/_Layout.Info.cshtml";
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    int pictureSize = EngineContext.Current.Resolve<MediaSettings>().DetailsPictureSize;
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl("Article", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(productUrl);
+    }
+    Html.AppendCssFileParts(ResourceLocation.Head,
+        "~/Themes/AlphaDefault/Content/css/detailpage.css",
+        "~/Themes/AlphaDefault/Content/css/Category.css",
+        "~/Themes/AlphaDefault/Content/css/Service.css");
+    Html.AppendScriptParts(ResourceLocation.Head,
+        "~/Themes/AlphaDefault/Content/js/detailpage.js");
+}
+<div class="warp">
+    <div class="Cate_Route">
+        <a href='http://www.goodyao.com/yyxx/index.html' style='font-size:15px;'>分类信息首页  </a> <span style='font-size:15px;color:#333;'> > </span>  <a href='http://www.goodyao.com/yyxx/classification_exhibition.html' style='color:#ff4466;font-size:15px;cursor:pointer;'>展会</a><span style='font-size:15px;color:#333;'> > 2016年美国迈阿密国际医疗展会FIME/鸿尔高高</span>
+    </div>
+
+    <div class="Cate_show_left fl">
+        <div class="title"><h3>2016年美国迈阿密国际医疗展会FIME/鸿尔高高</h3><div class="f_title"><div class="fl" '="">2016-07-18 10:04:17&nbsp;&nbsp;&nbsp;信息编号：82</div><div class="fr" ' =""><a onclick="addcollection(&quot;展会&quot;,&quot;classification_exhibition&quot;,&quot;82&quot;,&quot;http://www.goodyao.com&quot;)" style="cursor: pointer;">收藏</a><a href="http://www.jiathis.com/share" class="jiathis" target="_blank">分享</a>
+        <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+        <script type="text/javascript" src="http://v3.jiathis.com/code/plugin.client.js" charset="utf-8"></script></div></div></div>
+        <dl class="C_show_Re C_show_Re_img"><dt>信息标签：<span style="cursor:pointer;" onclick="clickLabel(&quot;0&quot;,&quot;展会&quot;,&quot;classification_exhibition&quot;)">展会</span></dt><dd style="width:300px;margin-right:20px"><div class="game163" style="margin:0 auto"><ul class="bigImg" style="position: relative; width: 290px; height: 225px;"><li style="position: absolute; width: 290px; left: 0px; top: 0px;"><a><img title="2016年美国迈阿密国际医疗展会FIME/鸿尔高高" src="http://yaozhijia.oss-cn-hangzhou.aliyuncs.com/goods%2F8d2240c9fe26e097e08f4a5f8410d3e4.png?OSSAccessKeyId=jFW30TQtvOP3PMi1&amp;Signature=rWsT08zINsyOvHs1FYC%2Bc9chdqA%3D&amp;Expires=1475379465"></a></li></ul><div class="smallScroll"><a class="sPrev prevStop" href="javascript:void(0)" '="">←</a><div class="smallImg"><ul><li class="on"><a><img src="http://yaozhijia.oss-cn-hangzhou.aliyuncs.com/goods%2F8d2240c9fe26e097e08f4a5f8410d3e4.png?OSSAccessKeyId=jFW30TQtvOP3PMi1&amp;Signature=rWsT08zINsyOvHs1FYC%2Bc9chdqA%3D&amp;Expires=1475379465"></a></li></ul></div><a class="sNext nextStop" href="javascript:void(0)">→</a></div><div class="pageState"><span>1</span>/1</div></div></dd><dd>展会地址: 美国佛罗里达州迈阿密...</dd><dd>展馆名称: 美国佛罗里达州迈阿密...</dd><dd>参展费用: 电话咨询...</dd><dd>展会日期: 2016-08-02 00:00:00</dd></dl>
+
+
+        <ul class="C_contact"><li>联系人： </li><li>公司名称： FIME国际医疗展览公司 </li><li>联系电话：<span id="hidden_mobile">1861081****</span><a onclick="viewMobile(&quot;18610811473&quot;)" class="C_phone" style="cursor:pointer;">点击查看完整号码</a></li><li class="C_remind"><b>药之佳网提醒您</b>：在交易或参与的过程中，以各种理由收取非正规费用，均有骗子嫌疑，请提高警惕，谨防上当受骗。<span>联系时请说明在药之佳网看到的！</span></li></ul>
+        <div class="C_content"><p class="title">简介</p><div class="C_content_show"><p><strong>展会介绍</strong></p><p><br></p><p>美国医疗展/美国FIME医疗展/咨询热线：186110811473高高/美国医疗设备展/北美医疗展/迈阿密医疗展/迈阿密设备展/印度医疗展/美国迈阿密医疗展/迈阿密FIME展会/德国医疗展/越南医疗展会/俄罗斯医疗展会/迪拜医疗展会/巴西医疗展会/德国medica医疗展</p><p><br></p><p>2016美国佛罗里达国际医疗设备展览会FIME</p><p><br></p><p>展会时间:2016年8月2日-4日 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p><p><br></p><p>展会地点:美国佛罗里达州迈阿密海滩会议中心</p><p><br></p><p>主办单位;FIME国际医疗展览公司&nbsp;</p><p><br></p><p>举办周期 :一年一届</p><p><br></p><p>组展单位:北京鸿尔国际展览有限公司</p><p><br></p><p>【展会及市场贸易资讯简介】</p><p><br></p></div></div>
+        <div class="C_content Cate_list_left C_show_list"><p class="title">其他相关信息</p><ul><li><div class="fl Clleft_1"><a href="http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-58-%25E5%25B1%2595%25E4%25BC%259A.html ">2016第76届中国国际医药 原料 中间体 包装 设备交易会</a></div><div class="fl Clleft_2">暂无公司名称</div><div class="fl Clleft_3">全国</div><div class="fl Clleft_4">2016-03-01</div></li><li><div class="fl Clleft_1"><a href="http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-56-%25E5%25B1%2595%25E4%25BC%259A.html ">2016年印度（金奈）国际医疗设备展</a></div><div class="fl Clleft_2">印度Medexpe...</div><div class="fl Clleft_3">全国</div><div class="fl Clleft_4">2016-03-01</div></li><li><div class="fl Clleft_1"><a href="http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-54-%25E5%25B1%2595%25E4%25BC%259A.html ">2016中国医药制药、医疗器械出口蒙古展览会</a></div><div class="fl Clleft_2">北京中企世博国际展...</div><div class="fl Clleft_3">全国</div><div class="fl Clleft_4">2016-03-01</div></li><li><div class="fl Clleft_1"><a href="http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-42-%25E5%25B1%2595%25E4%25BC%259A.html ">CMEH2016年上海医疗器械展览会</a></div><div class="fl Clleft_2">上海聚亿展览服务有...</div><div class="fl Clleft_3">全国</div><div class="fl Clleft_4">2016-02-29</div></li><li><div class="fl Clleft_1"><a href="http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-39-%25E5%25B1%2595%25E4%25BC%259A.html ">2015年韩国国际医疗器材、实验室设备暨居家护理保健展</a></div><div class="fl Clleft_2">环球智信(北京)国...</div><div class="fl Clleft_3">全国</div><div class="fl Clleft_4">2016-02-27</div></li></ul></div>
+    </div>
+
+    <div class="Cate_show_right fr">
+        <div class="Cate_message">
+            <a href="">
+                <img src=http://www.goodyao.com/application/views/images/fenlei_userhead.jpg alt='' />
+            </a>
+            <p class="title"></p>
+            <p class="C_reg_time">注册时间：0-0-0 0:0:0</p>
+            <a class="btnreach">私信留言</a>
+
+        </div>
+        <div class="Clright_1 Clright_1_xg">
+            <div class="title">相关类目</div>
+            <ul>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-58-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016第76届中国国际...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-57-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 「TCM Mach 2016 中药机械设备展」</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-56-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016年印度（金奈）国...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-55-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 第十一届韩国制药及化妆品...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-54-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016中国医药制药、医...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-43-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016大陸医疗展-2016医疗器械展</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-42-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : CMEH2016年上海医疗器械展览会</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-41-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016中国(广州)妇幼...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-39-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2015年韩国国际医疗器...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-38-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 安徽合肥2016年春季医疗展</a></li>
+            </ul>
+        </div>
+        <div class="Clright_1">
+            <div class="title">最新信息</div>
+            <ul>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-87-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016年9月威联郑州药交会</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-83-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016中国(江苏)国际...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-82-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016年美国迈阿密国际...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-81-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2017年第18届摩洛哥国际医疗展</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-80-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016年德国国际康复、...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-78-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 世博威•2016第二十一...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-77-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016第76届中国国际...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-76-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016年北京国际生物医...</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-75-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016年9月威联郑州药交会</a></li>
+                <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_exhibition-74-%25E5%25B1%2595%25E4%25BC%259A.html '>展会信息 : 2016年健康服务业展会...</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+</div> 

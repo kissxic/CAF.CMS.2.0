@@ -1,0 +1,2 @@
+DataProvider: sqlserver
+DataConnectionString: Data Source=.;Initial Catalog=ch_yaopin;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=123!@#;Enlist=False;Pooling=True;Min Pool Size=1;Max Pool Size=100;MultipleActiveResultSets=True;Connect Timeout=15;User Instance=False

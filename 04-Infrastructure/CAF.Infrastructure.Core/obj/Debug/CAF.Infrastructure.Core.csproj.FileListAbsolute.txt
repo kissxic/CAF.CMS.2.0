@@ -1,0 +1,6 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Infrastructure.Core.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Infrastructure.Core.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Infrastructure.Core.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\04-Infrastructure\CAF.Infrastructure.Core\obj\Debug\CAF.Infrastructure.Core.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\04-Infrastructure\CAF.Infrastructure.Core\obj\Debug\CAF.Infrastructure.Core.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\04-Infrastructure\CAF.Infrastructure.Core\obj\Debug\CAF.Infrastructure.Core.csprojResolveAssemblyReference.cache

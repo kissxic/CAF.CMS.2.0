@@ -1,0 +1,74 @@
+﻿using IdGen;
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Let's say we take april 1st 2015 as our epoch
+        var epoch = new DateTime(2015, 4, 1, 0, 0, 0, DateTimeKind.Utc);
+        // Create a mask configuration of 45 bits for timestamp, 2 for generator-id 
+        // and 16 for sequence
+        var mc = new MaskConfig(45, 2, 16);
+        // Create an IdGenerator with it's generator-id set to 0, our custom epoch 
+        // and mask configuration
+        var generator = new IdGenerator(0, epoch, mc);
+
+        // Let's ask the mask configuration how many generators we could instantiate 
+        // in this setup (2 bits)
+        Console.WriteLine("Max. generators       : {0}", mc.MaxGenerators);
+
+        // Let's ask the mask configuration how many sequential Id's we could generate 
+        // in a single ms in this setup (16 bits)
+        Console.WriteLine("Id's/ms per generator : {0}", mc.MaxSequenceIds);
+
+        // Let's calculate the number of Id's we could generate, per ms, should we use
+        // the maximum number of generators
+        Console.WriteLine("Id's/ms total         : {0}", mc.MaxGenerators * mc.MaxSequenceIds);
+
+
+        // Let's ask the mask configuration for how long we could generate Id's before
+        // we experience a 'wraparound' of the timestamp
+        Console.WriteLine("Wraparound interval   : {0}", mc.WraparoundInterval(generator.TimeSource));
+
+        // And finally: let's ask the mask configuration when this wraparound will happen
+        // (we'll have to tell it the generator's epoch)
+        Console.WriteLine("Wraparound date       : {0}", mc.WraparoundDate(generator.Epoch, generator.TimeSource).ToString("O"));
+    }
+}
+
+Output:
+
+Max. generators       : 4
+Id's/ms per generator : 65536
+Id's/ms total         : 262144
+Wraparound interval   : 407226.12:41:28.8320000 (about 1114 years)
+Wraparound date       : 3130-03-13T12:41:28.8320000Z
+
+
+
+IdGenerator(int generatorId)
+IdGenerator(int generatorId, ITimeSource timeSource)
+IdGenerator(int generatorId, DateTime epoch)
+IdGenerator(int generatorId, DateTime epoch, ITimeSource timeSource)
+IdGenerator(int generatorId, DateTime epoch, MaskConfig maskConfig)
+IdGenerator(int generatorId, DateTime epoch, MaskConfig maskConfig, ITimeSource timeSource)
+
+<configuration>
+  <configSections>
+    <section name="idGenSection" type="IdGen.Configuration.IdGeneratorsSection, IdGen" />
+  </configSections>
+
+  <idGenSection>
+    <idGenerators>
+      <idGenerator name="foo" id="123"  epoch="2016-01-02T12:34:56" timestampBits="39" generatorIdBits="11" sequenceBits="13" tickDuration="0:00:00.001" />
+      <idGenerator name="bar" id="987"  epoch="2016-02-01 01:23:45" timestampBits="20" generatorIdBits="21" sequenceBits="22" />
+      <idGenerator name="baz" id="2047" epoch="2016-02-29"          timestampBits="21" generatorIdBits="21" sequenceBits="21" />
+    </idGenerators>
+  </idGenSection>
+
+</configuration>
+
+You can get the IdGenerator from the config using the following code:
+
+var generator = IdGenerator.GetFromConfig("foo");

@@ -1,0 +1,78 @@
+﻿@model PagingFilteringModel
+@using CAF.WebSite.Mvc.Models.Catalog;
+@helper CreateOptionChooser(IList<ListOptionItem> options, string label = "", string icon = "", bool rightFloat = false)
+{
+var selectedOption = options.FirstOrDefault(x => x.Selected);
+selectedOption = selectedOption ?? options.First();
+var floatClass = rightFloat ? "pull-right" : "pull-left";
+    <div class="btn-group @floatClass">
+        <a class="btn dropdown-toggle tooltip-toggle" data-toggle="dropdown" rel="nofollow" title="@label: @selectedOption.Text">
+            @if (icon.HasValue())
+            {
+                <i class="fa fa-fw fa-@icon"></i>
+            }
+            @selectedOption.Text
+            <span class="fa fa-fw fa-caret-down"></span>
+        </a>
+        <ul class="dropdown-menu">
+            @foreach (var opt in options)
+            {
+                <li @Html.Attr("class", "disabled", opt.Selected)>
+                    <a href="@opt.Url">@opt.Text</a>
+                </li>
+            }
+        </ul>
+    </div>
+
+}
+@helper CreateOptionChooserSort(IList<ListOptionItem> options, string label = "", string icon = "", bool rightFloat = false)
+{
+var selectedOption = options.FirstOrDefault(x => x.Selected);
+selectedOption = selectedOption ?? options.First();
+var floatClass = rightFloat ? "pull-right" : "pull-left";
+var InitialOption = options.Where(p => p.Id == 1).First();
+var PriceDescOptions = options.Where(p => p.Id == 11).First();
+var PriceAscOptions = options.Where(p => p.Id == 10).First();
+var CreatedDescOptions = options.Where(p => p.Id == 15).First();
+var CreatedAscOptions = options.Where(p => p.Id == 16).First();
+
+    <li class='@(selectedOption.Id == InitialOption.Id ? "pro-list-on" : "")'><a href="@InitialOption.Url">综合排序</a></li>
+
+if (selectedOption.Id == 15)
+{
+        <li class='sort-icon @(selectedOption.Id == CreatedDescOptions.Id ? "pro-list-on" : "")'><a href="@CreatedAscOptions.Url">上架时间</a><i class="ibg wup"></i></li>
+}
+else
+{
+        <li class='sort-icon @(selectedOption.Id == CreatedAscOptions.Id ? "pro-list-on" : "")'><a href="@CreatedDescOptions.Url">上架时间</a><i class="ibg"></i></li>
+}
+if (selectedOption.Id == 11)
+{
+        <li class='sort-icon @(selectedOption.Id == PriceDescOptions.Id ? "pro-list-on" : "")'><a href="@PriceAscOptions.Url">价格</a><i class="ibg"></i></li>
+
+}
+else
+{
+        <li class='sort-icon @(selectedOption.Id == PriceAscOptions.Id ? "pro-list-on" : "")'><a href="@PriceDescOptions.Url">价格</a><i class="ibg wup"></i></li>
+}
+
+
+}
+<ul class="listop-left">
+    @if (Model.AllowSorting)
+    {
+        @CreateOptionChooserSort(Model.AvailableSortOptions, T("Categories.OrderBy").Text, "sort")
+    }
+</ul>
+<div class="listop-right">
+    @*<strong>共1000件</strong>
+        <strong><em>1</em>/42</strong><span class="sjleft" style="color: #ccc;"><a></a></span><span class="sjright next" href="http://www.jianke.com/list-01-0-2-0-1-0-0-0-0-0.html" onclick="fanye(this)"><a></a></span>*@
+    @if (Model.AllowUsersToSelectPageSize)
+    {
+        @CreateOptionChooser(Model.PageSizeOptions, T("Categories.PageSize").Text, "sort-amount-asc")
+    }
+
+
+</div>
+
+

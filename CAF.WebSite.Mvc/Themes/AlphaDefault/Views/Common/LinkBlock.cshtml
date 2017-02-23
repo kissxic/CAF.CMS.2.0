@@ -1,0 +1,32 @@
+﻿@model LinkModel
+
+<div class="jkn_link">
+    <ul>
+        <li id="jk_li_1" class="active" onmouseover="click_tab('1')">友情链接</li>
+
+    </ul>
+    <div class="jk_con_links">
+        <!--友情链接开始-->
+        <div class="jk_tcon_links" id="jk_div_1" style="display: block;">
+            @foreach (var link in Model.LinkBlocks)
+            {
+                <a title="@link.Name" target="_blank" href="@link.LinkUrl">@link.Name</a>
+            }
+        </div>
+        <!--友情链接结束-->
+        <!--友情链接开始-->
+
+    </div>
+    <script>
+        function click_tab(index) {
+            for (var i = 1; i <= 1; i++) {
+                document.getElementById("jk_li_" + i).className = "";
+                document.getElementById("jk_li_" + index).className = "active";
+                document.getElementById("jk_div_" + i).style.display = "none";
+
+            }
+            document.getElementById("jk_div_" + index).style.display = "block";
+        };
+    </script>
+
+</div>

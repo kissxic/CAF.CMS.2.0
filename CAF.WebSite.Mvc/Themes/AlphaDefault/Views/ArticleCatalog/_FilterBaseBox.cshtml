@@ -1,0 +1,23 @@
+﻿@model ArticleCatalogPagingFilteringModel.BaseFilterModel
+@{
+    var renderedAttributeNames = new List<string>();
+}
+@if (Model.Enabled)
+{
+
+    if (Model.Items.Count > 0)
+    {
+        <li>
+            <div class="title fl">地区</div>
+            <div class="Cate_scr_list fl">
+                <dl class='pargana'>
+                    @foreach (var item in Model.Items)
+                    {
+                        <dd class="@(item.Selected?"on":"")"><a href='@item.FilterUrl'>@item.Name</a></dd>
+                    }
+                    </dl>
+            </div>
+        </li>
+    }
+
+}

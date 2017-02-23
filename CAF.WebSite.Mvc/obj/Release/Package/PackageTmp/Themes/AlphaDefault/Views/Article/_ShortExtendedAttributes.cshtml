@@ -1,0 +1,40 @@
+﻿@model ArticlePostModel
+@using CAF.Infrastructure.Core.Domain.Cms.Articles
+ 
+@if (Model.ArticleExtendedAttributes.Count > 0)
+{
+
+    <div class='indetail_info fl' id='detailinfo'>
+        @foreach (var attribute in Model.ArticleExtendedAttributes.Take(9))
+        {
+            
+            string textPrompt = !string.IsNullOrEmpty(attribute.TextPrompt) ? attribute.TextPrompt : attribute.Name;
+            switch (attribute.AttributeControlType)
+            {
+                case AttributeControlType.DropdownList:
+                case AttributeControlType.Checkboxes:
+                case AttributeControlType.RadioList:
+                case AttributeControlType.TextBox:
+                case AttributeControlType.MultilineTextbox:
+                case AttributeControlType.Datepicker:
+                    {
+                        <dl><dt>@textPrompt：</dt><dd>@attribute.DefaultValue</dd></dl>
+                    }
+                    break;
+
+            }
+
+        }
+    </div>
+    <span class="showdetailinfo"><a href="javascript:;" id="showdetail">展开</a> </span>
+    <script>
+        $(function () {
+            $("#showdetail").click(function () {
+                showdetail("#showdetail", "#detailinfo", 280);
+            });
+
+        });
+    </script>
+
+}
+

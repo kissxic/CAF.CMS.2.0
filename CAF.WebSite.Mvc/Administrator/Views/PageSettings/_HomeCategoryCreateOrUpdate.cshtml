@@ -1,0 +1,162 @@
+﻿@model HomeCategoryModel
+@{ 
+    Html.AddCssFileParts(true, "~/Content/assets/global/plugins/zTree_v3/css/zTreeStyle/zTreeStyle.css");
+    Html.AppendScriptParts(true, "~/Content/assets/global/plugins/zTree_v3/js/jquery.ztree.all-3.5.min.js");
+}
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+@Html.HiddenFor(model => model.CategoryIds)
+@Html.HiddenFor(model => model.IsChangeCategory)
+<script type="text/javascript">
+    $(function () {
+        var setting = {
+            check: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                onCheck: onCheck
+            }
+
+        };
+        var zNodes = [];
+        $.ajax({
+            url: "/admin/PageSettings/AjaxProductCategory?homeCategoryId=@(Model.Id)",
+            type : "POST",
+            error : function(data) {
+                alert("出错了！！:" + data);
+            },
+            success : function(data) {
+                var treeData = [];
+                $.each(data, function (i, category) {
+                    treeData.push({ id: category.id, pId: category.pId, name: category.name, open: category.open, checked: category.selected });
+                });
+                $.fn.zTree.init($("#treeDemo"), setting, treeData);
+            }
+        });
+      
+ 
+        // add required products
+        $(document).on('click', '#SearchRequiredVendorButton', function () {
+            $('#@(Html.FieldIdFor(x => x.RequiredVendorIds))').entityPicker('loadDialog', {
+                url: '@Url.Action("EntityPicker", "Common", new { area = "" })',
+                caption: '推荐商家',
+                entity:"vendor",
+                returnValueDelimiter: ',',
+                onLoadDialogBefore: function () {
+                    $('#SearchRequiredVendorButton').button('loading').prop('disabled', true);
+                },
+                onLoadDialogComplete: function () {
+                    $('#SearchRequiredVendorButton').prop('disabled', false).button('reset');
+                }
+            });
+           
+        });
+        $(document).on('click', '#SearchRequiredManufacturerButton', function () {
+           
+            $('#@(Html.FieldIdFor(x => x.RequiredManufacturerIds))').entityPicker('loadDialog', {
+                url: '@Url.Action("EntityPicker", "Common", new { area = "" })',
+                caption: '推荐品牌',
+                entity: "manufacturer",
+                returnValueDelimiter: ',',
+                onLoadDialogBefore: function () {
+                    $('#SearchRequiredManufacturerButton').button('loading').prop('disabled', true);
+                },
+                onLoadDialogComplete: function () {
+                    $('#SearchRequiredManufacturerButton').prop('disabled', false).button('reset');
+                }
+            });
+
+        });
+    });
+    function onCheck(e, treeId, treeNode) {
+        var treeObj = $.fn.zTree.getZTreeObj("treeDemo"),
+        nodes = treeObj.getCheckedNodes(true),
+        v = "";
+        for (var i = 0; i < nodes.length; i++) {
+            v += nodes[i].id + ",";
+        }
+        $("#CategoryIds").val(v);
+        $("#IsChangeCategory").val("true");
+    }
+            
+
+</script>
+<div class="form-body">
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Html.LangLabelFor(model => model.Name)
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name)
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Html.LangLabelFor(model => model.Url)
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.Url, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Url)
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Html.LangLabelFor(model => model.DisplayOrder)
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.DisplayOrder, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DisplayOrder)
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">@Html.LangLabelFor(model => model.RequiredVendorIds)</label>
+        <div class="col-md-6">
+            <div class="input-group">
+               
+                    @Html.EditorFor(model => model.RequiredVendorIds, new { @class = "form-control" })
+               
+                <span class="input-group-btn">
+                    <button type="button" class="btn blue" id="SearchRequiredVendorButton" data-loading-text="加载&hellip;">
+                        <i class="fa fa-search"></i>&nbsp;@T("Admin.Common.Search")
+                    </button>
+                    @Html.ValidationMessageFor(model => model.RequiredVendorIds)
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">@Html.LangLabelFor(model => model.RequiredManufacturerIds)</label>
+        <div class="col-md-6">
+            <div class="input-group">
+
+                @Html.EditorFor(model => model.RequiredManufacturerIds, new { @class = "form-control" })
+
+                <span class="input-group-btn">
+                    <button type="button" class="btn blue" id="SearchRequiredManufacturerButton" data-loading-text="加载&hellip;">
+                        <i class="fa fa-search"></i>&nbsp;@T("Admin.Common.Search")
+                    </button>
+                    @Html.ValidationMessageFor(model => model.RequiredManufacturerIds)
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            分类
+        </label>
+        <div class="col-md-6">
+            <ul id="treeDemo" class="ztree"></ul>
+
+        </div>
+    </div>
+</div>
+

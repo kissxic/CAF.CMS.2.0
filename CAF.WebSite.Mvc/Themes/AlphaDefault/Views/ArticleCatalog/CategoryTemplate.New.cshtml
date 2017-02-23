@@ -1,0 +1,2439 @@
+﻿@model ArticleCategoryModel
+@using CAF.Infrastructure.Core.Domain.Seo;
+@{
+    Layout = "~/Themes/AlphaDefault/Views/Shared/_Layout.New.cshtml";
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var categoryUrl = Url.RouteUrl("ArticleCategory", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(categoryUrl);
+    }
+
+
+}
+
+@section header{
+    <div class="message-nav clearfix">
+        <ul class="message-con wm">
+            <li class="w153">
+                <dl>
+                    <dt><a href="http://www.jianke.com/news/bj/" target="_blank">保健资讯</a></dt>
+                    <dd>
+                        <a href="http://www.jianke.com/news/bj/nxbj/" target="_blank">两性</a>
+                    </dd>
+                    <dd><a href="http://www.jianke.com/news/bj/lrbj/" target="_blank">老人</a></dd>
+                    <dd><a href="http://www.jianke.com/news/bj/muying/" target="_blank">母婴</a></dd>
+                    <dd><a href="http://www.jianke.com/news/bj/jtys/" target="_blank">家庭</a></dd>
+                    <dd><a href="http://www.jianke.com/news/bj/jkyy/" target="_blank">健康用药</a></dd>
+                </dl>
+            </li>
+            <li class="line"></li>
+            <li class="w163">
+                <dl>
+                    <dt><a href="http://www.jianke.com/news/jbzx/" target="_blank">诊疗资讯</a></dt>
+                    <dd><a href="http://www.jianke.com/news/jbzx/nk/" target="_blank">内科</a></dd>
+                    <dd><a href="http://www.jianke.com/news/jbzx/wk/" target="_blank">外科</a></dd>
+                    <dd><a href="http://www.jianke.com/news/jbzx/pfk/" target="_blank">皮肤科</a></dd>
+                    <dd><a href="http://www.jianke.com/news/jbzx/ek/" target="_blank">儿科</a></dd>
+                    <dd><a href="http://www.jianke.com/news/jbzx/fk/" target="_blank">妇科</a></dd>
+                    <dd><a href="http://www.jianke.com/news/jbzx/wgk/" target="_blank">五官科</a></dd>
+                </dl>
+            </li>
+            <li class="line"></li>
+            <li class="w110">
+                <dl>
+                    <dt><a href="http://www.jianke.com/news/jfks/" target="_blank">减肥资讯</a></dt>
+                    <dd><a href="http://www.jianke.com/news/jfks/jfcs/" target="_blank">常识</a><a href="http://www.jianke.com/news/jfks/ysjf/" target="_blank">饮食</a></dd>
+                    <dd><a href="http://www.jianke.com/news/jfks/ydjf/" target="_blank">运动</a><a href="http://www.jianke.com/news/jfks/yxjf/" target="_blank">医学</a></dd>
+                </dl>
+            </li>
+            <li class="line"></li>
+            <li class="w110">
+                <dl>
+                    <dt><a href="http://www.jianke.com/news/meirong/" target="_blank">美容资讯</a></dt>
+                    <dd><a href="http://www.jianke.com/news/meirong/hfzt/" target="_blank">护肤</a><a href="http://www.jianke.com/news/meirong/hzzt/" target="_blank">化妆</a></dd>
+                    <dd><a href="http://www.jianke.com/news/meirong/zxmr/" target="_blank">整形</a><a href="http://www.jianke.com/news/meirong/mrsp/" target="_blank">食谱</a></dd>
+                </dl>
+            </li>
+            <li class="line"></li>
+            <li class="w163">
+                <dl>
+                    <dt><a href="http://www.jianke.com/news/jkxw/" target="_blank">新闻资讯</a></dt>
+                    <dd><a href="http://www.jianke.com/news/jkxw/mtpl/" target="_blank">媒体新闻</a></dd>
+                    <dd><a href="http://www.jianke.com/news/jkxw/mtbd/" target="_blank">媒体报道</a></dd>
+                    <dd><a href="http://www.jianke.com/news/jkxw/jkxw/" target="_blank">健客动态</a></dd>
+                    <dd><a href="http://www.jianke.com/ypzd/" target="_blank">用药指导</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="main wm">
+    <!-- 热点焦点图 -->
+    <div class="hot">
+        <div id="bfosus" class="focus">
+            <div id="fo-box" class="fPic">
+                <div class="fcon" style="display: block;">
+                    <a target="_blank" href="http://www.jianke.com/news/2967949.html"><img src="http://img.jianke.net/article/2016/7/21/201672116414875.jpg" alt="保健品替代降糖药？糖宝宝应遵医嘱" style="opacity: 1;"></a>				<span class="shadow"><a target="_blank" href="http://www.jianke.com/news/2967949.html">保健品替代降糖药？糖宝宝应遵医嘱</a></span>
+                </div><div class="fcon" style="display: none;">
+                    <a target="_blank" href="http://www.jianke.com/news/2960469.html"><img src="http://img.jianke.net/article/2016/7/19/2016719163352627.jpg" alt="宫颈癌疫苗上市 宫颈癌疫苗的前世今生" style="opacity: 1;"></a>				<span class="shadow"><a target="_blank" href="http://www.jianke.com/news/2960469.html">宫颈癌疫苗上市 宫颈癌疫苗的前世今生</a></span>
+                </div><div class="fcon" style="display: none;">
+                    <a target="_blank" href="http://www.jianke.com/news/2937540.html"><img src="http://img.jianke.net/article/2016/7/12/201671217113182.jpg" alt="吃盐越多眼袋越深 盘点饮食对容颜的影响" style="opacity: 1;"></a>				<span class="shadow"><a target="_blank" href="http://www.jianke.com/news/2937540.html">吃盐越多眼袋越深 盘点饮食对容颜的影响</a></span>
+                </div>
+            </div>
+
+            <div class="fbg">
+                <div class="fobtn" id="fobtn">
+                    <a href="javascript:void(0)" hidefocus="true" class="current"></a>
+                    <a href="javascript:void(0)" hidefocus="true" class=""></a>
+                    <a href="javascript:void(0)" hidefocus="true" class=""></a>
+                </div>
+            </div>
+            <span class="prev"></span>
+            <span class="next"></span>
+        </div>
+        <!-- 今日热点 -->
+        <div class="today-hot">
+            <div class="today-top">
+                <h2 class="todat-tt">今日热点</h2>
+                <div class="today-con">
+                    <h3 class="hot-title"><a href="http://www.jianke.com/news/3081523.html" target="_blank">跑步：如何有效消耗脂肪</a></h3>
+                    <div class="today-txt">
+                        <ul>
+                            <li><span></span><a href="http://www.jianke.com/news/3081518.html" target="_blank">三种意想不到的快瘦新型跑法</a></li>
+                            <li><span></span><a href="http://www.jianke.com/news/3081478.html" target="_blank">4种让你瘦到爆的食物</a></li>
+                            <li><span></span><a href="http://www.jianke.com/news/3081469.html" target="_blank">吃鱼腥草减肥方法</a></li>
+                            <li><span></span><a href="http://www.jianke.com/news/3081465.html" target="_blank">哪些中药汤可帮助减肥</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="today-con">
+                    <h3 class="hot-title"><a href="http://www.jianke.com/news/3093943.html" target="_blank">如何化出适合自己的彩妆 </a></h3>
+                    <div class="today-txt">
+                        <ul>
+                            <li><span></span><a href="http://www.jianke.com/news/3093926.html" target="_blank">如何画透明妆</a></li>
+                            <li><span></span><a href="http://www.jianke.com/news/3088133.html" target="_blank">面试前如何紧急去痘</a></li>
+                            <li><span></span><a href="http://www.jianke.com/news/3087938.html" target="_blank">8种食物美容有奇效</a></li>
+                            <li><span></span><a href="http://www.jianke.com/news/3087877.html" target="_blank">产后美容养颜食谱</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="hot-bot">
+                <ul>
+                    <li>
+                        <a href="http://www.jianke.com/news/2850048.html" target="_blank">
+                            <img src="http://img.jianke.net/article/2016/6/12/201661295035648.jpg" width="150" height="95" alt="六款食谱调理内分泌紊乱">
+                            <div class="lucency">六款食谱调理内分泌紊乱</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.jianke.com/news/2850100.html" target="_blank">
+                            <img src="http://img.jianke.net/article/2016/6/12/20166129494668.jpg" width="150" height="95" alt="多发皮肤瘙痒的治疗的偏方">
+                            <div class="lucency">多发皮肤瘙痒的治疗的偏方</div>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+        <!-- 热文排行 -->
+        <div class="hot-article">
+            <div class="article-tt">
+                <h2>热文排行</h2>
+            </div>
+            <div class="article-con">
+                <ul>
+                    <li><a href="http://www.jianke.com/news/3094366.html" target="_blank">秋季如何保健胃健康</a></li>
+                    <li><a href="http://www.jianke.com/news/3081678.html" target="_blank">小儿厌食会不会传染呢</a></li>
+                    <li><a href="http://www.jianke.com/news/3081657.html" target="_blank">鼻炎怎么治 按摩六个穴位有效改善鼻炎</a></li>
+                    <li><a href="http://www.jianke.com/news/3081319.html" target="_blank">慢性咽炎吃什么药物好</a></li>
+                    <li><a href="http://www.jianke.com/news/3080699.html" target="_blank">运动对小儿脑瘫有益吗</a></li>
+                    <li><a href="http://www.jianke.com/news/3080642.html" target="_blank">治疗感冒吃六种水果 梨可缓解风热感冒</a></li>
+                    <li><a href="http://www.jianke.com/news/3080600.html" target="_blank">警惕脑出血的早期“信号”</a></li>
+                    <li><a href="http://www.jianke.com/news/3079931.html" target="_blank">补肾食物 黑乎乎的食物女人吃了不肾虚</a></li>
+                    <li><a href="http://www.jianke.com/news/3079923.html" target="_blank">如何祛湿 去除女性体内湿毒的好方法</a></li>
+                    <li><a href="http://www.jianke.com/news/3079922.html" target="_blank">女人怕冷是什么原因 女性怕冷怎么解决</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="informations">
+        <!-- 保健资讯-->
+        <div class="info-nav">
+            <h2><a href="http://www.jianke.com/news/bj/" target="_blank">保健资讯</a></h2>
+            <ul class="clearfix">
+                <li class="tab on-tab"><a href="http://www.jianke.com/news/bj/nxbj/" target="_blank">两性</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/bj/lrbj/" target="_blank">老人</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/bj/muying/" target="_blank">母婴</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/bj/jtys/" target="_blank">家庭</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/bj/jkyy/" target="_blank">健康用药</a></li>
+            </ul>
+        </div>
+        <div class="info-con">
+            <div class="info-box">
+                <div class="info-left on-box">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3076792.html" target="_blank">男人喜欢一个女人时会有什么表现</a></h3>
+                                <p class="txt">
+                                    <span>喜欢、爱都是人类当中非常美好的两种情感，那男人喜欢什么样的女人呢？男人喜欢一个女人时会有什么...</span>
+                                    <a href="http://www.jianke.com/news/3076792.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3065241.html" target="_blank">女性内裤为什么会发黄 如何正确清洗内裤</a></h3>
+                                <p class="txt">
+                                    <span>不少女性发现刚买的内裤，刚穿几次就出现裆部出现黄黄的痕迹，要知道有时候内裤发黄正是疾病的信号...</span>
+                                    <a href="http://www.jianke.com/news/3065241.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082101.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830212218441.jpg" width="145" height="110" alt="男人出现滑精症怎么办 4个食疗方来应对">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082090.html" target="_blank">男人割包皮手术很重要 术后如何护理</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082066.html" target="_blank">如何让乳房变大 吃这些美食做“挺”女人</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082035.html" target="_blank">常吃避孕药的危害 吃避孕药的注意事项</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079717.html" target="_blank">夫妻性生活频繁会导致阳痿吗</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082095.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830211830244.jpg" width="145" height="110" alt="精液过敏会导致不孕吗 6个方法解决">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082086.html" target="_blank">女性排卵时有什么症状 如何促进排卵</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082050.html" target="_blank">女人补气血 出现这些问题要及时补气血</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079704.html" target="_blank">四种治疗男性阳痿的中医疗法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079675.html" target="_blank">文胸怎样洗才不变形 多久洗一次文胸才好</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082097.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830212034935.jpg" width="145" height="110" alt="频繁遗精危害大 5种运动让男人摆脱遗精">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082089.html" target="_blank">包茎术后如何清洗丁丁 术后注意五个点</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082081.html" target="_blank">中年女性为什么易掉发 如何保养头发</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082063.html" target="_blank">女性外阴瘙痒是什么原因 真凶竟然是它</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082031.html" target="_blank">秋季喝什么茶好 6款秋季养生茶不容错过</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082093.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830211626286.jpg" width="145" height="110" alt="解读包皮包茎的五大危害">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082073.html" target="_blank">女人吃桑葚干的好处 桑葚干的营养价值</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082047.html" target="_blank">姐弟恋靠谱吗 姐弟恋的5大好处</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079698.html" target="_blank">男人应该怎么保护前列腺</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079668.html" target="_blank">女人吃菠萝蜜干的好处 菠萝蜜干的营养价值</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3068411.html" target="_blank">老人吃紫菜好吗？适合老人的食物</a></h3>
+                                <p class="txt">
+                                    <span>紫菜是属于海生类的食材，它的口感独特，那么，紫菜这种健康饮食，到底具有什么样的保健功效呢？一...</span>
+                                    <a href="http://www.jianke.com/news/3068411.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3065959.html" target="_blank">老人为什么容易跌倒 预防跌倒有妙招</a></h3>
+                                <p class="txt">
+                                    <span>老年人总是很容易跌倒，这给老人的身体健康带来了很大的负担，因此老年人要多加预防，避免跌倒。以...</span>
+                                    <a href="http://www.jianke.com/news/3065959.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+
+
+                                    <a href="http://www.jianke.com/news/3082174.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830220316350.jpg" width="145" height="110" alt="眼睛不好使？老人护眼有六法">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082161.html" target="_blank">老年斑形成的原因是什么？如何防治？</a></li>
+
+                                        <li><span></span><a href="http://www.jianke.com/news/3082144.html" target="_blank">老人跳舞有什么好处？老人跳舞4大注意事项</a></li>
+
+                                        <li><span></span><a href="http://www.jianke.com/news/3082124.html" target="_blank">老人退休后做什么好？老人退休后生活指南</a></li>
+
+                                        <li><span></span><a href="http://www.jianke.com/news/3079795.html" target="_blank">老人防衰老该怎么做 健身+饮食同防衰老</a></li>
+
+                                    </ul>
+                                </div>
+
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082168.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830220019773.jpg" width="145" height="110" alt="老人腹胀的原因是什么？如何预防腹胀？">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082150.html" target="_blank">老人之间互动玩什么游戏好？出行需注意</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082131.html" target="_blank">老人如何走出丧偶的痛苦？子女该怎么做？</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082117.html" target="_blank">糖尿病老年人如何控糖 13个方法有助控糖</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079779.html" target="_blank">老人带孩子好吗 老人带孩子危害大</a></li>
+                                    </ul>
+                                </div>
+
+
+
+
+
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082171.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830220204247.jpg" width="145" height="110" alt="老人跳广场舞的好处及注意事项">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082155.html" target="_blank">哪种老人适合带孩子？老人带孩子注意事项</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082139.html" target="_blank">老人多久洗一次澡合适？老人洗澡注意事项</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082123.html" target="_blank">老年人牙龈出血是什么原因？</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079786.html" target="_blank">老年人吃什么补铁 8种食物助老人补铁</a></li>
+                                    </ul>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082163.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830215854441.jpg" width="145" height="110" alt="老人嗜睡是什么原因？老人嗜睡怎么办？">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082148.html" target="_blank">老人再婚有什么好处？需克服4种不良心理</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082126.html" target="_blank">老年人午睡的好处 老年人午睡的禁忌</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082113.html" target="_blank">哪些老人需要用拐杖 老人如何选择拐杖</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079772.html" target="_blank">老年人常失眠危害大 5招改善老年人失眠</a></li>
+                                    </ul>
+                                </div>
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3068775.html" target="_blank">治疗宝宝腹泻常用的八种药物</a></h3>
+                                <p class="txt">
+                                    <span>宝宝腹泻是孩子常出现的疾病之一，所以家长在护理宝宝的时候，也要知道治疗宝宝腹泻常用哪些药物？...</span>
+                                    <a href="http://www.jianke.com/news/3068775.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3082747.html" target="_blank">如何提高卵子质量 保养卵子常吃8种食物</a></h3>
+                                <p class="txt">
+                                    <span>卵子作为受精卵的重要组成部分，发挥着巨大的作用。想要孕育出健康的宝宝，就需要提高卵子的质量。...</span>
+                                    <a href="http://www.jianke.com/news/3082747.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082815.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160831101431677.jpg" width="145" height="110" alt="胸小≠没奶水 四款催乳食谱推荐">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082790.html" target="_blank">警惕！孕前进补过头可能导致不孕</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082756.html" target="_blank">满月宝宝能用婴儿背带吗</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079956.html" target="_blank">孕吐吃点什么好 7种水果可缓解孕吐</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079948.html" target="_blank">孕妇水肿怎么缓解 7种方法缓解孕期水肿</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082802.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160831101015774.jpg" width="145" height="110" alt="宝宝秋季衣食住行全方面攻略">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082773.html" target="_blank">如何利用秋季优势备孕 秋季备孕注意事项</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082747.html" target="_blank">如何提高卵子质量 保养卵子常吃8种食物</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079954.html" target="_blank">孕妇不能喝什么饮料 6种饮料孕妇别碰</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079940.html" target="_blank">怀孕吃什么消水肿 吃9种食物有利消水肿</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082808.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160831101152510.jpg" width="145" height="110" alt="哺乳期饮食禁忌 如何合理安排饮食">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082782.html" target="_blank">早晚同房各有差异 什么时候最容易受孕</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082752.html" target="_blank">秋季哺乳妈妈注意事项 饮食保健如何做</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079955.html" target="_blank">孕妇穿什么内裤好 孕妇如何选购内裤</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079943.html" target="_blank">如何准确判断是否怀孕 7大征兆预示怀孕</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082796.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160831100830801.png" width="145" height="110" alt="秋季正当时 如何调理宝宝胃口">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082766.html" target="_blank">乙肝大三阳能怀孕吗 怀孕的最佳时机</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079952.html" target="_blank">孕妇吃什么食物 对宝宝智力发育有好处</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079653.html" target="_blank">怀孕后能化妆吗 8类化妆品绝对不能碰</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3077326.html" target="_blank">孕妇容易缺钙 秋季怀孕如何轻松补钙</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3076783.html" target="_blank">清洗衣服脱色怎么办 5大妙招教你防脱色</a></h3>
+                                <p class="txt">
+                                    <span>对于女性朋友们来说，洗衣服时遇到衣服脱色是很常见的。有时候衣服脱色把其他衣服也给染上了颜色，...</span>
+                                    <a href="http://www.jianke.com/news/3076783.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3066128.html" target="_blank">处暑易感冒 推荐5个预防感冒的方法</a></h3>
+                                <p class="txt">
+                                    <span>处暑到来的时候，我们总是会很容易感冒，那么你知道在处暑的时候我们要如何来预防感冒吗？试试下面...</span>
+                                    <a href="http://www.jianke.com/news/3066128.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082420.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/2016083023583572.jpg" width="145" height="110" alt="胃病最不能吃的的4种食物">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3077137.html" target="_blank">秋季橙子正当季 吃橙子有这10个好处</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076782.html" target="_blank">卫生间头发难清理 7个妙招轻松清理头发</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072417.html" target="_blank">家庭主妇怎么清理家务 清理家务有技巧</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3068733.html" target="_blank">痔疮老复发 四个方法帮你预防</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082405.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830235227660.jpg" width="145" height="110" alt="感冒是否可以喝绿茶？">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3077079.html" target="_blank">黑枸杞为何如此养生 全靠原花青素</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072398.html" target="_blank">衣服油渍怎么去除 去除衣服上油渍的窍门</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072378.html" target="_blank">你的厨房干净吗 11个厨房清洁妙招推荐</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3068714.html" target="_blank">变笨易饿？这是提醒你该补眠了</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082413.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830235534595.jpg" width="145" height="110" alt="番茄跟它们搭配搭配吃最营养">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082392.html" target="_blank">秋季养肺正当时 推荐6款养肺食物</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3077125.html" target="_blank">金秋十月吃这些食物最养人</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076781.html" target="_blank">女性如何让卧室更舒适？10个妙招来助你</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072409.html" target="_blank">女人们最爱8种室内植物 让空气更清新</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082398.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830235053919.jpg" width="145" height="110" alt="惊！这五个症状提示你变胖了">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076783.html" target="_blank">清洗衣服脱色怎么办 5大妙招教你防脱色</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072383.html" target="_blank">家庭主妇怎么挑选好猪肉 区分猪肉有技巧</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3068705.html" target="_blank">坚果之王花生的五大功效</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3068651.html" target="_blank">油烟致癌？吸厨房油烟等同在抽烟</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3072824.html" target="_blank">女性私处用药 牢记六大关键</a></h3>
+                                <p class="txt">
+                                    <span>女性们会遇到很多的私处健康问题，也有很多是用于私处的药物，那么女性私处用药要注意哪些呢？</span>
+                                    <a href="http://www.jianke.com/news/3072824.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3079812.html" target="_blank">新生儿黄疸 妈妈不要乱用药</a></h3>
+                                <p class="txt">
+                                    <span>新生儿出现黄疸，这是再正常不过的了，但是新妈妈在看到宝宝黄疸，难免会着急，有的时候甚至盲目用...</span>
+                                    <a href="http://www.jianke.com/news/3079812.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082390.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830234540265.jpg" width="145" height="110" alt="高血压药忘了吃怎么办">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082380.html" target="_blank">中医治疗乳房湿疹的方法有哪些</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079839.html" target="_blank">高血压用药要注意什么</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079815.html" target="_blank">高血压肾病的用药及调理方法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076919.html" target="_blank">冠心病患者的日常用药误区</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082387.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830234224828.jpg" width="145" height="110" alt="糖尿病用药需要注意哪几个方面">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082366.html" target="_blank">治疗肾小球肾炎怎么用药</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079833.html" target="_blank">老人用药三大问题子女要帮助改正</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079807.html" target="_blank">生殖器疱疹用药注意事项</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076914.html" target="_blank">前列腺患者用药须知</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082389.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830234415884.jpg" width="145" height="110" alt="牛皮癣患者用药饮食指南">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082371.html" target="_blank">老人正确用药牢记“十要十忌”</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079836.html" target="_blank">治疗胃溃疡的用药指南</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079812.html" target="_blank">新生儿黄疸 妈妈不要乱用药</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076916.html" target="_blank">秋季4大高发疾病如何正确用药</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3082382.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830233926504.jpg" width="145" height="110" alt="孕期瘙痒如何用药 需区别对待">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3082364.html" target="_blank">带状疱疹的治疗用药</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079828.html" target="_blank">心血管病人用药的四点常识</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079802.html" target="_blank">灰指甲患者不可盲目用药</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076913.html" target="_blank">皮肤过敏患者要如何用药</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-right">
+                <div id="bjfosu01" class="focus">
+                    <!---焦点轮播图-->
+                    <div id="bjfo-box01" class="fPic">
+
+                        <div class="fcon" style="display: none;">
+                            <a target="_blank" href="http://www.jianke.com/news/3082747.html"><img src="http://p.jianke.net/article/201608/20160831095500739.jpg" alt="如何提高卵子质量 保养卵子常吃8种食物" style="opacity: 1;"></a>
+                            <span class="shadow"><a target="_blank" href="http://www.jianke.com/news/3082747.html">如何提高卵子质量 保养卵子常吃8种食物</a></span>
+                        </div>
+
+
+                        <div class="fcon" style="display: block;">
+                            <a target="_blank" href="http://www.jianke.com/news/3082756.html"><img src="http://p.jianke.net/article/201608/20160831095906829.jpg" alt="满月宝宝能用婴儿背带吗" style="opacity: 0.36;"></a>
+                            <span class="shadow"><a target="_blank" href="http://www.jianke.com/news/3082756.html">满月宝宝能用婴儿背带吗</a></span>
+                        </div>
+
+
+                        <div class="fcon" style="display: none;">
+                            <a target="_blank" href="http://www.jianke.com/news/3082802.html"><img src="http://p.jianke.net/article/201608/20160831101015774.jpg" alt="宝宝秋季衣食住行全方面攻略" style="opacity: 1;"></a>
+                            <span class="shadow"><a target="_blank" href="http://www.jianke.com/news/3082802.html">宝宝秋季衣食住行全方面攻略</a></span>
+                        </div>
+
+
+                    </div>
+                    <div class="fbg">
+                        <div class="fobtn" id="bjbtn01">
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class=""></a>
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class="current"></a>
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class=""></a>
+                        </div>
+                    </div>
+                    <span class="prev"></span>
+                    <span class="next"></span>
+                </div>
+                <div class="hot-search">
+                    <!-- 热门搜索 -->
+                    <h3>热门搜索</h3>
+                    <div class="hs-box">
+                        <div class="hs-con">
+                            <a href="http://www.jianke.com/news/1592592.html" target="_blank">妃子侍寝的过程</a><a href="http://www.jianke.com/news/162648.html" target="_blank"> 性爱故事</a><a href="http://www.jianke.com/news/2599854.html" target="_blank"> 羊水栓塞</a>
+                            <a href="http://www.jianke.com/news/2317658.html" target="_blank">白糖蒸鸡蛋治咳嗽</a><a href="http://www.jianke.com/news/2139064.html" target="_blank">维生素</a><a href="http://www.jianke.com/news/2148058.html" target="_blank">壮阳食物</a>
+                            <a href="http://www.jianke.com/news/1788840.html" target="_blank">葡萄籽的功效与作用</a><a href="http://www.jianke.com/news/2568502.html" target="_blank">性冷淡</a><a href="http://www.jianke.com/news/2589531.html" target="_blank">降血脂</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 诊疗资讯-->
+    <div class="informations">
+        <div class="info-nav">
+            <h2><a href="http://www.jianke.com/news/jbzx/" target="_blank">诊疗资讯</a></h2>
+            <ul class="clearfix">
+                <li class="tab on-tab"><a href="http://www.jianke.com/news/jbzx/nk/" target="_blank">内科</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/jbzx/wk/" target="_blank">外科 </a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/jbzx/pfk/" target="_blank">皮肤科</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/jbzx/ek/" target="_blank">儿科</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/jbzx/fk/" target="_blank">妇科</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/jbzx/wgk/" target="_blank">五官科</a></li>
+            </ul>
+        </div>
+        <div class="info-con">
+            <div class="info-box">
+                <div class="info-left on-box">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3080628.html" target="_blank">感冒流鼻涕怎么办 十个妙招快速缓解</a></h3>
+                                <p class="txt">
+                                    <span>冬季是感冒的高发季节，很多人会出现流鼻涕、打喷嚏等诸如感冒的症状，也有些抵抗力较弱者容易患感...</span>
+                                    <a href="http://www.jianke.com/news/3080628.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3071599.html" target="_blank">鼻炎不吃牛肉 过敏性鼻炎的六大饮食禁忌</a></h3>
+                                <p class="txt">
+                                    <span>过敏性鼻炎其实不可怕，患者应在平时多注意一下饮食的调理。那么你知道鼻炎患者能吃什么食物，不能...</span>
+                                    <a href="http://www.jianke.com/news/3071599.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3080642.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830110650852.jpg" width="145" height="110" alt="治疗感冒吃六种水果 梨可缓解风热感冒">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079784.html" target="_blank">火锅配冰啤 小心吃出咽喉炎</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076978.html" target="_blank">哪些食物有益于肺水肿的防御</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3071624.html" target="_blank">咽炎吃什么好 试试水果加食疗</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066464.html" target="_blank">警惕风热感冒 风热感冒的预防方法</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081657.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830172955870.jpg" width="145" height="110" alt="鼻炎怎么治 按摩六个穴位有效改善鼻炎">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3080664.html" target="_blank">感冒了怎么办 感冒能吃橙子吗</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079750.html" target="_blank">感冒了吃什么好的快 这五种食物最有效</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076961.html" target="_blank">肺炎的类型具体有哪些</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076230.html" target="_blank">感冒吃什么 试试这五种水果</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3094366.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905201700921.jpg" width="145" height="110" alt="秋季如何保健胃健康">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3080677.html" target="_blank">4招教你如何区分鼻炎与鼻窦炎</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3080628.html" target="_blank">感冒流鼻涕怎么办 十个妙招快速缓解</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079762.html" target="_blank">感冒鼻塞如何快速治疗 5个妙法赶走鼻塞</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076970.html" target="_blank">鼾症患者日常饮食注意</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3080653.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/2016083011104622.jpg" width="145" height="110" alt="感冒吃什么好的快 巧用薄荷治感冒">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076248.html" target="_blank">慢性咽炎知识大盘点</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3069249.html" target="_blank">感冒可以吃鸡蛋吗？感冒不吃这五类食物</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3063144.html" target="_blank">感冒怎么办 中医说要从病根入手</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3060937.html" target="_blank">感冒吃什么食物好 吃这七种食物准没错</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3071536.html" target="_blank">脑出血患者吃什么能有效预防</a></h3>
+                                <p class="txt">
+                                    <span>老年人是脑出血发生的主要人群，以70岁为最主要的发病年龄，脑出血的原因主要与脑血管的病变、硬...</span>
+                                    <a href="http://www.jianke.com/news/3071536.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3071479.html" target="_blank">脑肿瘤的早期症状不可忽视</a></h3>
+                                <p class="txt">
+                                    <span>脑肿瘤分为良性和恶性，发病比例约各占一半。恶性肿瘤包括胶质瘤、转移瘤等；良性肿瘤包括脑膜瘤、...</span>
+                                    <a href="http://www.jianke.com/news/3071479.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3080548.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830104717699.jpg" width="145" height="110" alt="脑供血不足的3个早期症状">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079730.html" target="_blank">不可忽视脑瘤的7大危险信号</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076948.html" target="_blank">鼻子有毛病 警惕脑肿瘤</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3071536.html" target="_blank">脑出血患者吃什么能有效预防</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3069194.html" target="_blank">老人易患食物性肠梗阻 如何预防</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3080600.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830105743696.jpg" width="145" height="110" alt="警惕脑出血的早期“信号”">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3080495.html" target="_blank">良性脑瘤和恶性脑瘤有啥区别</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079705.html" target="_blank">脑震荡后遗症有哪些 如何治疗后遗症</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076938.html" target="_blank">千万别把中风当春困 是否中风看舌头便知</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076194.html" target="_blank">影响脑出血的因素有哪些</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3080527.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830104348908.jpg" width="145" height="110" alt="脑萎缩的4大常见类型">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079715.html" target="_blank">脑供血不足危害大 如何有效预防</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076941.html" target="_blank">这3个时期女性要当心血栓</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076201.html" target="_blank">外伤性脑脓肿是怎么回事</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3071501.html" target="_blank">脑缺血性急病的抢救措施有哪些</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081644.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830172440609.jpeg" width="145" height="110" alt="脑积水的临床症状及检查方法">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3080576.html" target="_blank">家有“大头娃娃” 警惕脑积水</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076208.html" target="_blank">脑血栓六大前兆要当心</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3069199.html" target="_blank">3类肠梗阻的形成原因分别是什么</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3063824.html" target="_blank">狐臭是怎么回事 如何有效去除狐臭</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3066686.html" target="_blank">皮肤过敏的食疗方法是什么？</a></h3>
+                                <p class="txt">
+                                    <span>除了采用一些药物或是其它的一些医疗手段外，还可以选择 一些食疗来调治的，如 对于皮肤过敏的现...</span>
+                                    <a href="http://www.jianke.com/news/3066686.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3066682.html" target="_blank">患有湿疹后好治疗吗？</a></h3>
+                                <p class="txt">
+                                    <span>患者在患有湿疹之后会出现患病部位瘙痒，有小红点等症状。很多的患者对于这种疾病并不是很了解，那...</span>
+                                    <a href="http://www.jianke.com/news/3066682.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3079904.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830003633172.jpg" width="145" height="110" alt="小孩手脚护理要注意哪些方面">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072752.html" target="_blank">脚气影响社交 该如何预防？</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072726.html" target="_blank">宁静陷入脱发危机？女性脱发什么原因导致</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066697.html" target="_blank">找到皮肌炎的病因怎么办</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066672.html" target="_blank">荨麻疹患者的护理要点</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3079892.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830003207550.jpg" width="145" height="110" alt="男性患了阴囊炎如何是好">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072737.html" target="_blank">治疗水痘的有效方法是什么</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072713.html" target="_blank">治疗红斑狼疮最好的方法是什么</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066686.html" target="_blank">皮肤过敏的食疗方法是什么？</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066665.html" target="_blank">婴儿湿疹需要做哪些检查？</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3079898.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830003453300.jpg" width="145" height="110" alt="红皮病患者要如何护理">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079866.html" target="_blank">游泳被皮肤病 夏季游泳要注意这几点</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072745.html" target="_blank">脚气病发也和职业有关 脚气病如何预防</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072718.html" target="_blank">治疗灰指甲用什么药 预防灰指甲的方法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066692.html" target="_blank">神经性皮炎发病原因有什么</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3079885.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830002938835.png" width="145" height="110" alt="不想加重脚气请远离这些食物">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072732.html" target="_blank">白癜风儿童选择药物时要注意什么</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066682.html" target="_blank">患有湿疹后好治疗吗？</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066663.html" target="_blank">怎么得上皮肤过敏的呢</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066469.html" target="_blank">诊断出皮肌炎疾病怎么办呢</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3071664.html" target="_blank">小儿感冒应怎么分类呢</a></h3>
+                                <p class="txt">
+                                    <span>最容易发生的疾病就是感冒了，此病还有很多中类型，我们为了能够帮助孩子尽快的恢复健康，一定要根...</span>
+                                    <a href="http://www.jianke.com/news/3071664.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3066477.html" target="_blank">关于小儿支气管哮喘的危害</a></h3>
+                                <p class="txt">
+                                    <span>在儿童时期小儿支气管哮喘疾病的发病率相当的高，特别是发病后就会带来痛苦，影响了孩子的生活，给...</span>
+                                    <a href="http://www.jianke.com/news/3066477.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081678.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830173824384.jpg" width="145" height="110" alt="小儿厌食会不会传染呢">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3080699.html" target="_blank">运动对小儿脑瘫有益吗</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3071664.html" target="_blank">小儿感冒应怎么分类呢</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066482.html" target="_blank">宝宝发生哮喘的具体原因是什么</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3061004.html" target="_blank">小孩哮喘病有哪些治疗特点</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081303.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830151001791.jpg" width="145" height="110" alt="小儿脾虚厌食如何调理">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076266.html" target="_blank">小儿抽动症怎么饮食</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3071680.html" target="_blank">专治小儿麻痹症的方法是什么</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3069311.html" target="_blank">儿童肥胖症怎么下定义</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066472.html" target="_blank">新生儿败血症的疾病容易治疗吗？</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081668.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830173459805.jpg" width="145" height="110" alt="小儿哮喘引起消化不好咋办">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076278.html" target="_blank">儿童自闭症患者吃什么好呢</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3071693.html" target="_blank">小儿抽动症带来的表现是什么呢</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3069339.html" target="_blank">儿童自闭症患者该如何保健护理</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066477.html" target="_blank">关于小儿支气管哮喘的危害</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081691.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830174255372.jpg" width="145" height="110">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3080711.html" target="_blank">小儿患上自闭症测试的办法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076261.html" target="_blank">小儿治疗多动症的具体办法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3069280.html" target="_blank">小儿厌食治疗原则有哪些呢</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3063342.html" target="_blank">鹅口疮发生后口腔发白怎么办</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3077335.html" target="_blank">女性这些食物吃多了会不孕</a></h3>
+                                <p class="txt">
+                                    <span>生活中不同的食物有着不同的功效，但有些食物女性不宜多吃，吃了会不孕哦！那么女性吃什么食物会不...</span>
+                                    <a href="http://www.jianke.com/news/3077335.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3079923.html" target="_blank">如何祛湿 去除女性体内湿毒的好方法</a></h3>
+                                <p class="txt">
+                                    <span>很多女性朋友体内都有湿毒，尤其是生病过后或者生育过的女性，私处病症往往比较严重。在这里为大家...</span>
+                                    <a href="http://www.jianke.com/news/3079923.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3079925.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830005722687.jpg" width="145" height="110" alt="月经不调诱因多 肝火上升导致月经不调">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079919.html" target="_blank">闭经的原因 闭经是怎么一回事</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072705.html" target="_blank">抗衰老吃什么食物好 推荐5款养颜食谱</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072658.html" target="_blank">孕妇感冒能吃鸡蛋吗 有什么危害</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3068944.html" target="_blank">天热来月经可以洗澡吗 需要注意什么</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3079923.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830005238611.png" width="145" height="110" alt="如何祛湿 去除女性体内湿毒的好方法">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079913.html" target="_blank">人工授精的危害 人工授精会宫外孕吗</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072695.html" target="_blank">内分泌不孕 女人内分泌失调的调理方法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072644.html" target="_blank">经期能喝药酒吗 喝什么药酒对身体好</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072635.html" target="_blank">七种预防女性乳腺癌的食物</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3079924.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830005459791.jpg" width="145" height="110" alt="白带异常诱因 白带异常是怎么引起的">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079916.html" target="_blank">人工授精后几天着床 着床有什么症状</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079905.html" target="_blank">经期禁忌 女人经期做这些事会大大折寿</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072699.html" target="_blank">如何远离妇科病 常吃这些能远离女人病</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072656.html" target="_blank">经期可以敷面膜吗 怎样敷面膜效果好</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3079931.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830010102554.jpg" width="145" height="110" alt="补肾食物 黑乎乎的食物女人吃了不肾虚">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079922.html" target="_blank">女人怕冷是什么原因 女性怕冷怎么解决</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079908.html" target="_blank">二胎什么时候入盆 二胎入盆后多久会生</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072671.html" target="_blank">产后保健 产后吃什么补气养血</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3072639.html" target="_blank">雌激素不足怎么办 吃这些来补充</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3076327.html" target="_blank">十个防止视网膜脱落的方法</a></h3>
+                                <p class="txt">
+                                    <span>很多时候对于高度近视来说如果运动过于激烈的话，那么视网膜脱落的情况就会出现，从而威胁到了我们...</span>
+                                    <a href="http://www.jianke.com/news/3076327.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3081319.html" target="_blank">慢性咽炎吃什么药物好</a></h3>
+                                <p class="txt">
+                                    <span>慢性咽炎的治疗需要针对病因，如戒烟戒酒，积极治疗急性咽炎及鼻腔、鼻窦、扁桃体的慢性炎症，改善...</span>
+                                    <a href="http://www.jianke.com/news/3081319.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081732.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/2016083018060880.jpg" width="145" height="110" alt="儿童牙龈炎该如何治疗">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3081344.html" target="_blank">推荐：轻松治疗鼾症的穴位按摩法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3071770.html" target="_blank">扁桃体炎反复出现怎么办</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3066510.html" target="_blank">鼻咽癌的治疗办法会有哪些</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3063448.html" target="_blank">隐形眼镜会造成角膜炎出现吗</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081701.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830174656642.jpg" width="145" height="110" alt="护理红眼病患者的办法">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3081319.html" target="_blank">慢性咽炎吃什么药物好</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076315.html" target="_blank">预防玻璃体混浊的11个小常识</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3071736.html" target="_blank">过敏性鼻炎有哪些治疗方式</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3069427.html" target="_blank">老年中耳炎的形成原因</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081712.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830175231668.jpg" width="145" height="110" alt="儿童扁桃体炎的治疗方法">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3081329.html" target="_blank">扁桃体咽炎反复发作是什么原因</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3076327.html" target="_blank">十个防止视网膜脱落的方法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3071758.html" target="_blank">了解耳聋患者的注意事项</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3069466.html" target="_blank">扁桃体炎发作的时候什么药治疗好</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3076293.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160828130442969.jpg" width="145" height="110" alt="儿童弱视的主要原因 你了解吗？">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3069378.html" target="_blank">不用消炎药什么中药治疗红眼病</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3057852.html" target="_blank">10个治疗红眼病的中医秘方</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3056678.html" target="_blank">患上鼻咽癌如何进行保健呢</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3053316.html" target="_blank">有哪些办法可以预防牙龈炎呢</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-right">
+                <div id="ylfosu01" class="focus">
+                    <!---焦点轮播图-->
+                    <div id="ylfo-box01" class="fPic">
+
+                        <div class="fcon" style="display: block;">
+                            <a target="_blank" href="http://www.jianke.com/news/3094366.html"><img src="http://p.jianke.net/article/201609/20160905201700921.jpg" alt="秋季如何保健胃健康" style="opacity: 1;"></a>
+                            <span class="shadow"><a target="_blank" href="http://www.jianke.com/news/3094366.html">秋季如何保健胃健康</a></span>
+                        </div>
+
+
+                    </div>
+                    <div class="fbg">
+                        <div class="fobtn" id="ylbtn01">
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class=""></a>
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class=""></a>
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class="current"></a>
+                        </div>
+                    </div>
+                    <span class="prev"></span>
+                    <span class="next"></span>
+                </div>
+                <div class="hot-search">
+                    <!-- 热门搜索 -->
+                    <h3>热门搜索</h3>
+                    <div class="hs-box">
+                        <div class="hs-con">
+                            <a href="http://www.jianke.com/news/2103404.html" target="_blank">乳腺增生症状</a><a href="http://www.jianke.com/news/1120769.html" target="_blank">经期吃桂圆</a><a href="http://www.jianke.com/news/2371518.html" target="_blank">月经量少</a>
+                            <a href="http://www.jianke.com/news/1894229.html" target="_blank">甲亢的早期症状</a><a href="http://www.jianke.com/news/2566765.html" target="_blank">脂溢性脱发</a><a href="http://www.jianke.com/news/1974396.html" target="_blank">肠胃炎</a>
+                            <a href="http://www.jianke.com/news/2593812.html" target="_blank">O型腿矫正</a><a href="http://www.jianke.com/news/2402417.html" target="_blank">肺结核</a><a href="http://www.jianke.com/news/2566765.html" target="_blank">艾滋病初期症状</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 减肥资讯-->
+    <div class="informations">
+        <div class="info-nav">
+            <h2><a href="http://www.jianke.com/news/jfks/" target="_blank">减肥资讯</a></h2>
+            <ul class="clearfix">
+                <li class="tab on-tab"><a href="http://www.jianke.com/news/jfks/jfcs/" target="_blank">常识</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/jfks/ysjf/" target="_blank">饮食</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/jfks/ydjf/" target="_blank">运动</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/jfks/yxjf/" target="_blank">医学</a></li>
+            </ul>
+        </div>
+        <div class="info-con">
+            <div class="info-box">
+                <div class="info-left on-box">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3081448.html" target="_blank">为什么有些人怎么减肥都瘦不下来</a></h3>
+                                <p class="txt">
+                                    <span>减肥，是很多人都挂在嘴边，也确实每天实行的计划，但是不知道为什么总是瘦不下来，来看看专家分析...</span>
+                                    <a href="http://www.jianke.com/news/3081448.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3081444.html" target="_blank">冬季减肥容易陷入的6大误区</a></h3>
+                                <p class="txt">
+                                    <span>冬季天气寒冷，一说到吃，热乎乎的火锅、营养大补的热汤都是很不错的选择，但是你知道吗，这些让我...</span>
+                                    <a href="http://www.jianke.com/news/3081444.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081444.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830161658174.jpg" width="145" height="110" alt="冬季减肥容易陷入的6大误区">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079109.html" target="_blank">揭秘4种水果减肥的危害</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079097.html" target="_blank">秋季如何健康减肥原则</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075197.html" target="_blank">怎么减肥可有效预防反弹</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075191.html" target="_blank">关于减肥反弹有什么危险信号</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081448.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830162026981.jpg" width="145" height="110" alt="为什么有些人怎么减肥都瘦不下来">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079105.html" target="_blank">秋季怎么轻松瘦身</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079088.html" target="_blank">女性如何警惕隐性脂肪</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075194.html" target="_blank">日常有哪些轻松减重方法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075185.html" target="_blank">想减肥预防要改掉哪些饮食习惯</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081450.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830162214964.jpg" width="145" height="110" alt="改掉五大坏习惯才能减肥">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3081443.html" target="_blank">常见的7大减肥误区</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079106.html" target="_blank">小伙伴胖你也会胖 为什么肥胖会传染</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079092.html" target="_blank">什么黄金时间帮助女性减肥</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079075.html" target="_blank">想减肥成功最好避开哪些食物</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081446.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830161852835.jpg" width="145" height="110" alt="不同的减肥方法有哪些危害">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079100.html" target="_blank">怎么正确认识节食减肥</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079084.html" target="_blank">婚后女性怎么远离肥胖烦恼</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075192.html" target="_blank">怎么保持减肥成果方法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075179.html" target="_blank">关于吸脂减肥有什么危害</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3070780.html" target="_blank">玉米快速减肥法 清宿便1周减18斤</a></h3>
+                                <p class="txt">
+                                    <span>玉米减肥原理：煮玉米的水具有利尿作用的，尤其是对于水肿型肥胖的人非常有帮助，可以有效消除水肿...</span>
+                                    <a href="http://www.jianke.com/news/3070780.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3070762.html" target="_blank">燕麦片减肥 怎么吃效果最好</a></h3>
+                                <p class="txt">
+                                    <span>平时在超市或街上我们都可以看有卖燕麦片的，生活中也有很多人食用它，但它可以减肥的功效却是很多...</span>
+                                    <a href="http://www.jianke.com/news/3070762.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3085950.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160901215256910.jpg" width="145" height="110" alt="详细介绍健康减肥食谱">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3081484.html" target="_blank">用苦瓜减肥 吃的有营养瘦的更加健康</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079481.html" target="_blank">红绿豆 排毒减肥圣品</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079460.html" target="_blank">每天30g膳食纤维素 月瘦10斤</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079433.html" target="_blank">方便实惠的绿豆芽美体瘦身法</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081476.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830163930291.jpg" width="145" height="110" alt="吃水果不单减肥 还有这些健康功效">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079467.html" target="_blank">谷物减肥食谱 内部脂肪一扫光</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079440.html" target="_blank">六种奇米　排毒瘦身又养颜</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075275.html" target="_blank">枸杞子可以减肥吗</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075251.html" target="_blank">豆腐减肥食谱 让你轻松瘦</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081478.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830164100272.jpg" width="145" height="110" alt="4种让你瘦到爆的食物">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079478.html" target="_blank">日本名模都爱豆腐饮食减肥法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079445.html" target="_blank">巧用豆腐减肥</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079430.html" target="_blank">豆腐的减肥秘方</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075281.html" target="_blank">黑芝麻的减肥效果好吗</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081473.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830163736115.jpg" width="145" height="110" alt="瘦身狂吃色拉太寒？为如加些蔬菜暖暖胃">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079464.html" target="_blank">吃什么丰胸 酒酿鸡蛋丰胸美颜食谱超有效</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079436.html" target="_blank">美容健身为何夸豆类？</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075269.html" target="_blank">秋季减肥 牢记这几个食物</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075246.html" target="_blank">减肥吃什么食物效果好</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3070833.html" target="_blank">跑步减肥的正确方法 晚上这样跑步轻松瘦下去</a></h3>
+                                <p class="txt">
+                                    <span>减肥的方法有很多，而跃动减肥才是最健康的，减肥这个事情是不分时间、地点、人群的，但是必须要找...</span>
+                                    <a href="http://www.jianke.com/news/3070833.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3079504.html" target="_blank">跑步可以有效减肥</a></h3>
+                                <p class="txt">
+                                    <span>随着2008年奥运会的成功举办，越来越多的人认识到了运动的益处，运动减肥自然也成为了减肥人群...</span>
+                                    <a href="http://www.jianke.com/news/3079504.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081523.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830165304847.jpg" width="145" height="110" alt="跑步：如何有效消耗脂肪">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079566.html" target="_blank">跑步减肥注意5个要点 拒绝小腿变粗壮</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079543.html" target="_blank">产后瘦身 这样做减肥运动最有效</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079504.html" target="_blank">跑步可以有效减肥</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075314.html" target="_blank">掌握跑步减肥诀窍 有效减肥不变女壮士</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081514.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830164839584.jpg" width="145" height="110" alt="跑步减肥怎么还发胖">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079554.html" target="_blank">秋季怎么运动减肥最快</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079516.html" target="_blank">坚持五个日常健身运动 让你轻松瘦身更健康</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075307.html" target="_blank">早晨15分钟轻松减堆积脂肪</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075294.html" target="_blank">想减肥一周跑步几次最好</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081518.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830165018706.jpg" width="145" height="110" alt="三种意想不到的快瘦新型跑法">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079560.html" target="_blank">锻炼身体肌肉 摆脱易胖体质</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079534.html" target="_blank">专家支招：简单的走路减肥法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079502.html" target="_blank">变换跑步减肥方式让瘦身效果翻两番</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075310.html" target="_blank">收紧腰腹还塑腿 原地跑步减肥法</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081490.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830164702645.jpg" width="145" height="110" alt="跑步减小腿的5个真相">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079546.html" target="_blank">减肥运动能消耗多少热量?</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079510.html" target="_blank">有氧运动减肥 4个动作瘦出苗条身姿</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075304.html" target="_blank">这样走路才能锻炼身体！</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075296.html" target="_blank">简单微运动瘦身效果惊人</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3070713.html" target="_blank">中草药减肥有副作用吗</a></h3>
+                                <p class="txt">
+                                    <span>中药减肥一直都是流行的减肥方法，但是市面上的中药减肥方子通常并不是针对减肥者的体质所配制，如...</span>
+                                    <a href="http://www.jianke.com/news/3070713.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3070661.html" target="_blank">中药是如何对策减肥的</a></h3>
+                                <p class="txt">
+                                    <span>中医治疗肥胖的原则在于启动身体本来的机能，恢复原本的机能后，再适当塑身和减重，让身材找回原有...</span>
+                                    <a href="http://www.jianke.com/news/3070661.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081469.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/201608301634514.jpg" width="145" height="110" alt="吃鱼腥草减肥方法">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3081452.html" target="_blank">中医五行是怎样减肥的</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079425.html" target="_blank">减肥有时候可以很简单</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079413.html" target="_blank">中药减肥七大法宝</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079122.html" target="_blank">哪些减肥成分让能让你变瘦</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081462.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830163155862.png" width="145" height="110" alt="三款中药减肥方法">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079419.html" target="_blank">拔罐减肥具体要怎么操作</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079406.html" target="_blank">中医有哪些另类减肥方法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075219.html" target="_blank">拔罐减肥要如何操作</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075210.html" target="_blank">针灸减肥有常见误区</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081465.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830163322146.jpg" width="145" height="110" alt="哪些中药汤可帮助减肥">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079423.html" target="_blank">秋天刮痧排毒刮出好身材</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079410.html" target="_blank">中医针灸减肥的食谱</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079117.html" target="_blank">中医支招如何辩证治疗肥胖</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075224.html" target="_blank">经络按摩让拥有好身材</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081456.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830162717558.jpg" width="145" height="110" alt="利用生理期减肥">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079416.html" target="_blank">中医是怎样对策减肥的</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3079403.html" target="_blank">中医减肥是怎么一回事</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075216.html" target="_blank">初学者怎样利用经络减肥</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3075207.html" target="_blank">中医有哪些按摩瘦脸的方法</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-right">
+                <div id="jffosu01" class="focus">
+                    <!---焦点轮播图-->
+                    <div id="jffo-box01" class="fPic">
+
+                        <div class="fcon" style="display: block;">
+                            <a target="_blank" href="http://www.jianke.com/news/3085950.html"><img src="http://p.jianke.net/article/201609/20160901215256910.jpg" alt="详细介绍健康减肥食谱" style="opacity: 1;"></a>
+                            <span class="shadow"><a target="_blank" href="http://www.jianke.com/news/3085950.html">详细介绍健康减肥食谱</a></span>
+                        </div>
+
+
+                    </div>
+                    <div class="fbg">
+                        <div class="fobtn" id="jfbtn01">
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class=""></a>
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class=""></a>
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class="current"></a>
+                        </div>
+                    </div>
+                    <span class="prev"></span>
+                    <span class="next"></span>
+                </div>
+                <div class="hot-search">
+                    <!-- 热门搜索 -->
+                    <h3>热门搜索</h3>
+                    <div class="hs-box">
+                        <div class="hs-con">
+                            <a href="http://www.jianke.com/news/2135386.html" target="_blank">睡觉减肥法</a><a href="http://www.jianke.com/news/2122613.html" target="_blank">如何瘦肚子</a><a href="http://www.jianke.com/news/2539649.html" target="_blank">懒人减肥餐</a>
+                            <a href="http://www.jianke.com/news/2302762.html" target="_blank">苹果三日减肥法</a><a href="http://www.jianke.com/news/2554851.html" target="_blank">瘦腿最快方法</a><a href="http://www.jianke.com/news/2587099.html" target="_blank">A4腰</a>
+                            <a href="http://www.jianke.com/news/1687221.html" target="_blank">21天减肥法</a><a href="http://www.jianke.com/news/2070339.html" target="_blank">吸脂减肥</a><a href="http://www.jianke.com/news/2550560.html" target="_blank">减肥小偏方</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 美容资讯-->
+    <div class="informations">
+        <div class="info-nav">
+            <h2><a href="http://www.jianke.com/news/meirong/" target="_blank">美容资讯</a></h2>
+            <ul class="clearfix">
+                <li class="tab on-tab"><a href="http://www.jianke.com/news/meirong/hfzt/" target="_blank">护肤</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/meirong/hzzt/" target="_blank">化妆</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/meirong/zxmr/" target="_blank">整形</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/meirong/mrsp/" target="_blank">食谱</a></li>
+            </ul>
+        </div>
+        <div class="info-con">
+            <div class="info-box">
+                <div class="info-left on-box">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3070423.html" target="_blank">去掉眼部斑点</a></h3>
+                                <p class="txt">
+                                    <span>眼周肌肤尤为娇嫩，所以相对来说更容易浮现小斑点，如果你已经在为这些深色小斑点烦恼不迭的话，不...</span>
+                                    <a href="http://www.jianke.com/news/3070423.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3067528.html" target="_blank">治疗青春痘不再难 疫苗接种来预防</a></h3>
+                                <p class="txt">
+                                    <span>人类的皮脂腺具有分泌油脂的功能，后者相当于皮肤的天然保湿霜，不过在油脂分泌过多后，皮肤的毛孔...</span>
+                                    <a href="http://www.jianke.com/news/3067528.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3094016.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905173911876.jpg" width="145" height="110" alt="皮肤变黄长小痘痘该怎么办呢?">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091636.html" target="_blank">吃洋葱能有效防斑吗?</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3090441.html" target="_blank">一步步教如何做祛斑面膜</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3088145.html" target="_blank">快速去除黑色素与小斑点</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3085733.html" target="_blank">早晚肌肤不同 选择日霜晚霜也不同 </a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3093992.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905173058666.jpg" width="145" height="110" alt="纠正美容知识：8大去粉刺误区">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091625.html" target="_blank">如何让面霜功效提升一倍的使用方法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3090419.html" target="_blank">祛痘时要看具体部位决定方法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3088133.html" target="_blank">面试前如何紧急去痘</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3085728.html" target="_blank">如何用鸡蛋祛斑？</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3094011.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905173729275.jpg" width="145" height="110" alt="干性皮肤该如何美白祛斑? ">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091631.html" target="_blank">卸妆太彻底反而伤肤留斑</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3090421.html" target="_blank">胡萝卜自制美白去痘面膜</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3088140.html" target="_blank">准妈妈需要的祛斑美白食谱</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3085731.html" target="_blank">过敏性皮肤怎么祛痘</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3094019.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905174107628.jpg" width="145" height="110" alt="生活习惯好可灭青春痘">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091641.html" target="_blank">油性痘痘肌 如何正确护肤不长痘 </a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091618.html" target="_blank">冬季打造无暇豆腐肌的祛痘印好方法 </a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3090418.html" target="_blank">DIY阿司匹林面膜可以祛痘</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3088128.html" target="_blank">古代食疗是最有效的祛斑法</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3087791.html" target="_blank">彩妆达人教你画出迷人眼线</a></h3>
+                                <p class="txt">
+                                    <span>要想打造一双深邃迷人的妩媚双眸，眼线是必不可少的彩妆工具，很多MM经常觉得眼线非常的难画，画...</span>
+                                    <a href="http://www.jianke.com/news/3087791.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3067178.html" target="_blank">用香闻香还可以吃香</a></h3>
+                                <p class="txt">
+                                    <span>香的用途广泛，不仅可以用，可以闻还可以吃，薰衣草留香防蛀，香草浴恢复活力，香蜂草提神醒脑，天...</span>
+                                    <a href="http://www.jianke.com/news/3067178.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3093938.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905171554956.jpg" width="145" height="110" alt="如何打造“四眼妹”的迷人眼妆 ">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3093869.html" target="_blank">备受女星喜爱的小脸妆秘招 </a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091602.html" target="_blank">对化妆棉的了解有多少?</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091589.html" target="_blank">奇怪卸妆不用卸妆油怎么完成</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3087782.html" target="_blank">打造OL低调彩妆聚焦办公室人气</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3093953.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905172135208.jpg" width="145" height="110" alt="SOS 补妆妙计解除大尴尬">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3093914.html" target="_blank">关键3步 底妆服贴不浮粉</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091610.html" target="_blank">眼部护理误区你不能不知</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091598.html" target="_blank">3大彩妆Tips打造无暇底妆!</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091582.html" target="_blank">“恐怖香水”你敢用吗</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3093926.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905171318441.jpg" width="145" height="110" alt="如何画透明妆">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091613.html" target="_blank">如何使用卸妆油你知道吗?</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091600.html" target="_blank">容易让你越化越丑的5个错误妆容</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091587.html" target="_blank">化妆师的防脱妆秘籍</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3087807.html" target="_blank">夏季应该怎样化妆 </a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3093943.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905171830738.jpg" width="145" height="110" alt="如何化出适合自己的彩妆 ">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3093901.html" target="_blank">解决彩妆难题 做精致女孩</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091608.html" target="_blank">分时保养眼部还你剔透双眸</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091594.html" target="_blank">超萌眼妆让男人心随你动</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3090410.html" target="_blank">社交场合如何使用香水</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3072742.html" target="_blank">90后女孩整形网上直播 整形产业崛起面面观</a></h3>
+                                <p class="txt">
+                                    <span>早前，一名90后女孩在网上直播自己的整形手术引起了大众的围观。该名女孩做整形手术直播的行为引...</span>
+                                    <a href="http://www.jianke.com/news/3072742.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3094837.html" target="_blank">激光脱毛为什么要做多次</a></h3>
+                                <p class="txt">
+                                    <span>关于激光脱毛，还是有大多数人想“一次性就能达到永久脱毛的效果”，事实上目前还没有哪一种技术能...</span>
+                                    <a href="http://www.jianke.com/news/3094837.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3023532.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160809215358844.jpg" width="145" height="110" alt="解决巴掌脸是可以不用整形的">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/2953313.html" target="_blank">如何选择隆胸材料更安全</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2953307.html" target="_blank">整容后化妆法掩盖尴尬</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2953300.html" target="_blank">酒窝再造是怎么回事?</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2953286.html" target="_blank">文眉绣眉哪个好?</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3094837.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905234602579.jpg" width="145" height="110" alt="激光脱毛为什么要做多次">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3065057.html" target="_blank">为什么你早晚都要做超声刀？</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3054055.html" target="_blank">7个简单步骤　调整肌肤至最佳状态</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3003304.html" target="_blank">青岛学霸外形酷似ET 渴望通过整容打破困境</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2953310.html" target="_blank">整形专家告诉你9个无龄秘密</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3072742.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160826163947399.jpg" width="145" height="110" alt="90后女孩整形网上直播 整形产业崛起面面观">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3012248.html" target="_blank">美白针副作用有哪些 土豆也可以美白？</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2953312.html" target="_blank">孕妇整容会影响胎儿吗?</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2953305.html" target="_blank">毛发的生长周期和脱毛治疗的关系</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2953297.html" target="_blank">会让你抱憾终生的六大整形误区</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3044725.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160816232153774.jpg" width="145" height="110" alt="不打瘦脸针，你永远不知道自己有多美！">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3003292.html" target="_blank">常见的脸部整形知多少 面部整形项目有哪些</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2953309.html" target="_blank">整形后如何保养才最有效?</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2953302.html" target="_blank">美容院里慎换肤术</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2953288.html" target="_blank">整形必看之真实的谎言</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3087866.html" target="_blank">上班族自带健康便当五注意</a></h3>
+                                <p class="txt">
+                                    <span>随着生活节奏的加快，很多上班族一方面为了节省时间一方面担心外面吃的不够卫生，因此都选择了自带...</span>
+                                    <a href="http://www.jianke.com/news/3087866.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3085939.html" target="_blank">调养女性贫血的4大补血食物</a></h3>
+                                <p class="txt">
+                                    <span>气血不足的女性知道如何有效的补血吗？你知道如何食疗法补血吗？如果还不知道的话，就随小编一起去...</span>
+                                    <a href="http://www.jianke.com/news/3085939.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3094376.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905201923240.jpg" width="145" height="110" alt="咖啡对女性健康有什么影响">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3094350.html" target="_blank">饭吃七分饱多活20年 七分饱概念</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3094062.html" target="_blank">9种食物助女性延年益寿</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3092057.html" target="_blank">美容养颜食谱之甜杏仁粥的做法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3092016.html" target="_blank">多吃这12种食物让你的双腿变修长</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3094357.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905201355203.jpg" width="145" height="110" alt="饮食有哪些禁忌有益女性健康">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3094094.html" target="_blank">问题晚餐引发九大健康隐患 晚餐不能吃什么</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3092087.html" target="_blank">榴莲治痛经 女性保健怪味食物大盘点</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3092025.html" target="_blank">美容食谱之红豆黑米粥的做法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091986.html" target="_blank">五种方法喝掉脸上斑点</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3094328.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905200207944.jpg" width="145" height="110" alt="保护上班族眼睛的食物和花茶">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3094037.html" target="_blank">女性爱美可多吃这些美容食物</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3092031.html" target="_blank">美容养颜食谱土豆可乐饼的做法</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3092010.html" target="_blank">减龄五诀窍让你年轻10岁</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3087927.html" target="_blank">产后除斑多吃这些食物</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3094353.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201609/20160905201141776.jpg" width="145" height="110" alt="熟女必吃的九大抗老养生菜">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3094086.html" target="_blank">八道美味蒸鱼 打造美丽厨娘</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3092075.html" target="_blank">女性养生从春季开始</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3092021.html" target="_blank">女性熬夜护眼吃个水果餐</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3091980.html" target="_blank">木瓜吃对了才丰胸</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-right">
+                <div id="mrfosu01" class="focus">
+                    <!---焦点轮播图-->
+                    <div id="mrfo-box01" class="fPic">
+
+                        <div class="fcon" style="display: none;">
+                            <a target="_blank" href="http://www.jianke.com/news/3087866.html"><img src="http://p.jianke.net/article/201609/20160902201012282.jpg" alt="上班族自带健康便当五注意" style="opacity: 1;"></a>
+                            <span class="shadow"><a target="_blank" href="http://www.jianke.com/news/3087866.html">上班族自带健康便当五注意</a></span>
+                        </div>
+
+
+                        <div class="fcon" style="display: block;">
+                            <a target="_blank" href="http://www.jianke.com/news/3085939.html"><img src="http://p.jianke.net/article/201609/20160901214932238.jpg" alt="调养女性贫血的4大补血食物" style="opacity: 0.81;"></a>
+                            <span class="shadow"><a target="_blank" href="http://www.jianke.com/news/3085939.html">调养女性贫血的4大补血食物</a></span>
+                        </div>
+
+
+                        <div class="fcon" style="display: none;">
+                            <a target="_blank" href="http://www.jianke.com/news/3085932.html"><img src="http://p.jianke.net/article/201609/20160901214637221.jpg" alt="红枣桂圆花生如何吃出好气色" style="opacity: 1;"></a>
+                            <span class="shadow"><a target="_blank" href="http://www.jianke.com/news/3085932.html">红枣桂圆花生如何吃出好气色</a></span>
+                        </div>
+
+
+                    </div>
+                    <div class="fbg">
+                        <div class="fobtn" id="mrbtn01">
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class=""></a>
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class="current"></a>
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class=""></a>
+                        </div>
+                    </div>
+                    <span class="prev"></span>
+                    <span class="next"></span>
+                </div>
+                <div class="hot-search">
+                    <!-- 热门搜索 -->
+                    <h3>热门搜索</h3>
+                    <div class="hs-box">
+                        <div class="hs-con">
+                            <a href="http://www.jianke.com/news/2402619.html" target="_blank">微整形项目</a><a href="http://www.jianke.com/news/1979959.html" target="_blank">教你怎么画眼线</a><a href="http://www.jianke.com/news/1421078.html" target="_blank">新娘妆</a>
+                            <a href="http://www.jianke.com/news/2236728.html" target="_blank">美白的食物</a><a href="http://www.jianke.com/news/2538074.html" target="_blank">抗皱的水果</a><a href="http://www.jianke.com/news/1549518.html" target="_blank">完美的腿型</a>
+                            <a href="http://www.jianke.com/news/2590898.html" target="_blank">毛孔粗大</a><a href="http://www.jianke.com/news/2038463.html" target="_blank">DIY面膜</a><a href="http://www.jianke.com/news/2578834.html" target="_blank">女人排毒护肤</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 新闻资讯 -->
+    <div class="informations">
+        <div class="info-nav">
+            <h2><a href="http://www.jianke.com/news/jkxw/" target="_blank">新闻资讯</a></h2>
+            <ul class="clearfix">
+                <li class="tab on-tab"><a href="http://www.jianke.com/news/jkxw/mtpl/" target="_blank">媒体新闻</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/jkxw/mtbd/" target="_blank">媒体报道</a><span>|</span></li>
+                <li class="tab"><a href="http://www.jianke.com/news/jkxw/jkxw/" target="_blank">健客动态</a><span>|</span></li>
+                <li class="tabos"><a href="http://www.jianke.com/ypzd/" target="_blank">用药指导</a></li>
+            </ul>
+        </div>
+        <div class="info-con">
+            <div class="info-box">
+                <div class="info-left on-box">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3079663.html" target="_blank">仁和药业半年报：药房网盈利 叮当快药拖后腿</a></h3>
+                                <p class="txt">
+                                    <span>8月29日消息，仁和药业发布半年报，报告显示2016年上半年，仁和药业实现营业总收入17.4...</span>
+                                    <a href="http://www.jianke.com/news/3079663.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3067437.html" target="_blank">美年健康上半年营收10亿 将继续重视移动医疗</a></h3>
+                                <p class="txt">
+                                    <span>8月24日早间消息，美年健康昨日晚间发布了2016年半年报，报告显示，美年健康上半年实现营业...</span>
+                                    <a href="http://www.jianke.com/news/3067437.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3067437.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160824210354494.png" width="145" height="110" alt="美年健康上半年营收10亿 将继续重视移动医疗">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3060206.html" target="_blank">移动医疗转型在路上 九安医疗上半年亏4366万</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3018314.html" target="_blank">医药电商，春天来了</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2980297.html" target="_blank">医药电商类APP榜单TOP10 </a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2969310.html" target="_blank">养老床位售价24万可转租转售值得鼓励</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3079663.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160829224300250.jpg" width="145" height="110" alt="仁和药业半年报：药房网盈利 叮当快药拖后腿">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3043402.html" target="_blank">一心堂财报披露到家业务成绩</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2983474.html" target="_blank">移动医疗端至少再“烧钱”10年</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2976236.html" target="_blank">去年200万对单独夫妇申请再生育</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2966975.html" target="_blank">2批次乳粉抽检不合格 雅贝氏奶粉存严重问题已召回</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3079685.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160829225157577.jpg" width="145" height="110" alt="就医160携腾讯推挂号平台 构筑移动医疗生态链">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3067432.html" target="_blank">腾讯智慧医院落地四川华西二院 启动在线问诊</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3060173.html" target="_blank">一篇文章告诉你移动医疗真正的“危”与“机”</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3011999.html" target="_blank">时尚的懒人经济真的有利无弊吗</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2980294.html" target="_blank">互联网医疗企业估值榜TOP20</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3060226.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160822151535943.jpg" width="145" height="110" alt="走出阴影？百度这次瞄准公立医院">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3043198.html" target="_blank">健客加速线下药店布局</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3018314.html" target="_blank">医药电商，春天来了</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2980524.html" target="_blank">2016医药电商报告:争先恐后尝"医+药"</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2969315.html" target="_blank">胎儿脐带绕颈 女子临产被阻拦</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3069712.html" target="_blank">原拉手网CEO周峰加盟健客网</a></h3>
+                                <p class="txt">
+                                    <span>【亿邦动力网讯】8月25日消息，亿邦动力网获悉，原拉手网CEO周峰已确认加盟医药电商健客网，...</span>
+                                    <a href="http://www.jianke.com/news/3069712.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/3071865.html" target="_blank">新增219家门店 益丰大药房半年营收17亿</a></h3>
+                                <p class="txt">
+                                    <span>8月26日消息，益丰大药房发布半年报，报告显示截至6月底益丰大药房实现营业总收入17.63亿...</span>
+                                    <a href="http://www.jianke.com/news/3071865.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3071865.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160826112258891.jpg" width="145" height="110" alt="新增219家门店 益丰大药房半年营收17亿">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3053089.html" target="_blank">揭高科技基因检测骗局：一老人被骗30万后投河</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3034094.html" target="_blank">医药电商试水拓展O2O</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2980174.html" target="_blank">"掌上医生"更名为"健客医生"</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2976194.html" target="_blank">遇到溺水咋办？救援英雄分享11年“实战”技巧</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3063058.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160823122503903.png" width="145" height="110" alt="叮咚柠檬获数千万融资 打造一站式抗衰老平台">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3043320.html" target="_blank">平安好医生注册用户数破亿</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3009246.html" target="_blank">网上药品交易并未全部叫停</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2980140.html" target="_blank">健客网获1亿美元A轮融资</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2969303.html" target="_blank">新修改《药品经营质量管理规范》 明确疫苗配送储存资质</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3081615.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160830171707958.jpg" width="145" height="110" alt="人工智能可以取代医生吗？">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3069712.html" target="_blank">原拉手网CEO周峰加盟健客网</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3053028.html" target="_blank">电商疯狂杀价 这些“奢侈药”冷漠涨价</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3012281.html" target="_blank">健客与芬瑞达成战略合作</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2980152.html" target="_blank">健客网CEO谢方敏专访</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/3071821.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201608/20160826111318570.jpg" width="145" height="110" alt="被西普会轰炸三天 请收下这18份医药语录">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/3063021.html" target="_blank">别说医药电商不赚钱 好药师已经盈利了</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3043279.html" target="_blank">百度医疗联手桃谷科技</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/3003025.html" target="_blank">健客CEO谈天猫售药被叫停事件</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/2976207.html" target="_blank">人社部回应延迟退休四问 </a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-left">
+                    <div class="info-top">
+                        <div class="info-top-con">
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/451469.html" target="_blank">网上药店是怎样的，健客网上药店可信吗？</a></h3>
+                                <p class="txt">
+                                    <span>随着近年来电子商务的兴起，网上购物已逐步为国人所接受。尤为中青年顾客所青睐。但药品是特殊商品...</span>
+                                    <a href="http://www.jianke.com/news/451469.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+                            <div class="if-top">
+                                <h3 class="tt"><a href="http://www.jianke.com/news/451487.html" target="_blank">健客网网上药店怎么样？</a></h3>
+                                <p class="txt">
+                                    <span>互联网随着时代的变化而变化，网购随着人类的对物质的需求而不断增加。药品这种特殊的商品也逐渐的...</span>
+                                    <a href="http://www.jianke.com/news/451487.html" target="_blank">[详细]</a>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="info-bottom">
+                        <div class="info-bot-con">
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/2239765.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201512/20151209181323918.jpg" width="145" height="110" alt="主要看气质！健客网编辑部12月生日会美图大放送啦！">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/1728498.html" target="_blank">健客网后台处理流程！</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/953909.html" target="_blank">健客网培训讲座 老中医带你认识高血尿酸痛风</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/866247.html" target="_blank">健客网“药划算”重磅上线 要你划算要你健康</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/747374.html" target="_blank">健客网特邀姚清馨女士开展产品交流会</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/1870644.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201508/20150821164510803.jpg" width="145" height="110" alt="健客商城APP全新上线">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/1141361.html" target="_blank">健客网消费处理信息公示</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/891928.html" target="_blank">健客网总裁西普会与业界精英共探医药电商趋势</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/857171.html" target="_blank">健客网世界肝炎日专题活动 精选肝炎药7折起</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/683725.html" target="_blank">让爱温暖你我 健客网编辑部员工生日聚会</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="if-bot">
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/1967549.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201509/20150919183513187.jpeg" width="145" height="110" alt="健客网高管考察中智，新型饮片网销有望大突破 ">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/1340017.html" target="_blank">2015健客“暖衣”公益启动</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/937021.html" target="_blank">健客网举办验孕备孕知识培训讲座</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/865063.html" target="_blank">健客网编辑部举办摄影兴趣培训教程</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/717671.html" target="_blank">健客家园隆重上线 打造健客儿女的活动乐园</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="ifb-box clearfix">
+                                    <a href="http://www.jianke.com/news/1870604.html" target="_blank">
+                                        <img src="http://p.jianke.net/article/201508/20150821160915456.png" width="145" height="110" alt="" 健客商城"app评测"="">
+                                    </a>
+                                    <ul>
+                                        <li><span></span><a href="http://www.jianke.com/news/1012448.html" target="_blank">中国药店价值榜 健客网荣登百强高峰论坛领奖</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/883099.html" target="_blank">健客网举办眼科用药知识讲座</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/856551.html" target="_blank">健客网举行万艾可知识培训讲座</a></li>
+                                        <li><span></span><a href="http://www.jianke.com/news/413019.html" target="_blank">健客网与百度达成最佳合作伙伴战略关系</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                            <!--end-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-right">
+                <div id="xwfosu01" class="focus">
+                    <!---焦点轮播图-->
+                    <div id="xwfo-box01" class="fPic">
+
+                        <div class="fcon" style="display: block;">
+                            <a target="_blank" href="http://www.jianke.com/news/3095418.html"><img src="http://p.jianke.net/article/201609/201609061012120.jpg" alt="移动医疗烧钱难以为继 健康险或成为突破口" style="opacity: 1;"></a>
+                            <span class="shadow"><a target="_blank" href="http://www.jianke.com/news/3095418.html">移动医疗烧钱难以为继 健康险或成为突破口</a></span>
+                        </div>
+
+
+                    </div>
+                    <div class="fbg">
+                        <div class="fobtn" id="xwbtn01">
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class=""></a>
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class=""></a>
+                            <a href="javascript:void(0)" hidefocus="true" target="_self" class="current"></a>
+                        </div>
+                    </div>
+                    <span class="prev"></span>
+                    <span class="next"></span>
+                </div>
+                <div class="hot-search">
+                    <!-- 热门搜索 -->
+                    <h3>热门搜索</h3>
+                    <div class="hs-box">
+                        <div class="hs-con">
+                            <a href="http://www.jianke.com/news/2589197.html" target="_blank">大学男生胸部发育如少女</a><a href="http://www.jianke.com/news/2555052.html" target="_blank">儿科医师缺口</a>
+                            <a href="http://www.jianke.com/news/2593349.html" target="_blank">产假延长</a><a href="http://www.jianke.com/news/2581427.html" target="_blank">问题疫苗</a><a href="http://www.jianke.com/news/451469.html" target="_blank">网上药店可信吗</a>
+                            <a href="http://www.jianke.com/news/2563484.html" target="_blank">男性避孕药</a><a href="http://www.jianke.com/news/549651.html" target="_blank">雾霾的危害</a><a href="http://www.jianke.com/news/2599936.html" target="_blank">关注医改</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 友情链接 -->
+    <div class="friend-link">
+        <h3>友情链接</h3>
+        <ul>
+            <li><a href="http://hxsj.hbsxkyy.com/" target="_blank">呼吸衰竭</a></li>
+            <li><a href="http://www.laozongyi.com/tizhi" target="_blank">体质养生</a></li>
+            <li><a href="http://ttmzz.com/" target="_blank">长沙体检</a></li>
+            <li><a href="http://www.aikang.com/eye/" target="_blank">眼科知识</a></li>
+            <li><a href="http://www.5h.com/" target="_blank">5号健康网</a></li>
+            <li><a href="http://www.99.com.cn/pifu/ " target="_blank">皮肤病</a></li>
+            <li><a href="http://www.jianke.com/zhuanti/yszyg/" target="_blank">益肾壮阳膏</a></li>
+            <li><a href="http://www.biancui.com/" target="_blank">砭石</a></li>
+            <li><a href="http://baojian.jianke.com/" target="_blank">保健品商城</a></li>
+            <li><a href="http://www.meyol.com/health/" target="_blank">女性健康</a></li>
+            <li><a href="http://www.leha.com/" target="_blank">乐哈健康网</a></li>
+            <li><a href="http://www.jianke.com" target="_blank">健客网</a></li>
+            <li><a href="http://www.jianke.com/product/14924.html" target="_blank">氨基葡萄糖</a></li>
+            <li><a href="http://news.vivijk.com/" target="_blank">健康新闻</a></li>
+        </ul>
+
+    </div>
+</div>

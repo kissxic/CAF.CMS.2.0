@@ -1,0 +1,8 @@
+﻿FriendlyName: 新浪登录授权
+SystemName: CAF.WebSite.XLAuth
+Group: Security
+Version: 1.1.0.0
+MinAppVersion: 1.1.0.0
+DisplayOrder: 1
+FileName:  CAF.WebSite.XLAuth.dll
+ResourceRootKey: Plugins.ExternalAuth.XL

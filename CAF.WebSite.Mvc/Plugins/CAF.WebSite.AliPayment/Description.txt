@@ -1,0 +1,8 @@
+﻿FriendlyName: 支付宝
+SystemName: CAF.WebSite.AliPayment
+Group: Security
+Version: 1.1.0.0
+MinAppVersion: 1.1.0.0
+DisplayOrder: 1
+FileName:  CAF.WebSite.AliPayment.dll
+ResourceRootKey: Plugins.ExternalAuth.AliPayment

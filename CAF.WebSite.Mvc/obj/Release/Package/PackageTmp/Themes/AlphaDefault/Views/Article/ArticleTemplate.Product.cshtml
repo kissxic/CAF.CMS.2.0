@@ -1,0 +1,317 @@
+﻿@model ArticlePostModel
+@using CAF.Infrastructure.Core.Domain.Orders;
+@using CAF.Infrastructure.Core.Domain.Seo;
+@using CAF.Infrastructure.Core.Domain.Cms.Media;
+@using CAF.Infrastructure.Core;
+@{
+
+    //title, meta
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    int pictureSize = EngineContext.Current.Resolve<MediaSettings>().DetailsPictureSize;
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl("Article", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(productUrl);
+    }
+    Html.AppendCssFileParts(ResourceLocation.Head,
+       "~/Themes/AlphaDefault/Content/css/etalage.css",
+        "~/Themes/AlphaDefault/Content/css/detailpage.css");
+    Html.AppendScriptParts(ResourceLocation.Head,
+        "~/Scripts/underscore.min.js",
+        "~/Scripts/underscore.mixins.js",
+        "~/Scripts/yaofang.eventbroker.js",
+        "~/Themes/AlphaDefault/Content/js/jquery.jqzoom.js",
+        "~/Themes/AlphaDefault/Content/js/yaofang.imagezoom.js",
+        "~/Scripts/yaofang.ajaxcart.js",
+        "~/Themes/AlphaDefault/Content/js/detailpage.js");
+}
+<div class="listpage">
+    <!--详情页-->
+    <div class="detailpage">
+        <div class="w">
+            <div class="searchkey">@Html.Action("CategoryNavigation", "ArticleCatalog", new { currentCategoryId = this.CurrentArticleCategoryId, currentArticleId = this.CurrentArticleId, onlyShowChildren = true, showParent = true, area = "" })</div>
+            @* 产品信息 *@
+            @using (Html.BeginRouteForm("Article", new { SeName = Model.SeName }, FormMethod.Post, new { id = "product-details-form" }))
+            {
+                <article itemscope>
+                    <div class="product-detail">
+                        <div class="inproductdetail">
+                            <div class="picFocus fl">
+                                <div id="pd-gallery-container-outer" class="pic_main">
+                                    <div id="pd-gallery-container">
+                                        @Html.Partial("_PictureGallery", Model.DetailsPictureModel)
+                                    </div>
+                                </div>
+                                <div class="pro_tip"><span>温馨提示：</span>图片均为健客网对原品的真实拍摄，仅供参考；如遇新包装上市可能存在更新滞后，请以实物为准！</div>
+                            </div>
+                            <div class="indetailright fr">
+                                <div class='indetail_title'><h1> @Model.Title<img src="~/Themes/AlphaDefault/Content/images/rx.png"></h1><h2>全国免费咨询，价格从优</h2></div>
+                                <div class="effect clearfix">
+                                    <div class="effect_p">@Html.Raw(Model.ShortContent)</div>
+                                    <span class="more_btn"><a href="#">更多作用</a></span>
+                                    <div class="more_detail">@Html.Raw(Model.ShortContent)</div>
+                                </div>
+
+                                @*<span style='float: right;font-size:14px;color:#999;margin-top:10px;'>浏览量：@Model.Click</span>*@
+                                @Html.Partial("_ShortExtendedAttributes", Model)
+                                <div class="indetail_btn fl">
+                                    <input type="hidden" id="loginflag" value="@(Model.IsLogin?1:0)">
+
+                                    <a href="javascript:;" title="联系商家" class="btnreach" rel="nofollow">联系商家</a>
+                                    <a data-href='@Url.Action("AddProduct", "ShoppingCart", new { productId = Model.Id, shoppingCartTypeId = (int)ShoppingCartType.Wishlist })'
+                                       href="#"
+                                       class="btncollection ajax-cart-link"
+                                       rel="nofollow"
+                                       data-form-selector="#product-details-form"
+                                       data-type="wishlist"
+                                       data-action="add">
+                                        <i></i>
+                                        收藏商品
+                                    </a>
+                                    <a href="javascript:;" title="关注商家" class="btnattention" onclick="attentionthis(@Model.VendorId)" rel="nofollow"><i></i>关注商家</a>
+                                    @Html.Action("ShareButton")
+                                </div>
+                                <dl class="commit assort" data-p="">
+                                    <dt>药坊承诺：</dt>
+                                    <dd><em>商品：</em><span><i>正</i><a href="#" target="_blank">绝对正品</a> </span></dd>
+                                    <dd><em>付款：</em><span><i>运</i><a href="#" target="_blank">货到付款</a></span></dd>
+                                </dl>
+                            </div>
+                        </div>
+
+                        <div class="shopinfo">
+                            @Html.Action("VendorBlock", "Vendor", new { vendorId = Model.VendorId })
+                        </div>
+                    </div>
+
+                </article>
+            }
+            @* 描述 *@
+            <div class="detailcontent">
+                <div class="topnav">
+                    <span class="topnavhover">产品详情</span>
+                    <span>客户留言</span>
+                </div>
+                <div class="incontent">
+                    <div class="productdetail" id="detailcontent">
+                        <!--存放产品详情文字或图片-->
+                        <ul class="property list-paddingleft-2" style="list-style-type: none;">
+                            @Html.Partial("_FullExtendedAttributes", Model)
+                            @Html.Action("ArticleSpecifications", new { articleId = Model.Id })
+                        </ul>
+                        <p><br /></p>
+                        <p>
+                            @Html.Raw(Model.FullContent)
+                        </p>
+                    </div>
+
+                    <div class="customermessage disappear">
+                        <ul class="questionlist"></ul>
+                        <div class="tablkformessage">
+                            <textarea cols="20" role="80" name="liuyancontent" id="liuyancontent"></textarea>
+                            <input type="hidden" id="good_id" value="@Model.Id" />
+                            <input type="hidden" id="cookie" value="3759,3750,40721,40920" />
+                            <input type='hidden' id='shop_owner_id' name='shop_owner_id' value='@Model.VendorId'>
+                            <p><input type="button" class="btnsure" value="给商家留言" id="liuyanbutton"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    $(".topnav span").click(function () {
+                        $(".topnav span").removeClass("topnavhover");
+                        $(this).addClass("topnavhover");
+                        var divindex = $(this).index();
+                        $(".incontent").children('div').addClass("disappear");
+                        $(".incontent").children('div:eq(' + divindex + ')').removeClass("disappear");
+                    });
+                </script>
+            </div>
+           
+            <!--右侧推荐-->
+            <div class="leftrecommend">
+                <!--您可能还喜欢-->
+                <div class="slideTxtBox">
+                    <div class="hd">
+                        <ul><li>同类热门排行</li></ul>
+                    </div>
+                    <div class="bd ">
+                        <!--同类热门排行-->
+                        @Html.Action("RecentlyProductViewed", "ProductCategory", new
+                   {
+                       area = "",
+                       partialView = "HotArticlesBlock",
+                       categoryId = Model.ProductCategroyId,
+                       articleThumbPictureSize = 95,
+                       PageSize = 12,
+                       IsHot=true,
+                   })
+
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">jQuery(".slideTxtBox").slide({ autoPlay: true, interTime: 5000 });</script>
+            <!--猜你喜欢-->
+            @*<div class="guesslike">
+                <div class="div_guesstitle">
+                    <h2>猜你喜欢</h2>
+                    <a href="javascript:;" title="换一批" onclick="Guess_like();">换一批</a>
+                </div>
+
+                <div class="guesslist">
+                    <ul style="float:none">
+                        <li>
+                            <div class="guess_img">
+                                <a target='_blank' href="http://www.goodyao.com/detail/1528_42804.html" title="感冒清胶囊 产品图片未显示"><img src="http://yaozhijia.oss-cn-hangzhou.aliyuncs.com/goods%2F4232c795685d87116edec4c8b8fda9c0.png?OSSAccessKeyId=jFW30TQtvOP3PMi1&Signature=0HvDqkXDWLxl1Me2PHocgG2YzWM%3D&Expires=1475328703"></a>
+                                <div class="guess_title"><label>感冒清胶囊 产品图片未显示</label></div>
+                            </div>
+                            <div class="guess_dec">
+                                <span>规格：<label>20粒</label></span>
+                                <span>生产厂商：<label>茂祥集团吉林制药有限公司</label></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="guess_img">
+                                <a target='_blank' href="http://www.goodyao.com/detail/1528_42803.html" title="复方丹参片"><img src="http://yaozhijia.oss-cn-hangzhou.aliyuncs.com/goods%2F49fc1d0d9e0f5575e101ace5ae768752.png?OSSAccessKeyId=jFW30TQtvOP3PMi1&Signature=cUPmSZypiLdaUbZp6L8XQUZmmvU%3D&Expires=1475328703"></a>
+                                <div class="guess_title"><label>复方丹参片</label></div>
+                            </div>
+                            <div class="guess_dec">
+                                <span>规格：<label>200片  100片</label></span>
+                                <span>生产厂商：<label>茂祥集团吉林制药有限公司</label></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="guess_img">
+                                <a target='_blank' href="http://www.goodyao.com/detail/1998_42787.html" title="阿莫西林颗粒"><img src="http://yaozhijia.oss-cn-hangzhou.aliyuncs.com/goods%2F832f362d8a907f59b6c903f8e8a067b1.png?OSSAccessKeyId=jFW30TQtvOP3PMi1&Signature=yiY%2FWhUNEQ4PBdMO9yphnEeoX5U%3D&Expires=1475328703"></a>
+                                <div class="guess_title"><label>阿莫西林颗粒</label></div>
+                            </div>
+                            <div class="guess_dec">
+                                <span>规格：<label>0.25g</label></span>
+                                <span>生产厂商：<label>石药集团中诺药业（石家庄）有限公司</label></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="guess_img">
+                                <a target='_blank' href="http://www.goodyao.com/detail/1998_42786.html" title="羚羊清肺颗粒"><img src="http://yaozhijia.oss-cn-hangzhou.aliyuncs.com/goods%2F8432aaefb28fd45151d47a00f0345326.png?OSSAccessKeyId=jFW30TQtvOP3PMi1&Signature=6J33G54aSHW4h0VtxtjaSQx%2FySA%3D&Expires=1475328703"></a>
+                                <div class="guess_title"><label>羚羊清肺颗粒</label></div>
+                            </div>
+                            <div class="guess_dec">
+                                <span>规格：<label>6g×12袋/盒×120盒/件</label></span>
+                                <span>生产厂商：<label>江西保利制药有限公司</label></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="guess_img">
+                                <a target='_blank' href="http://www.goodyao.com/detail/1998_42785.html" title="布洛芬颗粒 "><img src="http://yaozhijia.oss-cn-hangzhou.aliyuncs.com/goods%2F8731d01161e4924b351afc3d61b348e9.png?OSSAccessKeyId=jFW30TQtvOP3PMi1&Signature=vjjqSwBWUPZAVG7kWasJGUICKK4%3D&Expires=1475328703"></a>
+                                <div class="guess_title"><label>布洛芬颗粒 </label></div>
+                            </div>
+                            <div class="guess_dec">
+                                <span>规格：<label>0.1克*18袋*300盒/件 </label></span>
+                                <span>生产厂商：<label>石药集团/中诺药业（石家庄）有限公司</label></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>*@
+        </div>
+
+
+    </div>
+    <span class="clear"></span>
+
+</div>
+
+
+<!--联系商家输入divStart-->
+<div class="contract-dialog">
+    <div class="dialog-title">
+        <a href="javascript:;" title="关闭" class="close">×</a>
+        <h3>发私信给商家</h3>
+    </div>
+    <div class="dialog-content">
+        <form class="dialog-info" name="loginform" action="" method="post">
+            <ul>
+                <li><span>发送给：</span><label></label></li>
+                <li><textarea id="sixincontent"></textarea></li>
+                <li>
+                    <input type="hidden" value="@Model.VendorId" id="shop_owner_id">
+                    <input type="hidden" value="@Model.Id" id="goods_id">
+                    <input type="reset" value="取消发送" class="btnreset">
+                    <input type="button" value="确认发送" class="btnsubmit" id="sendbutton">
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+<div class="dialog-mask"></div>
+<!--联系商家输入divEnd-->
+</div>
+<!-- 顶部通栏浮动开始 -->
+<div class="yf_float">
+    <div class="wid980 clearfix">
+        <div class="yaofang_left">
+            <span class="yf_picimg"><img src="@Model.DefaultPictureModel.ImageUrl" width="60" height="60"></span>
+            <div class="yf_txt">
+                <h4>@Model.Title.Truncate(10, "...")</h4>
+            </div>
+        </div>
+        <div class="yaofang_right">
+
+            <div class="call_box">
+                <input type="text" id="Tel_bot2" class="input_txt" maxlength="12" value="请输入您的电话号码" onfocus="this.style.color='#777';if(this.value =='请输入您的电话号码'){this.value=''}" onblur="if(this.value==''){this.value='请输入您的电话号码';this.style.color='#777'}" />
+                <input type="submit" class="input_btn" value="" />
+
+            </div>
+            <div class="add_cart">
+                <a title="购买咨询" class="pro_box2 addpay_c"></a>
+            </div>
+        </div>
+
+        <div class="floatnum_warp">
+            <ul id="floatnum">
+                @*<li><img src="http://img.jianke.net/jk2/images/floatdg.png" height="24" width="230" alt=""></li>
+                    <li><img src="http://img.jianke.net/jk2/images/floatzx.png" height="24" width="230" alt=""></li>
+                    <li><img src="http://img.jianke.net/jk2/images/floatdg.png" height="24" width="230" alt=""></li>*@
+            </ul>
+        </div>
+        <script>
+            $(function () {
+                window.onscroll = function () {
+                    var idbox = $(".yf_float");
+                    var oscrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    if (oscrollTop <= 500) {
+                        idbox[0].style.display = "none";
+                    } else {
+                        idbox[0].style.display = "block";
+                    }
+                }
+            });
+            $(function () {
+                var _mtop = parseInt($('#floatnum').css('top'));
+                function telRoll2() {
+                    _mtop += 68;
+                    $('#floatnum').stop(true, false).animate({ 'top': _mtop }, 300, function () {
+                        if (_mtop >= 0) {
+                            _mtop = -136;
+                            $('#floatnum').css('top', _mtop)
+                        };
+                    });
+                }
+                var mytel2 = setInterval(telRoll2, 3000);
+                $('#floatnum').hover(function () {
+                    clearInterval(mytel2);
+                }, function () {
+                    mytel2 = setInterval(telRoll2, 3000);
+                })
+            })
+        </script>
+        <!-- *********************************************************************************************************************************************************************************************** -->
+    </div>
+</div>
+<!-- 顶部通栏浮动结束 -->

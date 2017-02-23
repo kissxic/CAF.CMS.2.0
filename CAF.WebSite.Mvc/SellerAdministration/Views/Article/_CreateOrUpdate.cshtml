@@ -1,0 +1,106 @@
+﻿@model ArticleModel
+@using CAF.Infrastructure.Core.Domain.Cms.Articles;
+@using CAF.Infrastructure.Core.Domain.Cms.Channels;
+@{
+    Html.AddCssFileParts(true, "~/Content/assets/global/plugins/chosen/chosen.css");
+    Html.AppendScriptParts(true, "~/Content/assets/global/plugins/chosen/chosen.jquery.min.js");
+    Html.AddCssFileParts("~/Content/assets/admin/pages/css/publicproduct.css");
+}
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+@Html.HiddenFor(model => model.ShowExtendedAttribute)
+@Html.HiddenFor(model => model.ShowSpecificationAttributes)
+@Html.HiddenFor(model => model.ShowInventory)
+@Html.HiddenFor(model => model.ShowPrice)
+@Html.HiddenFor(model => model.ShowAttributes)
+@Html.HiddenFor(model => model.ShowPromotion)
+@if (Model.CategoryShowType == CategoryShowType.LeftNavigationt)
+{
+    @Html.HiddenFor(model => model.CategoryId)
+}
+@if (ViewBag.RefreshPage == true)
+{
+    <script type="text/javascript">
+        try {window.opener.document.forms['@(ViewBag.formId)'].@(ViewBag.btnId).click();}
+        catch (e){}
+        window.close();
+    </script>
+}
+<script>
+    function articleEditTab_onAjaxSuccess(tab, pane) {
+        applyCommonPlugins(pane);
+    }
+
+</script>
+@if (Model.ProductCategoryShowType == ProductCategoryShowType.Step)
+{
+    <div class="row">
+        <ul class="choose-step step2">
+            <li>
+                step.1 &nbsp;&nbsp;&nbsp;选择商品分类
+                <span class="border"></span>
+                <span class="border-n Sclear-P34"></span>
+            </li>
+            <li class="active">
+                step.2 &nbsp;&nbsp;&nbsp;编辑商品信息
+                <span class="border"></span>
+                <span class="border-n"></span>
+            </li>
+            <li>step.3 &nbsp;&nbsp;&nbsp;完成</li>
+        </ul>
+
+    </div>
+}
+@Html.CafSite().TabStrip().Name("article-edit").OnAjaxSuccess("articleEditTab_onAjaxSuccess").HtmlAttributes(new { data_article_id = Model.Id }).Style(TabsStyle.Tabs).Position(TabsPosition.Top).Items(x =>
+{
+    x.Add().Text(T("Admin.ContentManagement.Articles.Info").Text)
+      .Icon("fa fa-pencil fa-lg fa-fw")
+      .LinkHtmlAttributes(new { data_tab_name = "Info" })
+      .Content(Html.Partial("_CreateOrUpdate.Info", Model).ToHtmlString())
+      .Selected(true);
+
+    x.Add().Text(T("Admin.ContentManagement.Articles.Exts").Text)
+    .Visible(Model.ShowExtendedAttribute)
+    .Icon("fa fa-fw fa-list fa-lg fa-fw")
+    .LinkHtmlAttributes(new { data_tab_name = "Exts" })
+    .Content(Html.Partial("_CreateOrUpdate.Exts", Model).ToHtmlString());
+
+    //x.Add().Text(T("Admin.ContentManagement.Articles.SpecificationAttributes").Text)
+    //.Visible(Model.ShowSpecificationAttributes)
+    //.Icon("fa fa-bars fa-lg fa-fw")
+    //.LinkHtmlAttributes(new { data_tab_name = "SpecificationAttributes" })
+    //.Content(Html.Partial("_CreateOrUpdate.SpecificationAttributes", Model).ToHtmlString());
+
+    x.Add().Text(T("Admin.Common.SEO").Text)
+    .Icon("fa fa-search fa-lg fa-fw")
+    .LinkHtmlAttributes(new { data_tab_name = "SEO" })
+    .Content(Html.Partial("_CreateOrUpdate.SEO", Model).ToHtmlString());
+
+    x.Add().Text(T("Admin.ContentManagement.Articles.Inventory").Text)
+    .Visible(Model.ShowInventory)
+    .Icon("fa fa-archive fa-lg fa-fw")
+    .LinkHtmlAttributes(new { data_tab_name = "Inventory" })
+    .Content(Html.Partial("_CreateOrUpdate.Inventory", Model).ToHtmlString());
+
+    x.Add().Text(T("Admin.ContentManagement.Articles.Price").Text)
+     .Visible(Model.ShowPrice)
+     .Icon("fa fa-euro fa-lg fa-fw")
+     .LinkHtmlAttributes(new { data_tab_name = "Price" })
+     .Content(Html.Partial("_CreateOrUpdate.Price", Model).ToHtmlString());
+
+    x.Add().Text(T("Admin.ContentManagement.Articles.Attributes").Text)
+     .Visible(Model.ShowAttributes)
+     .Icon("fa fa-fw fa-list fa-lg fa-fw")
+     .LinkHtmlAttributes(new { data_tab_name = "Attributes" })
+     .Content(Html.Partial("_CreateOrUpdate.Attributes", Model).ToHtmlString());
+
+    x.Add().Text(T("Admin.ContentManagement.Articles.Promotion").Text)
+    .Visible(Model.ShowPromotion)
+    .Icon("fa fa-bullhorn fa-lg fa-fw")
+    .LinkHtmlAttributes(new { data_tab_name = "Promotion" })
+    .Action("LoadEditTab", "Article", new { id = Model.Id, tabName = "Promotion" })
+    .Ajax();
+
+    EngineContext.Current.Resolve<IEventPublisher>().Publish(new TabStripCreated(x, "article-edit", this.Html, this.Model));
+})

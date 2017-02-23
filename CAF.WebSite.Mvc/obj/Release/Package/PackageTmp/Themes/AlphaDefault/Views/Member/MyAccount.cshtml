@@ -1,0 +1,25 @@
+﻿@model UserGradeModel
+ 
+@{
+    Layout = "";
+
+
+}
+ 
+<div class="user_info">
+    <div class="user_img">
+        <div class="user_icon">
+            <img src="@Model.AvatarUrl" />
+            <div class="mask"></div>
+        </div>
+        <span>@Model.Name</span>
+        <div class="user_grade">
+            <font color="#999">会员等级：</font>
+            <a href="#" class="txtred">@Model.UserGrade</a>
+        </div>
+    </div>
+    <div class="user_vip">
+        <span>成为VIP享受更多服务</span>
+        <a href="/Member/Upvip">升级VIP ></a>
+    </div>
+</div>

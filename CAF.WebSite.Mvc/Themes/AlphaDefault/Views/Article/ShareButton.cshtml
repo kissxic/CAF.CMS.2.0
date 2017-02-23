@@ -1,0 +1,24 @@
+﻿@model string
+@*@if (!String.IsNullOrWhiteSpace(Model))
+    {
+        <div class="product-share-button line">
+            @Html.Raw(Model)
+        </div>
+    }*@
+<div class="div_share">
+    <div class="sharetxt">
+        <i class="iconshare"></i><label>分享到</label>
+    </div>
+    <div class="inshare disappear">
+        <div class="bdsharebuttonbox" data-tag="share_1">
+            <a class="qq" data-cmd="tqq"><i></i></a>
+            <a class="weibo" data-cmd="tsina"><i></i></a>
+            <a class="qzone" data-cmd="qzone" href="#"><i></i></a>
+        </div>
+        <script>
+            with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+        </script>
+
+    </div>
+
+</div>

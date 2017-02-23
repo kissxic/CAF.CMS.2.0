@@ -1,0 +1,6 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\GeetestSDK\bin\Debug\GeetestSDK.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\GeetestSDK\bin\Debug\GeetestSDK.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\GeetestSDK\bin\Debug\GeetestSDK.XML
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\GeetestSDK\obj\Debug\GeetestSDK.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\GeetestSDK\obj\Debug\GeetestSDK.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\GeetestSDK\obj\Debug\GeetestSDK.csprojResolveAssemblyReference.cache

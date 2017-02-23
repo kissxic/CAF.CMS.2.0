@@ -1,0 +1,49 @@
+﻿<Language Name="English" IsDefault="false" IsRightToLeft="false">
+
+  <LocaleResource Name="DescriptionText">
+    <Value>Description</Value>
+  </LocaleResource>
+  <LocaleResource Name="DescriptionText.Hint">
+    <Value>Enter info that will be shown to customers during checkout.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.SellerEmail">
+    <Value>商家电子邮件</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.SellerEmailRequired">
+    <Value>请输入商家电子邮件</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.Key">
+    <Value>商户 Key</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.KeyRequired">
+    <Value>请输入商户 Key</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.Partner">
+    <Value>签约伙伴</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.PartnerRequired">
+    <Value>请输入签约伙伴</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.AdditionalFee">
+    <Value>额外费用</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.AdditionalFee.Hint">
+    <Value>额外费用</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.ChinaBank.AdditionalFeeRequired">
+    <Value>请输入额外费用，没有则输0.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.AdditionalFeePercentage">
+    <Value>额外的费使用百分比</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.AdditionalFeePercentage.Hint">
+    <Value>确定是否适用于订单总计的百分比的额外费用。如果未启用，则使用固定的值.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.FriendlyName.Payments.Prepayment" AppendRootKey="false">
+    <Value>预付款</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.InvalidCredentials">
+    <Value>API 的完整凭据。请在配置区域中输入所需的数据.</Value>
+  </LocaleResource>
+
+</Language>

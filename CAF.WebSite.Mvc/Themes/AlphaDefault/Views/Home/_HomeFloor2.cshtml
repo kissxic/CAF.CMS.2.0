@@ -1,0 +1,139 @@
+﻿@model HomeFloorModel
+@using CAF.Infrastructure.Core.Domain.Cms.PageSettings;
+@{
+    int vendorIndex = 0;
+    var leftOne = Model.ArticleLinks.Where(p => (int)p.Type == 1).FirstOrDefault();
+    var leftAd = Model.ArticleLinks.Where(p => (int)p.Type >= 2 && (int)p.Type <= 4).ToList();
+    var topCenterAd = Model.ArticleLinks.Where(p => (int)p.Type >= 5 && (int)p.Type <= 7).ToList();
+    var bottomCenterAd = Model.ArticleLinks.Where(p => (int)p.Type >= 8 && (int)p.Type <= 10).ToList();
+    var rightAd = Model.ArticleLinks.Where(p => (int)p.Type >= 11 && (int)p.Type <= 14).ToList();
+    var leftScroll = Model.ArticleLinks.Where(p => (int)p.Type >= 16 && (int)p.Type <= 20 && p.PictureId != 0).ToList();
+    var rightScroll = Model.ArticleLinks.Where(p => (int)p.Type >= 21 && (int)p.Type <= 25 && p.PictureId != 0).ToList();
+}
+
+
+
+<div class="mc">
+    <div class="mc_left">
+        <div class="lefttitle">
+            <a target="_blank" href="@Model.URL" style="float:left"><span style="color:#03ace5">@Model.Name</span></a>
+            <a target="_blank" href="@Model.URL" rel="nofollow">更多》</a>
+        </div>
+        <div class="leftadv_b">
+            <a href="@leftOne.Url" target="_blank"><img alt="" src="@leftOne.ImageUrl"></a>
+        </div>
+        <div class="leftlistadv" style="background-color:#03ace5;">
+            <dl>
+                <dt>热门商家排行</dt>
+                <dd>
+
+                    @foreach (var item in Model.Vendors)
+                    {
+                        vendorIndex++;
+                        <a href="@item.Url"> @vendorIndex.@item.Name</a>
+                    }
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="mc_right" id="floor@(Model.Index)content">
+        <div class="mc_right_content">
+            <div class="mc_rightadv_a">
+                <div id="floor_slidebox@(Model.Index*2-1)" class="slideBox slideBox02">
+                    <div class='hd'>
+                        <ul>
+                            @for (int i = 1; i <= leftScroll.Count(); i++)
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class='bd'>
+                        <ul>
+                            @foreach (var item in leftScroll)
+                            {
+                                <li><a href='@item.Url' target='_blank'><img alt='' src='@item.ImageUrl' /></a></li>
+                            }
+
+                        </ul>
+                    </div>
+                    <a class="prev" href="javascript:void(0)"></a>
+                    <a class="next" href="javascript:void(0)"></a>
+
+                </div>
+
+                <div id="floor_slidebox@(Model.Index*2)" class="slideBox slideBox02">
+                    <div class='hd'>
+                        <ul>
+                            @for (int i = 1; i <= rightScroll.Count(); i++)
+                            {
+                                <li>@i</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class='bd'>
+                        <ul>
+                            @foreach (var item in rightScroll)
+                            {
+                                <li><a href='@item.Url' target='_blank'><img alt='' src='@item.ImageUrl' /></a></li>
+                            }
+
+                        </ul>
+                    </div>
+                    <a class="prev" href="javascript:void(0)"></a>
+                    <a class="next" href="javascript:void(0)"></a>
+                </div>
+            </div>
+            <div class="mc_rightadv_b">
+                <div class="smalladv_a">
+                    <ul>
+                        @foreach (var item in leftAd)
+                        {
+                            <li><a href='@item.Url' target='_blank'><img alt='' src='@item.ImageUrl' /></a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="smalladv_b">
+                    <div class="smalladv_b01">
+                        <ul>
+                            @foreach (var item in topCenterAd)
+                            {
+                                <li><a href='@item.Url' target='_blank'><img alt='' src='@item.ImageUrl' /></a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="smalladv_b02">
+                        <ul>
+                            @foreach (var item in bottomCenterAd)
+                            {
+                                <li><a href='@item.Url' target='_blank'><img alt='' src='@item.ImageUrl' /></a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="smalladv_c">
+                    <ul>
+                        @foreach (var item in rightAd)
+                        {
+                            <li><a href='@item.Url' target='_blank'><img alt='' src='@item.ImageUrl' /></a></li>
+                        }
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

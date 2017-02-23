@@ -1,0 +1,17 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\Content\headphotos\default.jpg
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\Content\headphotos\group.jpg
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\Views\IM\Configure.cshtml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\web.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\Views\Web.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\Views\Chat\PublicInfo.cshtml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\Description.txt
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\icon.png
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\Views\IM\PublicInfo.cshtml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\Localization\resources.de-de.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\Localization\resources.en-us.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\CAF.WebSite.Im.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\CAF.WebSite.Im.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Im\CAF.WebSite.Im.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.Im\obj\Debug\CAF.WebSite.Im.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.Im\obj\Debug\CAF.WebSite.Im.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.Im\obj\Debug\CAF.WebSite.Im.pdb

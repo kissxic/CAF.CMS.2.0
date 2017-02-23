@@ -1,0 +1,170 @@
+﻿@model CAF.WebSite.Mvc.Models.Users.RegisterModel
+@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core;
+@using CAF.WebSite.Application.WebUI;
+@using CaptchaMvc.Models;
+@{
+    Layout = null;
+
+    Html.AddTitleParts("新会员注册");
+    var registerUrl = Url.RouteUrl("Register");
+    if (!String.IsNullOrEmpty(this.Context.Request.QueryString["returnUrl"]))
+    {
+        var webHelper = EngineContext.Current.Resolve<IWebHelper>();
+        registerUrl = webHelper.ModifyQueryString(registerUrl, "returnurl=" + HttpUtility.UrlEncode(this.Context.Request.QueryString["returnUrl"]), null);
+    }
+    // add css assets
+    var MediaRootPath = "~/Themes/AlphaDefault/";
+    Html.AppendCssFileParts(
+       MediaRootPath + "Content/css/register2016.css",
+       "~/Content/assets/global/plugins/bootstrap-toastr/toastr.css"
+       );
+    // add js assets (Head)
+    Html.AppendScriptParts(ResourceLocation.Head,
+        MediaRootPath + "Content/js/jquery.js",
+        MediaRootPath + "Content/js/common.js",
+         "~/Content/assets/global/plugins/bootstrap-toastr/toastr.js",
+        MediaRootPath + "Content/js/register2016.js"
+       );
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>@Html.WorkTitle(true)</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@(Html.WorkMetaDescription())" />
+    <meta name="keywords" content="@(Html.WorkMetaKeywords())" />
+    <meta name="generator" content="Caf.NET @WorkVersion.CurrentFullVersion" />
+    @Html.MetaAcceptLanguage()
+    @Html.WorkCssFiles(this.Url, ResourceLocation.Head)
+    @Html.WorkScripts(this.Url, ResourceLocation.Head)
+    <link rel="shortcut icon" href="~/favicon.ico" />
+</head>
+<body>
+
+    <!--注册 begin-->
+    <form action="/register" method="post">
+        @Html.AntiForgeryToken()
+        <div class="reg_warp">
+            <div class="reg_header center clearfix">
+                <div class="lh_logo fl">
+                    <a class="fl logo_link" href="@Url.RouteUrl("HomePage")" target="_blank" title="药坊网"><img src="~/Themes/AlphaDefault/Content/images/img_Logo3.png"  alt="药坊网"></a>
+                </div>
+                <p class="reg_login_link fr f14"><a class="fr t_c login_link" href="@Url.RouteUrl("Login")">登录</a>如已注册， 点此</p>
+            </div>
+            <div class="reg_main center">
+                <ul class="reg_nav f18 t_c clearfix">
+                    <li class="user_reg on">新用户注册</li>
+                    <li class="reg_success">注册成功</li>
+                </ul>
+                <div class="reg_cont reg_cont1">
+                    <ul>
+                        <li class="nofocued phone">
+                            <p class="fl">手机号码</p>
+                            <p class="one_right fr relative">
+                                <input class="user_id empty" type="text" id="user_phone" name="userName" maxlength="40" />
+                                <label class="user_ida absolute" for="user_phone">请输入您的手机号</label>
+                                <span class="reg_prompt wrong r_user_phone"></span>
+                                <span class="absolute wrong_phone wrong_id"><i></i>请输入有效的手机号！<a href="javascript:void(0)" class="qh abc">或使用邮箱注册</a></span>
+                                <span class="absolute no_phone no_id"><i></i>手机号不能为空！<a href="javascript:void(0)" class="qh abc">或使用邮箱注册</a></span>
+                                <span class="absolute ishave_phone ishave_id"><em></em> <a href="javascript:void(0)" class="qh abc">或使用邮箱注册</a></span>
+                                <span class="h_reg_1"><a href="javascript:void(0)" class="qh abc">或使用邮箱注册</a></span>
+                            </p>
+                        </li>
+                        <li class="nofocued email">
+                            <p class="fl">邮箱地址</p>
+                            <p class="one_right fr relative">
+                                <input class="user_id empty" type="text" id="user_email" name="userEmail" maxlength="40" />
+                                <label class="user_ida absolute" for="user_email">请输入您的邮箱地址</label>
+                                <span class="reg_prompt wrong r_user_email"></span>
+                                <span class="absolute wrong_email wrong_id"><i></i>请输入有效的邮箱地址！<a href="javascript:void(0)" class="qh def">或使用手机注册</a></span>
+                                <span class="absolute no_email no_id"><i></i>邮箱地址不能为空！<a href="javascript:void(0)" class="qh def">或使用手机注册</a></span>
+                                <span class="absolute ishave_email ishave_id"><em></em> <a href="javascript:void(0)" class="qh def">或使用手机注册</a></span>
+                                <span class="h_reg_1"><a href="javascript:void(0)" class="qh def">或使用手机注册</a></span>
+                            </p>
+                        </li>
+                        <li class="nofocued">
+                            <p class="fl">验证码</p>
+                            <p class="one_right one_right2 fr relative">
+                                <input type="text" name="user_yzm" id="user_yzm" class="empty">
+                                <label class="user_ida absolute" for="user_yzm">请输入验证码</label>
+                                <span class="reg_prompt wrong user_yzm"></span>
+                                <span class="absolute wrong_yzm wrong_id"><i></i>请重新输入正确的图片验证码！</span>
+                                <span class="absolute no_yzm no_id"><i></i>验证码不能为空!</span>
+                                <span id="div_yzm" class="div_yzm">
+                                    <img id="checkCodeImg" title="点击更换验证码" src="/Member/GetCheckCode" width="85" height="39" border="0" />
+                                  </span>
+                                <span class="cxdd"><a href="javascript:void(0)" title="看不清换一张">看不清<br />换一张</a></span>
+                            </p>
+                        </li>
+
+                        <li class="nofocued dxyz">
+                            <p class="fl">短信验证码</p>
+                            <p class="one_right one_right3 fr relative">
+                                <input type="text" name="codes" id="user_dx" class="yzm empty">
+                                <label class="user_ida absolute" for="user_dx">请输入短信验证码</label>
+                                <!-- <input type="button" class="fdx" id="btn" value="获取短信验证码"/>  -->
+                                <button class="fdx" id="btn">获取短信验证码</button>
+                                <span class="absolute dx_yzm wrong_id"><i></i>请重新输入正确的短信验证码！</span>
+                                <span class="absolute no_dxyzm no_id"><i></i>短信验证码不能为空!</span>
+                            </p>
+                        </li>
+                        <li class="nofocued yxyz">
+                            <p class="fl">邮箱验证码</p>
+                            <p class="one_right one_right3 fr relative">
+                                <input type="text" name="" id="user_dx1" class="yzm empty">
+                                <label class="user_ida absolute" for="user_dx1">请输入邮箱验证码</label>
+                                <!-- <input type="button" class="fdx" id="btn1" value="获取邮箱验证码"/>  -->
+                                <button class="fdx" id="btn1">获取邮箱验证码</button>
+                                <span class="absolute yx_yzm wrong_id"><i></i>请重新输入正确的邮箱验证码！</span>
+                                <span class="absolute no_yxyzm no_id"><i></i>邮箱验证码不能为空!</span>
+                            </p>
+                        </li>
+                        <li class="nofocued">
+                            <p class="fl">设置密码</p>
+                            <p class="one_right fr relative">
+                                <span class="input_box"><input class="user_pw1 empty" name="PassWord" type="password" onblur="Checkpwd()" maxlength="16" id="pwd_1" autocomplete="off"></span>
+                                <label class="pwd_l1 absolute" for="pwd_1">密码长度6-16字符（区分大小写）</label>
+                                <span class="reg_prompt right r_pwd"></span>
+                                <span class="absolute wrong_pw1"><i></i>密码长度为6-16字符，请重新输入！</span>
+                                <span class="absolute no_pw1"><i></i>密码不能为空！</span>
+                            </p>
+                        </li>
+                        <li class="last nofocued">
+                            <p class="fl t_r">确认密码</p>
+                            <p class="one_right fr relative">
+                                <span class="input_box"><input name="passWordAgian" class="user_pw2 empty" onblur="Checkagianpwd()" type="password" maxlength="16" id="pwd_2"></span>
+                                <label class="pwd_l2 absolute" for="pwd_2">密码请保持一致</label>
+                                <span class="reg_prompt wrong pwdasg_id"></span>
+                                <span class="absolute wrong_pw2"><i></i>两次输入的密码不一样，请重新输入！</span>
+                                <span class="absolute no_pw2"><i></i>确认密码不能为空！</span>
+                            </p>
+
+                        </li>
+                        <li class="reg_btn">
+                            <a class="t_c" href="">
+                                <input type="submit" onclick="return Checkform();" onfocus="blur()" name="btn_regEmail" value="立即注册"
+                                       id="btn_regEmail" />
+
+                            </a>
+                        </li>
+                        <li class="reg_checkbox act" onclick="$(this).toggleClass('act')">
+                            我已阅读并同意<a href="#" target="_blank">《药坊网用户使用条款》</a>
+                        </li>
+                      
+                        <input type="reset" style="display:none;" />
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>

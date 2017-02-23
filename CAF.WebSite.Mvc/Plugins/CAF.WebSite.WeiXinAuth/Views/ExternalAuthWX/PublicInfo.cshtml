@@ -1,0 +1,9 @@
+﻿@{
+    Layout = "";
+
+}
+ 
+<a  title="微信扫码登录"  class="way_wechat" id="way_wechat" href="@Url.RouteUrl("CAF.WebSite.WeiXinAuth", new { ReturnUrl = HttpContext.Current.Request.QueryString["ReturnUrl"], action = "Login" })">
+</a><span></span>
+
+ 

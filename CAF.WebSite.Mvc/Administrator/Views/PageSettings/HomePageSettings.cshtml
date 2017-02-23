@@ -1,0 +1,107 @@
+﻿@model HomePageSettingsModel
+@{
+
+    ViewBag.Title = "首页配置管理";
+}
+
+<script type="text/javascript">
+    $(function () {
+
+        // add required products
+        $(document).on('click', '#SearchRequiredArticleButton', function () {
+            $('#@(Html.FieldIdFor(x => x.RelateProductIds))').entityPicker('loadDialog', {
+                url: '@Url.Action("EntityPicker", "Common", new { area = "" })',
+                caption: '推荐商品',
+                maxReturnValues: 10,
+                returnValueDelimiter: ',',
+                onLoadDialogBefore: function () {
+                    $('#SearchRequiredArticleButton').button('loading').prop('disabled', true);
+                },
+                onLoadDialogComplete: function () {
+                    $('#SearchRequiredArticleButton').prop('disabled', false).button('reset');
+                }
+            });
+
+        });
+        $(document).on('click', '#SearchRequiredVendorButton', function () {
+
+            $('#@(Html.FieldIdFor(x => x.RelateVendorIds))').entityPicker('loadDialog', {
+                url: '@Url.Action("EntityPicker", "Common", new { area = "" })',
+                caption: '推荐商家',
+                entity: "vendor",
+                maxReturnValues: 10,
+                returnValueDelimiter: ',',
+                onLoadDialogBefore: function () {
+                    $('#SearchRequiredVendorButton').button('loading').prop('disabled', true);
+                },
+                onLoadDialogComplete: function () {
+                    $('#SearchRequiredVendorButton').prop('disabled', false).button('reset');
+                }
+            });
+
+        });
+    });
+
+</script>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light">
+                <div class="section-header sticky">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase"> 首页配置管理</span>
+                        <span class="caption-helper">@Html.ActionLink("(" + T("Admin.Common.BackToList") + ")", "Index")</span>
+                    </div>
+                    <div class="actions">
+                        <button type="submit" name="save" value="save" class="btn btn-primary"><i class="fa fa-check"></i>@T("Admin.Common.Save")</button>
+                    </div>
+                </div>
+                <div class="portlet-body form form-horizontal form-bordered form-row-stripped">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                @Html.LangLabelFor(model => model.RelateVendorIds)
+                            </label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.RelateVendorIds, new { @class = "form-control" })
+
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn blue" id="SearchRequiredVendorButton" data-loading-text="加载&hellip;">
+                                            <i class="fa fa-search"></i>&nbsp;商家
+                                        </button>
+                                        @Html.ValidationMessageFor(model => model.RelateVendorIds)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                @Html.LangLabelFor(model => model.RelateProductIds)
+                            </label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.RelateProductIds, new { @class = "form-control" })
+
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn blue" id="SearchRequiredArticleButton" data-loading-text="加载&hellip;">
+                                            <i class="fa fa-search"></i>&nbsp;商品
+                                        </button>
+                                        @Html.ValidationMessageFor(model => model.RelateProductIds)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+

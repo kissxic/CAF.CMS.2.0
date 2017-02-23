@@ -1,0 +1,20 @@
+﻿@model NavigationModel
+@using CAF.Infrastructure.Core.Collections
+@if (Model.Root.HasChildren)
+{
+    <label><a href="@Url.RouteUrl("HomePage")">药坊网</a></label>
+    CreateMenu(Model.Root.Children, "");
+
+
+}
+@helper CreateMenu(IEnumerable<TreeNode<MenuItem>> nodes, string menuSelector)
+{
+foreach (var node in nodes)
+{
+    var state = node.GetNodePathState(Model.Path);
+    var url = node.Value.GenerateUrl(this.Url);
+        <text>&gt;</text><a href="@url">@node.Value.Text</a>
+}
+
+}
+

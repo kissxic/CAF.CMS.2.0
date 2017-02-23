@@ -1,0 +1,37 @@
+﻿<Language Name="English" IsDefault="false" IsRightToLeft="false">
+
+  <LocaleResource Name="DescriptionText">
+    <Value>Description</Value>
+  </LocaleResource>
+  <LocaleResource Name="DescriptionText.Hint">
+    <Value>Enter info that will be shown to customers during checkout.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.SellerEmail">
+    <Value>Seller email</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.Key">
+    <Value>Key</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.Partner">
+    <Value>Partner</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.AdditionalFee">
+    <Value>Additional fee</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.AdditionalFee.Hint">
+    <Value>Determines the additional fee.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.AdditionalFeePercentage">
+    <Value>Additional fee. Use percentage</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.AdditionalFeePercentage.Hint">
+    <Value>Determines whether to apply a percentage additional fee to the order total. If not enabled, a fixed value is used.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.FriendlyName.Payments.Prepayment" AppendRootKey="false">
+    <Value>Prepayment</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.Payments.AliPayment.InvalidCredentials">
+    <Value>Incomplete credentials for the PayPal API. Please enter the required data in the configuration area.</Value>
+  </LocaleResource>
+
+</Language>

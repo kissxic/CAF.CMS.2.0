@@ -1,0 +1,43 @@
+﻿@model VendorModel
+@using CAF.WebSite.Application.Services.Seo;
+@if (Model != null)
+{
+    <div class="shopicon">
+        <img src='@Model.LogoPictureUrl' /><span class='shopname'>@Model.Name</span>
+    </div>
+    <div class="shopdetailinfo">
+        <div class='indetail'>
+            <span>单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位：</span><label><a target='_blank' href='@Url.RouteUrl("Vendor", new { SystemName = Model.SeName })'>@Model.Name</a></label>
+        </div>
+        <div class='indetail'><span>联&nbsp;系&nbsp;人：</span><label>@Model.ContactsName</label></div>
+        <div class='indetail'><span>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</span><label>@Model.CompanyPhone</label></div>
+        <div class='indetail'><span>传&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;真：</span><label>@Model.ContactsFax</label></div>
+        <div class='indetail'><span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span><label>@Model.CompanyAddress</label></div>
+        <div class='indetail'><span>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</span><label>@Model.ContactsEmail</label></div>
+        <div class='indetail'><span>公司主页：</span><label>@Model.CompanyWebSite</label></div>
+    </div>
+    <div class="shoptips">
+        <span>联系时请说明该信息来自<font color="#d10000">药之佳医药网</font>，将会获得厂商更多信任！</span>
+    </div>
+    <a target='_blank' href='http://www.goodyao.com/shop/936.html' class='linktoshop'>商家店铺<i></i></a>
+}
+else
+{
+    <div class="shopicon">
+        <img src='~/Themes/AlphaDefault/Content/images/img_Logo.png' /><span class='shopname'>药坊平台自营</span>
+    </div>
+    <div class="shopdetailinfo">
+        <div class='indetail'>
+            <span>单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位：</span><label>药坊网</label>
+        </div>
+        <div class='indetail'><span>联&nbsp;系&nbsp;人：</span><label>药坊网</label></div>
+        <div class='indetail'><span>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</span><label>888-88888</label></div>
+        <div class='indetail'><span>传&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;真：</span><label>888-88888</label></div>
+        <div class='indetail'><span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span><label>长春</label></div>
+        <div class='indetail'><span>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</span><label>3286619561@qq.com</label></div>
+        <div class='indetail'><span>公司主页：</span><label>yao.mayisite.com</label></div>
+    </div>
+    <div class="shoptips">
+        <span>联系时请说明该信息来自<font color="#d10000">药之佳医药网</font>，将会获得厂商更多信任！</span>
+    </div>
+}

@@ -1,0 +1,38 @@
+﻿@model BannerInfoModel
+
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+@Html.HiddenFor(model => model.UrlTypeId)
+
+<div class="form-body">
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Html.LangLabelFor(model => model.Name)
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name)
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Html.LangLabelFor(model => model.Url)
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.Url, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Url)
+
+        </div>
+    </div>
+    <div  class="form-group">
+        <label class="control-label col-md-2">
+            @Html.LangLabelFor(model => model.DisplayOrder)
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.DisplayOrder, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DisplayOrder)
+
+        </div>
+    </div>
+</div>

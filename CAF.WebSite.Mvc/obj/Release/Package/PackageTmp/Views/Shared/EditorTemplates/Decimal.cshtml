@@ -1,0 +1,84 @@
+@functions{
+    private decimal? Value
+    {
+        get
+        {
+            decimal? value = null;
+            if (ViewData.Model != null)
+            {
+                value = Convert.ToDecimal(ViewData.Model, System.Globalization.CultureInfo.InvariantCulture);
+            }
+            return value;
+        }
+    }
+
+    private string Prefix
+    {
+        get
+        {
+            if (ViewData.ContainsKey("prefix"))
+            {
+                return ViewData["prefix"].Convert<string>();
+            }
+            return "";
+        }
+    }
+    private int Digits
+    {
+        get
+        {
+            if (ViewData.ContainsKey("digits"))
+            {
+                return ViewData["digits"].Convert<int>();
+            }
+            return 2;
+        }
+    }
+}
+
+@{
+    var id = ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty);
+    var name = ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty);
+    string additionalClass = string.Empty;
+    if (ViewData.ContainsKey("small"))
+    {
+        additionalClass = ViewData["small"].Convert<bool>() ? "small" : "";
+    }
+}
+<div class="input-inline input-medium">
+    @Html.TextBoxFor(model => model, new { @class = "form-control" })
+</div>
+
+
+<script>
+    $(function () {
+        @*$("#@id").inputmask("numeric", {
+            groupSeparator: ",",
+            placeholder: "0",
+            autoGroup: true,
+            digits: @Digits,
+            digitsOptional: false,
+            prefix: "@Prefix"
+        });*@
+        @*$("#@id").TouchSpin({
+            buttondown_class: 'btn green',
+            buttonup_class: 'btn green',
+            min: -1000000000,
+            max: 1000000000,
+            stepinterval: 50,
+            maxboostedstep: 10000000,
+            prefix: "@Prefix"
+        });*@
+        $("#@id").TouchSpin({
+            buttondown_class: 'btn blue',
+            buttonup_class: 'btn blue',
+            min: 0,
+            max: 100000,
+            step: 0.1,
+            decimals: @Digits,
+            //boostat: 5,
+            //maxboostedstep: 10,
+            postfix: '@Prefix'
+        });     
+    });
+</script>

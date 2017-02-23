@@ -1,0 +1,55 @@
+﻿@model FilePreview
+
+@{
+    //page title
+    ViewBag.Title = T("Admin.Configuration.Themes").Text;
+    Html.AddScriptParts(ResourceLocation.Head, "~/Content/codemirror/codemirror.js");
+    Html.AddCssFileParts("~/Content/codemirror/codemirror.css");
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light">
+                <div class="section-header sticky">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">编辑-@Model.Name </span>
+                        <span class="caption-helper"><a href="@Url.Action("Files", "Theme", new { theme = Model.Theme, siteId = Model.SiteId })">(返回列表)</a></span>
+                    </div>
+                    <div class="actions">
+                        <button type="submit" name="save" value="save" class="btn btn-primary"><i class="fa fa-check"></i>@T("Admin.Common.Save")</button>
+                    </div>
+                </div>
+                <div class="portlet-body form form-horizontal form-bordered form-row-stripped">
+                    <div class="form-body">
+                        <input id="uploadTheme" name="name" value="@Model.Name" type="hidden" />
+                        <input id="uploadFilename" name="theme" type="hidden"  value="@Model.Theme" />
+                        <div class="form-group">
+                            <label class="control-label col-md-2">内容</label>
+                            <div class="col-md-10">
+                                <textarea id="preContent" name="Content">@Model.Content</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<script type="text/javascript">    
+        var editor = CodeMirror.fromTextArea(document.getElementById("preContent"), {
+            mode: "text/html",
+            indentWithTabs: true,
+            smartIndent: true,
+            lineNumbers: true,
+            matchBrackets: true,
+            autofocus: true,
+           
+        });
+        editor.setSize("1020px", "540px");
+       
+</script>

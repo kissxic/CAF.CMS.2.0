@@ -1,0 +1,28 @@
+﻿@model ArticleCatalogPagingFilteringModel.SpecificationFilterModel
+@{
+    var renderedAttributeNames = new List<string>();
+
+}
+@if (Model.Enabled && Model.AllFilteredItems.Count > 0)
+{
+    var groupNames = Model.AllFilteredItems.GroupBy(x => x.SpecificationAttributeName) ;
+    foreach (var groupName in groupNames)
+    {
+
+        <li>
+            <div class="title fl">@groupName.Key</div>
+            <div class="Cate_scr_list fl">
+                <dl class='pargana'>
+
+                    <dd class="@( groupName.Where(x=>x.Selected).Count()==0?"on":"")"><a href="@Model.RemoveFilterUrl">全部</a></dd>
+
+                    @foreach (var item in groupName.ToList())
+                    {
+                        <dd class="@(item.Selected?"on":"")"><a href='@item.FilterUrl'>@item.SpecificationAttributeOptionName</a></dd>
+
+                    }
+                </dl>
+            </div>
+        </li>
+    }
+}

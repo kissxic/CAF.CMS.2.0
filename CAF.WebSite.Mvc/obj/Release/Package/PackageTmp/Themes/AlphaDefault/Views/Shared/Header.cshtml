@@ -1,0 +1,37 @@
+﻿@model SiteHeaderModel
+
+
+<div class="header02">
+    <div class="topad02">
+        <a class="small" title="处方药公告" href="javascript:void(0)">
+            <img src="http://img.jianke.net/jk2014/images/cfy.jpg" data-pin-nopin="true">
+        </a>
+    </div>
+    <div class="header02Con">
+        <a href="@Url.RouteUrl("HomePage")" style="background: url(@Model.LogoUrl) 0px 22px no-repeat;" class="header02logo" title="药坊网医药网,医药招商,药品招商">药坊网</a>
+        <div class="header02search">
+            <div class="div_search">
+
+
+                <div class="search_input">
+                    <select id="stype" name="stype">
+                        <option value="1" selected="selected">药品</option>
+                        <option value="2">店铺</option>
+                    </select>
+                    <label style="visibility: visible;  float: left; color: rgb(153, 153, 153); margin-left: 55px;" for="mq"> 请输入药品名称或者店铺</label>
+                    <input id="mq" type="text" style="width: 355px; border-left:none; " onfocus="$('.search_input label').attr('style', 'color:  rgb(153, 153, 153); visibility: hidden;');" onblur="if (value ==''){$('.search_input label').attr('style', 'color:  rgb(153, 153, 153); text-indent:55px; visibility: visible;')}; " name="q" autocomplete="off">
+
+                    <div class="searchOK" id="btnsearch">搜索</div>
+
+                    <div class="hotkey">
+                    </div>
+                </div>
+
+                <div class="hotline">
+                    <span>400-888-8888</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

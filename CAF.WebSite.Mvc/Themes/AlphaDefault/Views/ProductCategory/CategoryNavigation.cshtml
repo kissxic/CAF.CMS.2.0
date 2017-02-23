@@ -1,0 +1,56 @@
+﻿@model NavigationModel
+@using CAF.Infrastructure.Core.Collections
+@{
+    var index = Model.Path.Count;
+
+}
+@if (Model.Root.HasChildren)
+{
+
+    <dl class="chosen-sort">
+        <dt><span>分类选择：</span></dt>
+        @for (int i = 0; i < Model.Path.Count; i++)
+        {
+            if (i == 0)
+            {
+                @CreateMenu(Model.Root.Root.Children, i);
+            }
+            else
+            {
+                var current = Model.Path.ElementAt(i);
+                var selectNode = Model.Root.SelectNode(x => x.Value.EntityId == current.EntityId);
+                @CreateMenu(selectNode.Parent.Children, i);
+            }
+        }
+        <dd>
+        </dd>
+    </dl>
+
+
+}
+@helper CreateMenu(IEnumerable<TreeNode<MenuItem>> nodes, int dept)
+{
+var current = Model.Path.ElementAt(dept);
+
+    <dd>
+        <div class="nav-item" style="z-index: 1;">
+            <div class="category-menu">
+                <div class="category-menu-con">
+                    <a class="category-menu-txt" href="@Url.RouteUrl("ProductCategory",new {channelId=1,categoryId=current.EntityId })">@current.Text</a>
+                    <i class="category-menu-sj"></i>
+                </div>
+            </div>
+            <div class="category-menu-main" style="display: none;">
+                <ul>
+                    @foreach (var node in nodes)
+                    {
+                        <li><a href="@Url.RouteUrl("ProductCategory",new {channelId=1,categoryId=node.Value.EntityId })">@node.Value.Text</a></li>
+                    }
+
+                </ul>
+            </div>
+            @if (dept != Model.Path.Count - 1)
+            { <em>&gt;</em>}
+        </div>
+    </dd>
+}

@@ -1,0 +1,69 @@
+﻿@model ArticleCategoryModel
+@using CAF.WebSite.Application.WebUI
+@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core;
+@using CAF.Mvc.JQuery.Datatables.Core;
+@{
+    Layout = "~/Administrator/Views/Shared/_AdminArticlePopupLayout.cshtml";
+    ViewBag.Title = T("Admin.ContentManagement.ArticleCategory.Manage").Text;
+
+    List<MenuModel> menuModels = new List<MenuModel>();
+    MenuModel menuModel = new MenuModel();
+    menuModel.Text = "频道";
+
+    foreach (var item in Model.AvailableChannels)
+    {
+        var menuItem = new MenuModel();
+        menuItem.Text = item.Text;
+        menuItem.Id = item.Value;
+        menuItem.Href = Url.Action("Center", "ArticleCategory", new { channelId = item.Value });
+        menuModel.Childitems.Add(menuItem);
+    }
+
+    menuModels.Add(menuModel);
+
+
+}
+
+<ul id="menubar" class="nav nav-list" style="z-index:9999;">
+    @foreach (var node in menuModels)
+    {
+        var hasChildren = node.Childitems.Any();
+        <li name="PMenu" class=" hsub">
+            <a name="item" href="#" class="@(hasChildren ? "dropdown-toggle" : "")" @Html.Attr("icon", " fa-list") @Html.Attr("objid", @Guid.NewGuid().ToString(), !hasChildren) tagid="@Guid.NewGuid().ToString()">
+                <i class="menu-icon fa fa-list"></i>
+                <span class="menu-text">@node.Text</span>
+                @if (hasChildren)
+                {
+                    <b class="arrow fa fa-angle-down"></b>
+                }
+            </a>
+            <b class="arrow"></b>
+            @if (hasChildren)
+            {
+                @CreateDropdown(node.Childitems, true)
+            }
+        </li>
+
+    }
+</ul>
+
+@helper CreateDropdown(IEnumerable<MenuModel> nodes, bool isRoot)
+{
+    <ul class="submenu">
+        @foreach (var node in nodes)
+        {
+            <li class="menuclick">
+                <a name="item" href="###" @Html.Attr("icon", " fa-list") url="@node.Href.TrimStart('/')" @Html.Attr("objid", @Guid.NewGuid().ToString(), false) tagid="@Guid.NewGuid().ToString()">
+                    <i class='menu-icon fa fa-list"'></i>
+                    @node.Text
+
+                </a>
+                <b class="arrow"></b>
+
+            </li>
+        }
+    </ul>
+}
+
+

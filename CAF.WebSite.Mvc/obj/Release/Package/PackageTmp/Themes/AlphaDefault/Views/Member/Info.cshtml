@@ -1,0 +1,45 @@
+﻿@model UserInfoModel
+@{
+    Layout = "~/Themes/AlphaDefault/Views/Shared/_ColumnsTwoLeft.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Account").Text);
+}
+@section left
+{
+    @Html.Partial("MyAccountNavigation", Model.NavigationModel, new ViewDataDictionary())
+}
+
+    <!--店铺设置Start-->
+    <div id="shopset">
+        <div class="rightpane">
+            <div class="title01">基本信息设置</div>
+            <form id="shopdetail" action="http://www.goodyao.com/Agent_Basic/addshopmessage/" enctype="multipart/form-data" method="post">
+                <div class="formcontent">
+                    <ul>
+                        <li><span><em>*</em>代理商名称：</span><input type="text" value="Tomny代理商" style="width: 290px;" id="shop_name" name="proxy_name"> <label>请填写代理商名称</label></li>
+                        <li>
+                            <span><em>*</em>代理范围：</span><input type="text" style="width: 290px;" value="湖北" name="proxy_width" id="proxy_width"><label>请填写代理范围（省市或城市）</label>
+                        </li>
+
+                        <li id="qudao">
+                            <span><em>*</em>销售渠道：</span><label class="checkboxlabel"><input type="checkbox" name="zbpro[]" value="1" checked="">&nbsp;零售终端</label>
+                            <label class="checkboxlabel"><input type="checkbox" name="zbpro[]" value="2" checked="">&nbsp;代理批发</label>
+                            <label class="checkboxlabel"><input type="checkbox" name="zbpro[]" value="3">&nbsp;医院医疗机构</label>
+                        </li>
+                        <li>
+                            <span><em>*</em>联系人姓名：</span><input type="text" style="width: 290px;" value="Tomny" name="proxy_user_name" id="proxy_user_name"><label>请填联系人姓名</label>
+                        </li>
+                        <li>
+                            <span><em>*</em>联系人电话：</span><input type="text" style="width: 290px;" value="13533584215" name="proxy_phone" id="proxy_phone"><label>请填联系电话</label>
+                        </li>
+                    </ul>
+
+                </div>
+
+
+                <div class="div_btnset"><input type="button" id="submit2" class="btnsure btnsureandsubmit" value="确认修改"> </div>
+            </form>
+        </div>
+    </div>
+    <!--店铺设置End-->

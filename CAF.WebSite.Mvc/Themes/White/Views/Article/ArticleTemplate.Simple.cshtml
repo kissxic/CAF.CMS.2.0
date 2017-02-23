@@ -1,0 +1,218 @@
+﻿@model ArticlePostModel
+@using CAF.Infrastructure.Core.Domain.Seo;
+@using CAF.Infrastructure.Core;
+@{
+    Layout = "";
+
+    //title, meta
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<CAF.Infrastructure.Core.Domain.Seo.SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var articleUrl = Url.RouteUrl("Article", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(articleUrl);
+    }
+}
+<!DOCTYPE html>
+<html @Html.Partial("LanguageAttributes") class="page-detail">
+<head>
+    <title>@Html.WorkTitle(true)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="description" content="@(Html.WorkMetaDescription())" />
+    <meta name="keywords" content="@(Html.WorkMetaKeywords())" />
+    <meta name="generator" content="Caf.NET @WorkVersion.CurrentFullVersion" />
+    <link rel="stylesheet" href="~/Themes/White/Content/static/css/app.css">
+    <link rel="stylesheet" href="~/Themes/White/Content/public/css/index.new2.css">
+    <link rel="stylesheet" href="~/Themes/White/Content/static/css/news.css">
+    <script src="~/Themes/White/Content/static/js/app.js"></script>
+    <script src="~/Themes/White/Content/static/js/config.js"></script>
+    <script src="~/Themes/White/Content/static/js/news.js"></script>
+</head>
+<body>
+    @Html.Partial("_Layout.Head")
+
+    <section class="body">
+        <div class="layout-two">
+            <div class="layout-main">
+                <div class="detail-main ui-box">
+                    <div class="detail-title">
+                        <span>@(Model.Title)</span>
+                        <span class="right">
+                            <i class="tag tag-blue">@Html.Action("ArticleBreadcrumb", "ArticleCatalog", new { articleId = Model.Id })</i>
+                        </span>
+                    </div>
+                    <div class="detail-actions">
+
+                        @*<span class="mh">来源：<a href="#" class="cl-gray">广州日报</a></span>*@            
+                        <span class="offset-left">时间：@Model.PostCreatedOnStr</span>
+                        <span class="mh">
+                            @*<i class="fa offset-left"></i>
+                            <span>评论：</span>
+                            <b>0</b>*@
+                            <i class="fa offset-left"></i>
+                            <span>阅读：</span>
+                            <b>@Model.Click</b>
+                        </span>
+                        @*<span class="right">
+                            <a href="javascript:;" class="set-font plus">A<sup>+</sup></a>
+                            <a href="javascript:;" class="set-font minus">A<sup>-</sup></a>
+                        </span>*@
+                    </div>
+                    <div class="detail-summary">
+                        <i class="tag">导读</i>
+                        <p>@Model.ShortContent</p>
+                    </div>
+                    <div class="detail-content">
+                        <p>@Html.Raw(Model.FullContent)</p>
+                    </div>
+                    @*<div class="tc">
+                        <a class="btn  btn-green action-praise" href="javascript:;" title="点赞" id="toPraise" data-aid="16432" data-cla="Detail">
+                            <i class="fa"></i>
+                            <span>点赞 </span>
+                            <span class="total">0</span>
+                        </a>
+                        <a class="btn btn-blue offset-left action-checklogin action-tocomment" href="#comment" title="评论">
+                            <i class="fa">u</i>
+                            <span>评论</span>
+                            <span class="total">0</span>
+                        </a>
+                        <a class="btn  btn-red offset-left action-collect" href="javascript:;" title="收藏" id="toCollect" data-aid="16432" data-cla="Detail">
+                            <i class="fa"></i>
+                            <span> 收藏</span>
+                            <span class="total">0</span>
+                        </a>
+                    </div>*@
+
+                    @*<div class="detail-footer">
+                        <span>
+                            标签：
+                            <a class="tag mt5 mr5 tag-blue" target="_blank" href="/Search/index/kw/药品注册/tag/1.html">药品注册</a><a class="tag mt5 mr5 tag-yellow" target="_blank" href="/Search/index/kw/药企并购/tag/1.html">药企并购</a>
+                        </span>
+                        <span class="fr">
+                            <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+                            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+                        </span>
+                    </div>*@
+                </div>
+
+                @*<div class="ui-panel ui-box offset-top">
+                    <div class="ui-panel-title">
+                        <span class="ui-panel-name">相关阅读</span>
+                    </div>
+                    <div class="ui-panel-content">
+                        <ul class="dot fs14 two-list">
+                            <li><a href="/archive/16446.html">21批次药品被查不合格</a></li>
+                        </ul>
+                    </div>
+                </div>*@
+                <a href="/Adv/index/id/19.html" class="ui-box ui-img offset-top mh">
+                    <img src="http://file.news.yaozh.com/system_4/198dbbdb1210b441b207a3a0f79cdf41.png" alt="药品注册与受理数据库查询">
+                </a>
+                @*<div class="ui-panel ui-box offset-top mh">
+                    <div class="ui-panel-title">
+                        <span class="ui-panel-name">猜您喜欢</span>
+                    </div>
+                    <div class="ui-panel-content">
+                        <div class="newslist newslist-horizontal">
+                            <div class="item">
+                                <a href="/archive/16423.html" class="ui-img">
+                                    <img src="">
+                                </a>
+                                <div class="title"><a href="/archive/16423.html">湖南省食药监局行政处罚信息</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                @*<div class="ui-box offset-top comment" id="comment">
+                    <div class="tc fs14">游客需要先 <a href="/login" class="cl-blue">登录</a> 才能评论</div>
+                    <div class="offset-top"><span>评论</span><span class="cl-blue total-number">(0)</span></div>
+                    <div class="comment-list"></div>
+                    <div class="tc fs14 cl-gray offset-top no-comment">暂无评论</div>
+                </div>*@
+            </div>
+
+            <div class="layout-side">
+                @*<div class="ui-box author-card">
+                    <div class="info">
+                        <a href="/Sound/detail/id/0.html" class="img"><img src="~/Themes/White/Content/static/images/no_img.png" alt=""></a>
+                        <div class="name">
+                            <a href="/Sound/detail/id/0.html" class="cl-gray"></a>
+                            <i class="tag tag-orange offset-left"></i>
+                        </div>
+                        <div class="actions">
+                            <a href="#" class="btn  btn-blue btn-xs offset-right action-rss" data-auth_id="0"><i class="fa"></i> <span> 订阅</span></a>
+                            <a href="/User/primsg.html" class="btn btn-blue btn-xs action-primsg"><i class="fa"></i> 私信</a>
+                        </div>
+                    </div>
+                    <hr class="mt10 mb10">
+                    <ul class="dot article fs14">
+                        <li><a href="/archive/16446.html">21批次药品被查不合格</a></li>
+                    </ul>
+                </div>*@
+                <div class="ui-box author-card">
+                    <div class="ui-sliderbox" data-widget="sliderbox">
+                        @Html.Action("ContentSlider", "Home")
+                    </div>
+                </div>
+                <div class="offset-top">
+                    <div class="ui-panel ui-box" data-widget="newsSlider3">
+                        <div class="ui-panel-title">
+                            <span class="ui-panel-name">热门推荐</span>
+                        </div>
+                        <div class="ui-panel-content" style="height: 420px;overflow:hidden;">
+                            <div class="newslist-sm-wrap">
+                                <div class="newslist newslist-sm ui-sliderbox-man">
+                                    @Html.Action("HomeRecentlyArticleViewed", "ArticleCatalog", new { area = "", partialView = "HomeArticleBlockPhoto", categoryId = 2, PageSize = 3, IsTop = true })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="ui-panel ui-box offset-top">
+                    <div class="ui-panel-title">
+                        <span class="ui-panel-name">最新悬赏</span>
+                        <div class="ui-panel-side">
+                            <a href="http://www.yaozh.com/list" target="_blank">更多</a>
+                        </div>
+                    </div>
+                    <div class="ui-panel-content">
+                        <ol class="color-decimal fs14">
+                            <li><a target="_blank" href="http://www.yaozh.com/xinxi/12376.html">需近期IMS、Frost&Suliivan或Euromonitor药品相关资料</a></li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="ui-panel ui-box offset-top">
+                    <div class="ui-panel-title">
+                        <span class="ui-panel-name">专栏作家</span>
+                        <div class="ui-panel-side">
+                            <a href="#">更多</a>
+                        </div>
+                    </div>
+                    <div class="ui-panel-content">
+                        <div class="author-list">
+                            <div class="item">
+                                <a href="/Sound/detail/id/6.html" class="img"><img src="http://www.yaozh.com/uploads/2016/01/08/thumb_120x120_14522664933337.jpg" alt=""></a>
+                                <a href="/Sound/detail/id/6.html" class="link">ltq007</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div class="footer" style="margin-top:136px;">
+        @Html.Partial("_Footer")
+    </div>
+</body>
+</html>

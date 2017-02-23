@@ -1,0 +1,30 @@
+﻿@model ArticleCategoryModel
+@using CAF.Infrastructure.Core.Collections
+@{
+    var node = Model.CategoryBreadcrumb.LastOrDefault();
+    var url = node.GenerateUrl(this.Url);
+}
+@if (Model.Articles.Count > 0)
+{
+    for (int i = 0; i < Model.Articles.Count; i++)
+    {
+        var article = Model.Articles[i];
+        <div class="item">
+            <div class="title"><a href="@Url.RouteUrl("Article", new { SeName = article.SeName })">@article.Title</a></div>
+            <a href="@Url.RouteUrl("Article", new { SeName = article.SeName })" class="ui-img">
+                <img src="@article.DefaultPictureModel.ImageUrl" alt="">
+            </a>                    <div class="info">
+                <div class="summary">@article.ShortContent</div>
+            </div>
+            <div class="actions">
+                <span class="cl-gray"><i class="fa"></i> <a href="@Url.RouteUrl("Article", new { SeName = article.SeName })" class="cl-gray"></a></span>
+                <span class="cl-gray offset-left">@article.PostCreatedOnStr</span>
+                <span class="right">
+                    <i class="fa offset-left"></i>
+                    <span>阅读：</span>
+                    <b>@article.Click</b>
+                </span>
+            </div>
+        </div>
+        }
+}

@@ -1,0 +1,74 @@
+﻿@model RegisterResultModel
+@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core;
+@using CAF.WebSite.Application.WebUI;
+@{
+    Layout = null;
+
+    Html.AddTitleParts("注册成功");
+    var registerUrl = Url.RouteUrl("Register");
+    if (!String.IsNullOrEmpty(this.Context.Request.QueryString["returnUrl"]))
+    {
+        var webHelper = EngineContext.Current.Resolve<IWebHelper>();
+        registerUrl = webHelper.ModifyQueryString(registerUrl, "returnurl=" + HttpUtility.UrlEncode(this.Context.Request.QueryString["returnUrl"]), null);
+    }
+    // add css assets
+    var MediaRootPath = "~/Themes/AlphaDefault/";
+    Html.AppendCssFileParts(
+       MediaRootPath + "Content/css/register2016.css",
+       "~/Content/assets/global/plugins/bootstrap-toastr/toastr.css"
+       );
+    // add js assets (Head)
+    Html.AppendScriptParts(ResourceLocation.Head,
+        MediaRootPath + "Content/js/jquery.js",
+        MediaRootPath + "Content/js/common.js",
+         "~/Content/assets/global/plugins/bootstrap-toastr/toastr.js",
+        MediaRootPath + "Content/js/register2016.js"
+       );
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    @Html.MetaAcceptLanguage()
+    @Html.WorkCssFiles(this.Url, ResourceLocation.Head)
+    @Html.WorkScripts(this.Url, ResourceLocation.Head)
+    <link rel="shortcut icon" href="~/favicon.ico" />
+</head>
+<body>
+
+    <div class="reg_warp">
+        <div class="reg_header center clearfix">
+            <div class="lh_logo fl">
+                <a class="fl logo_link" href="@Url.RouteUrl("HomePage")" target="_blank" title="药坊网"><img src="~/Themes/AlphaDefault/Content/images/img_Logo3.png" alt="药坊网"></a>
+            </div>
+            <p class="reg_login_link fr f14">欢迎注册药坊网会员</p>
+        </div>
+        <div class="reg_main center">
+            <ul class="reg_nav f18 t_c clearfix">
+                <li class="user_reg">新用户注册</li>
+                <li class="reg_success on">注册成功</li>
+            </ul>
+            <div class="reg_suc center">
+                <p class="right_bg fl"></p>
+                <div class="reg_suc_main f14 fr">
+                    <h1 class="f20 fb">注册成功，恭喜您成为药坊网新会员！</h1>
+                    <p>1、成功注册即可获赠20积分，<a id="memb_id" href="/member/Agentcenter">完善个人资料</a>可赚取更多积分</p>
+                    <p>2、积分可兑换现金券，全网通用（不可转赠）</p>
+                    <a class="index_link fr f12" id="memb_id1" href="@Url.RouteUrl("HomePage")"><span class="fl"></span>返回</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

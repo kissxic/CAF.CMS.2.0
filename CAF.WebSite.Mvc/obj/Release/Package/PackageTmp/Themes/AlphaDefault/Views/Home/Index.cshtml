@@ -1,0 +1,337 @@
+﻿@model List<HomeFloorModel>
+@using CAF.Infrastructure.Core.Domain.Cms.PageSettings;
+@{
+    var slideAdInfoModels = (IEnumerable<SlideAdInfoModel>)ViewBag.slideImage;
+    var slideMiniImageModels = (IEnumerable<SlideAdInfoModel>)ViewBag.slideMiniImage;
+    var slideLimitTimeImageModels = (IEnumerable<SlideAdInfoModel>)ViewBag.slideLimitTimeImage;
+    var slideAreaImageModels = (IEnumerable<SlideAdInfoModel>)ViewBag.slideAreaImage;
+
+    var relateArticles = ((List<ArticleOverviewModel>)ViewBag.RelateArticles) ?? new List<ArticleOverviewModel>();
+    var relateVendors = ((List<HomeFloorModel.WebFloorTextLink>)ViewBag.RelateVendors) ?? new List<HomeFloorModel.WebFloorTextLink>();
+    Html.AppendCssFileParts(ResourceLocation.Head,
+         "~/Themes/AlphaDefault/Content/css/index.css");
+    Html.AppendScriptParts(ResourceLocation.Head,
+        "~/Themes/AlphaDefault/Content/js/index.js");
+}
+@functions {
+    public HomeFloorModel.WebFloorArticleLinks GetrArticleLink(List<HomeFloorModel.WebFloorArticleLinks> models, Position position)
+    {
+        var model = models.Where(p => p.Type == position);
+        return model.Any() ? model.FirstOrDefault() : new HomeFloorModel.WebFloorArticleLinks();
+    }
+}
+<div class="index">
+    <div class="w">
+        <div class="homepage">
+            @* 首页头部横幅 *@
+            <div class="homepage_bigbanner">
+                <div id="slideBox01" class="slideBox slideBox01">
+                    <div class="hd">
+                        <ul>
+                            @for (int i = 1; i <= slideAdInfoModels.Count(); i++)
+                            {
+                                <li class="">@i</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="bd">
+                        <ul>
+                            @foreach (var silder in slideAdInfoModels)
+                            {
+                                <li>
+                                    <a href="@(silder.Url)" target="_blank"><img src='@silder.PictureUrl' /></a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <a class="prev" href="javascript:void(0)"></a>
+                    <a class="next" href="javascript:void(0)"></a>
+                </div>
+            </div>
+            @* 中间广告位 *@
+            <div class="homepage_a">
+                <a href="@ViewBag.imageAdsTop[0].Url"><img src="@ViewBag.imageAdsTop[0].PictureUrl" width="180px" height="300px"></a>
+            </div>
+            @* 右侧广告位 *@
+            <div class="homepage_b">
+                <dl>
+                    <dt>
+                        <span class="vipspan">注册成<a href="@Url.RouteUrl("Topic", new { SystemName = "vipinfo" })" target="_blank"><font class="red">VIP会员</font></a>享受更多服务</span>
+                    
+                    </dt>
+                    <dd>
+                        <div class="newslist_left">
+                            <span>企业入驻</span>
+                            <div class="txtScroll-top">
+                                <div class="bd">
+                                    <ul class="infoList">
+                                        @foreach (var vendor in relateVendors)
+                                        {
+                                            <li>
+                                                <span style="font-size:12px">[企业入驻]：</span><a href="@vendor.Url" target="_blank">@vendor.Name.Truncate(20, "...")</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="newslist_left">
+                            <span>医药快讯</span>
+                            <div class="txtScroll-top">
+                                <div class="bd">
+                                    <ul class="infoList">
+                                        @foreach (var article in relateArticles)
+                                        {
+                                            <li>
+                                                <span style="font-size:12px">[医药快讯]：</span><a href="@Url.RouteUrl("Article", new { SeName = article.SeName })" target="_blank">@article.Title.Truncate(20, "...")</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="home_smallbanner">
+            @* 首页头部 底部横幅广告位 *@
+            <div class="smallbanner" id="smallbanner1">
+                <ul id="smallbanner2">
+                    @foreach (var silder in slideMiniImageModels)
+                    {
+                        <li>
+                            <a href="@(silder.Url)" target="_blank"><img src='@silder.PictureUrl' /></a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="bannerbtn">
+                <span class="btn_prev" id="banner_prev"></span>
+                <span class="btn_next" id="banner_next"></span>
+            </div>
+        </div>
+        @* 横幅广告位一 *@
+        <div class="index_adsbannerr index_adsbannerr01">
+            <ul>
+                <li><a href="@ViewBag.imageAdsTop[1].Url"><img src="@ViewBag.imageAdsTop[1].PictureUrl"></a></li>
+            </ul>
+        </div>
+
+        @{
+            int floorIndex = 0;
+            int floor2Index = 0;
+        }
+        @foreach (var floor in Model)
+        {
+            floorIndex++;
+
+
+            if (floor.StyleLevel == 0)
+            {
+                var leftOne = GetrArticleLink(floor.ArticleLinks, Position.LOne);
+                var centerAd = floor.ArticleLinks.Where(p => (int)p.Type >= 27 && (int)p.Type <= 35);
+
+                @* 重点推荐 *@
+                @Html.Partial("_HomeFloor1", floor)
+                if (floorIndex == 0)
+                {
+                    @* 横幅广告位二 *@
+                    <div class="index_adsbanner index_adsbanner02 ">
+                        <ul>
+                            @foreach (var silder in slideLimitTimeImageModels)
+                            {
+                                <li><a href='@silder.Url' target='_blank'><img alt='' src='@silder.PictureUrl' /></a></li>
+                            }
+                        </ul>
+                    </div>
+                    @* 区域推荐 *@
+                    <div class="importrecom">
+                        <div class="recomtitle">
+                            <span>区域推荐</span>
+                        </div>
+                        <div class="recomcontent">
+                            <div class="arearecom">
+                                <ul id="areatuijian">
+                                    @foreach (var silder in slideAreaImageModels)
+                        {
+                                        <li><a href='@silder.Url' target='_blank'><img alt='' src='@silder.PictureUrl' /></a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            }
+            else if (floor.StyleLevel == 1)
+            {
+                floor2Index++;
+                floor.Index = floor2Index;
+                <div class="floor m" id="@(floor2Index-1)">
+                    <div class="mt" id="floor@(floor2Index)">
+                        <ul>
+                            <li class="mtlifoucus">热门推荐</li>
+                        </ul>
+                    </div>
+                    @Html.Partial("_HomeFloor2", floor)
+                </div>
+            }
+            else
+            {
+                <div class="index_agentlist">
+                    <ul>
+                        @foreach (var item in floor.TextLinks)
+                        {
+                            <li><a target="_blank" href="@item.Url">@item.Name</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+
+        }
+
+        <div class="jkn_wrap_b">
+            <!--保健养生开始-->
+            <div class="jkn_wrap_b_t">
+                <p class="jk_title jk_yahei">
+                    <a href="#" target="_blank" title="">保健养生</a><span class="jk_song"><a href="#" target="_blank" title="更多">更多</a></span>
+                </p>
+                <ul class="jkn_wrap_b_t_ul">
+                    <!--强壮男人开始-->
+                    <li>
+
+                        <div class="jkn_wrap_b_t_li_l">
+                            <a class="jkn_wrap_b_t_li_l_t jk_yahei" href="#" target="_blank" title="强健男人">强健男人</a>
+                            <a href="http://www.jianke.com/list-0202.html" target="_blank" title="多优惠买就送"><img src="http://img.jianke.net/jk2014/images/tjjj7.jpg" alt="多优惠买就送"></a>
+                        </div>
+                        <div class="jkn_zxyp_li_r jkn_wrap_b_t_li_r">
+                            <dl class="clearfix">
+                                <dt><a href="#" target="_blank" title="补肾健体">补肾健体</a></dt>
+                                <dd><a href="#" target="_blank" title="肾宝片">肾宝片</a></dd>
+                                <dd><a href="#" target="_blank" title="固本回元口服液">固本回元口服液</a></dd>
+                                <dd><a href="#" target="_blank" title="八子补肾胶囊">八子补肾胶囊</a></dd>
+                            </dl>
+                            <dl class="clearfix">
+                                <dt><a href="#" target="_blank" title="提高精力">提高精力</a></dt>
+                                <dd><a href="#" target="_blank" title="鹿阳强肾胶囊"><span>鹿阳强肾胶囊</span></a></dd>
+                                <dd><a href="#" target="_blank" title="雄纠纠牌益康胶囊">雄纠纠牌益康胶囊</a></dd>
+                            </dl>
+                            <dl class="clearfix">
+                                <dt><a href="#" target="_blank" title="解酒戒烟">解酒戒烟</a></dt>
+                                <dd><a href="#" target="_blank" title="酒石酸伐尼克兰片">酒石酸伐尼克兰片</a></dd>
+                                <dd><a href="#" target="_blank" title="雷森大豆卵磷脂精华颗粒">雷森大豆卵磷脂精华颗粒</a></dd>
+                            </dl>
+                            <dl class="clearfix">
+                                <dt><a href="#" target="_blank" title="强健体魄">强健体魄</a></dt>
+                                <dd><a href="#" target="_blank" title="拉摩力拉牌玛卡片体验装">拉摩力拉牌玛卡片体验装</a></dd>
+                                <dd><a href="#" target="_blank" title="参茸丸">参茸丸</a></dd>
+                            </dl>
+                            <dl class="jk_last">
+                                <dt><em></em><a href="#" target="_blank" title="更多">更多</a></dt>
+                            </dl>
+                        </div>
+                    </li>
+                    <!--强壮男人结束-->
+                    <!--魅力女人开始-->
+                    <li>
+                        <div class="jkn_wrap_b_t_li_l">
+                            <a class="jkn_wrap_b_t_li_l_t jk_yahei jkn_wrap_mlnr" href="#" target="_blank" title="魅力女人">魅力女人</a>
+                            <a href="#" target="_blank" title="懂享瘦更苗条"><img src="http://img.jianke.net/jk2014/images/tjjj8.jpg" alt="懂享瘦更苗条"></a>
+                        </div>
+                        <div class="jkn_zxyp_li_r jkn_wrap_b_t_li_r">
+                            <dl class="clearfix">
+                                <dt><a href="#" target="_blank" title="美体瘦身">美体瘦身</a></dt>
+                                <dd><a href="#" target="_blank" title="荷氏可轻牌减肥胶囊">荷氏可轻牌减肥胶囊</a></dd>
+                                <dd><a href="#" target="_blank" title="奥利司他胶囊">奥利司他胶囊</a></dd>
+                            </dl>
+                            <dl class="clearfix">
+                                <dt><a href="#" target="_blank" title="延缓衰老">延缓衰老</a></dt>
+                                <dd><a href="#" target="_blank" title="静心口服液">静心口服液</a></dd>
+                                <dd><a href="#" target="_blank" title="更年宁">更年宁</a></dd>
+                                <dd><a href="#" target="_blank" title="维生素e软件囊">维生素e软件囊</a></dd>
+                            </dl>
+                            <dl class="clearfix">
+                                <dt><a href="#" target="_blank" title="美白祛斑">美白祛斑</a></dt>
+                                <dd><a href="#" target="_blank" title="葡萄籽维生素C加E片">葡萄籽维生素C加E片</a></dd>
+
+                                <dd><a href="#" target="_blank" title="排毒养颜胶囊">排毒养颜胶囊</a></dd>
+                            </dl>
+                            <dl class="clearfix">
+                                <dt><a href="#" target="_blank" title="补气养血">补气养血</a></dt>
+                                <dd><a href="#" target="_blank" title="气血和胶囊"><span>气血和胶囊</span></a></dd>
+                                <dd><a href="#" target="_blank" title="驴胶补血颗粒">驴胶补血颗粒</a></dd>
+                            </dl>
+                            <dl class="jk_last">
+                                <dt><em></em><a href="#" target="_blank" title="更多">更多</a></dt>
+                            </dl>
+                        </div>
+                    </li>
+                    <!--魅力女人结束-->
+                    <!--推荐品牌开始-->
+                    <li class="last">
+                        <p class="rec_brand jk_yahei">推荐品牌</p>
+                        <ul>
+                            <li>
+                                <a href="#" target="_blank" title="汤臣倍健">
+                                    <img src="http://img.jianke.net/jk2014/images/jk_tjpp_1.jpg" alt="汤臣倍健">
+                                    <span>汤臣倍健</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" title="惠普生">
+                                    <img src="http://img.jianke.net/jk2014/images/jk_tjpp_2.jpg" alt="惠普生">
+                                    <span>惠普生</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" title="欧姆龙">
+                                    <img src="http://img.jianke.net/jk2014/images/jk_tjpp_31.jpg" alt="欧姆龙">
+                                    <span>欧姆龙</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" title="杜蕾斯">
+                                    <img src="http://img.jianke.net/jk2014/images/jk_tjpp_41.jpg" alt="杜蕾斯">
+                                    <span>杜蕾斯</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--推荐品牌结束-->
+                </ul>
+            </div>
+            <!--保健养生结束-->
+        </div>
+    </div>
+    <span class="clear"></span>
+</div>
+@* 左侧导航 *@
+<div class="navigationtree">
+    <div class="totop"></div>
+    <a href="#" rel="nofollow"><div class="addcolleciton" onclick="javascript:window.external.AddFavorite('@Url.RouteUrl("homepage")','药坊网,药坊网医药网,医药招商,药品招商');"></div></a>
+    <div class="onlinetalk"><a href="http://b.qq.com/webc.htm?new=0&sid=3286619561&o=药坊网&q=7" style="display:block;width:100%;height:100%;" target="_blank"></a></div>
+    <div class="flooguide">
+        <ul class="floorlist"></ul>
+    </div>
+</div>
+
+
+@section FootScript
+{
+    <script type="text/javascript">
+        var floorNum=@(Model.Where(x => x.StyleLevel == 1).Count());
+        jQuery(document).ready(function () {
+            for (var i = 1; i <= floorNum; i++) {
+                floornavshow("#floor"+i+" li", "mtlifoucus", "#floor"+i+"content", "div");
+                jQuery("#floor_slidebox"+(i*2-1)).slide({mainCell:".bd ul",effect:"fold",autoPlay:true,delayTime:1000,interTime:5000});
+                jQuery("#floor_slidebox"+(i*2)).slide({mainCell:".bd ul",effect:"fold",autoPlay:true,delayTime:1000,interTime:5000});
+            }
+
+        });
+    </script>
+
+}

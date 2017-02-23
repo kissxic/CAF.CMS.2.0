@@ -1,0 +1,478 @@
+﻿@model ChannelModel
+@using CAF.Infrastructure.Core.Domain.Cms.Channels;
+@{
+    Html.AddCssFileParts(true, "~/Content/assets/global/plugins/zTree_v3/css/zTreeStyle/zTreeStyle.css");
+    Html.AppendScriptParts(true, "~/Content/assets/global/plugins/zTree_v3/js/jquery.ztree.all-3.5.min.js");
+
+}
+
+@Html.CafSite().TabStrip().Name("channel-edit").Style(TabsStyle.Tabs).Position(TabsPosition.Top).Items(x =>
+{
+    x.Add().Text(T("Admin.Common.Info").Text).Icon("fa fa-pencil fa-lg fa-fw").Content(TabInfo()).Selected(true);
+    x.Add().Text(T("Admin.Common.SpecificationAttributes").Text).Content(TabSpecificationAttributes()).Visible(true);
+    x.Add().Text(T("Admin.Common.MemberGrades").Text).Content(TabMemberGrades()).Visible(true);
+
+    //generate an event
+    EngineContext.Current.Resolve<IEventPublisher>().Publish(new TabStripCreated(x, "channel-edit", this.Html, this.Model));
+})
+@Html.HiddenFor(model => model.Id)
+@Html.HiddenFor(model => model.IsChangeCategory)
+@helper TabInfo()
+{
+    <div class="form-body">
+        <h2 class="margin-bottom-20">  @Html.ValidationSummary(true)</h2>
+
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.Name)
+            </label>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.Title)
+            </label>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Title)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.IconName)
+            </label>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.IconName, new { @class = "form-control" })
+                <span>Font-Awesome名称，带前缀fa</span>
+                @Html.ValidationMessageFor(model => model.IconName)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.ModelTemplateId)
+            </label>
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.ModelTemplateId, Model.AvailableModelTemplates, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ModelTemplateId)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.DetailModelTemplateId)
+            </label>
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.DetailModelTemplateId, Model.AvailableDetailModelTemplates, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DetailModelTemplateId)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.LimitNum) @*<span class="required" aria-required="true">*</span>*@
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.LimitNum)
+                @Html.ValidationMessageFor(model => model.LimitNum)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.DisplayOrder) @*<span class="required" aria-required="true">*</span>*@
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.DisplayOrder)
+                @Html.ValidationMessageFor(model => model.DisplayOrder)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.CategoryShowTypeId)
+            </label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.CategoryShowTypeId, ((CategoryShowType)Model.CategoryShowTypeId).ToSelectList(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryShowTypeId)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.ProductCategoryShowTypeId)
+            </label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.ProductCategoryShowTypeId, ((ProductCategoryShowType)Model.ProductCategoryShowTypeId).ToSelectList(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductCategoryShowTypeId)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                内容标签
+            </label>
+            <div class="col-md-6">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn @(Model.ShowExtendedAttribute ? "btn-default active" : "btn btn-default")">
+                        @Html.CheckBoxFor(model => model.ShowExtendedAttribute, new { @class = "toggle" }) @Html.DisplayNameFor(model => model.ShowExtendedAttribute)
+                    </label>
+                    <label class="btn @(Model.ShowSpecificationAttributes ? "btn-default active" : "btn btn-default")">
+                        @Html.CheckBoxFor(model => model.ShowSpecificationAttributes, new { @class = "toggle" }) @Html.DisplayNameFor(model => model.ShowSpecificationAttributes)
+                    </label>
+                    <label class="btn @(Model.ShowInventory ? "btn-default active" : "btn btn-default")">
+                        @Html.CheckBoxFor(model => model.ShowInventory, new { @class = "toggle" }) @Html.DisplayNameFor(model => model.ShowInventory)
+                    </label>
+                    <label class="btn @(Model.ShowPrice ? "btn-default active" : "btn btn-default")">
+                        @Html.CheckBoxFor(model => model.ShowPrice, new { @class = "toggle" }) @Html.DisplayNameFor(model => model.ShowPrice)
+                    </label>
+                    <label class="btn @(Model.ShowAttributes ? "btn-default active" : "btn btn-default")">
+                        @Html.CheckBoxFor(model => model.ShowAttributes, new { @class = "toggle" }) @Html.DisplayNameFor(model => model.ShowAttributes)
+                    </label>
+                    <label class="btn @(Model.ShowPromotion ? "btn-default active" : "btn btn-default")">
+                        @Html.CheckBoxFor(model => model.ShowPromotion, new { @class = "toggle" }) @Html.DisplayNameFor(model => model.ShowPromotion)
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                @Html.LangLabelFor(model => model.ProductCategoryId)
+            </label>
+            <div class="col-md-3">
+         
+                @Html.HiddenFor(model => model.ProductCategoryId)
+
+                <ul id="treeDemo" class="ztree"></ul>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+           
+            var setting = {
+                check: {
+                    enable: true
+                },
+                data: {
+                    simpleData: {
+                        enable: true
+                    }
+                },
+                callback: {
+                    onCheck: onCheck
+                }
+
+            };
+            var zNodes = [];
+            $.ajax({
+                url: "/admin/channel/AjaxProductCategory?channelId=@(Model.Id)",
+                type : "POST",
+                error : function(data) {
+                    alert("出错了！！:" + data);
+                },
+                success : function(data) {
+                    var treeData = [];
+                    $.each(data, function (i, category) {
+                        treeData.push({ id: category.id, pId: category.pId, name: category.name, open: category.open, checked: category.selected });
+                    });
+                    $.fn.zTree.init($("#treeDemo"), setting, treeData);
+                }
+            });
+
+        });
+
+        function onCheck(e, treeId, treeNode) {
+            var treeObj = $.fn.zTree.getZTreeObj("treeDemo"),
+            nodes = treeObj.getCheckedNodes(true),
+            v = "";
+            for (var i = 0; i < nodes.length; i++) {
+                v += nodes[i].id + ",";
+            }
+            $('#@Html.FieldIdFor(model => model.ProductCategoryId)').val(v);
+            $("#IsChangeCategory").val("true");
+        }
+
+    </script>
+
+}
+
+@helper TabMemberGrades()
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[id="@Html.FieldIdFor(model => model.LimitedToMemberGrades)"]').on('switchChange.bootstrapSwitch', function (event, state) {
+                toggleMemberGradeMapping(state);
+            });
+            toggleMemberGradeMapping(@Model.LimitedToMemberGrades.ToString().ToLower());
+        });
+        function toggleMemberGradeMapping(state) {
+            if (state) {
+                $('#pnl-available-membergrades').show();
+            }
+            else {
+                $('#pnl-available-membergrades').hide();
+            }
+        }
+
+    </script>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Html.LangLabelFor(model => model.LimitedToMemberGrades)
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(x => x.LimitedToMemberGrades)
+            @Html.ValidationMessageFor(model => model.LimitedToMemberGrades)
+
+        </div>
+    </div>
+    <div id="pnl-available-membergrades" class="form-group">
+        <label class="control-label col-md-2">
+            @Html.LangLabelFor(model => model.AvailableMemberGrades)
+        </label>
+        <div class="col-md-6">
+            @if (Model.AvailableMemberGrades != null && Model.AvailableMemberGrades.Count > 0)
+            {
+                foreach (var memberGrade in Model.AvailableMemberGrades)
+                {
+            <label class="checkbox">
+                <input type="checkbox" name="SelectedMemberGradeIds" value="@memberGrade.Id" checked="@(Model.SelectedMemberGradeIds != null && Model.SelectedMemberGradeIds.Contains(memberGrade.Id))" />
+                <span>@memberGrade.GradeName</span>
+            </label>
+                }
+            }
+            else
+            {
+            <div>@T("Admin.Configuration.MemberGrades.NoMemberGradesDefined")</div>
+            }
+        </div>
+    </div>
+
+}
+
+@helper TabSpecificationAttributes()
+{
+    <script type="text/javascript">
+        $(function () {
+            var count=@Model.ChannelSpecificationAttributeModels.Count;
+            if (count > 0)
+            {
+                getdata();
+            }
+            $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeId)").change(function () {
+
+                var selectedItem = $(this).val();
+                var ddlSpecOptions = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId)")
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.Action("GetOptionsByAttributeId", "SpecificationAttribute"))",
+                    data: { "attributeId": selectedItem },
+                    success: function (data) {
+                        ddlSpecOptions.html('');
+                        $.each(data, function (id, option) {
+                            ddlSpecOptions.append($('<option></option>').val(option.id).html(option.name));
+                        });
+                        ddlSpecOptions.trigger("change");
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to retrieve specification options.')
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $('#addProductSpec').click(function () {
+                var specificationAttributeId = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeId)").text();
+                var specificationAttributeOptionId = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId)").val();
+                var allowFiltering = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.AllowFiltering)").is(':checked');
+                var showOnProductPage = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.ShowOnProductPage)").is(':checked');
+                var displayOrder = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.DisplayOrder)").val();
+                var selectoption = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId)").html();
+                $('#addProductSpec').attr('disabled', true);
+                var num = new Date().valueOf();
+
+                var html = ""
+
+                html += '<tr id="tr' + num + '">'
+                    + '<td class=""><span class="text-dep1"></span></td>'
+                    + '<td><select style="width:260px" class="form-control spaoption-select">' + selectoption + '</select></td>'
+                    + '<td class=""><input type="checkbox" value="' + allowFiltering + '"  class="check-box s_allowfiltering"/></td>'
+                    + '<td class=""><input type="checkbox" value="' + showOnProductPage + '"  class="check-box s_showonarticlepage"/></td>'
+                    + '<td class=""><input type="text"  value="' + displayOrder + '" class="form-control s_displayorder"></td>'
+                    + '<td class=""><span class="pull-right"> <a href="javascript:;" class="text-info remove_fare">删除</a></span></td>'
+                    + '</tr>'
+
+                $("#addfare tbody").append(html);
+                var trObj = $("#addfare tbody").find("#tr" + num + "");
+                trObj.find(".text-dep1").html(specificationAttributeId);
+                trObj.find("select.spaoption-select").val(specificationAttributeOptionId);
+                trObj.find("input.s_allowfiltering").attr("checked", allowFiltering);
+                trObj.find("input.s_showonarticlepage").attr("checked", showOnProductPage);
+
+                $('#addProductSpec').attr('disabled', false);
+
+                getdata();
+            });
+
+            //删除
+            $(document).on('click', '.remove_fare', function (e) {
+                $(this).parents("tr").remove();
+                getdata();
+            })
+
+
+            //改变时修改数据
+            $(document).on("change", "#addfare tbody tr input,#addfare tbody tr select", function () {
+                getdata();
+            })
+        });
+
+
+        //拿数据
+        function getdata() {
+            var trs = $("#addfare tbody tr");
+            var trArr = [];
+            $.each(trs, function (e) {
+                var trObj = {};
+                trObj.SpecificationAttributeOptionId = $(this).find("select.spaoption-select").val();
+                trObj.AllowFiltering = $(this).find("input.s_allowfiltering").prop("checked")?"true":"false";
+                trObj.ShowOnArticlePage = $(this).find("input.s_showonarticlepage").prop("checked")?"true":"false";
+                trObj.DisplayOrder = $(this).find("input.s_displayorder").val();
+                trArr.push(trObj);
+            })
+            $("input[name='SpaValues']").val(JSON.stringify(trArr));
+        }
+    </script>
+    <div class="well">
+        <div class="form-group">
+
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeId)
+                </label>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeId, Model.AddSpecificationAttributeModel.AvailableAttributes, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeId)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId)
+                </label>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId, Model.AddSpecificationAttributeModel.AvailableOptions, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.AddSpecificationAttributeModel.AllowFiltering)
+                </label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.AddSpecificationAttributeModel.AllowFiltering)
+                    @Html.ValidationMessageFor(model => model.AddSpecificationAttributeModel.AllowFiltering)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.AddSpecificationAttributeModel.ShowOnProductPage)
+                </label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.AddSpecificationAttributeModel.ShowOnProductPage)
+                    @Html.ValidationMessageFor(model => model.AddSpecificationAttributeModel.ShowOnProductPage)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.AddSpecificationAttributeModel.DisplayOrder)
+                </label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.AddSpecificationAttributeModel.DisplayOrder)
+                    @Html.ValidationMessageFor(model => model.AddSpecificationAttributeModel.DisplayOrder)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                </label>
+                <div class="col-md-3">
+                    <button type="button" name="addProductSpec" id="addProductSpec" class="btn btn-warning">
+                        <i class="fa fa-plus"></i>
+                        新增
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+        <div class="form-body">
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i>内容属性</span>
+                </label>
+                <div class="col-md-10">
+                    <input type="hidden" name="SpaValues" value="[]">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <section class="panel panel-default">
+
+                                <div class="table-responsive">
+                                    <table class="table  b-t b-light" id="addfare">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 60px">属性</th>
+                                                <th>属性值</th>
+                                                <th class="" style="width: 120px">允许过滤</th>
+                                                <th class="" style="width: 120px">在内容页面显示</th>
+                                                <th class="" style="width: 120px">排序</th>
+                                                <th class="" style="width: 120px">排序</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.ChannelSpecificationAttributeModels.Count > 0)
+                                            {
+
+                                                foreach (var articleSpecificationAttributeModel in Model.ChannelSpecificationAttributeModels)
+                                                {
+                                                    var randNum = Guid.NewGuid().ToString();
+                                                    <tr id="tr@randNum">
+                                                        <td class=""><span class="text-dep1">@articleSpecificationAttributeModel.SpecificationAttributeName</span></td>
+                                                        <td>
+                                                            <select style="width:260px" class="form-control spaoption-select">
+                                                                @foreach (var specificationAttributeOption in articleSpecificationAttributeModel.SpecificationAttributeOptions)
+                                                                {
+                                                                    <option @(specificationAttributeOption.select ? "selected" : "") value="@specificationAttributeOption.id">@specificationAttributeOption.name</option>
+                                                                }
+                                                            </select>
+                                                        </td>
+                                                        <td class=""><input type="checkbox" @(articleSpecificationAttributeModel.AllowFiltering ? "checked" : "") class="check-box s_allowfiltering"></td>
+                                                        <td class=""><input type="checkbox" @(articleSpecificationAttributeModel.ShowOnArticlePage ? "checked" : "") class="check-box s_showonarticlepage"></td>
+                                                        <td class=""><input type="text" value="@articleSpecificationAttributeModel.DisplayOrder" class="form-control s_displayorder"></td>
+                                                        <td class=""><span class="pull-right"> <a href="javascript:;" class="text-info remove_fare">删除</a></span></td>
+                                                    </tr>
+                                                }
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <footer class="panel-footer"></footer>
+                            </section>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+}

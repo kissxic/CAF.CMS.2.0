@@ -1,0 +1,30 @@
+﻿using CAF.Infrastructure.Core.Domain.Sellers;
+using CAF.Infrastructure.Core.Html;
+using CAF.Infrastructure.Core.Pages;
+using System;
+
+namespace CAF.WebSite.Application.Services.Vendors
+{
+    public static class VendorExtensions
+    {
+        /// <summary>
+        /// Formats the vendor note text
+        /// </summary>
+        /// <param name="vendorNote">Vendor note</param>
+        /// <returns>Formatted text</returns>
+        public static string FormatVendorNoteText(this VendorNote vendorNote)
+        {
+            if (vendorNote == null)
+                throw new ArgumentNullException("vendorNote");
+
+            string text = vendorNote.Note;
+
+            if (String.IsNullOrEmpty(text))
+                return string.Empty;
+
+            text = HtmlUtils.FormatText(text, false, true, false, false, false, false);
+
+            return text;
+        }
+    }
+}

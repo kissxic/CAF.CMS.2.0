@@ -1,0 +1,88 @@
+﻿@model ArticleCategoryModel
+@using CAF.Infrastructure.Core.Domain.Seo;
+@{
+    Layout = "~/Themes/AlphaDefault/Views/Shared/_Layout.Info.cshtml";
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var categoryUrl = Url.RouteUrl("ArticleCategory", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(categoryUrl);
+    }
+    Html.AppendCssFileParts(ResourceLocation.Head,
+       "~/Themes/AlphaDefault/Content/css/Category.css",
+        "~/Themes/AlphaDefault/Content/css/Service.css");
+
+}
+
+
+<div class="warp">
+    <div class="Cate_Route">
+        <a href='@Url.RouteUrl("AllCategory",new { channelId=3})'>分类信息首页</a>
+    </div>
+    <!--栏目信息-->
+    <ul class="Cate_nav">
+        <li @(this.CurrentArticleCategoryId == 0 ? "class=on" : "")><a href='@Url.RouteUrl("AllCategory",new { channelId=3})' style='font-size:16px;'>全部</a></li>
+        @Html.Action("CategoryNavigation", "ArticleCatalog", new { currentCategoryId = this.CurrentArticleCategoryId, currentArticleId = this.CurrentArticleId, channelId = 3, onlyShowChildren = false, showParent = true, templateView = "CategoryNavigation.Info", area = "" })
+    </ul>
+
+    <!--筛选条件-->
+    <div class="Cate_screen">
+        <ul>
+            @Html.Partial("_FilterBaseBox", Model.PagingFilteringContext.BaseFilter)
+            @Html.Partial("_FilterSpecsBox", Model.PagingFilteringContext.SpecificationFilter)
+            @if (!string.IsNullOrEmpty(Model.PagingFilteringContext.Q))
+            {
+                <li>
+                    <div class="title fl">关键字</div>
+                    <div class="Cate_scr_list fl">
+                        @Model.PagingFilteringContext.Q
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <!--内容信息-->
+    <div class="margin_top_20">
+        <div class="fl">
+            <div class="Cate_list_left">
+                @if (Model.Articles.Count > 0)
+                {
+                    <article class="item-box details">
+                        <ul>
+                            @foreach (var article in Model.Articles)
+                            {
+                                @Html.Partial("_ArticleBox", article)
+                            }
+                        </ul>
+                    </article>
+                }
+            </div>
+            <div class="cate_pages">
+                @(Html.CafSite().Pager(Model.PagingFilteringContext)
+                    .Name("pagination-bottom").QueryParam("pagenumber").Style(PagerStyle.Blog)
+                    .ShowFirst(true).FirstButtonText("第一页")
+                    .ShowPrevious(true).PreviousButtonText("上一页")
+                    .ShowNext(true).NextButtonText("下一页")
+                    .ShowLast(true).LastButtonText("最后一页")
+                )
+            </div>
+        </div>
+        <div class="Cate_list_right fr">
+            @*<div class="Clright_1">
+                    <div class="title">相关类目</div>
+                    <ul>
+                        <li><a href='#'>代理信息 : 祛痘养颜 </a></li>
+                    </ul>
+                </div>*@
+            <div class="Clright_1">
+                广告位
+            </div>
+        </div>
+    </div>
+
+</div>

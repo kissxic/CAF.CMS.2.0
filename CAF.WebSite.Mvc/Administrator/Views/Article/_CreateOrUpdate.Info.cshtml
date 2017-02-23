@@ -1,0 +1,428 @@
+﻿@model  ArticleModel
+@using CAF.Infrastructure.Core.Domain.Cms.Articles
+@using CAF.Infrastructure.Core.Domain.Cms.Channels;
+@{
+    var availableTags = Model.AvailableArticleTags.Select(x => x.Value).ToArray();
+    for (int i = 0; i < availableTags.Length; i++)
+    {
+        availableTags[i] = availableTags[i].EncodeJsString();
+    }
+    ViewBag.SerializedTags = String.Join(",", availableTags);
+
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('input[id="@Html.FieldIdFor(model => model.IsPasswordProtected)"]').on('switchChange.bootstrapSwitch', function (event, state) {
+            togglePassword(state);
+        });
+
+        $('input[id="@Html.FieldIdFor(model => model.IsDownload)').on('switchChange.bootstrapSwitch', function (event, state) {
+            //console.log(this); // DOM element
+            //console.log(event); // jQuery event
+            toggleDownloadableArticle(state);
+            //console.log(state); // true | false
+        });
+        togglePassword(@Model.IsPasswordProtected.ToString().ToLower());
+        toggleDownloadableArticle(@Model.IsDownload.ToString().ToLower());
+        toggleUnlimitedDownloads(@Model.UnlimitedDownloads.ToString().ToLower());
+        var tagChooser = $("#@Html.FieldIdFor(x => x.ArticleTags)");
+        tagChooser.select2({ tags: [@(Html.Raw(ViewBag.SerializedTags))] });
+
+
+    });
+
+    function toggleDownloadableArticle(state) {
+        if (state) {
+
+            $('#pnlDownloadFile').show();
+            $('#pnlUnlimitedDownloads').show();
+            $('input[id="@Html.FieldIdFor(model => model.UnlimitedDownloads)"]').on('switchChange.bootstrapSwitch', function (event, unlimitestate) {
+                toggleUnlimitedDownloads(unlimitestate);
+            });
+
+        }
+        else {
+            $('#pnlDownloadFile').hide();
+            $('#pnlUnlimitedDownloads').hide();
+            $('#pnlMaxNumberOfDownloads').hide();
+
+        }
+    }
+
+    function toggleUnlimitedDownloads(state) {
+        if (state) {
+            $('#pnlMaxNumberOfDownloads').hide();
+        } else {
+            $('#pnlMaxNumberOfDownloads').show();
+        }
+    }
+    function togglePassword(state) {
+        if (state) {
+            $('#pnlPasswordEnabled').show();
+        }
+        else {
+            $('#pnlPasswordEnabled').hide();
+        }
+    }
+</script>
+
+<div class="form-horizontal  form-body" id="group-downloads">
+    <div class="form-body">
+        @if (Model.Id > 0)
+            {
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Url)
+                </label>
+                <div class="col-md-6">
+                    <div class="input-group input-large">
+                        <input type="text" class="form-control" readonly="" value="@Model.Url" />
+                        <span class="input-group-btn">
+                            <a href="@Model.Url" class="btn btn-primary" target="_blank"><i class="fa fa-play-circle-o"></i>&nbsp;@T("Admin.Common.Go")</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Id)
+                </label>
+                <div class="col-md-3">
+                    @Model.Id.ToString()
+                    @Html.ValidationMessageFor(model => model.Id)
+                </div>
+            </div>
+        }
+        @if (Model.ProductCategoryShowType == ProductCategoryShowType.Step)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    平台分类
+                </label>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        @{
+                            string url = ((string)ViewBag.CategoryNames).Replace(" > ", "|");
+                            var urlArray = url.Split('|');
+
+                            var que = string.Format("a={0}&b={1}&c={2}&channelId={3}&pcategoryId={4}&productId={5}",
+                                urlArray.Count() > 0 ? urlArray[0].Trim() : "",
+                                urlArray.Count() > 1 ? urlArray[1].Trim() : "",
+                                urlArray.Count() > 2 ? urlArray[2].Trim() : "", Model.ChannelId, Model.ProductCategoryId ?? 0, Model.Id);
+                        }
+                        @Html.HiddenFor(model => model.ProductCategoryId)
+                        <input type="text" class="form-control" readonly="" value="@ViewBag.CategoryNames" />
+                        <span class="input-group-btn">
+                            <a href="/Seller/Article/PublicStepOne?@que" class="btn btn-primary"><i class="fa fa-play-circle-o"></i>&nbsp;编辑</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+                            }
+        @if (Model.ProductCategoryShowType == ProductCategoryShowType.No)
+        {
+            if (Model.CategoryShowType == CategoryShowType.CheckBox)
+            {
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Html.LangLabelFor(model => model.CategoryId)
+                    </label>
+                    <div class="col-md-10">
+                        <div class="btn-group" data-toggle="buttons">
+                            @foreach (var item in Model.AvailableCategorys)
+                            {
+                                <label class="btn btn-default @(item.Selected ? "active" : "")">
+                                    <input type="radio" @(item.Selected ? "checked" : "") class="toggle rdCategory" name="CategoryId" value="@item.Value"> @item.Text
+                                </label>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                if (Model.ShowSpecificationAttributes)
+                {
+
+
+                    <script type="text/javascript">
+                        $(function () {
+                            var count=@Model.ArticleSpecificationAttributeModels.Count;
+                            if (count > 0)
+                            {
+                                getdata();
+                            }
+                        });
+
+                        $(document).ready(function () {
+                            $(".rdCategory").change(function() {
+                                var $selectedvalue = $("input[name='CategoryId']:checked").val();
+                                loadArticleSpecificationAttributesPartialView($selectedvalue);
+
+                            });
+                            //改变时修改数据
+                            $(document).on("change", "#addfare tbody tr input,#addfare tbody tr select", function () {
+                                getdata();
+                            })
+                        });
+
+                        function loadArticleSpecificationAttributesPartialView(categoryid) {
+
+                            var url = '/admin/Article/GetSpecificationAttributes?categoryId=' + categoryid ;
+                            $.ajax({
+                                cache: false,
+                                type: "GET",
+                                async: false,
+                                global: false,
+                                url: url,
+                                beforeSend: function (xhr) {
+
+                                },
+                                success: function (data, status, xhr) {
+                                    $("#addfare tbody").html(data);
+                                    getdata();
+                                },
+                                error: function (xhr, ajaxOptions, thrownError) {
+                                    pane.html('<div class="text-error">加载资源时出错: ' + thrownError + '</div>');
+                              
+                                },
+                                complete: function (xhr, status) {
+
+                                }
+                            });
+                        }
+                        //拿数据
+                        function getdata() {
+                            var trs = $("#addfare tbody tr");
+                            var trArr = [];
+                            $.each(trs, function (e) {
+                                var trObj = {};
+                                trObj.SpecificationAttributeOptionId = $(this).find("select.spaoption-select").val();
+                                trObj.AllowFiltering = $(this).find("input.s_allowfiltering").prop("checked")?"true":"false";
+                                trObj.ShowOnArticlePage = $(this).find("input.s_showonarticlepage").prop("checked")?"true":"false";
+                                trObj.DisplayOrder = $(this).find("input.s_displayorder").val();
+                                trArr.push(trObj);
+                            })
+                            $("input[name='SpaValues']").val(JSON.stringify(trArr));
+                        }
+                    </script>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i>内容属性</span>
+                            </label>
+                            <div class="col-md-10">
+                                <input type="hidden" name="SpaValues" value="[]">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <section class="panel panel-default">
+
+                                            <div class="table-responsive">
+                                                <table class="table  b-t b-light" id="addfare">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width: 120px">属性</th>
+                                                            <th>属性值</th>
+                                                            <th class="" style="width: 120px;display:none;">允许过滤</th>
+                                                            <th class="" style="width: 120px;display:none;">在内容页面显示</th>
+                                                            <th class="" style="width: 120px;display:none;">排序</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @Html.Partial("_SpecificationAttributes", Model.ArticleSpecificationAttributeModels)
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <footer class="panel-footer"></footer>
+                                        </section>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else if (Model.CategoryShowType == CategoryShowType.DropDownList)
+            {
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Html.LangLabelFor(model => model.CategoryId)
+                    </label>
+                    <div class="col-md-6">
+                        @* codehint: sm-edit *@
+                        @(Html.HiddenFor(x => x.CategoryId, new
+                {
+                    style = "min-width: 200px",
+                    @class = "form-control",
+                    placeholder = "[" + T("Common.Unspecified") + "]",
+                    data_select = true,
+                    data_select_lazy = true,
+                    data_select_init_text = Model.CategoryBreadcrumb,
+                    data_select_url = Url.Action("AllCategories", "ArticleCatalog", new { area = "", channelId = Model.ChannelId })
+                }))
+                        @Html.ValidationMessageFor(model => model.CategoryId)
+
+                    </div>
+                </div>
+            }
+        }
+        @(Html.LocalizedEditor<ArticleModel, ArticleLocalizedModel>("article-info-localized",
+        @<div class="form-body">
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Locales[item].Title)
+                </label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => Model.Locales[item].Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Locales[item].Title)
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Locales[item].ShortContent)
+                </label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Locales[item].ShortContent, new { @class = "form-control", @maxlength = "225", @rows = "5", @placeholder = "This textarea has a limit of 225 chars." })
+                    @Html.ValidationMessageFor(model => model.Locales[item].ShortContent)
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Locales[item].FullContent)
+                </label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Locales[item].FullContent, Html.RichEditorFlavor())
+                    @Html.ValidationMessageFor(model => model.Locales[item].FullContent)
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+
+                </label>
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.Locales[item].LanguageId)
+                </div>
+            </div>
+        </div>
+     ,
+        @<div class="form-body">
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.Title)
+                </label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Title)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.ShortContent)
+                </label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.ShortContent, new { @class = "form-control", @maxlength = "225", @rows = "5", @placeholder = "This textarea has a limit of 225 chars." })
+                    @Html.ValidationMessageFor(model => model.ShortContent)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    @Html.LangLabelFor(model => model.FullContent)
+                </label>
+                <div class="col-md-10">
+                    @Html.EditorFor(x => x.FullContent, Html.RichEditorFlavor())
+                    @Html.ValidationMessageFor(model => model.FullContent)
+                </div>
+            </div>
+        </div>))
+    </div>
+    <div class="form-body">
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.ModelTemplateId)
+            </label>
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.ModelTemplateId, Model.AvailableModelTemplates, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ModelTemplateId)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.StatusId)
+            </label>
+            <div class="col-md-10">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default @((ArticleStatus)Model.StatusId == ArticleStatus.Normal ? "active" : "")">
+                        <input type="radio" class="toggle" id="StatusId" name="StatusId" value="0" @((ArticleStatus)Model.StatusId == ArticleStatus.Normal ? "checked" : "")> 正常
+                    </label>
+                    <label class="btn btn-default @((ArticleStatus)Model.StatusId == ArticleStatus.Audit ? "active" : "")">
+                        <input type="radio" class="toggle" id="StatusId" name="StatusId" value="1" @((ArticleStatus)Model.StatusId == ArticleStatus.Audit ? "checked" : "")> 待审核
+                    </label>
+                    <label class="btn btn-default @((ArticleStatus)Model.StatusId == ArticleStatus.NoDisplay ? "active" : "")">
+                        <input type="radio" class="toggle" id="StatusId" name="StatusId" value="2" @((ArticleStatus)Model.StatusId == ArticleStatus.NoDisplay ? "checked" : "")>不显示
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.DisplayOrder)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.DisplayOrder)
+                @Html.ValidationMessageFor(model => model.DisplayOrder)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2"> @Html.LangLabelFor(model => model.PictureId)</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PictureId, new { transientUpload = true })
+                @Html.ValidationMessageFor(model => model.PictureId)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i> 图组上传</span>
+            </label>
+            <div class="col-md-10">
+
+                <input type="hidden" name="pictureurls" class="form-control" value="" id="pictureurls" />
+                <div id="uploader" class="wu-example">
+                    <div class="queueList">
+                        <div id="dndArea" class="placeholder">
+                            <div id="filePickerBtn"></div>
+                            <p>或将照片拖到这里，单次最多可选300张</p>
+                        </div>
+                    </div>
+                    <div class="statusBar" style="display:none;">
+                        <div class="progress">
+                            <span class="text">0%</span>
+                            <span class="percentage"></span>
+                        </div><div class="info"></div>
+                        <div class="btns">
+                            <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var  articleId=@Model.Id;
+            var  baseUrl="/Admin/Article/BatchArticlePictureList/";
+        </script>
+        <script src="~/Scripts/yaofang.pics.js"></script>
+
+    </div>
+
+</div>

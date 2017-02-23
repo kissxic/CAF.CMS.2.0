@@ -1,0 +1,42 @@
+﻿@model int
+@using CAF.WebSite.Application.Services.Users;
+@using CAF.Infrastructure.Core;
+@{
+    Layout = "";
+    var isLogin = EngineContext.Current.Resolve<IWorkContext>().CurrentUser.IsRegistered();
+    var userId = EngineContext.Current.Resolve<IWorkContext>().CurrentUser.Id;
+}
+@if (isLogin)
+{
+    <input type="hidden" id="targetId" value="@Model">
+    <a href="javascript:;" title="联系商家" class="btnreach btToClient" rel="nofollow">联系商家</a>
+    <script>
+        $(function(){
+            $(".btToClient").click(function(){
+                var userid=@userId;
+                var toUserId = @Model;
+                if (toUserId == userid) {
+                    layer.alert('您不能加自己为好友');
+                    return;
+                }
+                var parameter = { userid: userid, targetid: toUserId, other: "" };
+                $.post('/Plugins/Im/apply', parameter, function (result) {
+                    if (result.code == 0) {
+                        if (result.data == -1) {
+                            layer.alert('该用户已经是您的好友了');
+                        } else {
+                            window.location.href="/contactus";
+                        }
+                    } else {
+                        layer.alert('申请好友请求发送失败，请重试!');
+                    }
+                });
+            });
+        })
+
+    </script>
+}
+else
+{
+    <a href="javascript:;" title="联系商家" class="btnreach" onclick="javascript:alert('请先登录!')">联系商家</a>
+}

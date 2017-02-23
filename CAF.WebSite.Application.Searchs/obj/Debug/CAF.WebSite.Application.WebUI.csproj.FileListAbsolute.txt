@@ -1,0 +1,6 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Application.WebUI\obj\Debug\CAF.WebSite.Application.WebUI.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.WebSite.Application.WebUI.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.WebSite.Application.WebUI.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.WebSite.Application.WebUI.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Application.WebUI\obj\Debug\CAF.WebSite.Application.WebUI.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Application.WebUI\obj\Debug\CAF.WebSite.Application.WebUI.pdb

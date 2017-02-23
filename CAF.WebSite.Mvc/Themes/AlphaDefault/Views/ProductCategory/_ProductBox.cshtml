@@ -1,0 +1,41 @@
+﻿@model ArticleOverviewModel
+
+@{
+    string desc = null, descTitle = null;
+    if (Model.ShortContent.HasValue())
+    {
+        desc = Model.ShortContent.Truncate(50, "...");
+        if (Model.ShortContent.Length > desc.Length)
+        {
+            descTitle = Model.ShortContent;
+        }
+    }
+    string name = null, nameTitle = null;
+    name = Model.Title.Truncate(10, "...");
+    if (Model.Title.Length > name.Length)
+    {
+        nameTitle = Model.Title;
+    }
+}
+<li>
+    <div class="li-hover">
+        <div class="imgbig" onclick="loadPageProduct('@Url.RouteUrl("Article", new { SeName = Model.SeName })')">
+            <img src="@Model.DefaultPictureModel.ImageUrl" alt="@Model.DefaultPictureModel.AlternateText" title="@Model.DefaultPictureModel.AlternateText" height="200" width="200">
+        </div>
+        <div class="pro-botxt">
+            <span style="font-family: microsoft yahei">价格商议</span>
+            <p>
+                <a href="@Url.RouteUrl("Article", new { SeName = Model.SeName })" target="_blank">
+                    <img alt="Rx" src="~/Themes/AlphaDefault/Content/images/ico_rx.gif" title="@name" width="26" height="14" />@name&nbsp;@Model.ShortContent。
+                </a>
+            </p>
+            <a class="pro-check" href="@Url.RouteUrl("Article", new { SeName = Model.SeName })" target="_blank">查看详情</a>
+            @*<div class="btn_Add pro_box" title="加入购物车">
+                <a href="javascript:void(0)" onclick="goods_buy(47100, 2, 1,29800 )" class="pro-check addCart">加入购物车</a>
+            </div>*@
+         </div>
+    </div>
+</li>
+
+
+

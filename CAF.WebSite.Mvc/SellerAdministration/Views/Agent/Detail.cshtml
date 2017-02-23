@@ -1,0 +1,170 @@
+﻿@model ArticleAgnetModel
+@{
+    //page title
+    ViewBag.Title = "查看咨询明细";
+}
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light">
+                <div class="section-header sticky">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase"> 咨询明细</span>
+                        <span class="caption-helper">@Html.ActionLink("(" + T("Admin.Common.BackToList") + ")", "List")</span>
+                    </div>
+
+                </div>
+                <div class="portlet-body form form-horizontal form-bordered form-row-stripped">
+                    <div class="form-body">
+                        @if (Model.ArticleId != 0)
+                        {
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">商品:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">
+                                                <a href="@Model.Url" target="_blank">@Model.ArticleTitle</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        }
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">电话:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            @Model.Mobile
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">手机:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            @Model.TelePhone
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">QQ:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            @Model.QQ
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">邮箱:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            @Model.Email
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">意向区域:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            @(Model.ProvinceName+"-"+Model.CityName)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">销售渠道:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            @Model.DistributionChannelId
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">代理性质:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            @Model.AgentPropertyId
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">查看权限:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            @Model.ShowAuth
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">咨询时间:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            @Model.CreatedOnUtc.ToString("yyyy-MM-dd")
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">留言内容:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            @Model.Message
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

@@ -1,0 +1,26 @@
+﻿@model IList<ArticleOverviewModel>
+@using CAF.Infrastructure.Core;
+
+@if (Model.Count > 0)
+{
+    for (int i = 0; i < Model.Count; i++)
+    {
+        var article = Model[i];
+        <li>
+            <a href="@Url.RouteUrl("Article", new { SeName = article.SeName })" target="_blank">
+                <img src="@article.DefaultPictureModel.ImageUrl" alt="@article.DefaultPictureModel.AlternateText" title="@article.DefaultPictureModel.AlternateText" />
+            </a>
+            <p>
+                <a href="@Url.RouteUrl("Article", new { SeName = article.SeName })" title="@article.Title&nbsp;@article.ShortContent" target="_blank">@article.Title&nbsp;@article.ShortContent</a>
+            </p>
+            <span>价格商议</span>
+        </li>
+    }
+
+}
+else
+{
+    <li>
+        <p>无<p>
+    </li>
+}

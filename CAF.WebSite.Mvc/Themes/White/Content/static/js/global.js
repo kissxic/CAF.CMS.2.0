@@ -1,0 +1,2 @@
+/* build : 564493634@qq.com 2016-07-2611:05:55 */
+require(["browser"],function(e){7>e&&require(["ie6"],function(){})}),require(["modernizr"],function(e){e.addTest("iframe",window!=window.top)}),require(["jquery.linkDialog"],function(){}),require(["jquery","jquery.widget"],function(e,i){e(function(){i.update()})}),require(["jquery"],function(e){e.fn.serializeObject=function(){var i={},n=this.serializeArray();return e.each(n,function(){void 0!==i[this.name]?(i[this.name].push||(i[this.name]=[i[this.name]]),i[this.name].push(this.value||"")):i[this.name]=this.value||""}),i}});

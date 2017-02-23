@@ -1,0 +1,105 @@
+﻿@model ArticlePostModel
+@using CAF.Infrastructure.Core.Domain.Cms.Articles;
+@using CAF.Infrastructure.Core.Domain.Seo;
+@using CAF.Infrastructure.Core.Domain.Cms.Media;
+@using CAF.Infrastructure.Core;
+@{
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    int pictureSize = EngineContext.Current.Resolve<MediaSettings>().DetailsPictureSize;
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl("Article", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(productUrl);
+    }
+    Html.AppendCssFileParts(ResourceLocation.Head,
+ "~/Themes/AlphaDefault/Content/css/Service.css");
+}
+<div class="main">
+
+    <div class="bread-nav">
+        @Html.Action("ArticleBreadcrumb", "ArticleCatalog", new { articleId = Model.Id, templateView = "ArticleBreadcrumb.Service" })
+    </div>
+    <div class="left-nav">
+        <div class="itemChoose">
+            <div class="itemChooseBox" id="menu_help">
+                <h2><span>帮助中心</span></h2>
+                <h3 class="no_bd_b" cagId="111"><a href="javascript:void(0);" class="icon_btn ">关于药坊</a></h3>
+                @Html.Action("RecentlyArticleViewed", "ArticleCatalog", new { area = "", partialView = "ArticleBlock.Service", categoryId = 111 })
+                <h3 class="no_bd_b" cagId="112"><a href="javascript:void(0);" class="icon_btn ">支付配送方式</a></h3>
+                @Html.Action("RecentlyArticleViewed", "ArticleCatalog", new { area = "", partialView = "ArticleBlock.Service", categoryId = 112 })
+                <div class="dan">
+                    <h3 class=""><a href="#">找回密码</a></h3>
+                    <h3><a href="#">意见反馈</a></h3>
+                    <h3><a href="#">服务电话真伪查询</a></h3>
+                    <h3><a href="#">缺货登记</a></h3>
+                    <h3><a href="#">常见问题</a></h3>
+                    <h3><a href="#">税费说明</a></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-con">
+        <div class="min-bread">
+            <em></em><a href="#">@Model.Title</a>
+        </div>
+        <div class="help4">
+            @Html.Raw(Model.FullContent)
+        </div>
+    </div>
+    <span class="clear"></span>
+</div>
+
+<script>
+    var pagemum =@Model.CategroyId;
+    var onlink = @Model.Id;
+    /*左侧导航*/
+    $(function () {
+
+        pagemenu();
+        $('.itemChooseBox').find('h3').each(function () {
+            var $this = $(this),
+            $ul = $this.next('ul.list_ul');
+            $this.click(function () {
+                if ($this.hasClass('open') && $ul.is(':visible')) {//下拉展开状态
+                    $this.removeClass('open');
+                    $('.itemChooseBox').find('h3').removeClass('lvbg');
+                    $ul.slideUp();
+                } else {//未下拉展开时
+                    $('.itemChooseBox').find('h3').removeClass('open');
+                    $('.itemChooseBox').find('.list_ul').slideUp();
+                    $this.addClass('open');
+                    $('.itemChooseBox').find('h3').removeClass('lvbg');
+                    $this.addClass('lvbg');
+                    $ul.slideDown();
+                }
+            })
+            $(this).mouseover(function () {
+                $(this).addClass('hon');
+            }).mouseout(function () {
+                $(this).removeClass('hon');
+            })
+        })
+    });
+    function pagemenu() {
+        var menunum = $("#menu_help").find("h3");
+        var menlink = $("#menu_help").find("li");
+        $.each(menunum, function (i,item) {
+            if ($(item).attr("cagId") == pagemum) {
+                $(item).attr("class","open lvbg");
+            }
+        });
+        $.each(menlink, function (i, item) {
+            if ($(item).attr("artId") == onlink) {
+                $(item).attr("class","ons");
+            }
+        });
+
+        $('.lvbg').next('.list_ul').css('display', 'block');
+    }
+
+</script>

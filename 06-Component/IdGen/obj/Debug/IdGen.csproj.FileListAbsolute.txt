@@ -1,0 +1,5 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\IdGen.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\IdGen.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\IdGen\obj\Debug\IdGen.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\IdGen\obj\Debug\IdGen.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\IdGen\obj\Debug\IdGen.csprojResolveAssemblyReference.cache

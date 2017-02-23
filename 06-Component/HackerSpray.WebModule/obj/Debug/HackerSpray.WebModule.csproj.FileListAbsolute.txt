@@ -1,0 +1,11 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.WebModule\bin\Debug\HackerSpray.WebModule.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.WebModule\bin\Debug\HackerSpray.WebModule.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.WebModule\bin\Debug\HackerSpray.Logger.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.WebModule\bin\Debug\HackerSpray.Module.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.WebModule\bin\Debug\StackExchange.Redis.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.WebModule\bin\Debug\HackerSpray.Logger.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.WebModule\bin\Debug\HackerSpray.Module.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.WebModule\bin\Debug\StackExchange.Redis.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.WebModule\obj\Debug\HackerSpray.WebModule.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.WebModule\obj\Debug\HackerSpray.WebModule.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.WebModule\obj\Debug\HackerSpray.WebModule.pdb

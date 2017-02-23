@@ -1,0 +1,9 @@
+﻿@model LanguageSelectorModel
+@if (Model.AvailableLanguages.Count > 1)
+{
+    var webHelper = EngineContext.Current.Resolve<IWebHelper>();
+    foreach (var lang in Model.AvailableLanguages)
+    {
+        <a target="_blank" class="item" href="@webHelper.ModifyQueryString(Url.RouteUrl("ChangeLanguage", new { langid = lang.Id }), "returnurl=" + Url.Encode(Model.ReturnUrls[lang.SeoCode]), null)" title="@lang.NativeName">@lang.ISOCode.ToUpper().Substring(0, 2)</a>
+    }
+}

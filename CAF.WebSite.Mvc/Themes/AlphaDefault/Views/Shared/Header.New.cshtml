@@ -1,0 +1,73 @@
+﻿ 
+    <!--logo and 搜索框-->
+    <div class="lo-and-sea wm clearfix">
+        <div class="logo">
+            <a href="http://www.jianke.com/" title="健客网上药店"><img src="http://img.jianke.net/jk2016/news/images/jklogo.jpg" width="97" height="27" alt="健客网"></a>
+            <a href="http://www.jianke.com/news/" title="健客资讯"><img src="http://img.jianke.net/jk2016/news/images/jkzx.jpg" width="115" height="27" alt="健客资讯"></a>
+        </div>
+
+
+        <div class="search fr">
+            <div class="select-box">
+                <div id="search-txt" name="zx">资讯</div><em class="se-icon"></em>
+                <ul class="select-con">
+                    <li name="zx"><a href="javascript:;">资讯</a></li>
+                    <li name="wd"><a href="javascript:;">问答</a></li>
+                    <li name="yp"><a href="javascript:;">药品</a></li>
+                    <li name="zz"><a href="javascript:;">症状</a></li>
+                </ul>
+            </div>
+            <input type="text" name="search_input" id="search_inpt" maxlength="16" onblur="if(this.value==''){this.value='如何让女人性高潮';this.style.color='#bcbcbc'}" onfocus="this.style.color='#000';if(this.value =='如何让女人性高潮'){this.value=''}" autocomplete="off" value="如何让女人性高潮" style="color:#bcbcbc">
+            <button type="submit" onclick="SearchSubmit($('#search_inpt').val());">搜索</button>
+        </div>
+
+        <script type="text/javascript">
+
+    function SearchSubmit(key)
+    {
+        if(key != null && key!="")
+        {
+            var currselect=$("#search-txt").attr("name");
+            var url="http://search.jianke.com/zh/article?wd=";
+            if(currselect == "wd")
+            {
+                url="http://search.jianke.com/zh/ask?wd=";
+            }
+            else if(currselect == "yp")
+            {
+                url="http://search.jianke.com/zh/yaopin?wd=";
+            }
+            else if(currselect == "zz")
+            {
+                url="http://search.jianke.com/zh/disease?wd=";
+            }
+            var url = url + key;
+            window.location= url;
+        }
+        else
+        {
+            alert("请输入搜索内容！");
+        }
+    }
+
+    function checkInputSearchDown(e)
+    {
+        var eve = e|| window.event;
+        if(eve.keyCode == 13)
+        {
+            var keyword = $("#keyword").val();
+            if ($.trim(keyword) != "")
+            {
+                SearchSubmit(keyword);
+            }
+            else
+            {
+                alert("请输入搜索内容！");
+            }
+        }
+        return true;
+    }
+        </script>
+
+    </div>
+ 

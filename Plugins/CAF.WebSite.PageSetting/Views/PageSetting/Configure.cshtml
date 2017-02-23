@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "";
+    Html.AppendCssFileParts(true, Url.Content("~/Plugins/CAF.WebSite.PageSettings/Content/style.css"));
+}
+ <div class="vis-view-area clearfix">
+    <div class="head-area">
+        <a class="logo-area" title="logo设置"></a>
+        <a class="search-area" title="热门关键字设置"></a>
+    </div>
+    <div class="nav-area">
+        <a href="@Url.Action("List","Navigation")" title="导航条设置"></a>
+    </div>
+    <div class="first-screen-area">
+        <a href="/Admin/PageSettings/HomeCategory" class="categorys-area" title="商城分类设置"></a>
+        <div class="scroll-area">
+            <a href="./SlideAd/SlideManagement" class="auto-scroll-area" title="自动轮播设置"></a>
+        </div>
+        <div class="first-right-area">
+            <a class="article-area imageAdRecommend" title="小banner图一" pic="/Storage/Plat/ImageAd/201507141154486858880.jpg" url="/" value="14"></a>
+            <a class="article-area imageAdRecommend" title="小banner图二" pic="/Storage/Plat/ImageAd/201507141125025515100.jpg" url="/" value="15"></a>
+        </div>
+    </div>
+    <div class="hand-goods-area">
+        <a class="goods-1-area imageAdRecommend first-child" pic="/Storage/Plat/ImageAd/201510131521396050270.png"
+           url="/" value="1"></a>
+        <a class="goods-2-area imageAdRecommend" pic="/Storage/Plat/ImageAd/201507141113517447420.jpg"
+           url="/" value=" 2"></a>
+        <a class="goods-3-area imageAdRecommend" pic="/Storage/Plat/ImageAd/201507141113577374740.jpg"
+           url="/" value=" 3"></a>
+        <a class="goods-4-area imageAdRecommend" pic="/Storage/Plat/ImageAd/201507141114038361740.jpg"
+           url="/" value=" 4"></a>
+    </div>
+    <div class="hand-goods-area">
+
+        <a class="goods-5-area imageAdRecommend" pic="/Storage/Plat/ImageAd/201507141114107154480.jpg"
+           url="/" value=" 5"></a>
+        <a class="goods-6-area imageAdRecommend" pic="/Storage/Plat/ImageAd/201507141114450875180.jpg"
+           url="/" value=" 6"></a>
+        <a class="goods-7-area imageAdRecommend" pic="/Storage/Plat/ImageAd/201507141114557255630.jpg"
+           url="/" value="7"></a>
+        <a class="goods-8-area imageAdRecommend last-child" pic=""
+           url="" value="8"></a>
+    </div>
+    <div class="floors-area">
+        <a title="楼层编辑" href="/Admin/PageSettings/HomeFloor"></a>
+    </div>
+    <div class="service-area">
+        <a href="/Admin/Article/Management" title="服务编辑"></a>
+    </div>
+    <div class="bottom-area">
+        <a id="pageFootBtn" href="/Admin/PageSettings/SetPageFoot" title="页脚信息编辑"></a>
+    </div>
+</div>

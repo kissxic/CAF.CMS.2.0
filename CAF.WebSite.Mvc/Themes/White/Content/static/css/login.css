@@ -1,0 +1,137 @@
+body{background: #ffffff;overflow-x: hidden; }
+
+
+/*登陆页面及找回页面公共部分*/
+.fr{float: right;}
+.fl{float: left;}
+.login_warp{max-width: 1200px;margin: 0 auto;}
+.login_warp .survey {padding-left: 30px; margin: -27px 0 0;background: url("../images/login/icons.png") no-repeat -25px -234px;}
+.login_warp .survey a{line-height: 23px; font-size: 14px;font-family: "Microsoft YaHei";color: #333;}
+.login_warp .survey a:hover{color: #427fed;}
+.content{margin: 15px auto 60px;background: #427fed;text-align: center; box-shadow: 0px 4px 27px rgba(4, 0, 0, 0.25) inset}
+.content .wap{margin: 0 auto;max-width: 1200px;}
+
+/*登陆页面*/
+.content .left{position: relative; margin-top: 40px; width: 800px;height: 390px; background: url("../images/login/left-bg.png") no-repeat 149px 37px;}
+.content .a-left{position: absolute;width: 280px;height: 280px;left: 245px;top: 58px; border-radius: 50%;}
+.content .left-img{position: relative;padding: 62px 164px 0px 96px;}
+.content .d-user{position: relative;padding: 90px 70px;}
+
+.content .left .db {position: absolute;}
+.content .left .db a{font-size: 18px;font-family: "Microsoft YaHei";color: #ffffff; text-decoration: none;}
+.content .left .db1{left: 109px;top: 57px;}
+.content .left .db2{left: 541px;top: 57px;}
+.content .left .db3{left: 45px;top: 118px;}
+.content .left .db4{left: 600px;top: 118px;}
+.content .left .db5{left: 32px;top: 202px;}
+.content .left .db6{left: 620px;top: 202px;}
+.content .left .db7{left: 66px;top: 278px;}
+.content .left .db8{left: 579px;top: 278px;}
+.content .left .db9{left: 320px;top: 390px;}
+
+.y{position: absolute;border-radius: 50%;}
+.y1{width: 200px;height: 200px;border:1px #ededed solid;background-color: transparent;left: 285px; top: 95px;filter:alpha(opacity=30);-moz-opacity:0.3;opacity:0.3;}
+.y2{width: 160px;height: 160px;border:1px #ededed solid;background-color: transparent;left: 305px; top: 115px;filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5;}
+.y3{width: 130px;height: 130px;border:1px #ededed solid;background-color: transparent; left: 320px; top: 131px;filter:alpha(opacity=20);-moz-opacity:0.2;opacity:0.2;}
+.y4{width: 130px;height: 130px;border:1px #9ee4ff solid;background-color: transparent; left: 320px; top: 131px;}
+
+.right{box-shadow: 2px 4px 5px #2f57a3; border-radius: 3px; width: 350px;background: #fff;margin: 64px 10px;}
+/*二维扫描登陆页面样式*/
+.scan{display: none;}
+.right .img{margin-top: 26px;border:1px #d8d8d8 solid; padding: 5px;}
+.right .blue{color: #427fed;}
+.right .gre{color:#666}
+.right .tip{padding-left: 25px; line-height: 84px;font-size: 16px;font-family: "Microsoft YaHei";color: #333;}
+.right .logo-tip{width: 139px;height: 47px; margin: 54px auto 29px; text-align: left; padding-left: 107px; background: url("../images/login/icons.png") no-repeat -57px -77px;font-size: 12px;font-family: "Microsoft YaHei";color: #666;}
+.right .logo-tip li{line-height: 18px;}
+
+/*账号登陆页面样式*/
+.right .gif{padding: 13px 0 0 17px; margin-right: -12px; width: 149px;height: 40px; background: url("../images/login/icons.png") no-repeat 0px 0px;font-size: 12px;font-family: "Microsoft YaHei";color: #a67111;}
+.right form input{width: 263px;height: 42px;border:none;border-radius: 5px; font-size: 14px;font-family: "Microsoft YaHei";color: #a9a9a9;} 
+.right .li1{padding-left: 34px; margin-left: 27px; background: url("../images/login/icons.png") no-repeat -18px -144px;width: 263px;height: 42px;border:1px #ccd5db solid;border-radius: 5px;} 
+.right .li2{padding-left: 34px; margin-left: 27px; background: url("../images/login/icons.png") no-repeat -18px -182px;width: 263px;height: 42px;border:1px #ccd5db solid;border-radius: 5px;} 
+.right .user{margin-bottom: 20px;} 
+.right .pass{margin-bottom: 30px;} 
+.right .forgot{padding-left: 10px;margin-left: 17px;} 
+.right .regin{padding-right: 20px;margin-right: 7px;} 
+.right .forgot,.regin{font-size: 14px;font-family: "Microsoft YaHei";color: #666;} 
+.right .forgot:hover,.regin:hover{color: #427fed ;} 
+.right .in{width: 300px;padding: 14px 0;margin-top: 15px; background: #427fed;border:none;border-radius: 5px; box-shadow: 1px 1px 4px #427fed inset; font-size: 16px;font-family: "Microsoft YaHei";color: #fff;} 
+.right .oways-w{margin: 25px 0 30px 30px;} 
+.right .oways{font-size: 12px;font-family: "Microsoft YaHei";color: #666;} 
+.right .qq{padding-left: 23px;line-height: 26px;background: url("../images/login/icons.png") no-repeat -13px -62px;} 
+.right .wb{padding-left: 35px;margin-left: 11px; line-height: 26px;background: url("../images/login/icons.png") no-repeat -5px -92px;} 
+  
+
+
+ 
+  
+/*找回密码页面  此页面使用登陆页面样式*/
+.content .fgt_left_img{position: relative;padding: 73px 0 73px 50px;}
+.content .fgt_right{box-shadow: 2px 4px 5px #2f57a3; border-radius: 3px; width: 350px;background: #fff;margin: 90px 10px 90px 0;}
+.content .fgt_right .li1{padding-left: 34px; margin-left: 25px; background: url("../images/login/icons.png") no-repeat -18px -144px;width: 263px;height: 42px;border:1px #ccd5db solid;border-radius: 5px;} 
+.content .fgt_right .user{margin-bottom: 20px;}
+.content .fgt_right .regin{font-size: 14px;font-family: "Microsoft YaHei";color: #666;} 
+.content .fgt_right .regin:hover{color: #427fed ;} 
+.content .fgt_right .in{width: 300px;padding: 14px 0;margin-top: 10px; background: #427fed;border:none;border-radius: 5px; box-shadow: 1px 1px 4px #427fed inset; font-size: 16px;font-family: "Microsoft YaHei";color: #fff;} 
+.content .fgt_right .oways-w{margin: 25px 30px;} 
+.content .fgt_right .oways{font-size: 12px;font-family: "Microsoft YaHei";color: #666;} 
+.content .fgt_right .qq{padding-left: 23px;line-height: 26px;background: url("../images/login/icons.png") no-repeat -13px -62px;} 
+.content .fgt_right .wb{padding-left: 35px;margin-left: 11px; line-height: 26px;background: url("../images/login/icons.png") no-repeat -5px -92px;} 
+.content .fgt_right .zc{padding-top: 4px;}
+.fgt_right .h2{padding: 33px 25px;text-align: left;font-size: 16px;font-family: "Microsoft YaHei";color: #333;}
+.fgt_right .h3{padding: 8px 25px 20px;text-align: left;font-size: 14px;font-family: "Microsoft YaHei";color: #666;}
+.fgt input{width: 263px;height: 42px;border:none; border-radius: 5px; font-size: 14px;font-family: "Microsoft YaHei";color: #a9a9a9;} 
+
+@media (max-width: 764px){
+  /*登陆页面适配手机端*/
+.title img{max-width: 150px;}
+.login_warp{max-width: 1200px;margin: 0 auto;padding: 10px;}
+.logo{padding: 30px 0px 0px;}
+.login_warp .survey {display: none; padding-left: 30px; margin: -23px 0 0;background: url("../images/login/icons.png") no-repeat -25px -234px;}
+.login_warp .survey a{line-height: 23px; font-size: 14px;font-family: "Microsoft YaHei";color: #333;}
+.login_warp .survey a:hover{color: #427fed;}
+.content{margin: 15px auto;padding: 0; background: none;text-align: center; box-shadow: none;}
+.content .wap{margin: 0 auto;max-width: 1200px;}
+
+/*登陆页面*/
+.content .left-img{display: none;}
+.content .d-user{display: none;}
+ 
+.right{float: none; box-shadow: none; border-radius: 0; width: 100%;background: #fff;margin: 0px auto;}
+/*二维扫描登陆页面样式*/
+.scan{display: none;}
+.right .tip{display: none; padding-left: 25px; line-height: 84px;font-size: 16px;font-family: "Microsoft YaHei";color: #333;}
+.content .right .tcode-icon{display: none;}
+/*账号登陆页面手机端样式*/
+.right .gif{display: none;}
+.right form input{width: 100%;height: 42px;border:none;border-radius: 5px; font-size: 14px;font-family: "Microsoft YaHei";color: #a9a9a9;} 
+.right .li1{padding-left: 34px; margin-left: -1px; background: url("../images/login/icons.png") no-repeat -18px -144px;width: 100%;height: 42px;border:1px #ccd5db solid;border-radius: 0;} 
+.right .li2{padding-left: 34px; margin-left: -1px;margin-top: -1px; background: url("../images/login/icons.png") no-repeat -18px -182px;width: 100%;height: 42px;border:1px #ccd5db solid;border-radius: 0;} 
+.right .user{margin-bottom: 0;} 
+.right .pass{margin-bottom: 30px;} 
+.right .forgot{padding-left: 0;margin-left: 5%;} 
+.right .regin{padding-right: 0;margin-right: 5%;} 
+.right .forgot,.regin{font-size: 14px;font-family: "Microsoft YaHei";color: #666;} 
+.right .forgot:hover,.regin:hover{color: #427fed ;} 
+.right .in{width: 90%;padding: 14px 0;margin-top: 15px; margin-left: 5%;margin-right: 5%; background: #427fed;border:none;border-radius: 5px; box-shadow: 1px 1px 4px #427fed inset; font-size: 16px;font-family: "Microsoft YaHei";color: #fff;} 
+.right .oways-w{margin: 0px; padding: 16px 5%;} 
+.right .oways{font-size: 12px;font-family: "Microsoft YaHei";color: #666;} 
+.right .qq{padding-left: 23px;line-height: 26px;background: url("../images/login/icons.png") no-repeat -13px -62px;} 
+.right .wb{padding-left: 35px;margin-left: 11px; line-height: 26px;background: url("../images/login/icons.png") no-repeat -5px -92px;} 
+.footer{display: none;}
+/*找回密码页面手机端样式*/
+.content .fgt_left_img{display: none;}
+.content .fgt_right .h2{display: none;}
+.content .fgt_right .h3{padding: 8px 12px 20px;}
+.content .fgt_right{float: none; box-shadow: none; border-radius: 0; width: 100%;background: #fff;margin: 0px auto;}
+.content .fgt_right .li1{padding-left: 41px;margin-left: -1px;border-radius: 0px;background: url("../images/login/icons.png") no-repeat -13px -144px;width: 100%;height: 42px;border: 1px #ccd5db solid;} 
+.fgt input{width: 100%;height: 42px;border:none; font-size: 14px;font-family: "Microsoft YaHei";color: #a9a9a9;} 
+.content .fgt_right .in{width: 90%;padding: 14px 0;margin-top: 15px; margin-left: 5%;margin-right: 5%; background: #427fed;border:none;border-radius: 5px; box-shadow: 1px 1px 4px #427fed inset; font-size: 16px;font-family: "Microsoft YaHei";color: #fff;} 
+.content .fgt_right .oways-w{margin: 0px; padding: 16px 5%;} 
+.content .fgt_right .oways{font-size: 12px;font-family: "Microsoft YaHei";color: #666;} 
+.content .fgt_right .qq{padding-left: 23px;line-height: 26px;background: url("../images/login/icons.png") no-repeat -13px -62px;} 
+.content .fgt_right .wb{padding-left: 35px;margin-left: 11px; line-height: 26px;background: url("../images/login/icons.png") no-repeat -5px -92px;} 
+}
+
+ 

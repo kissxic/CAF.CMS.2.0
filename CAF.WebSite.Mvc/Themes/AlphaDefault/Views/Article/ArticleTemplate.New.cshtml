@@ -1,0 +1,747 @@
+﻿@model ArticlePostModel
+@using CAF.Infrastructure.Core.Domain.Cms.Articles;
+@using CAF.Infrastructure.Core.Domain.Seo;
+@using CAF.Infrastructure.Core.Domain.Cms.Media;
+@using CAF.Infrastructure.Core;
+@{
+    Layout = "~/Themes/AlphaDefault/Views/Shared/_Layout.New.Detail.cshtml";
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    int pictureSize = EngineContext.Current.Resolve<MediaSettings>().DetailsPictureSize;
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl("Article", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(productUrl);
+    }
+  
+
+}
+
+@section header{
+    <div id="navWrap">
+        <div class="w1210 clearfix">
+            <div class="logo fl">
+                <a href="http://www.jianke.com/" title="健客网" target="_blank"><img src="http://img.jianke.net/jk2015/images/logo.png" width="100" height="30"></a>
+                <a href="http://www.jianke.com/news/" title="健客资讯" target="_blank" class="pd">健客<br>资讯</a>
+            </div>
+            <div class="nav fl">
+                <strong><a href="http://www.jianke.com/news/bj/" target="_blank" title="保健资讯">保健资讯</a></strong>
+                <ul class="w110">
+                    <li><a href="http://www.jianke.com/news/bj/nxbj/" target="_blank" title="两性">两性</a></li>
+                    <li><a href="http://www.jianke.com/news/bj/lrbj/" target="_blank" title="老人">老人</a></li>
+                    <li><a href="http://www.jianke.com/news/bj/muying/" target="_blank" title="母婴">母婴</a></li>
+                    <li><a href="http://www.jianke.com/news/bj/jtys/" target="_blank" title="家庭">家庭</a></li>
+                    <li><a href="http://www.jianke.com/news/bj/jkyy/" target="_blank" title="健康用药">健康用药</a></li>
+                </ul>
+                <div class="line"></div>
+                <strong><a href="http://www.jianke.com/news/jbzx/" target="_blank" title="诊疗资讯">诊疗资讯</a></strong>
+                <ul class="w120">
+                    <li><a href="http://www.jianke.com/news/jbzx/nk/" target="_blank" title="内科">内科</a></li>
+                    <li><a href="http://www.jianke.com/news/jbzx/wk/" target="_blank" title="外科">外科</a></li>
+                    <li><a href="http://www.jianke.com/news/jbzx/pfk/" target="_blank" title="皮肤科">皮肤科</a></li>
+                    <li><a href="http://www.jianke.com/news/jbzx/ek/" target="_blank" title="儿科">儿科</a></li>
+                    <li><a href="http://www.jianke.com/news/jbzx/fk/" target="_blank" title="妇科">妇科</a></li>
+                    <li><a href="http://www.jianke.com/news/jbzx/wgk/" target="_blank" title="五官科">五官科</a></li>
+                </ul>
+                <div class="line"></div>
+                <strong><a href="http://www.jianke.com/news/jfks/" target="_blank" title="减肥资讯">减肥资讯</a></strong>
+                <ul class="w72">
+                    <li><a href="http://www.jianke.com/news/jfks/jfcs/" target="_blank" title="常识">常识</a></li>
+                    <li><a href="http://www.jianke.com/news/jfks/ysjf/" target="_blank" title="饮食">饮食</a></li>
+                    <li><a href="http://www.jianke.com/news/jfks/ydjf/" target="_blank" title="运动">运动</a></li>
+                    <li><a href="http://www.jianke.com/news/jfks/yxjf/" target="_blank" title="医学">医学</a></li>
+                </ul>
+                <div class="line"></div>
+                <strong><a href="http://www.jianke.com/news/meirong/" target="_blank" title="美容资讯">美容资讯</a></strong>
+                <ul class="w72">
+                    <li><a href="http://www.jianke.com/news/meirong/hfzt/" target="_blank" title="护肤">护肤</a></li>
+                    <li><a href="http://www.jianke.com/news/meirong/hzzt/" target="_blank" title="化妆">化妆</a></li>
+                    <li><a href="http://www.jianke.com/news/meirong/zxmr/" target="_blank" title="整形">整形</a></li>
+                    <li><a href="http://www.jianke.com/news/meirong/mrsp/" target="_blank" title="食谱">食谱</a></li>
+                </ul>
+                <div class="line"></div>
+                <strong><a href="http://www.jianke.com/news/jkxw/" target="_blank" title="新闻资讯">新闻资讯</a></strong>
+                <ul class="w120">
+                    <li><a href="http://www.jianke.com/news/jkxw/mtpl/" target="_blank" title="媒体新闻">媒体新闻</a></li>
+                    <li><a href="http://www.jianke.com/news/jkxw/mtbd/" target="_blank" title="媒体报道">媒体报道</a></li>
+                    <li><a href="http://www.jianke.com/news/jkxw/jkxw/" target="_blank" title="健客动态">健客动态</a></li>
+                    <li><a href="http://www.jianke.com/ypzd/" target="_blank" title="用药指导">用药指导</a></li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="top">
+    <div class="w1210 clearfix">
+        <div class="location fl">
+            您的位置：<a href="http://www.jianke.com/" class="ClassNav" target="_blank">健客网</a>  &gt; <a href="http://www.jianke.com/news/" class="ClassNav" target="_blank">健客资讯</a>  &gt; <a href="http://www.jianke.com/news/jfks/" class="ClassNav" target="_blank">减肥</a>  &gt; <a href="http://www.jianke.com/news/jfks/ydjf/" class="ClassNav" target="_blank">运动减肥</a> &gt; 跑步：如何有效消耗脂肪
+        </div>
+        <div class="search fr">
+            <div class="option fl">
+                <span id="selected" class="act1" name="zx">资讯</span>
+                <ul id="dropdown" style="display: none;">
+                    <li name="zx"><a href="javascript:;">资讯</a></li>
+                    <li name="wd"><a href="javascript:;">问答</a></li>
+                    <li name="yp"><a href="javascript:;">药品</a></li>
+                    <li name="zz"><a href="javascript:;">症状</a></li>
+                </ul>
+            </div>
+            <input class="search_input fl" type="text" name="search_input" id="search_input" maxlength="16" onblur="if(this.value==''){this.value='如何让女人性高潮';this.style.color='#bcbcbc'}" onfocus="this.style.color='#000';if(this.value =='如何让女人性高潮'){this.value=''}" autocomplete="off" value="如何让女人性高潮" style="color:#bcbcbc">
+            <a class="search_btn fr" href="javascript:void(0);" onclick="SearchSubmit($('#search_input').val());"></a>
+        </div>
+
+        <script type="text/javascript">
+    function SearchSubmit(key)
+    {
+        if(key != null && key!="")
+        {
+            var currselect=$("#selected").attr("name");
+            var url="http://search.jianke.com/zh/article?wd=";
+            if(currselect == "wd")
+            {
+                url="http://search.jianke.com/zh/ask?wd=";
+            }
+            else if(currselect == "yp")
+            {
+                url="http://search.jianke.com/zh/yaopin?wd=";
+            }
+            else if(currselect == "zz")
+            {
+                url="http://search.jianke.com/zh/disease?wd=";
+            }
+            var url = url + key;
+            window.location= url;
+        }
+        else
+        {
+            alert("请输入搜索内容！");
+        }
+    }
+
+    function checkInputSearchDown(e)
+    {
+        var eve = e|| window.event;
+        if(eve.keyCode == 13)
+        {
+            var keyword = $("#keyword").val();
+            if ($.trim(keyword) != "")
+            {
+                SearchSubmit(keyword);
+            }
+            else
+            {
+                alert("请输入搜索内容！");
+            }
+        }
+        return true;
+    }
+        </script>
+
+    </div>
+</div>
+
+<div class="w1210 clearfix">
+    <div class="content fl">
+        <div class="article">
+            <h1>跑步：如何有效消耗脂肪</h1>
+            <div class="tag">
+                <span class="data">2016-08-30</span>
+                <span class="origin">来源： 放心医苑</span>&nbsp;
+                <span class="tab">
+                    标签：
+                    <a href="#" target="_blank">掌上医生</a>
+                    <a href="#" target="_blank">喝茶减肥</a>
+                    <a href="#" target="_blank">一天瘦一斤</a>
+                    <a href="#" target="_blank">安全减肥</a>
+                    <a href="#" target="_blank">联盟</a>
+                </span>
+
+
+            </div>
+            <div class="summary"><span>摘要：</span>消耗脂肪的关键之一是尽量用接近你的无氧界限(无氧阈)的运动强度跑步，而正确的姿势能使你无需浪费额外的能量就能达到这个强度。</div>
+            <div class="art_cont">
+                <p>　　消耗<a target="_blank" href="http://www.jianke.com/jfpd/" name="InnerLinkKeyWord">脂肪</a>的关键之一是尽量用接近你的无氧界限(无氧阈)的运动强度<a target="_blank" href="http://www.jianke.com/news/783805.html" name="InnerLinkKeyWord">跑步</a>，而正确的姿势能使你无需浪费额外的能量就能达到这个强度。</p>
+                <p>　　向前是跑步姿势最重要的一个环节。保证向前的动力能防止疲劳后动作的变形，亚西斯博士建议进行力量和拉伸练习。跑步者的伸拉练习应该是“动力伸拉”，而不是普通的静力伸拉，因为跑步本身是动力性质的。本文介绍的几种拉伸动作可在热身或练习结束后作。</p>
+                <p><strong>　　1、头和肩</strong></p>
+                <p>　　跑步动作要领——保持头与肩的稳定。头要正对前方，除非道路不平，不要前探，两眼注视前方。肩部适当放松，避免含胸。</p>
+                <p>　　动力伸拉——耸肩。肩放松下垂，然后尽可能上耸，停留一下，还原后重复。</p>
+                <p><strong>　　2、臂与手</strong></p>
+                <p>　　跑步动作要领——摆臂应是以肩为轴的前后动作，左右动作幅度不超过身体正中线。手指、腕与臂应是放松的，肘关节角度约为90度。</p>
+                <p>　　动力伸拉——抬肘摆臂。两臂一前一后成预备起跑姿势，后摆臂肘关节尽量抬高，然后放松前摆。随着动作加快时越抬越高。</p>
+                <p><strong>　　3、躯干与髋</strong></p>
+                <p>　　跑步动作要领——从颈倒腹保持直立，而非前倾（除非加速或上坡）或后仰，这样有利于呼吸、保持平衡和步幅。躯干不要左右摇晃或上下起伏太大。腿前摆时积极送髋，跑步时要注意髋部的转动和放松。</p>
+                <p>　　动力伸拉——弓步压腿。两腿前后开立，与肩同宽，身体中心缓慢下压至肌肉紧张，然后放松还原。躯干始终保持直立。</p>
+                <p><strong>　　4、腰</strong></p>
+                <p>　　跑步动作要领——腰部保持自然直立，不宜过于挺直。肌肉稍微紧张，维持躯干姿势，同时注意缓冲脚着地的冲击。</p>
+                <p>　　动力伸拉——体前屈伸。自然站立，两脚开立，与肩同宽。躯干缓慢前屈至两手下垂至脚尖，保持一会儿，然后复原。</p>
+                <p><strong>　　5、大腿与膝</strong></p>
+                <p>　　跑步动作要领——大腿和膝用力前摆，而不是上抬。腿的任何侧向动作都是多余的，而且容易引起膝关节受伤，因此大腿的前摆要正。</p>
+                <p style="text-align: center"><img alt="跑步：如何有效消耗脂肪" width="400" height="300" src="http://p.jianke.net/article/201608/20160830165304847.jpg"></p>
+                <p>　　动力拉伸——前弓身．两脚站距同髋宽．双手放在头后．从<a target="_blank" href="http://www.jianke.com/gkpd/1078681.html" name="InnerLinkKeyWord">髋关节</a>屈体向前．保持腰背挺直，直到股二头肌感到紧张。</p>
+                <p><strong>　　6、小腿与<a target="_blank" href="http://www.jianke.com/gkpd/" name="InnerLinkKeyWord">跟腱</a></strong></p>
+                <p>　　跑步动作要领——脚应落在身体前约一尺的位置，靠近正中线。小腿不宜跨得太远，避免跟腱因受力过大而劳损。同时要注意小腿肌肉和跟腱在着地时的缓冲，落地时小腿应积极向后扒地，使身体积极向前。另外，小腿前摆方向要正，脚应该尽量朝前，不要外翻或后翻，否则膝关节和踝关节容易受伤。可在沙滩上跑步时检查脚印以作参考。</p>
+                <p>　　动力伸拉——撑壁提踵。面向墙壁约1米左右站立，两臂前伸与肩同宽，手撑壁。提踵，再放下，感觉小腿和跟腱紧张。</p>
+                <p><strong>　　7、脚跟与脚趾</strong></p>
+                <p>　　跑步动作要领——如果步幅过大，小腿前伸过远，会以脚跟着地，产生制动刹车反作用力，对骨和关节损伤很大。正确的落地时用脚的中部着地，并让冲击力迅速分散到全脚掌。</p>
+                <p>　　动力伸拉——坐式伸踝．跪在地上，臀部靠近脚跟，上体保持直立．慢慢向下给踝关节压力直到趾伸肌与脚前掌感到足够拉力．然后抬臀后重复．动作要有节奏，缓慢。</p>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+        <div class="page"></div>
+
+        <!--分享 start-->
+        <style type="text/css">
+            .jiathis_style_24x24 {
+                float: left;
+            }
+
+                .jiathis_style_24x24 .jtico {
+                    background: url(http://img.jianke.net/jk2015/images/shareicon.jpg) no-repeat 0;
+                }
+
+                .jiathis_style_24x24 .jtico_weixin {
+                    background-position: -116px 0;
+                }
+
+                .jiathis_style_24x24 .jtico_tqq {
+                    background-position: 0 0;
+                }
+
+                .jiathis_style_24x24 .jtico_qzone {
+                    background-position: -29px 0;
+                }
+
+                .jiathis_style_24x24 .jtico_cqq {
+                    background-position: -58px 0;
+                }
+
+                .jiathis_style_24x24 .jtico_tsina {
+                    background-position: -87px 0;
+                }
+
+            #jiathis_webchat img {
+                margin: 0 auto;
+            }
+        </style>
+        <div class="share clearfix">
+            <span>分享到：</span>
+            <div class="jiathis_style_24x24">
+                <a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jtico jtico_weixin"></span></a>
+                <a class="jiathis_button_tqq" title="分享到腾讯微博"><span class="jiathis_txt jtico jtico_tqq"></span></a>
+                <a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+                <a class="jiathis_button_cqq" title="分享到QQ好友"><span class="jiathis_txt jtico jtico_cqq"></span></a>
+                <a class="jiathis_button_tsina" title="分享到微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+            </div>
+            <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1" charset="utf-8"></script>
+            <script type="text/javascript" src="http://v3.jiathis.com/code/plugin.client.js" charset="utf-8"></script>
+        </div>
+        <!--分享 end-->
+
+        <div class="relatedInfo">
+            <h2>相关资讯</h2>
+            <ul class="clearfix thisPic">
+
+                <li class="mgr33">
+                    <a href="http://www.jianke.com/news/3079566.html" target="_blank" title="跑步减肥注意5个要点 拒绝小腿变粗壮">
+                        <img src="http://p.jianke.net/article/201608/20160829215609593.jpg" alt="跑步减肥注意5个要点 拒绝小腿变粗壮">
+                        <div></div>
+                        <p>跑步减肥注意5个要点 拒绝小腿变粗壮</p>
+                    </a>
+                </li>
+
+
+                <li class="mgr33">
+                    <a href="http://www.jianke.com/news/3079560.html" target="_blank" title="锻炼身体肌肉 摆脱易胖体质">
+                        <img src="http://p.jianke.net/article/201608/2016082921533476.jpg" alt="锻炼身体肌肉 摆脱易胖体质">
+                        <div></div>
+                        <p>锻炼身体肌肉 摆脱易胖体质</p>
+                    </a>
+                </li>
+
+
+                <li class="mgr33">
+                    <a href="http://www.jianke.com/news/3079554.html" target="_blank" title="秋季怎么运动减肥最快">
+                        <img src="http://p.jianke.net/article/201608/20160829215045689.jpg" alt="秋季怎么运动减肥最快">
+                        <div></div>
+                        <p>秋季怎么运动减肥最快</p>
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a href="http://www.jianke.com/news/2642551.html" target="_blank" title="超速燃脂 跳绳减肥的6个正确方法">
+                        <img src="http://p.jianke.net/article/201604/20160411130620141.jpg" alt="超速燃脂 跳绳减肥的6个正确方法">
+                        <div></div>
+                        <p>超速燃脂 跳绳减肥的6个正确方法</p>
+                    </a>
+                </li>
+
+
+            </ul>
+            <ul class="clearfix thisText">
+
+                <li><a href="http://www.jianke.com/news/710.html" target="_blank" title="运动可使腹部脂肪细胞瘦身">运动可使腹部脂肪细胞瘦身</a></li>
+
+
+                <li><a href="http://www.jianke.com/news/711.html" target="_blank" title="公认最耗脂10大运动(组图)">公认最耗脂10大运动(组图)</a></li>
+
+
+                <li><a href="http://www.jianke.com/news/712.html" target="_blank" title="懒人减肥自有懒招">懒人减肥自有懒招</a></li>
+
+
+                <li><a href="http://www.jianke.com/news/713.html" target="_blank" title="瘦身：三招让身体细胞跳舞">瘦身：三招让身体细胞跳舞</a></li>
+
+
+                <li><a href="http://www.jianke.com/news/714.html" target="_blank" title="丰胸美臀 塑造S身型(组图)">丰胸美臀 塑造S身型(组图)</a></li>
+
+
+                <li><a href="http://www.jianke.com/news/715.html" target="_blank" title="性感跆拳道塑形减肥">性感跆拳道塑形减肥</a></li>
+
+
+                <li><a href="http://www.jianke.com/news/716.html" target="_blank" title="最有减肥效果的运动">最有减肥效果的运动</a></li>
+
+
+                <li><a href="http://www.jianke.com/news/717.html" target="_blank" title="僵尸跳：懒MM减肥必练">僵尸跳：懒MM减肥必练</a></li>
+
+
+                <li><a href="http://www.jianke.com/news/718.html" target="_blank" title="1日走步塑形燃脂方法">1日走步塑形燃脂方法</a></li>
+
+
+                <li><a href="http://www.jianke.com/news/719.html" target="_blank" title="适合下半身肥胖5个小动作">适合下半身肥胖5个小动作</a></li>
+
+
+            </ul>
+            <div class="thisTab">
+                <b>相关标签<i>&nbsp;:</i></b>
+
+
+                <a href="http://www.jianke.com/zhuanti/qjp57/index.shtml?banner" target="_blank" title="超级P57减肥">超级P57减肥</a>
+
+                <a href="http://www.jianke.com/zhuanti/alx/" target="_blank" title="艾丽奥利司他">艾丽奥利司他</a>
+
+                <a href="http://www.jianke.com/zhuanti/ddz/?banner" target="_blank" title="大肚子减肥茶">大肚子减肥茶</a>
+
+                <a href="http://www.jianke.com/zhuanti/zhengduoyan/" target="_blank" title="郑多燕减肥晚餐">郑多燕减肥晚餐</a>
+
+                <a href="http://www.jianke.com/zhuanti/cls/" target="_blank" title="陈老师泄油瘦身汤">陈老师泄油瘦身汤</a>
+
+
+            </div>
+        </div>
+
+        <div class="relatedQA">
+            <h2>相关问答</h2>
+            <ul class="clearfix">
+
+                <li><a href="http://www.jianke.com/ask/question/327312" target="_blank" title="晚上跑步减肥好，还是早上跑步减肥好啊？">晚上跑步减肥好，还是早上跑步减肥好啊？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/43035" target="_blank" title="什么牌子的减肥药效果最好？且安全不反弹的？">什么牌子的减肥药效果最好？且安全不反弹的？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/308728" target="_blank" title="什么时候喝蜂蜜水减肥效果最好啊？">什么时候喝蜂蜜水减肥效果最好啊？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/319119" target="_blank" title="碧生源减肥茶会有副作用吗？">碧生源减肥茶会有副作用吗？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/325331" target="_blank" title="荷叶茶要怎么喝才有减肥的效果啊？">荷叶茶要怎么喝才有减肥的效果啊？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/261216" target="_blank" title="超级减肥王的减肥方法，是怎么样的啊？">超级减肥王的减肥方法，是怎么样的啊？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/327317" target="_blank" title="跑步和跳绳，哪个的减肥效果好啊？">跑步和跳绳，哪个的减肥效果好啊？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/282917" target="_blank" title="碧生源减肥茶怎么喝才有减肥的效果？">碧生源减肥茶怎么喝才有减肥的效果？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/269039" target="_blank" title="早上一杯柠檬蜂蜜水，减肥效果如何啊？">早上一杯柠檬蜂蜜水，减肥效果如何啊？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/1761188" target="_blank" title="网络传醋泡香蕉加红糖可以减肥，会不会有副作用？">网络传醋泡香蕉加红糖可以减肥，会不会有副作用？</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+$(function()
+{
+  $('.thisPic li a img').each(function()
+  {
+    var imgSrc = $(this).attr('src');
+    if(imgSrc == "")
+    {
+      $(this).attr('src', 'http://img.jianke.net/article/201507/default.jpg');
+    }
+  });
+});
+    </script>
+
+    <div class="side fl">
+
+        <div class="relatedPro">
+            <h2>相关产品</h2>
+            <div class="clearfix">
+
+                <a href="http://www.jianke.com/product/638.html" target="_blank" title="碧生源减肥茶(碧生源)">碧生源减肥茶(碧生源)</a>
+
+
+                <a href="http://www.jianke.com/product/254236.html" target="_blank" title="轻身减肥胶囊(福瑞堂)">轻身减肥胶囊(福瑞堂)</a>
+
+
+                <a href="http://www.jianke.com/product/167844.html" target="_blank" title="溜溜牌减肥胶囊(简亭)">溜溜牌减肥胶囊(简亭)</a>
+
+
+                <a href="http://www.jianke.com/product/11059.html" target="_blank" title="荷氏可轻牌减肥胶囊">荷氏可轻牌减肥胶囊</a>
+
+
+                <a href="http://www.jianke.com/product/723068.html" target="_blank" title="美媛春牌减肥软胶囊 ">美媛春牌减肥软胶囊 </a>
+
+
+                <a href="http://www.jianke.com/product/11058.html" target="_blank" title="荷氏可轻牌减肥胶囊">荷氏可轻牌减肥胶囊</a>
+
+
+                <a href="http://www.jianke.com/product/170764.html" target="_blank" title="轻身减肥胶囊">轻身减肥胶囊</a>
+
+
+                <a href="http://www.jianke.com/product/531704.html" target="_blank" title="降脂减肥胶囊">降脂减肥胶囊</a>
+
+
+                <a href="http://www.jianke.com/product/159307.html" target="_blank" title="体重身体脂肪测量器(欧姆龙)">体重身体脂肪测量器(欧姆龙)</a>
+
+
+                <a href="http://www.jianke.com/product/171220.html" target="_blank" title="魔茶贴贴瘦(窈窕减肥贴)">魔茶贴贴瘦(窈窕减肥贴)</a>
+
+
+                <a href="http://www.jianke.com/product/80077.html" target="_blank" title="百利达人体脂肪测量仪BC-750">百利达人体脂肪测量仪BC-750</a>
+
+
+                <a href="http://www.jianke.com/product/164937.html" target="_blank" title="身体脂肪测量仪器HBF306(欧姆龙)">身体脂肪测量仪器HBF306(欧姆龙)</a>
+
+
+                <a href="http://www.jianke.com/product/80075.html" target="_blank" title="百利达人体脂肪测量仪UM-041">百利达人体脂肪测量仪UM-041</a>
+
+
+                <a href="http://www.jianke.com/product/586180.html" target="_blank" title="碧生源减肥茶2盒(50袋)">碧生源减肥茶2盒(50袋)</a>
+
+
+                <a href="http://www.jianke.com/product/541915.html" target="_blank" title="乐心A3-F 体重脂肪测量仪(微信版) LS207-B">乐心A3-F 体重脂肪测量仪(微信版) LS207-B</a>
+
+
+                <a href="http://www.jianke.com/product/10592.html" target="_blank" title="盐酸二甲双胍缓释片(麦特美)">盐酸二甲双胍缓释片(麦特美)</a>
+
+
+                <a href="http://www.jianke.com/product/734605.html" target="_blank" title="美媛春减肥体验装">美媛春减肥体验装</a>
+
+
+                <a href="http://www.jianke.com/product/734607.html" target="_blank" title="美媛春减肥-魔茶贴活动装">美媛春减肥-魔茶贴活动装</a>
+
+
+                <a href="http://www.jianke.com/product/688400.html" target="_blank" title="澳洲进口澳琳达左旋肉碱胶囊30粒/瓶提示想减肥瘦身的朋友不要忽视日常饮食">澳洲进口澳琳达左旋肉碱胶囊30粒/瓶提示想减肥瘦身的朋友不要忽视日常饮食</a>
+
+
+                <a href="http://www.jianke.com/product/734606.html" target="_blank" title="美媛春减肥基础装">美媛春减肥基础装</a>
+
+
+                <a href="http://www.jianke.com/product/663963.html" target="_blank" title="高端茶品/本草拾遗品牌/ 牛蒡根茶 30袋/盒/买二送一/排毒祛痘养颜散热/减肥降压通便">高端茶品/本草拾遗品牌/ 牛蒡根茶 30袋/盒/买二送一/排毒祛痘养颜散热/减肥降压通便</a>
+
+
+
+                <a href="http://www.jianke.com/product/268545.html" target="_blank" title="拉格贝尔LacVer丝绒绚采双色眼影">拉格贝尔LacVer丝绒绚采双色眼影</a>
+
+
+                <a href="http://www.jianke.com/product/180832.html" target="_blank" title="瑞舒伐他汀钙片(瑞旨)">瑞舒伐他汀钙片(瑞旨)</a>
+
+
+                <a href="http://www.jianke.com/product/268534.html" target="_blank" title="伊斯佳 美白液">伊斯佳 美白液</a>
+
+
+                <a href="http://www.jianke.com/product/369788.html" target="_blank" title="邦成牛初乳">邦成牛初乳</a>
+
+
+                <a href="http://www.jianke.com/product/268533.html" target="_blank" title="雅格丽白优氧再生紧肤精华液">雅格丽白优氧再生紧肤精华液</a>
+
+
+                <a href="http://www.jianke.com/product/369787.html" target="_blank" title="邦成手磨纯香黑芝麻糊">邦成手磨纯香黑芝麻糊</a>
+
+
+                <a href="http://www.jianke.com/product/369786.html" target="_blank" title="邦成中老年无糖蛋白质粉">邦成中老年无糖蛋白质粉</a>
+
+
+                <a href="http://www.jianke.com/product/369785.html" target="_blank" title="邦成冰糖燕窝">邦成冰糖燕窝</a>
+
+
+                <a href="http://www.jianke.com/product/369784.html" target="_blank" title="邦成雪蛤燕窝">邦成雪蛤燕窝</a>
+
+
+                <a href="http://www.jianke.com/product/01584.html" target="_blank" title="知柏地黄丸(冯了性)(水蜜丸)">知柏地黄丸(冯了性)(水蜜丸)</a>
+
+
+                <a href="http://www.jianke.com/product/369783.html" target="_blank" title="邦成蛹虫草燕窝">邦成蛹虫草燕窝</a>
+
+
+                <a href="http://www.jianke.com/product/268529.html" target="_blank" title="爱司盟 甲壳素水溶纤维营养胶囊">爱司盟 甲壳素水溶纤维营养胶囊</a>
+
+
+                <a href="http://www.jianke.com/product/369782.html" target="_blank" title="邦成复合氨基酸口服液">邦成复合氨基酸口服液</a>
+
+
+                <a href="http://www.jianke.com/product/369781.html" target="_blank" title="邦成血乐口服液">邦成血乐口服液</a>
+
+
+                <a href="http://www.jianke.com/product/268526.html" target="_blank" title="汇香坊 洋甘菊舒缓滋养日霜">汇香坊 洋甘菊舒缓滋养日霜</a>
+
+
+                <a href="http://www.jianke.com/product/369780.html" target="_blank" title="邦成阿胶口服液">邦成阿胶口服液</a>
+
+
+                <a href="http://www.jianke.com/product/268518.html" target="_blank" title="汇香坊洋甘菊舒缓柔肤水">汇香坊洋甘菊舒缓柔肤水</a>
+
+
+                <a href="http://www.jianke.com/product/369779.html" target="_blank" title="邦成氨基酸口服液">邦成氨基酸口服液</a>
+
+
+                <a href="http://www.jianke.com/product/268515.html" target="_blank" title="爱司盟 胡萝卜素软胶囊">爱司盟 胡萝卜素软胶囊</a>
+
+
+                <a href="http://www.jianke.com/product/369777.html" target="_blank" title="邦成宝宝吃饭香">邦成宝宝吃饭香</a>
+
+
+                <a href="http://www.jianke.com/product/03390.html" target="_blank" title="阿托伐他汀钙片(立普妥)">阿托伐他汀钙片(立普妥)</a>
+
+
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="picBox">
+            <ul class="clearfix" style="margin-left: -600px;">
+
+                <li>
+                    <a href="http://www.jianke.com/news/2623775.html" target="_blank">
+                        <img src="http://img.jianke.net/article/2016/4/6/20164691541358.jpg" alt="美白效果最强的五款美白食物">
+                        <p>美白效果最强的五款美白食物</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.jianke.com/news/2623372.html" target="_blank">
+                        <img src="http://img.jianke.net/article/2016/4/6/20164691429192.jpg" alt="惊！男人常刷牙能降低阳痿的发生">
+                        <p>惊！男人常刷牙能降低阳痿的发生</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.jianke.com/news/2623721.html" target="_blank">
+                        <img src="http://img.jianke.net/article/2016/4/6/2016469136512.jpg" alt="5种体质女性易患子宫内膜癌">
+                        <p>5种体质女性易患子宫内膜癌</p>
+                    </a>
+                </li>
+
+            </ul>
+            <div>
+                <span class=""></span>
+                <span class=""></span>
+                <span class="cur"></span>
+            </div>
+        </div>
+
+        <div class="hotArticle">
+            <h2>热文排行</h2>
+
+            <ul>
+
+                <li><a href="http://www.jianke.com/news/783805.html" target="_blank" title="原地跑步多久能减肥 原地跑步的好处和坏处">原地跑步多久能减肥 原地跑步的好处和坏处</a></li>
+
+                <li><a href="http://www.jianke.com/news/603241.html" target="_blank" title="腰粗肚子大如何减肥 4大训练方案甩掉赘肉">腰粗肚子大如何减肥 4大训练方案甩掉赘肉</a></li>
+
+                <li><a href="http://www.jianke.com/news/765550.html" target="_blank" title="游泳减肥多久见效">游泳减肥多久见效</a></li>
+
+                <li><a href="http://www.jianke.com/news/392245.html" target="_blank" title="睡前减肥小妙招">睡前减肥小妙招</a></li>
+
+                <li><a href="http://www.jianke.com/news/620876.html" target="_blank" title="一个月自行车减肥计划">一个月自行车减肥计划</a></li>
+
+                <li><a href="http://www.jianke.com/news/625861.html" target="_blank" title="7种最适合男性减肥的运动">7种最适合男性减肥的运动</a></li>
+
+                <li><a href="http://www.jianke.com/news/602317.html" target="_blank" title="慢跑真的能减肥吗？">慢跑真的能减肥吗？</a></li>
+
+                <li><a href="http://www.jianke.com/news/552618.html" target="_blank" title="减肥最好的运动是什么？">减肥最好的运动是什么？</a></li>
+
+                <li><a href="http://www.jianke.com/news/553178.html" target="_blank" title="游泳减肥消耗热量多">游泳减肥消耗热量多</a></li>
+
+                <li><a href="http://www.jianke.com/news/534374.html" target="_blank" title="什么时候减肥最有效？ ">什么时候减肥最有效？ </a></li>
+            </ul>
+
+
+        </div>
+
+        <div class="hotQA">
+            <h2>热门问答</h2>
+            <ul>
+
+                <li><a href="http://www.jianke.com/ask/question/1393802" target="_blank" title="肥胖咋办。。。。。如何减肥呢。">肥胖咋办。。。。。如何减肥呢。</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/325067" target="_blank" title="孩子的肥胖，我该如何帮他减肥啊？">孩子的肥胖，我该如何帮他减肥啊？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/278478" target="_blank" title="遗传型肥胖，如何减肥啊？">遗传型肥胖，如何减肥啊？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/1299312" target="_blank" title="本人身体肥胖，如何减肥？">本人身体肥胖，如何减肥？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/1508158" target="_blank" title="生说我有脂肪高，血脂高，要减肥啊！我该如何减肥啊？">生说我有脂肪高，血脂高，要减肥啊！我该如何减肥啊？</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/1466920" target="_blank" title="肥胖10岁135斤，肚子大，跑步累，吃饭多，能否吃大肚子减肥茶。">肥胖10岁135斤，肚子大，跑步累，吃饭多，能否吃大肚子减肥茶。</a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/2517352" target="_blank" title="脂肪型肥胖如何快速减肥！ ">脂肪型肥胖如何快速减肥！ </a></li>
+
+
+                <li><a href="http://www.jianke.com/ask/question/777837" target="_blank" title="你好，我很肥胖，想减肥，有没有什么药减肥比较有效又轻松的呢？">你好，我很肥胖，想减肥，有没有什么药减肥比较有效又轻松的呢？</a></li>
+
+
+            </ul>
+        </div>
+
+
+        <div class="mediGuide">
+            <h2>用药指导</h2>
+
+            <ul class="hotnews">
+
+                <li><a href="http://www.jianke.com/a/20150813/1844099.html" target="_blank" title="绿婷减肥胶囊消脂瘦身如何呢？">绿婷减肥胶囊消脂瘦身如何呢？</a></li>
+
+                <li><a href="http://www.jianke.com/zt/1863280.html" target="_blank" title="碧生源减肥茶用于美体瘦身">碧生源减肥茶用于美体瘦身</a></li>
+
+                <li><a href="http://www.jianke.com/a/20151212/2250651.html" target="_blank" title="碧生源减肥茶对任何肥胖的人都有效吗？">碧生源减肥茶对任何肥胖的人都有效吗？</a></li>
+
+                <li><a href="http://www.jianke.com/a/20150813/1844053.html" target="_blank" title="绿婷减肥胶囊美体瘦身效果好吗？">绿婷减肥胶囊美体瘦身效果好吗？</a></li>
+
+                <li><a href="http://www.jianke.com/a/20141201/1129482.html" target="_blank" title="降脂减肥片的作用效果如何？">降脂减肥片的作用效果如何？</a></li>
+
+                <li><a href="http://www.jianke.com/a/20140822/898050.html" target="_blank" title="降脂减肥片价格如何？">降脂减肥片价格如何？</a></li>
+
+                <li><a href="http://www.jianke.com/a/20140822/898032.html" target="_blank" title="降脂减肥片的功效如何？">降脂减肥片的功效如何？</a></li>
+
+                <li><a href="http://www.jianke.com/a/20140327/687343.html" target="_blank" title="要如何鉴别降脂减肥片？">要如何鉴别降脂减肥片？</a></li>
+
+                <li><a href="http://www.jianke.com/a/20141201/1129488.html" target="_blank" title="降脂减肥片的减肥效果如何？">降脂减肥片的减肥效果如何？</a></li>
+
+                <li><a href="http://www.jianke.com/a/20141004/966728.html" target="_blank" title="服用降脂减肥片减肥的疗效如何？">服用降脂减肥片减肥的疗效如何？</a></li>
+            </ul>
+
+
+        </div>
+        <div class="hotWords">
+            <h2>热搜词</h2>
+            <div class="clearfix">
+                <a title="口交技巧" target="_blank" href="http://www.jianke.com/news/606585.html">口交技巧</a>
+                <a title="倒立口交式" target="_blank" href="http://www.jianke.com/news/610282.html">倒立口交式</a>
+                <a title="治疗胃疼小妙招" target="_blank" href="http://m.jianke.com/news/612721.html">治疗胃疼小妙招</a>
+                <a title="什么姿势容易受孕图画" target="_blank" href="http://www.jianke.com/news/203340.html">什么姿势容易受孕图画</a>
+                <a title="性姿态动态图(图解)" target="_blank" href="http://www.jianke.com/news/243195.html">性姿态动态图(图解)</a>
+                <a title="做爱呻吟声" target="_blank" href="http://m.jianke.com/news/413797.html">做爱呻吟声</a>
+                <a title="偷尝禁果的高中生" target="_blank" href="http://m.jianke.com/news/134708.html">偷尝禁果的高中生</a>
+                <a title="性爱故事" target="_blank" href="http://www.jianke.com/news/162648.html">性爱故事</a>
+                <a title="怀孕期间同房姿势图" target="_blank" href="http://www.jianke.com/news/194383.html">怀孕期间同房姿势图</a>
+                <a title="体内湿气重的表现症状" target="_blank" href="http://www.jianke.com/news/857344.html">体内湿气重的表现症状</a>
+                <a title="喝水瘦身法" target="_blank" href="http://www.jianke.com/news/388853.html">喝水瘦身法</a>
+                <a title="猝死的前兆" target="_blank" href="http://www.jianke.com/news/693165.html">猝死的前兆</a>
+                <a title="马甲线是什么" target="_blank" href="http://www.jianke.com/news/1352264.html">马甲线是什么</a>
+                <a title="早泻吃韭菜子能治疗吗" target="_blank" href="http://www.jianke.com/news/1087236.html">早泻吃韭菜子能治疗吗</a>
+                <a title="糖尿病早期五个信号" target="_blank" href="http://www.jianke.com/news/539308.html">糖尿病早期五个信号</a>
+                <a title="吃什么补精养肾" target="_blank" href="http://www.jianke.com/news/603519.html">吃什么补精养肾</a>
+                <a title="喝蜂蜜水的4大禁忌" target="_blank" href="http://www.jianke.com/news/584047.html">喝蜂蜜水的4大禁忌</a>
+                <a title="涂指甲油的技巧" target="_blank" href="http://www.jianke.com/news/1425247.html">涂指甲油的技巧</a>
+                <a title="纹眉后注意事项" target="_blank" href="http://www.jianke.com/news/1547814.html">纹眉后注意事项</a>
+                <a title="骑自行车能减肥吗" target="_blank" href="http://www.jianke.com/news/783814.html">骑自行车能减肥吗</a>
+                <a title="原地跑步能减肥吗" target="_blank" href="http://www.jianke.com/news/783805.html">原地跑步能减肥吗</a>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="nav_bottom">
+    <div class="nav_tit">资讯导航</div>
+    <div class="w1210 clearfix">
+        <dl class="disease">
+            <dt>疾病</dt>
+            <dd>
+                <a href="http://www.jianke.com/nrzl/" target="_blank" title="肿瘤资讯">肿瘤资讯</a>
+                <a href="http://www.jianke.com/nrgbpd/" target="_blank" title="肝病资讯">肝病资讯</a>
+                <a href="http://www.jianke.com/ykpd/" target="_blank" title="眼科资讯">眼科资讯</a>
+                <a href="http://www.jianke.com/gkpd/" target="_blank" title="骨科资讯">骨科资讯</a>
+                <a href="http://www.jianke.com/jdpd/" target="_blank" title="戒毒资讯">戒毒资讯</a>
+                <a href="http://www.jianke.com/kqpd/" target="_blank" title="口腔资讯">口腔资讯</a>
+                <a href="http://www.jianke.com/xcpd/" target="_blank" title="哮喘资讯">哮喘资讯</a>
+                <a href="http://www.jianke.com/ekpd/" target="_blank" title="儿科资讯">儿科资讯</a>
+                <a href="http://www.jianke.com/nrazpd/" target="_blank" title="癌症资讯">癌症资讯</a>
+                <a href="http://www.jianke.com/pfpd/" target="_blank" title="皮肤资讯">皮肤资讯</a>
+                <a href="http://www.jianke.com/gcpd/" target="_blank" title="肛肠资讯">肛肠资讯</a>
+                <a href="http://www.jianke.com/xbpd/" target="_blank" title="性病资讯">性病资讯</a>
+                <a href="http://www.jianke.com/dxpd/" target="_blank" title="癫痫资讯">癫痫资讯</a>
+                <a href="http://www.jianke.com/mnpd/" target="_blank" title="泌尿资讯">泌尿资讯</a>
+                <a href="http://www.jianke.com/jiakang/" target="_blank" title="甲亢资讯">甲亢资讯</a>
+                <a href="http://www.jianke.com/crbpd/" target="_blank" title="传染病资讯">传染病资讯</a>
+                <a href="http://www.jianke.com/yxbpd/" target="_blank" title="银屑病资讯">银屑病资讯</a>
+                <a href="http://www.jianke.com/tnbpd/" target="_blank" title="糖尿病资讯">糖尿病资讯</a>
+                <a href="http://www.jianke.com/ebhpd/" target="_blank" title="耳鼻喉资讯">耳鼻喉资讯</a>
+                <a href="http://www.jianke.com/jsbpd/" target="_blank" title="精神病资讯">精神病资讯</a>
+                <a href="http://www.jianke.com/xnxgpd/" target="_blank" title="心脑血管资讯">心脑血管资讯</a>
+                <a href="http://www.jianke.com/xxwk/" target="_blank" title="心胸外科资讯">心胸外科资讯</a>
+                <a href="http://www.jianke.com/baidianfeng/" target="_blank" title="白癜风资讯">白癜风资讯</a>
+                <a href="http://www.jianke.com/jianruishiyou/" target="_blank" title="尖锐湿疣资讯">尖锐湿疣资讯</a>
+            </dd>
+        </dl>
+        <dl class="life">
+            <dt>生活</dt>
+            <dd>
+                <a href="http://www.jianke.com/news/" target="_blank" title="健客资讯">健客资讯</a>
+                <a href="http://www.jianke.com/xwpd/" target="_blank" title="新闻资讯">新闻资讯</a>
+                <a href="http://www.jianke.com/jfpd/" target="_blank" title="减肥资讯">减肥资讯</a>
+                <a href="http://www.jianke.com/zxpd/" target="_blank" title="整形资讯">整形资讯</a>
+                <a href="http://www.jianke.com/zypd/" target="_blank" title="中医资讯">中医资讯</a>
+                <a href="http://www.jianke.com/lypd/" target="_blank" title="疗养资讯">疗养资讯</a>
+                <a href="http://www.jianke.com/bbs/" target="_blank" title="健客论坛">健客论坛</a>
+                <a href="http://www.jianke.com/photo/" target="_blank" title="健康图库">健康图库</a>
+                <a href="http://www.jianke.com/doctor/" target="_blank" title="找医生">找医生</a>
+                <a href="http://www.jianke.com/hospital/" target="_blank" title="找医院">找医院</a>
+            </dd>
+        </dl>
+        <dl class="service">
+            <dt>服务</dt>
+            <dd>
+                <a href="http://www.jianke.com/jibing/" target="_blank" title="疾病库">疾病库</a>
+                <a href="http://www.jianke.com/yaoqi/" target="_blank" title="药企库">药企库</a>
+                <a href="http://www.jianke.com/ask/" target="_blank" title="健客问答">健客问答</a>
+                <a href="http://www.jianke.com/yyzd/" target="_blank" title="用药指导">用药指导</a>
+                <a href="http://www.jianke.com/zhengzhuang/" target="_blank" title="症状库">症状库</a>
+                <a href="http://www.jianke.com/jiancha/" target="_blank" title="检查库">检查库</a>
+            </dd>
+        </dl>
+        <dl class="crowd">
+            <dt>人群</dt>
+            <dd>
+                <ul>
+                    <a href="http://www.jianke.com/man/" target="_blank" title="男科资讯">男科资讯</a>
+                    <a href="http://www.jianke.com/nrfkpd/" target="_blank" title="妇科资讯">妇科资讯</a>
+                    <a href="http://www.jianke.com/yuer/" target="_blank" title="育儿资讯">育儿资讯</a>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Sms\Views\Sms\Configure.cshtml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Sms\web.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Sms\Views\Web.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Sms\Description.txt
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Sms\icon.png
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Sms\Localization\resources.de-de.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Sms\Localization\resources.en-us.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Sms\CAF.WebSite.Sms.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Sms\CAF.WebSite.Sms.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\CAF.WebSite.Mvc\Plugins\CAF.WebSite.Sms\CAF.WebSite.Sms.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\Plugins\CAF.WebSite.Sms\obj\Debug\CAF.WebSite.Sms.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\Plugins\CAF.WebSite.Sms\obj\Debug\CAF.WebSite.Sms.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.3.0\Plugins\CAF.WebSite.Sms\obj\Debug\CAF.WebSite.Sms.pdb

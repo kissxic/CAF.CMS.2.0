@@ -1,0 +1,4 @@
+CAF.WebSite.Sms
+CAF.WebSite.QQAuth
+CAF.WebSite.XLAuth
+CAF.WebSite.WeiXinAuth

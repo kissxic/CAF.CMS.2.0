@@ -1,0 +1,1 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\09-Job\CAF.Message.Job\CAF.Message.Job\bin\Debug\CAF.Message.Job.exe.config

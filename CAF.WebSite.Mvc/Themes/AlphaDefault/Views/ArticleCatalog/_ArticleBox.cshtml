@@ -1,0 +1,29 @@
+﻿@model ArticleOverviewModel
+
+@{
+    string desc = null, descTitle = null;
+    if (Model.ShortContent.HasValue())
+    {
+        desc = Model.ShortContent.Truncate(50, "...");
+        if (Model.ShortContent.Length > desc.Length)
+        {
+            descTitle = Model.ShortContent;
+        }
+    }
+    string name = null, nameTitle = null;
+    name = Model.Title.Truncate(30, "...");
+    if (Model.Title.Length > name.Length)
+    {
+        nameTitle = Model.Title;
+    }
+}
+<li>
+    <div class='fl Clleft_1'>
+        <a href='@Url.RouteUrl("Article", new { SeName = Model.SeName })'>@name</a>
+    </div>
+    <div class='fl Clleft_2'>暂无公司名称</div>
+    <div class='fl Clleft_3'>全国</div>
+    <div class='fl Clleft_4'>@Model.CreatedOn.ToString("yyyy-MM-dd")</div>
+</li>
+
+

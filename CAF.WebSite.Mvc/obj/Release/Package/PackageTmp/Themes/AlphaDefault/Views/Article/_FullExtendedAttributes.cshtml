@@ -1,0 +1,29 @@
+﻿@model ArticlePostModel
+@using CAF.Infrastructure.Core.Domain.Cms.Articles
+
+@if (Model.ArticleExtendedAttributes.Count > 0)
+{
+    foreach (var attribute in Model.ArticleExtendedAttributes)
+    {
+       
+        string textPrompt = !string.IsNullOrEmpty(attribute.TextPrompt) ? attribute.TextPrompt : attribute.Name;
+        switch (attribute.AttributeControlType)
+        {
+            case AttributeControlType.DropdownList:
+            case AttributeControlType.Checkboxes:
+            case AttributeControlType.RadioList:
+            case AttributeControlType.TextBox:
+            case AttributeControlType.MultilineTextbox:
+            case AttributeControlType.Datepicker:
+                {
+                    <li><p>【@textPrompt】@attribute.DefaultValue</p></li>
+                }
+                break;
+
+        }
+
+    }
+
+}
+
+

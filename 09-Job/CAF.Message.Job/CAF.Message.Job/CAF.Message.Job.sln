@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAF.Message.Job", "CAF.Message.Job.csproj", "{921F4E0F-6A65-44C0-A677-A033B3C09294}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{921F4E0F-6A65-44C0-A677-A033B3C09294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{921F4E0F-6A65-44C0-A677-A033B3C09294}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{921F4E0F-6A65-44C0-A677-A033B3C09294}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{921F4E0F-6A65-44C0-A677-A033B3C09294}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

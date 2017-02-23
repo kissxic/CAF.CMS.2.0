@@ -1,0 +1,81 @@
+﻿@model ProductVariantAttributeCombinationSkuModel
+@{
+    var pictureService = EngineContext.Current.Resolve<CAF.WebSite.Application.Services.Media.IPictureService>();
+}
+@for (int i = 0; i < Model.ProductVariantAttributes.Count; i++)
+{
+    var item = Model.ProductVariantAttributes[i];
+    var index = (i + 1);
+    <section class="panel panel-default m-b-none " data-id="select-@index">
+        <header class="panel-heading bg-light no-border">
+            <div class="clearfix">
+                <select style="width:260px" class="chosen-select form-control" data-sid="@index" data-placeholder="请选择规格">
+                    <option value="">请选择规格</option>
+                    @for (int vi = 0; vi < Model.ProductAttributes.Count; vi++)
+                    {
+                        var vItem = Model.ProductAttributes[vi];
+                        <option @(item.ProductAttributeId == vItem.Id ? "selected" : "") value="@vItem.Id">@vItem.Name</option>
+                    }
+                </select>
+                @if (i == 0)
+                {
+                    <div class="checkbox i-checks checkbox-inline" style="margin-left: 15px"><label><input type="checkbox" name="is_pic" id="js-addImg-function" value="@index" @(Model.AssignablePictures.Count > 0 ? "checked" : "")><i></i>添加规格图片</label></div>
+                }
+                <a class="close suk_close" id="select-@index">×</a>
+
+            </div>
+        </header>
+        <div class="list-group no-radius alt">
+            <div href="#" class="list-group-item">
+                <ul class="sys_spec_text" id="sys_spec-@index" data-sid="@index">
+                    @for (int vi = 0; vi < item.Values.Count; vi++)
+                    {
+                        var vItem = item.Values[vi];
+                        <li class='@(vItem.IsPreSelected ? "selected" : "")' style="background:@vItem.Color" data-color="@vItem.Color" data-aid="@vItem.ProductAttributeOptionId"><a href="javascript:;" title="@vItem.Name">@vItem.Name</a><i></i></li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+
+        <div id="upload-img-wrap">
+            @if (i == 0)
+            {
+                for (int vi = 0; vi < Model.AssignablePictures.Count; vi++)
+                {
+                    var vItem = Model.AssignablePictures[vi];
+                    <div id="box_@vi" class="uplodbox">
+                        <input type="hidden" id="cover_id_@vi" value="@vItem.PicturId">
+                        <div class="uploader-list" id="fileList_@vi">
+                            <div class="file-item thumbnail upload-state-done" id="WU_FILE_@vi">
+                                <img src="@(pictureService.GetPictureUrl(vItem.PicturId.ToInt(), 100, true))" style="height:100px;width: 100px">
+                                <div class="info">@vItem.ProductAttributeOptionName</div><div class="atom-close close-modal small js-remove-sku-atom">×</div>
+                            </div>
+                        </div>
+                        <div data-id="@vi" id="filePicker_@vi" class="webuploader-container hide">
+                            <i style="font-size: 36px;margin-top: 15px" class="fa fa-file-image-o"></i><br>@vItem.ProductAttributeOptionName
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </section>
+}
+@if (Model.ProductVariantAttributes.Count > 0)
+{
+    <script>
+        $(function () {
+            if (stock_val) {
+
+                $.each(stock_val.data, function (k, v) {
+                    uploadpic(k, v.name);
+                });
+                selectDisabled();
+            }
+
+           
+        });
+    </script>
+}
+
+

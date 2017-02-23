@@ -1,0 +1,143 @@
+﻿@model EntityPickerModel
+<div id="entity-picker-@(Model.Entity)-dialog" class="entity-picker modal fade in" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="x close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div>
+                <div class="modal-body">
+                    <form method="POST" action="@Url.Action("EntityPicker", "Common", new { area = "" })">
+                        <input type="hidden" name="Entity" value="@Model.Entity" />
+                        <input type="hidden" name="HighligtSearchTerm" value="@Model.HighligtSearchTerm.ToString()" />
+                        <input type="hidden" name="ReturnField" value="@Model.ReturnField" />
+                        <input type="hidden" name="MaxReturnValues" value="@Model.MaxReturnValues" />
+                        <input type="hidden" name="DisableIf" value="@Model.DisableIf" />
+                        <input type="hidden" name="PageIndex" value="@Model.PageIndex" />
+                        <input type="hidden" name="SelectedIds" value="@Model.SelectedIds" />
+                        @if (Model.Entity.ToLower().Contains("article"))
+                        {
+                            @ArticleSearchForm()
+                        }
+                        else if (Model.Entity.ToLower().Contains("manufacturer") || Model.Entity.ToLower().Contains("vendor"))
+                        {
+                            @ManufacturerAndVendorSearchForm()
+                        }
+                        <div class="clear"></div>
+                        <div class="entity-picker-list"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <span class="footer-note pull-left">
+                        <span class="default hide">@T(Model.MaxReturnValues == 1 ? "Common.EntityPicker.SinglePickNote" : "Common.EntityPicker.MultiPickNote")</span>
+                        <span class="not-selectable hide">@T("Common.NotSelectable").</span>
+                    </span>
+                    <button class="btn btn-primary" disabled="disabled">@T("Common.OK")</button>
+                    <button class="btn" data-dismiss="modal">@T("Common.Cancel")</button>
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#entity-picker-@(Model.Entity)-dialog').entityPicker('initDialog');
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+@helper FormButtons()
+{
+
+    <div class="form-body">
+        <div class="form-group">
+            <label class="col-md-3 control-label">@Html.LabelFor(model => model.ArticleName, new { @class = "control-label", @for = "ArticleName" })</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                    <div class="input-icon">
+                        @Html.TextBoxFor(model => model.ArticleName, new { @class = "entity-picker-searchterm form-control" })
+                    </div>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-warning" name="SearchEntities" data-loading-text="加载&hellip;">
+                            <i class="fa fa-search"></i>&nbsp;查询
+                        </button>
+                        <button type="button" class="btn" name="FilterEntities">
+                            <i class="fa fa-filter"></i>&nbsp;筛选
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+@helper ArticleSearchForm()
+        {
+    <div class="portlet light">
+        <div class="portlet-body form form-horizontal form-bordered form-row-stripped">
+            @FormButtons()
+
+            <div class="form-body entity-picker-filter">
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        @Html.LabelFor(model => model.ChannelId, new { @class = "control-label", @for = "ChannelId" })
+                    </label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.ChannelId, Model.AvailableChannels, Model.AllString, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        @Html.LabelFor(model => model.CategoryId, new { @class = "control-label", @for = "CategoryId" })
+                    </label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.CategoryId, Model.AvailableCategories, Model.AllString, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">
+                        @Html.LabelFor(model => model.ManufacturerId, new { @class = "control-label", @for = "ManufacturerId" })
+                    </label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.ManufacturerId, Model.AvailableManufacturers, Model.AllString, new { @class = "form-control" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.entity-picker-filter').hide();
+        });
+    </script>
+}
+
+@helper ManufacturerAndVendorSearchForm()
+        {
+    <div class="portlet light">
+        <div class="portlet-body form form-horizontal form-bordered form-row-stripped">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">@Html.LabelFor(model => model.ArticleName, new { @class = "control-label", @for = "ArticleName" })</label>
+                    <div class="col-md-9">
+                        <div class="input-group">
+                            <div class="input-icon">
+                                @Html.TextBoxFor(model => model.ArticleName, new { @class = "entity-picker-searchterm form-control" })
+                            </div>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-warning" name="SearchEntities" data-loading-text="@(T("Common.Loading"))&hellip;">
+                                    <i class="fa fa-search"></i>&nbsp;@T("Admin.Common.Search")
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+}
+
+

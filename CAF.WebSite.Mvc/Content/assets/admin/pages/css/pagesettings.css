@@ -1,0 +1,51 @@
+/*ÍøÕ¾-----------*/
+.vis-view-area { background: url('../img/index.jpg') no-repeat; height: 2792px; width:1228px; }
+.vis-view-area a { display: block; background: rgba(231, 96, 74, 0.12); width: 100%; height: 100%; float: left; cursor: pointer }
+.vis-view-area a:hover { border: 1px solid #e3393c }
+.vis-view-area .head-area { height:120px; margin-top: 30px;}
+.vis-view-area .logo-area { width: 250px; }
+.vis-view-area .search-area { width: 500px; margin-left:35px; }
+.vis-view-area .nav-area {margin-top: 6px;height: 38px;padding-left: 223px;}
+.vis-view-area .first-screen-area { float: left; height: 527px; width: 100%; }
+.vis-view-area .categorys-area { width: 220px; }
+.vis-view-area .scroll-area-center {width: 990px;height: 500px;margin: 40px 5px; float: left;}
+.vis-view-area .scroll-area {width: 575px;height: 300px; margin: 0; float: left;}
+.vis-view-area .scroll-area-min {width: 985px;height: 155px;margin: 20px 5px; float: left;}
+.vis-view-area .scroll-area-right {width: 180px;height: 300px;margin: 0; float: left;}
+.vis-view-area .auto-scroll-area { margin: 1px 0 0; }
+.vis-view-area .hand-scroll-area { height: 150px; }
+.vis-view-area .first-right-area { padding: 80px 0px; float: right;width: 220px;height: 150px;}
+.vis-view-area .article-area-max {height: 300px;margin-top: 1px;}
+.vis-view-area .article-area {height: 110px;margin-top: 1px;}
+.vis-view-area .branner-ad-area {margin-top: 6px;height: 130px;padding-left:0px;}
+.vis-view-area .branner-ad-area2 {margin-top: 6px;height: 250px;padding-left:0px;}
+.floors-area,.floors-area2, .service-area, .bottom-area { width: 100%; float: left; margin-top: 18px; }
+.vis-view-area .floors-area { height: 410px; }
+.vis-view-area .floors-area2 { height: 650px; }
+.vis-view-area .service-area { height: 450px; }
+.vis-view-area .bottom-area { height: 50px; margin-top: 18px; }
+ 
+.dialog-form { }
+.dialog-form .form-group { margin: 0; padding: 10px; }
+.dialog-form .form-group+.form-group { border-top: 1px solid #eeeeee; }
+.dialog-form .input-sm { width: 200px; display: inline-block }
+.dialog-form p { color: #999; margin-bottom: 2px }
+/*.dialog-form .upload-img .control-label{margin-bottom: 0;line-height: 20px;padding-left: 0;}*/
+.dialog-form .label-inline, .dialog-form .upload-img .control-label { padding: 0; margin: 0; width: 90px; text-align: right; margin-right: 20px; font-size: 14px;display: inline-block;}
+.dialog-form .upload-img .control-label { margin-right: 5px; }
+.help-inline { display: inline-block; margin: 0 0 0 10px;   line-height: 24px;padding-left: 110px;}
+.dialog-form .help-block { padding-left: 105px; margin: 5px 0 0 0 }
+.dialog-form textarea { display: inline-block; vertical-align: top; width: auto; padding: 5px; font-size: 12px }
+.dialog-form label input { margin-right: 5px }
+
+
+.upload-img .glyphicon-eye-open { margin-right: 10px; color: #999; cursor: pointer; vertical-align: middle; border: 1px dashed #999; padding: 2px 5px; }
+.upload-img .glyphicon-eye-open.active { color: #e3393c; border-color: #e3393c; }
+.upload-img .glyphicon-picture { margin-right: 10px; color: #999; vertical-align: middle; font-size: 18px; top: 0; cursor: not-allowed; }
+.upload-img .glyphicon-picture.active { color: #e3393c; border-color: #e3393c; cursor: pointer; }
+.upload-img .file { width: 70px; overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 10px; }
+.table .upload-img label { display: none; }
+.table .upload-img .col-sm-4 { width: auto; padding: 0; }
+.lg-view-img { position: absolute; z-index: 9999999; background-color: #fff; box-shadow: 0 0 5px #ccc; }
+.lg-view-img img { max-width: 480px; max-height: 480px; padding: 10px; }
+.table .input-group-btn{width:auto;}

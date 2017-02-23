@@ -1,0 +1,222 @@
+﻿@model ArticlePostModel
+@using CAF.Infrastructure.Core.Domain.Orders;
+@using CAF.Infrastructure.Core.Domain.Seo;
+@using CAF.Infrastructure.Core.Domain.Cms.Media;
+@using CAF.Infrastructure.Core;
+@{
+
+    //title, meta
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    int pictureSize = EngineContext.Current.Resolve<MediaSettings>().DetailsPictureSize;
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl("Article", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(productUrl);
+    }
+
+    Html.AppendCssFileParts(ResourceLocation.Head,
+       "~/Themes/AlphaDefault/Content/css/etalage.css",
+        "~/Themes/AlphaDefault/Content/css/detailpage.css");
+    Html.AppendScriptParts(ResourceLocation.Head,
+        "~/Scripts/underscore.min.js",
+        "~/Scripts/underscore.mixins.js",
+        "~/Themes/AlphaDefault/Content/js/jquery.jqzoom.js",
+        "~/Themes/AlphaDefault/Content/js/yaofang.imagezoom.js",
+        "Themes/AlphaDefault/Content/js/Validform_v5.3.2_min.js",
+        "~/Themes/AlphaDefault/Content/js/detailpage.js");
+}
+<div class="listpage">
+    <!--详情页-->
+    <div class="detailpage">
+        <div class="w">
+            @Html.Action("CategoryNavigation", "ProductCategory", new { currentCategoryId = this.CurrentArticleCategoryId, currentArticleId = this.CurrentArticleId, onlyShowChildren = true, showParent = true, templateView = "CategoryNavigation.Detail", area = "" })
+            @* 产品信息 *@
+            @*@using (Html.BeginRouteForm("Article", new { SeName = Model.SeName }, FormMethod.Post, new { id = "product-details-form" }))
+                {*@
+
+            <div class="product-detail">
+                <div class="inproductdetail">
+                    <div class="picFocus fl">
+                        <div id="pd-gallery-container-outer" class="pic_main">
+                            <div id="pd-gallery-container">
+                                @Html.Partial("_PictureGallery", Model.DetailsPictureModel)
+                            </div>
+                        </div>
+                        <div class="pro_tip"><span>温馨提示：</span>图片均为健客网对原品的真实拍摄，仅供参考；如遇新包装上市可能存在更新滞后，请以实物为准！</div>
+                    </div>
+                    <div class="indetailright fr">
+                        <div class='indetail_title'><h1> @Model.Title<img src="~/Themes/AlphaDefault/Content/images/rx.png"></h1><h2>全国免费咨询，价格从优</h2></div>
+                        <div class="effect clearfix">
+                            <div class="effect_p">@Html.Raw(Model.ShortContent)</div>
+                            <span class="more_btn"><a href="#">更多作用</a></span>
+                            <div class="more_detail">@Html.Raw(Model.ShortContent)</div>
+                        </div>
+                        @Html.Partial("_ShortExtendedAttributes", Model)
+                        <div class="indetail_btn fl">
+                            <input type="hidden" id="loginflag" value="@(Model.IsLogin?1:0)">
+                            @Html.Widget("Chat_widget", Model.VendorModel.UserId)
+                            @*<a href="javascript:;" title="联系商家" class="btnreach" rel="nofollow">联系商家</a>*@
+                            <a data-href='@Url.Action("AddProduct", "ShoppingCart", new { productId = Model.Id, shoppingCartTypeId = (int)ShoppingCartType.Wishlist })'
+                               href="#"
+                               class="btncollection ajax-cart-link"
+                               rel="nofollow"
+                               data-form-selector="#product-details-form"
+                               data-type="wishlist"
+                               data-action="add">
+                                <i></i>
+                                收藏商品
+                            </a>
+                            <a href="javascript:;" title="关注商家" class="btnattention" onclick="attentionthis(@Model.VendorId)" rel="nofollow"><i></i>关注商家</a>
+                            @Html.Action("ShareButton")
+                        </div>
+                        <dl class="commit assort" data-p="">
+                            <dt>药坊承诺：</dt>
+                            <dd><em>商品：</em><span><i>正</i><a href="#" target="_blank">绝对正品</a> </span></dd>
+                            <dd><em>付款：</em><span><i>运</i><a href="#" target="_blank">货到付款</a></span></dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="shopinfo">
+                    @Html.Action("VendorBlock", "Vendor", new { vendorId = Model.VendorId })
+                </div>
+            </div>
+
+
+            @*  }*@
+            @* 描述 *@
+            <div class="detailcontent">
+                <div class="topnav">
+                    <span class="topnavhover">产品详情</span>
+                    <span>客户留言</span>
+                </div>
+                <div class="incontent">
+                    <div class="productdetail" id="detailcontent">
+                        <!--存放产品详情文字或图片-->
+                        <ul class="property list-paddingleft-2" style="list-style-type: none;">
+                            @Html.Partial("_FullExtendedAttributes", Model)
+                            @Html.Action("ArticleSpecifications", new { articleId = Model.Id })
+                        </ul>
+                        <p><br /></p>
+                        <p>
+                            @Html.Raw(Model.FullContent)
+                        </p>
+                    </div>
+
+                    <div class="customermessage disappear">
+                        <a name="message"></a>
+                        @Html.Partial("_ArticleAgent", Model)
+                    </div>
+                </div>
+
+                <script>
+                    $(".topnav span").click(function () {
+                        $(".topnav span").removeClass("topnavhover");
+                        $(this).addClass("topnavhover");
+                        var divindex = $(this).index();
+                        $(".incontent").children('div').addClass("disappear");
+                        $(".incontent").children('div:eq(' + divindex + ')').removeClass("disappear");
+                    });
+                </script>
+            </div>
+
+            <!--右侧推荐-->
+            <div class="leftrecommend">
+                <!--您可能还喜欢-->
+                <div class="slideTxtBox">
+                    <div class="hd">
+                        <ul><li>同类热门排行</li></ul>
+                    </div>
+                    <div class="bd ">
+                        <!--同类热门排行-->
+                        @Html.Action("RecentlyProductViewed", "ProductCategory", new
+                   {
+                       area = "",
+                       partialView = "HotArticlesBlock",
+                       categoryId = Model.ProductCategroyId,
+                       articleThumbPictureSize = 95,
+                       PageSize = 12,
+                       IsHot = true,
+                   })
+
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">jQuery(".slideTxtBox").slide({ autoPlay: true, interTime: 5000 });</script>
+
+        </div>
+    </div>
+    <span class="clear"></span>
+</div>
+
+
+<!--联系商家输入divEnd-->
+<!-- 顶部通栏浮动开始 -->
+<div class="yf_float">
+    <div class="wid980 clearfix">
+        <div class="yaofang_left">
+            <span class="yf_picimg"><img src="@Model.DefaultPictureModel.ImageUrl" width="60" height="60"></span>
+            <div class="yf_txt">
+                <h4>@Model.Title.Truncate(10, "...")</h4>
+            </div>
+        </div>
+        <div class="yaofang_right">
+
+            <div class="call_box">
+                <input type="text" id="Tel_bot2" class="input_txt" maxlength="12" value="请输入您的电话号码" onfocus="this.style.color='#777';if(this.value =='请输入您的电话号码'){this.value=''}" onblur="if(this.value==''){this.value='请输入您的电话号码';this.style.color='#777'}" />
+                <input type="submit" class="input_btn" value="" />
+
+            </div>
+            <div class="add_cart">
+                <a title="购买咨询" class="pro_box2 addpay_c"></a>
+            </div>
+        </div>
+
+        <div class="floatnum_warp">
+            <ul id="floatnum">
+                @*<li><img src="http://img.jianke.net/jk2/images/floatdg.png" height="24" width="230" alt=""></li>
+                    <li><img src="http://img.jianke.net/jk2/images/floatzx.png" height="24" width="230" alt=""></li>
+                    <li><img src="http://img.jianke.net/jk2/images/floatdg.png" height="24" width="230" alt=""></li>*@
+            </ul>
+        </div>
+        <script>
+            $(function () {
+                window.onscroll = function () {
+                    var idbox = $(".yf_float");
+                    var oscrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    if (oscrollTop <= 500) {
+                        idbox[0].style.display = "none";
+                    } else {
+                        idbox[0].style.display = "block";
+                    }
+                }
+            });
+            $(function () {
+                var _mtop = parseInt($('#floatnum').css('top'));
+                function telRoll2() {
+                    _mtop += 68;
+                    $('#floatnum').stop(true, false).animate({ 'top': _mtop }, 300, function () {
+                        if (_mtop >= 0) {
+                            _mtop = -136;
+                            $('#floatnum').css('top', _mtop)
+                        };
+                    });
+                }
+                var mytel2 = setInterval(telRoll2, 3000);
+                $('#floatnum').hover(function () {
+                    clearInterval(mytel2);
+                }, function () {
+                    mytel2 = setInterval(telRoll2, 3000);
+                })
+            })
+        </script>
+        <!-- *********************************************************************************************************************************************************************************************** -->
+    </div>
+</div>
+<!-- 顶部通栏浮动结束 -->

@@ -1,0 +1,238 @@
+﻿@model ProductCategoryModel
+@using CAF.Infrastructure.Core.Domain.Seo;
+@{
+
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var categoryUrl = Url.RouteUrl("ArticleCategory", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(categoryUrl);
+    }
+    Html.AppendCssFileParts(ResourceLocation.Head,
+       "~/Themes/AlphaDefault/Content/css/listpage2016.css");
+    Html.AppendScriptParts(ResourceLocation.Head,
+        "~/Scripts/underscore.min.js",
+        "~/Scripts/underscore.mixins.js",
+        "~/Scripts/yaofang.common.js",
+       "~/Scripts/yaofang.doAjax.js",
+       "~/Scripts/yaofang.product-filter.js",
+       "~/Themes/AlphaDefault/Content/js/yaofang.cart.js",
+       "~/Themes/AlphaDefault/Content/js/listpage.js");
+}
+@functions
+{
+    private bool ShowListOptions()
+    {
+        return Model.Articles.Count > 0 &&
+               (Model.PagingFilteringContext.AllowViewModeChanging ||
+               Model.PagingFilteringContext.AllowSorting ||
+               Model.PagingFilteringContext.AllowUsersToSelectPageSize);
+    }
+}
+<div class="listpage">
+    <div class="main">
+        <div class="left-nav">
+            <div class="itemChoose">
+                @Html.Action("CategoryNavigation", "ProductCategory", new { currentCategoryId = Model.Id, currentArticleId = this.CurrentArticleId, onlyShowChildren = true, showParent = true, templateView = "CategoryLeftNavigation", area = "" })
+            </div>
+
+
+            <!-- nav  End -->
+            <div class="browse">
+                <h2>浏览记录</h2>
+                <ul id="leftHistory"></ul>
+            </div>
+            @*<div class="hot-pro">
+                    <h2>热销产品</h2>
+                    <ul>
+                        <li>
+                            <a href="http://www.jianke.com/product/195063.html">
+                                <img src="http://img.jianke.com/upload/prodimage/sl201512/20151218184545814.jpg" height="150" width="150" />
+                            </a>
+                            <p><a href="http://www.jianke.com/product/195063.html">滋阴清热。用于潮热盗汗，耳鸣遗精，口干咽燥。</a></p>
+                            <span>￥8.5</span><s>￥12.0</s>
+                        </li>
+
+                    </ul>
+                </div>*@
+        </div>
+        <div class="list-right">
+            <div class="chosen">
+                @Html.Action("CategoryNavigation", "ProductCategory", new { currentCategoryId = Model.Id, currentArticleId = this.CurrentArticleId, onlyShowChildren = true, showParent = true, area = "" })
+
+                @if (Model.Articles.Count > 0 && Model.DisplayFilter)
+                {
+                    <script type="text/javascript">
+                        $(function () {
+                            productFilter.init('#product-filter');
+                        });
+                    </script>
+                    <div id="product-filter" class="block block-bordered product-filter-block">
+                        <form class="filter-product-form" method="GET" action="@Url.Action("Articles", "Filter")" data-multiselecturl="@Url.Action("ArticlesMultiSelect", "Filter")">
+                            <input type="hidden" name="productCategoryID" value="@Model.Id" />
+                            <input type="hidden" name="categoryID" value="0" />
+                            <input type="hidden" name="path" value="@Request.Url.AbsolutePath" />
+                            <input type="hidden" name="pagesize" value="@Model.PagingFilteringContext.PageSize" />
+                            <input type="hidden" name="orderby" value="@Model.PagingFilteringContext.OrderBy" />
+                            <input type="hidden" name="viewmode" value="@Model.PagingFilteringContext.ViewMode" />
+                            <input type="hidden" name="filter" value="@Request.QueryString.Get("filter")" />
+                            <input type="hidden" name="filterMultiSelect" value="" />
+                        </form>
+
+                        <div class="block-body listbox"></div>
+
+                    </div>
+
+                }
+
+            </div>
+
+            <div class="pro-list">
+                <div class="pro-listop">
+                    @Html.Partial("_ProductListOptions", Model.PagingFilteringContext)
+                </div>
+
+                <div class="pro-area">
+                    @if (Model.Articles.Count > 0)
+                    {
+                        <ul class="pro-con">
+                            @foreach (var article in Model.Articles)
+                            {
+                                @Html.Partial("_ProductBox", article)
+                            }
+                        </ul>
+
+                    }
+                   
+                </div>
+            </div>
+            <div class="pages">
+                @(Html.CafSite().Pager(Model.PagingFilteringContext)
+                    .Name("pagination-bottom").QueryParam("pagenumber").Style(PagerStyle.Blog)
+                    .ShowFirst(true).FirstButtonText("第一页")
+                    .ShowLast(true).LastButtonText("最后一页")
+                    .ShowNext(true).NextButtonText("下一页")
+                    .ShowPrevious(true).PreviousButtonText("上一页"))
+                
+            </div>
+
+            @*<div class="pages">
+                    <a href="javascript:void(0);" class="turnpage up-page"><i><</i>上一页</a><a href="javascript:void(0);" class="on">1</a><a href="http://www.jianke.com/list-01-0-2-0-1-0-0-0-0-0.html">2</a> <a href="http://www.jianke.com/list-01-0-3-0-1-0-0-0-0-0.html">3</a> <a href="http://www.jianke.com/list-01-0-4-0-1-0-0-0-0-0.html">4</a> <a href="http://www.jianke.com/list-01-0-5-0-1-0-0-0-0-0.html">5</a> <a href="http://www.jianke.com/list-01-0-6-0-1-0-0-0-0-0.html">6</a> <a href="http://www.jianke.com/list-01-0-7-0-1-0-0-0-0-0.html">7</a> <a href="http://www.jianke.com/list-01-0-8-0-1-0-0-0-0-0.html">8</a> <a href="http://www.jianke.com/list-01-0-2-0-1-0-0-0-0-0.html">下一页<i>></i></a><span href="http://www.jianke.com/list-01-0-42-0-1-0-0-0-0-0.html" id="goto_page_total_pages">共<strong>42</strong>页<span><span><em>到第<input onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " type="text" id="goto_page_num" />页</em><a href="javascript:goto_Listpage();" class="confirm">确定</a></span>
+                </div>*@
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                //打开左侧菜单目标选项
+                var cid = $("#classcode").val();
+                $("#" + cid).parent().css("display", "block");
+                $("#" + cid).parent().prev().find("a").addClass("open");
+              
+                loadHistory();
+            });
+
+            function loadPage(url) {
+                window.location.href = url;
+
+            }
+            function loadPageProduct(url) {
+                window.open(url);
+            }
+
+            function loadHistory() {
+                $.ajax({
+                    type: 'post',
+                    url: '/productcategory/recentlyaddedproducts',
+                    //dataType: 'jsonp',
+                    success: function (data) {
+                        $("#leftHistory").html(data)
+                    },
+                    error: function (text) { }
+                });
+            }
+
+
+
+        </script>
+
+        <!-- payCart -->
+        <div class="cartbox">
+            <div class="cartposi">
+                <div class="paycartbox">
+                    <em>商品</em>
+                    <span id="paycart">0</span>
+                    <b><a href="javascript:window.location.href ='http://cart.jianke.com/purchase/shoppingcart?backurl=' + escape(document.URL);">咨询</a></b>
+                </div>
+                <div class="cartbox_bg">
+                    <ul id="cartli"></ul>
+                </div>
+            </div>
+        </div>
+        <!-- payCart End-->
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                //右下角咨询
+                var caHeight;
+                function cartle() {
+                    var trigger = null;
+                    var cartnum = parseInt($("#ClassNum").val())
+                    var cartli = $("#cartli").find("li")
+                    if (isNaN(cartnum)) {
+                        var cartnum = cartli.length;
+                    }
+                    if (cartnum < 1) {
+                        caHeight = -32;
+                    } else if (cartnum >= 4) {
+                        caHeight = 220;
+                    } else {
+                        caHeight = (cartli.height() + 20) * cartnum;
+                        $("#cartli").find("li").css("width", "90%")
+                        $("#cartli").css("overflow", "hidden");
+                    }
+                }
+                $(".cartbox").hover(
+            function () {
+                trigger = setTimeout(function () {
+                    cartle();
+                    $(".cartbox_bg").animate({ top: -(caHeight + 40) + "px" })
+                }, 250);
+            },
+            function () { clearTimeout(trigger); $(".cartbox_bg").animate({ top: "-8px" }) }
+            );
+
+                $(function () {
+                    $(".cartbox").bind("mouseenter", function (e) {
+                        // detailCar();
+                    });
+                });
+                function EmptyCart() {
+                    if (parseInt($("#paycart").html()) < 1) {
+                        //$(".paycartbox").find("a").attr("href", "#");
+                        //$(".paycartbox").find("a").html("无商品");
+                    }
+                };
+                function FullCart() {
+                    $(".paycartbox").find("a").attr("href", "javascript:window.location.href ='http://cart.jianke.compurchase/shoppingcart?backurl=' + escape(document.URL);");
+                    $(".paycartbox").find("a").html("去结算");
+                }
+            });
+        </script>
+
+    </div>
+    <span class="clear"></span>
+</div>
+@* 左侧导航 *@
+<div class="navigationtree">
+    <div class="totop"></div>
+    <a href="#" rel="nofollow"><div class="addcolleciton" onclick="javascript:window.external.AddFavorite('@Url.RouteUrl("homepage")','药坊网,药坊网医药网,医药招商,药品招商');"></div></a>
+    <div class="onlinetalk"><a href="http://b.qq.com/webc.htm?new=0&sid=3286619561&o=药坊网&q=7" style="display:block;width:100%;height:100%;" target="_blank"></a></div>
+    <div class="flooguide">
+        <ul class="floorlist"></ul>
+    </div>
+</div>
+
+

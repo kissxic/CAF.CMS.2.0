@@ -1,0 +1,93 @@
+﻿/* 列表页面样式Start*/
+.listpage {width: 100%;background:#fafafa; }
+
+.searchkey {font:12px/38px "microsoft yahei";}
+.searchkey  a { color: #e60000; padding-right: 10px;}
+
+/*搜索选项*/
+.searchoptions{width:1212px; border: 1px solid #f1f1f1; float: left; border-bottom: none; margin-bottom: 35px; }
+
+/*已选选项*/
+.checkedoption {width: 100%; height: 44px; float: left; background: #f1f1f1;}
+.checkedoption span{width: 85px;text-align: right; font:12px/44px "microsoft yahei"; float: left;}
+.optionitem { height: 24px; float: left; margin:10px 10px 0px 10px; background: #009ce7;}
+.inoptionitem em { padding: 0px 10px; color: #fff; font-style: normal; font:12px/24px "microsoft yahei";}
+.inoptionitem i { width: 8px;height: 8px; float: right; margin: 8px;background: url("../images/delete.png") 0px 0px no-repeat; }
+
+/*选项*/
+.searchitem { float: left;width: 100%;}
+.s_option { width: 100%; height: auto; float: left; border-bottom: 1px solid #f1f1f1;}
+.s_option span{width: 85px;text-align: right; font:12px/55px "microsoft yahei"; float: left; color:#999; }
+/*.s_items {float: right; width: 1125px; }*/
+.s_items {width: 1125px;float:right; }
+.s_items a {height: 24px; float: left; margin:15px 10px 10px 10px;}
+.s_items .on {background: #009ce7; color: #fff;}
+.s_items a em {padding: 0px 10px; font-style: normal; font:12px/24px "microsoft yahei";}
+.s_items a i {width: 10px;height: 10px; float: right; margin: 8px 8px 0px 0px;background: url("../images/delete.png") 0px -10px no-repeat; }
+
+/*你应该找。。*/
+.searchguess {font:12px/38px "microsoft yahei"; padding-left: 20px; border-bottom: 1px solid #f1f1f1; color: #333;}
+.searchguess  a {  padding-right: 10px;}
+
+/*列表样式*/
+.result {float: left;width: 977px; margin-bottom: 20px;}
+.resultlist {float: left; margin-bottom: 20px;width: 100%; }
+.resultlist li {float: left; position: relative; border: 1px solid #f1f1f1; width: 232px; background: #fff; margin-right: 12px; margin-bottom: 15px; }
+.resultlist li .item_top { position: absolute; display: inline-block; width: 50px; height: 44px; background: url("../images/top-icon.png") no-repeat;left: 10px; top: -4px;}
+.pro_img { float: left; width:230px; height: 185px; }
+.pro_img img {width: 230px; height:185px; }
+.pro_title {float: left; width:230px; font:14px/40px "microsoft yahei"; color:#fff; text-align: center; position:absolute;top: 145px; height: 40px; background: #009ce7; filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8;}
+.pro_title a{color:#fff}
+.pro_dec { float: left; width: 230px;padding: 5px 10px;}
+.pro_dec span {width: 100%; float: left; font: 12px/24px "microsoft yahei"; color: #999;height: 24px;
+    overflow: hidden;
+    display: block;}
+.pro_dec span label { color: #333;}
+
+.resultlist .li_nextpage { background: url("../images/img_nextpage.jpg") 0px 0px no-repeat; height:245px; width:230px;cursor: pointer; }
+.btnnextpage {width: 70px; height: 30px; color: #fff; line-height:30px;text-align: center; background: #009ce7; float: left; margin:150px 0px 0px 70px;}
+.btnnextpage:hover {color: #fff;}
+
+.pro_booking { height: 50px; width: 230px; float: left; background: #fff; padding-left: 52px;  padding-top: 10px; position: absolute; bottom: 0px;}
+.btnbooking {width: 120px; height: 30px;float: left; text-align: center; background:#f90; line-height: 30px; color: #fff;}
+.btnbooking:hover{color: #fff;}
+
+/*翻页*/
+.div_page {width:100%; float: left; height:30px;}
+.list_page{float: right; font: 12px/30px "microsoft yahei";}
+.list_page label,.list_page input ,.list_page a { border-radius: 4px; height:28px;float: left; margin: 0px 5px; text-align: center; line-height: 28px;}
+.list_page .pagenum {width: 28px; text-align: center; border: 1px solid #dfdfdf; }
+.list_page .btnsure {width: 49px;   font-size: 14px; border-radius: 4px; color: #fff; background-color: #009ce7;}
+.list_page .btnsure:hover {color: #fff;}
+.btnprev,.btnnext, .btnnum {background-color: #fafafa;}
+.btnprev,.btnnext { width: 56px;border: 1px solid #dfdfdf;}
+.btnnum {width: 28px;border: 1px solid #dfdfdf;}
+.btnprev:hover,.btnnext:hover, .btnnum:hover{background-color: #009ce7; color: #fff;}
+.btnfoucus {background-color: #009ce7; color: #fff;}
+
+/* 列表页面样式End*/
+
+
+
+/*右侧图片广告*/
+.rightadv { float: right; width: 235px;}
+.rightadv a {float: left; margin-bottom: 10px;}
+.rightadv img { width:230px; height: 265px; }
+
+/*猜你喜欢*/
+.guesslike{ float: left;width: 1212px; margin-bottom: 20px;}
+
+.div_guesstitle {width: 100%; float: left}
+.div_guesstitle h2{ float: left; font: 18px/50px "microsoft yahei"; margin: 0px;}
+.div_guesstitle a { float: right; margin-right: 20px; line-height: 50px;}
+
+.guesslist { float: left; width: 100%; border: 1px solid #f1f1f1; padding:8px 0px 8px 8px; background-color: #fff;}
+.guesslist ul { float: left;}
+.guesslist ul li {float: left; position: relative; border: 1px solid #f1f1f1; width: 232px; background: #fff; margin-right: 8px; }
+
+.guess_img { float: left; width:230px; height: 185px; }
+.guess_img img {width: 230px; height:185px; }
+.guess_title {float: left; width:230px; font:14px/40px "microsoft yahei"; color:#fff; text-align: center; position:absolute;top: 145px; height: 40px; background: #009ce7; filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8;}
+.guess_dec { float: left; width: 230px;padding: 5px 10px;}
+.guess_dec span {width: 100%; float: left; font: 12px/24px "microsoft yahei"; color: #999;}
+.guess_dec span label { color: #333;}

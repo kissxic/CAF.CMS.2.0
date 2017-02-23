@@ -1,0 +1,453 @@
+﻿<!DOCTYPE html>
+<html @Html.Partial("LanguageAttributes")>
+<head>
+    <title>@Html.WorkTitle(true)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="description" content="@(Html.WorkMetaDescription())" />
+    <meta name="keywords" content="@(Html.WorkMetaKeywords())" />
+    <meta name="generator" content="Caf.NET @WorkVersion.CurrentFullVersion" />
+    <link rel="stylesheet" href="~/Themes/White/Content/static/css/app.css">
+    <link rel="stylesheet" href="~/Themes/White/Content/public/css/index.new2.css">
+    <script src="~/Themes/White/Content/static/js/app.js"></script>
+    <script src="~/Themes/White/Content/public/js/newindex2.js"></script>
+</head>
+<body>
+@Html.Partial("_Layout.Head")
+
+    <div class="main">
+        <div class="m-show m-nav-bar">
+            <a href="#hash1">头条</a>
+            <a href="#hash2">热贴</a>
+            <a href="#hash3">悬赏</a>
+            <a href="#hash4">商城</a>
+            <a href="#hash5">数据库</a>
+        </div>
+        <div class="box-index">
+            <div class="clearfix">
+                <div class="box-left">
+                    <div class="slider-box-wrapper">
+                        <div class="slider-box">
+                            @Html.Action("HomeSlider", "Home")
+                        </div>
+                        <div class="others">
+                            <a target="_blank" href="//news.yaozh.com/archive/15783.html" class="item" title="2016年6月药品招标动态汇总">
+                                <span class="type">独家报告</span>
+                                <img src="http://images.news.yaozh.com/system_13/9f20399dcd1bd313369c0206b1c9db87.jpg" width='200px' height="101px" alt="2016年6月药品招标动态汇总">
+                            </a>
+                            <a target="_blank" href="//news.yaozh.com/archive/15912.html" class="item" title="2016年6月CDE药品审评情况分析报告 ——药智注册与受理数据库">
+                                <span class="type">独家报告</span>
+                                <img src="http://images.news.yaozh.com/system_4/75a877ac00e20ae1b250ce4eed9c1c21.jpg" width='200px' height="101px" alt="2016年6月CDE药品审评情况分析报告 ——药智注册与受理数据库">
+                            </a>
+                            <a target="_blank" href="//news.yaozh.com/archive/16295.html" class="item" title="下载药智数据APP安卓版  免费获赠一个月APP会员使用权">
+                                <span class="type">行业动态</span>
+                                <img src="http://images.news.yaozh.com/system_13/e752a969c31872d76687eb47a8fa6e74.jpg" width='200px' height="101px" alt="下载药智数据APP安卓版  免费获赠一个月APP会员使用权">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-right">
+                    <div class="mobile-title">
+                        <div class="title" id="hash1" name="hash1">新闻头条</div>
+                        <div class="side">
+                            <a href="//news.yaozh.com/article">看点</a>
+                            <span class="line">|</span>
+                            <a href="//news.yaozh.com/conference">会议</a>
+                            <span class="line">|</span>
+                            <a href="//news.yaozh.com/report">报告</a>
+                        </div>
+                    </div>
+                    <div data-widget="tab" data-event="hover" class="ui-tab">
+                        <div class="ui-tab-navs">
+                            <div class="ui-tab-nav"><a class="active" href="javascript:void(0)">今日头条</a><a href="javascript:void(0)" class="">焦点回顾</a></div>
+                        </div>
+                        <div class="ui-tab-panels">
+                            @Html.Action("HomeRecentlyArticleViewed", "ArticleCatalog", new { area = "", partialView = "HomeArticleBlockTop", categoryId = 2, PageSize = 8, IsTop = true })
+                            @Html.Action("HomeRecentlyArticleViewed", "ArticleCatalog", new { area = "", partialView = "HomeArticleBlockRed", categoryId = 2, PageSize = 8, IsRed = true })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:16px;">
+                <div class="box-left">
+                    <div class="tab-wrapper">
+                        <div class="mobile-title">
+                            <div class="title" id="hash2" name="hash2">论坛热贴</div>
+                            <div class="side">
+                                <a href="//bbs.yaozh.com/forum-168-1.html">大讲堂</a>
+                                <span class="line">|</span>
+                                <a href="//bbs.yaozh.com/forum-63-1.html">执业药师</a>
+                            </div>
+                        </div>
+                        <span class="tab-spanlt"><a target="_blank" target='_blank' href="//bbs.yaozh.com">进入论坛 <span class="simsun">&gt;</span></a></span>
+                        <div data-widget="tab" data-event="hover" class="ui-tab">
+                            <div class="ui-tab-navs">
+                                <div class="ui-tab-nav">
+                                    <a target="_blank" class="active" href="javascript:;">精华推荐</a><a target="_blank" href="javascript:;">最新热贴</a><a target="_blank" href="//bbs.yaozh.com/forum-168-1.html">药智大讲堂</a>
+                                </div>
+                            </div>
+                            <div class="ui-tab-panels">
+                                <div class="ui-tab-panel active">
+                                    <ul>
+                                        <li>
+                                            <em class="num sign">1</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-252329-1-1.html">[专利技术] 加拿大国家局文献检索（HC）2016.6</a>
+                                            <img src="http://bbs.yaozh.com/template/eis_c_m1/img/digest_1.gif" align="absmiddle" alt="digest" title="精华 1">
+                                        </li>
+                                        <li>
+                                            <em class="num sign">2</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-252328-1-1.html">[专利技术] 澳大利亚国家局文献检索资（TAG）2016.6</a>
+                                            <img src="http://bbs.yaozh.com/template/eis_c_m1/img/digest_1.gif" align="absmiddle" alt="digest" title="精华 1">
+                                        </li>
+                                        <li>
+                                            <em class="num sign">3</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-252325-1-1.html">[临床实验与药理] 临床试验中计算机系统的数据完整性—Frank Henrichmann2016.4</a>
+                                            <img src="http://bbs.yaozh.com/static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle">                      <img src="//bbs.yaozh.com/template/eis_c_m1/img/digest_1.gif" align="absmiddle" alt="digest" title="精华 1">
+                                        </li>
+                                        <li>
+                                            <em class="num sign">4</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-252161-1-1.html">[厂房与设备] 设备安装工程禁忌手册—盖仁栢编著</a>
+                                            <img src="http://bbs.yaozh.com/static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle">                      <img src="//bbs.yaozh.com/template/eis_c_m1/img/digest_1.gif" align="absmiddle" alt="digest" title="精华 1">
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="ui-tab-panel">
+                                    <ul>
+                                        <li>
+                                            <em class="num sign">1</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-252456-1-1.html">[药品注册] 研究之美—（美）D.E.Knuth著 高博译2012.1出版</a>
+                                        </li>
+                                        <li>
+                                            <em class="num sign">2</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-252454-1-1.html">[厂房与设备] 工业润滑油生产与应用—王先会编2011.1出版</a>
+                                            <img src="//bbs.yaozh.com/static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle">
+                                        </li>
+                                        <li>
+                                            <em class="num sign">3</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-252403-1-1.html">[药品注册] 上市药品信息检索—王德平2016.7</a>
+                                            <img src="//bbs.yaozh.com/static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle">
+                                        </li>
+                                        <li>
+                                            <em class="num sign">4</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-252402-1-1.html">[药品注册] 美、日上市药品信息检索—王德平2016.6</a>
+                                            <img src="//bbs.yaozh.com/static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="ui-tab-panel">
+                                    <ul>
+                                        <li>
+                                            <em class="num sign">1</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-247000-1-1.html">[药智大讲堂] 2016年药智大讲堂第三期·药智数据综合检索与应用</a>
+                                            <img src="//bbs.yaozh.com/template/eis_c_m1/img/hot_1.gif" align="absmiddle" alt="heatlevel" title="热度: 0">
+                                        </li>
+                                        <li>
+                                            <em class="num sign">2</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-246452-1-1.html">[药智大讲堂] 2016年大讲堂第二期：《PCR诊断试剂技术交流》 汇总</a>
+                                            <img src="//bbs.yaozh.com/static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle">
+                                        </li>
+                                        <li>
+                                            <em class="num sign">3</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-248453-1-1.html">[药智大讲堂] 2016年第一期：仿制药一致性评价相关数据检索与利 汇总</a>
+                                            <img src="//bbs.yaozh.com/static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle">                                            <img src="//bbs.yaozh.com/template/eis_c_m1/img/hot_1.gif" align="absmiddle" alt="heatlevel" title="热度: 0">
+                                        </li>
+                                        <li>
+                                            <em class="num sign">4</em>
+                                            <a target="_blank" target='_blank' href="//bbs.yaozh.com/thread-236388-1-1.html">[药智大讲堂] 2015年药智大讲堂第十一期·创新药物发展的规范化</a>
+                                            <img src="//bbs.yaozh.com/static/image/filetype/image_s.gif" alt="attach_img" title="图片附件" align="absmiddle">                      <img src="//bbs.yaozh.com/template/eis_c_m1/img/digest_3.gif" align="absmiddle" alt="digest" title="精华 3">                      <img src="//bbs.yaozh.com/template/eis_c_m1/img/hot_1.gif" align="absmiddle" alt="heatlevel" title="热度: 3">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box-right">
+                    <div class="bottom-panels">
+                        <div class="ui-panel">
+                            <div class="ui-panel-title">
+                                <span class="ui-panel-name">最新数据库</span>
+                            </div>
+                            <div class="ui-panel-content">
+                                <ul>
+                                    <li class='text-overflow'><a target="_blank" target='_blank' href="http://db.yaozh.com/orangebook">中国药品橙皮书数据库</a></li>
+                                    <li class='text-overflow'><a target="_blank" target='_blank' href="http://db.yaozh.com/qxzhuce">医疗器械注册审评数据库</a></li>
+                                    <li class='text-overflow'><a target="_blank" target='_blank' href="http://db.yaozh.com/zhijichufang">药物制剂处方数据库</a></li>
+                                    <li class='text-overflow'><a target="_blank" target='_blank' href="http://db.yaozh.com/yfpw">药辅批文数据库</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="ui-panel">
+                            <div class="ui-panel-title">
+                                <span class="ui-panel-name">最新公告</span>
+                            </div>
+                            <div class="ui-panel-content">
+                                <ul>
+                                    <li class='text-overflow'><a target="_blank" target='_blank' href="//help.yaozh.com/help397.html">《药品研发实力百强企业排行榜》票选活动开启 朋友速来</a></li>
+                                    <li class='text-overflow'><a target="_blank" target='_blank' href="//help.yaozh.com/help412.html">中国药品橙皮书数据库（民间版）问世</a></li>
+                                    <li class='text-overflow'><a target="_blank" target='_blank' href="//help.yaozh.com/help413.html">药品注册与受理-可视化分析系统 机遇近在咫尺</a></li>
+                                    <li class='text-overflow'><a target="_blank" target='_blank' href="//help.yaozh.com/help414.html">豪华礼包限量送！答药智大讲堂问卷即可获得</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ad-box">
+            <a target="_blank" href="http://db.yaozh.com/yfpw" class="item"><img src="http://yaozh.com/uploads/new_index/long_banner_0.jpg?t=1464835286" width='291px' height="90px" alt="药智数据"></a>      
+            <a target="_blank" href="http://db.yaozh.com/zhuanti/zhuanti_20160421" class="item"><img src="http://yaozh.com/uploads/new_index/long_banner_1.png?t=1463965122" width='291px' height="90px" alt="医疗器械数据库"></a>      
+            <a target="_blank" href="http://www.hanxuge.com/" class="item"><img src="http://yaozh.com/uploads/new_index/long_banner_2.jpg?t=1465268980" width='291px' height="90px" alt="重庆涵虚阁制药技术开发有限公司"></a>      
+            <a target="_blank" href="http://news.yaozh.com/archive/14462.html" class="item"><img src="http://yaozh.com/uploads/new_index/long_banner_3.jpg?t=1462497607" width='291px' height="90px" alt="药品注册与受理-可视化分析系统正式上线"></a>
+        </div>
+
+        <div class="box-shop">
+            <div class="box-title">
+                <div class="name"><i class="imims imim_30_0"></i> 药智通</div>
+                <div class="side">
+                    <a target="_blank" href="//shop.yaozh.com/Member/shopinfo">店铺入驻</a>
+                    <span class="line">|</span>
+                    <a target="_blank" href="http://shop.yaozh.com/Purchase/index">求购信息</a>
+                </div>
+            </div>
+            <div class="box-left">
+                <div class="list">
+                    <div class="item">
+                        <div class="info">
+                            <p class="fs14"><a target="_blank" href="//s.yaozh.com/yuanliao/216809.html">琥珀酰亚胺</a></p>
+                            <p class="summary">有机合成、制药、电镀</p>
+                            <p><a target="_blank" href="//s.yaozh.com/yuanliao/216809.html" class="btn btn-orange btn-sm">询价</a></p>
+                        </div>
+                        <img src="http://images.s.yaozh.com/system_10/94cc1303d0ef87210a5b1696f9472076.jpg" alt="琥珀酰亚胺" class="img">
+                    </div>
+                    <div class="item">
+                        <div class="info">
+                            <p class="fs14"><a target="_blank" href="//s.yaozh.com/shengchanshebei/216762.html">超重力床</a></p>
+                            <p class="summary">溶剂的回收<br>产品分离提纯</p>
+                            <p><a target="_blank" href="//s.yaozh.com/shengchanshebei/216762.html" class="btn btn-orange btn-sm">询价</a></p>
+                        </div>
+                        <img src="http://images.s.yaozh.com/system_10/5302e318af54628c7de6be006a7ff9c1.jpg" alt="超重力床" class="img">
+                    </div>
+                    <div class="item">
+                        <div class="info">
+                            <p class="fs14"><a target="_blank" href="//s.yaozh.com/yaopinpiwen/214377.html">复合维生素</a></p>
+                            <p class="summary">冻干粉针剂</p>
+                            <p><a target="_blank" href="//s.yaozh.com/yaopinpiwen/214377.html" class="btn btn-orange btn-sm">询价</a></p>
+                        </div>
+                        <img src="http://images.s.yaozh.com/system_10/de2660c7286c34377c46d2b5b73cb6c6.jpg" alt="复合维生素" class="img">
+                    </div>
+                </div>
+            </div>
+            <div class="box-middle">
+                <div class="mobile-title">
+                    <div class="title" id="hash4" name="hash4">药智通</div>
+                    <div class="side">
+                        <a href="//s.yaozh.com/zhuanrang">技术转让</a>
+                        <span class="line">|</span>
+                        <a href="//s.yaozh.com/fuwu">技术服务</a>
+                    </div>
+                </div>
+                <div class="ui-tab" data-widget="tab" data-event="hover">
+                    <div class="ui-tab-navs">
+                        <div class="ui-tab-nav">
+                            <a target="_blank" target='_blank' href="javascript:;">技术服务</a>
+                            <a target="_blank" class="active" target='_blank' href="javascript:;">技术转让</a>
+                            <a target="_blank" target='_blank' href="javascript:;">特色化合物</a>
+                            <a target="_blank" target='_blank' href="javascript:;">其他供应</a>
+                        </div>
+                        <div class="ui-tab-side">
+                            <a target="_blank" class="cl-blue" href="//s.yaozh.com/">更多 <span class="simsun">&gt;</span></a>
+                        </div>
+                    </div>
+                    <div class="ui-tab-panels">
+                        <div class="ui-tab-panel">
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/xinyaoshenbao/217256.html" class="name">1.辛伐他汀片 一致性评价</a>
+                                    <span class="date">发布时间：2016-06-08</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/xinyaoshenbao/217256.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/xinyaoshenbao" class="cat">供应分类：新药申报</a><a target="_blank" href="//s.yaozh.com/1835" class="seller">供应商：北京赛思源生物医药技术有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/gmp/215640.html" class="name">2.药品一致性评价服务</a>
+                                    <span class="date">发布时间：2016-05-27</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/gmp/215640.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/gmp" class="cat">供应分类：GMP咨询</a><a target="_blank" href="//s.yaozh.com/3035" class="seller">供应商：华益药业科技（安徽）有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/shangpindaigou/215615.html" class="name">3.盐酸克林霉素标准品</a>
+                                    <span class="date">发布时间：2016-05-27</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/shangpindaigou/215615.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/shangpindaigou" class="cat">供应分类：产品代购</a><a target="_blank" href="//s.yaozh.com/3027" class="seller">供应商：齐一生物科技（上海）有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/gmp/212963.html" class="name">4.杂质分析</a>
+                                    <span class="date">发布时间：2016-05-16</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/gmp/212963.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/gmp" class="cat">供应分类：GMP咨询</a><a target="_blank" href="//s.yaozh.com/2789" class="seller">供应商：上海微谱技术</a></div>
+                            </div>
+                        </div>
+                        <div class="ui-tab-panel  active">
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/gongyijishu/213876.html" class="name">1.转让吡仑帕奈原料药工艺</a>
+                                    <span class="date">发布时间：2016-05-19</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/gongyijishu/213876.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/gongyijishu" class="cat">供应分类：工艺技术</a><a target="_blank" href="//s.yaozh.com/1853" class="seller">供应商：深圳市茵诺圣生物科技有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/linchuangpijian/213343.html" class="name">2.伊潘立酮片</a>
+                                    <span class="date">发布时间：2016-05-17</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/linchuangpijian/213343.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/linchuangpijian" class="cat">供应分类：临床批件</a><a target="_blank" href="//s.yaozh.com/2811" class="seller">供应商：海南康虹医药科技开发有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/yaopinpiwen/210654.html" class="name">3.富马酸喹硫平缓释片</a>
+                                    <span class="date">发布时间：2016-05-09</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/yaopinpiwen/210654.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/yaopinpiwen" class="cat">供应分类：药品批文</a><a target="_blank" href="//s.yaozh.com/2017" class="seller">供应商：北京爱康维健医药科技有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/yaopinpiwen/208878.html" class="name">4.罗氟司特片临床批件转让</a>
+                                    <span class="date">发布时间：2016-04-28</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/yaopinpiwen/208878.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/yaopinpiwen" class="cat">供应分类：药品批文</a><a target="_blank" href="//s.yaozh.com/2545" class="seller">供应商：辽宁思百得</a></div>
+                            </div>
+                        </div>
+                        <div class="ui-tab-panel">
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/zhongjianti/221448.html" class="name">1.4-二氟甲氧基-3-羟基苯甲醛</a>
+                                    <span class="date">发布时间：2016-07-06</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/zhongjianti/221448.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/zhongjianti" class="cat">供应分类：中间体</a><a target="_blank" href="//s.yaozh.com/3676" class="seller">供应商：惠州拓康生物科技股份有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/yuanliao/221404.html" class="name">2.尼群地平</a>
+                                    <span class="date">发布时间：2016-07-06</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/yuanliao/221404.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/yuanliao" class="cat">供应分类：原料</a><a target="_blank" href="//s.yaozh.com/3673" class="seller">供应商：湖北泽泰元化工有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/zhongjianti/221399.html" class="name">3.环氧氯丙烷</a>
+                                    <span class="date">发布时间：2016-07-06</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/zhongjianti/221399.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/zhongjianti" class="cat">供应分类：中间体</a><a target="_blank" href="//s.yaozh.com/3671" class="seller">供应商：山东海力化工股份有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/hhqita/221368.html" class="name">4.二氯丙烯1.3</a>
+                                    <span class="date">发布时间：2016-07-06</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/hhqita/221368.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/hhqita" class="cat">供应分类：其他</a><a target="_blank" href="//s.yaozh.com/3664" class="seller">供应商：潍坊世程化学有限公司</a></div>
+                            </div>
+                        </div>
+                        <div class="ui-tab-panel">
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/shengchanshebei/216774.html" class="name">1.XLP-200Y直线式理瓶机</a>
+                                    <span class="date">发布时间：2016-06-02</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/shengchanshebei/216774.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/shengchanshebei" class="cat">供应分类：生产设备</a><a target="_blank" href="//s.yaozh.com/3122" class="seller">供应商：广州伟迪捷机电设备有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/shiyanshebei/216766.html" class="name">2.干雾过氧化氢灭菌</a>
+                                    <span class="date">发布时间：2016-06-02</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/shiyanshebei/216766.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/shiyanshebei" class="cat">供应分类：实验设备</a><a target="_blank" href="//s.yaozh.com/3119" class="seller">供应商：深圳市润联环保科技有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/shengchanshebei/216493.html" class="name">3.电动轧盖机厂家-多功能轧盖机维修</a>
+                                    <span class="date">发布时间：2016-06-01</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/shengchanshebei/216493.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/shengchanshebei" class="cat">供应分类：生产设备</a><a target="_blank" href="//s.yaozh.com/3036" class="seller">供应商：郑州晨鸽机电设备有限公司</a></div>
+                            </div>
+                            <div class="item">
+                                <div class="fs14">
+                                    <a target="_blank" href="//s.yaozh.com/gongyingqita/216408.html" class="name">4.细胞裂解液</a>
+                                    <span class="date">发布时间：2016-06-01</span>
+                                    <a target="_blank" class="xj" href="//s.yaozh.com/gongyingqita/216408.html"><i class="imims imim_210_0"></i></a>
+                                </div>
+                                <div class="cl-gray"><a target="_blank" href="//s.yaozh.com/gongyingqita" class="cat">供应分类：其它</a><a target="_blank" href="//s.yaozh.com/3072" class="seller">供应商：千千实验室</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="box-right">
+                <div class="brand">
+                  <div class="sliders">
+                    <a target="_blank" href="#"><img src="http://yaozh.com/uploads/new_index/suppliers_logo_0.jpg?t=1433930233" alt="湖北帝鑫化工制造有限公司" width="200px" height="50px"></a>
+                    <a target="_blank" href="#"><img src="http://yaozh.com/uploads/new_index/suppliers_logo_1.jpg?t=1433930233" alt="深圳振强生物技术有限公司" width="200px" height="50px"></a>                        
+                    <a target="_blank" href="#"><img src="http://yaozh.com/uploads/new_index/suppliers_logo_2.jpg?t=1433930233" alt="苏州全辉生物科技有限公司" width="200px" height="50px"></a>                        
+                    <a target="_blank" href="#"><img src="http://yaozh.com/uploads/new_index/suppliers_logo_3.jpg?t=1433930233" alt="南京天翔医药科技有限公司" width="200px" height="50px"></a>                        
+                    <a target="_blank" href="#"><img src="http://yaozh.com/uploads/new_index/suppliers_logo_4.jpg?t=1433930233" alt="北京恒瑞康达医药科技发展有限公司" width="200px" height="50px"></a>                        
+                    <a target="_blank" href="#"><img src="http://yaozh.com/uploads/new_index/suppliers_logo_5.jpg?t=1433930233" alt="湖北威德利化学科技有限公司" width="200px" height="50px"></a>                        
+                    <a target="_blank" href="#"><img src="http://yaozh.com/uploads/new_index/suppliers_logo_6.jpg?t=1433930233" alt="深圳市恒丰万达生物技术有限公司" width="200px" height="50px"></a>                        
+                    <a target="_blank" href="#"><img src="http://yaozh.com/uploads/new_index/suppliers_logo_7.jpg?t=1433930233" alt="菲斯生物科技有限公司" width="200px" height="50px"></a>                      
+                  </div>
+                  <a target="_blank" href="javascript:;" class="arrow-left"></a>
+                  <a target="_blank" href="javascript:;" class="arrow-right"></a>
+                </div>
+                <div style="background:#ebebeb;font-size:16px;text-align:center;padding:8px 0;">药智通服务保障</div>
+                <div class="tc mt20"><i class="imims imim_0_200"></i></div>
+                <div class="btns">
+                  <a target="_blank" href="http://s.yaozh.com/fabu" class="btn btn-blue btn-lg">发布供应</a><a target="_blank" href="http://s.yaozh.com/Purchase/release" class="btn btn-blue btn-lg">发布需求</a>
+                </div>
+            </div>
+        </div>
+        @*<a target="_blank" href="#" class="ad mt20"><img src="http://yaozh.com/uploads/new_index/long_banner_5.png?t=1467701918" width='1200px' height="70px" alt="找参比制剂，上药智网"></a>*@
+    </div>
+
+    <div class="links">
+        <div class="wrapper">
+            <div data-widget="tab" data-event="hover" class="ui-tab">
+                <div class="ui-tab-navs">
+                    <div class="ui-tab-nav"><a target="_blank" href="javascript:;" class="active">友情链接</a>@*<a target="_blank" href="javascript:;" class="active">合作伙伴</a>*@</div>
+                </div>
+                <div class="ui-tab-panels">
+                    @Html.Action("LinkBlock", "Common")
+                    @*<div class="ui-tab-panel active">
+                        <a target="_blank" href="#" title="新药汇" rel="nofollow">新药汇</a>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+@Html.Partial("_Layout.Foot")
+</body>
+</html>

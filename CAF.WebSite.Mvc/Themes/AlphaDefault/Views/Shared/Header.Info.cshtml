@@ -1,0 +1,29 @@
+﻿<div class="Cate_top_bg">
+    <div class="warp">
+        <a href="@Url.RouteUrl("HomePage")" class="fl">
+            <img class="Cate_logo" src="~/Themes/AlphaDefault/Content/images/img_logo_category.png" alt="分类信息频道">
+        </a>
+        <div class="Cate_serach_box fl">
+            <div class="Cate_serach">
+                <input type="text" id="searchContent" class="Cate_serach_text fl">
+                <input type="button" style="cursor: pointer;" onclick="search()" value="" class="Cate_serach_sub fl">
+            </div>
+            <p id="hotvalue">
+                <a href="@Url.RouteUrl("AllCategory",new { channelId=3,q="招商".UrlEncode()})">招商</a>
+                |<a href="@Url.RouteUrl("AllCategory",new { channelId=3,q="代理".UrlEncode()})">代理</a>
+                |<a href="@Url.RouteUrl("AllCategory",new { channelId=3,q="供应".UrlEncode()})">供应</a>
+                |<a href="@Url.RouteUrl("AllCategory",new { channelId=3,q="求购".UrlEncode()})">求购</a>
+                |<a href="@Url.RouteUrl("AllCategory",new { channelId=3,q="转让".UrlEncode()})">转让</a>
+                |<a href="@Url.RouteUrl("AllCategory",new { channelId=3,q="培训".UrlEncode()})">培训</a>
+            </p>
+        </div>
+        <a href="#" class="Cate_Release fr">免费发布信息</a>
+    </div>
+</div>
+<script type="text/javascript">
+    function search() {
+        var searchContent = $("#searchContent").val();
+        var encode_value = encodeURI(encodeURI(searchContent));
+        window.location.href = '@Url.RouteUrl("AllCategory",new { channelId=3})?q=' + encode_value;
+    }
+</script>

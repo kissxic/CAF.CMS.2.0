@@ -1,0 +1,1 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\CAF.DistributedCache\obj\Debug\CAF.DistributedCache.csprojResolveAssemblyReference.cache

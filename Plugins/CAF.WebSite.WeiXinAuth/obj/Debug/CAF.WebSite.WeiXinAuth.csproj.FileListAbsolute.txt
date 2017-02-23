@@ -1,0 +1,14 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.WeiXinAuth\web.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.WeiXinAuth\Views\Web.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.WeiXinAuth\Description.txt
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.WeiXinAuth\icon.png
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.WeiXinAuth\Views\ExternalAuthWX\Configure.cshtml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.WeiXinAuth\Views\ExternalAuthWX\PublicInfo.cshtml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.WeiXinAuth\Localization\resources.cn-zh.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.WeiXinAuth\Localization\resources.en-us.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.WeiXinAuth\CAF.WebSite.WeiXinAuth.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.WeiXinAuth\CAF.WebSite.WeiXinAuth.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.WeiXinAuth\CAF.WebSite.WeiXinAuth.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.WeiXinAuth\obj\Debug\CAF.WebSite.WeiXinAuth.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.WeiXinAuth\obj\Debug\CAF.WebSite.WeiXinAuth.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.WeiXinAuth\obj\Debug\CAF.WebSite.WeiXinAuth.pdb

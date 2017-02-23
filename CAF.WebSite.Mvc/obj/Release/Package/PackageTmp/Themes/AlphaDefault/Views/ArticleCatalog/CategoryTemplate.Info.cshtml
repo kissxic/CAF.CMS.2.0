@@ -1,0 +1,104 @@
+﻿@model ProductCategoryModel
+@using CAF.Infrastructure.Core.Domain.Seo;
+@{
+    Layout = "~/Themes/AlphaDefault/Views/Shared/_Layout.Info.cshtml";
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var categoryUrl = Url.RouteUrl("ArticleCategory", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(categoryUrl);
+    }
+    Html.AppendCssFileParts(ResourceLocation.Head,
+       "~/Themes/AlphaDefault/Content/css/Category.css",
+        "~/Themes/AlphaDefault/Content/css/Service.css");
+    //Html.AppendScriptParts(ResourceLocation.Head,
+    //  );
+}
+
+ 
+<div class="warp">
+    <div class="Cate_Route">
+        <a href='http://www.goodyao.com/yyxx/index.html'>分类信息首页</a>
+    </div>
+    <!--栏目信息-->
+    <ul class="Cate_nav">
+        <li class='on'><a href='http://www.goodyao.com/yyxx/classification_all.html' style='font-size:16px;'>全部</a></li>
+        <li><a href='http://www.goodyao.com/yyxx/classification_zs.html' style='font-size:16px;'>招商</a></li>
+        <li><a href='http://www.goodyao.com/yyxx/classification_agent.html' style='font-size:16px;'>代理</a></li>
+        <li><a href='http://www.goodyao.com/yyxx/classification_supply.html' style='font-size:16px;'>供应</a></li>
+        <li><a href='http://www.goodyao.com/yyxx/classification_buy.html' style='font-size:16px;'>求购</a></li>
+        <li><a href='http://www.goodyao.com/yyxx/classification_transfer.html' style='font-size:16px;'>转让</a></li>
+        <li><a href='http://www.goodyao.com/yyxx/classification_train.html' style='font-size:16px;'>培训</a></li>
+        <li><a href='http://www.goodyao.com/yyxx/classification_recruit.html' style='font-size:16px;'>招聘</a></li>
+        <li><a href='http://www.goodyao.com/yyxx/classification_qz.html' style='font-size:16px;'>求职</a></li>
+        <li><a href='http://www.goodyao.com/yyxx/classification_exhibition.html' style='font-size:16px;'>展会</a></li>
+    </ul>
+
+    <!--筛选条件-->
+    <div class="Cate_screen">
+        <ul>
+            <li>
+                <div class="title fl">地区</div>
+                <div class="Cate_scr_list fl">
+                    <dl class='pargana' '><dd class='on'><a href='http://www.goodyao.com/yyxx/classification_all-0---.html'>全国</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-1---.html'>上海市</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-2---.html'>江苏省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-3---.html'>浙江省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-4---.html'>河南省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-5---.html'>北京市</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-6---.html'>天津市</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-7---.html'>山东省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-8---.html'>山西省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-9---.html'>河北省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-10---.html'>湖北省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-11---.html'>辽宁省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-12---.html'>四川省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-13---.html'>广东省</a></dd></dl><dl><dd><a href='http://www.goodyao.com/yyxx/classification_all-14---.html'>福建省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-15---.html'>陕西省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-16---.html'>甘肃省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-17---.html'>宁夏自治区</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-18---.html'>安徽省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-19---.html'>湖南省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-20---.html'>重庆市</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-21---.html'>吉林省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-22---.html'>黑龙江省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-23---.html'>江西省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-24---.html'>贵州省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-25---.html'>云南省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-26---.html'>广西省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-27---.html'>海南省</a></dd></dl><dl><dd><a href='http://www.goodyao.com/yyxx/classification_all-28---.html'>西藏区</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-29---.html'>青海省</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-30---.html'>新疆自治区</a></dd><dd><a href='http://www.goodyao.com/yyxx/classification_all-31---.html'>内蒙自治区</a></dd></dl>
+                </div>
+            </li>
+            <li>
+                <div class="fl Cate_class_sreach">
+                    <input id='search_column' type='text' placeholder='搜索全部信息' class='Cate_class_sreach_t fl' /><input type='button' class='Cate_class_sreach_b fl' onclick='searchColumnInfo("classification_all")' />
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!--内容信息-->
+    <div class="margin_top_20">
+        <div class="fl">
+            <div class="Cate_list_left">
+                <ul>
+                    <li><div class='fl Clleft_1'><a href='http://www.goodyao.com/yyxx/loadDetails/classification_transfer-158-%25E8%25BD%25AC%25E8%25AE%25A9.html '>10多年老药房忍痛转让</a></div><div class='fl Clleft_2'>暂无公司名称</div><div class='fl Clleft_3'>全国</div><div class='fl Clleft_4'>今天  09:33:32</div></li>
+                    <li><div class='fl Clleft_1'><a href='http://www.goodyao.com/yyxx/loadDetails/classification_transfer-157-%25E8%25BD%25AC%25E8%25AE%25A9.html '>新桥和平药房出售,年租14.7万,开间4.3米</a></div><div class='fl Clleft_2'>暂无公司名称</div><div class='fl Clleft_3'>重庆市</div><div class='fl Clleft_4'>今天  09:31:11</div></li>
+                    <li><div class='fl Clleft_1'><a href='http://www.goodyao.com/yyxx/loadDetails/classification_zs-389-%25E6%258B%259B%25E5%2595%2586.html '>护理床</a></div><div class='fl Clleft_2'>暂无公司名称</div><div class='fl Clleft_3'>0</div><div class='fl Clleft_4'>2016-09-01</div></li>
+                    <li><div class='fl Clleft_1'><a href='http://www.goodyao.com/yyxx/loadDetails/classification_zs-388-%25E6%258B%259B%25E5%2595%2586.html '>创博士</a></div><div class='fl Clleft_2'>暂无公司名称</div><div class='fl Clleft_3'>0</div><div class='fl Clleft_4'>2016-09-01</div></li>
+                    <li><div class='fl Clleft_1'><a href='http://www.goodyao.com/yyxx/loadDetails/classification_zs-387-%25E6%258B%259B%25E5%2595%2586.html '>芦荟甘油</a></div><div class='fl Clleft_2'>暂无公司名称</div><div class='fl Clleft_3'>全国</div><div class='fl Clleft_4'>2016-08-31</div></li>
+                    <li><div class='fl Clleft_1'><a href='http://www.goodyao.com/yyxx/loadDetails/classification_zs-386-%25E6%258B%259B%25E5%2595%2586.html '>皮肤外用乳膏、贴膏，喷剂</a></div><div class='fl Clleft_2'>暂无公司名称</div><div class='fl Clleft_3'>全国</div><div class='fl Clleft_4'>2016-08-31</div></li>
+                    <li><div class='fl Clleft_1'><a href='http://www.goodyao.com/yyxx/loadDetails/classification_transfer-156-%25E8%25BD%25AC%25E8%25AE%25A9.html '>重庆民营综合医院100%股权转让</a></div><div class='fl Clleft_2'>暂无公司名称</div><div class='fl Clleft_3'>全国</div><div class='fl Clleft_4'>2016-08-30</div></li>
+                    <li><div class='fl Clleft_1'><a href='http://www.goodyao.com/yyxx/loadDetails/classification_transfer-155-%25E8%25BD%25AC%25E8%25AE%25A9.html '>重庆茶园医药公司100%股权转让 200万净收价</a></div><div class='fl Clleft_2'>暂无公司名称</div><div class='fl Clleft_3'>全国</div><div class='fl Clleft_4'>2016-08-30</div></li>
+                    <li><div class='fl Clleft_1'><a href='http://www.goodyao.com/yyxx/loadDetails/classification_transfer-154-%25E8%25BD%25AC%25E8%25AE%25A9.html '>茶园精装跃层办公场地出租1300平拎包入住</a></div><div class='fl Clleft_2'>暂无公司名称</div><div class='fl Clleft_3'>全国</div><div class='fl Clleft_4'>2016-08-29</div></li>
+                    <li><div class='fl Clleft_1'><a href='http://www.goodyao.com/yyxx/loadDetails/classification_zs-385-%25E6%258B%259B%25E5%2595%2586.html '>海川神农老药膏</a></div><div class='fl Clleft_2'>暂无公司名称</div><div class='fl Clleft_3'>全国</div><div class='fl Clleft_4'>2016-08-29</div></li>
+                </ul>
+
+
+
+            </div>
+            <div class="cate_pages">
+                <label>共145页</label>&nbsp;&nbsp;&nbsp;<a class='on' href='http://www.goodyao.com/yyxx/classification_all-0-0-1-.html '>1</a><a href='http://www.goodyao.com/yyxx/classification_all-0-0-2-.html '>2</a><a href='http://www.goodyao.com/yyxx/classification_all-0-0-3-.html '>3</a><a href='http://www.goodyao.com/yyxx/classification_all-0-0-4-.html '>4</a><a href='http://www.goodyao.com/yyxx/classification_all-0-0-5-.html '>5</a><a href='http://www.goodyao.com/yyxx/classification_all-0-0-6-.html '>6</a><a href='http://www.goodyao.com/yyxx/classification_all-0-0-7-.html '>7</a><a href='http://www.goodyao.com/yyxx/classification_all-0-0-8-.html '>8</a><a href='http://www.goodyao.com/yyxx/classification_all-0-0-9-.html '>9</a><a href='http://www.goodyao.com/yyxx/classification_all-0-0-10-.html '>10</a><a href='http://www.goodyao.com/yyxx/classification_all-0-0-2-.html '>下一页 </a><a href='http://www.goodyao.com/yyxx/classification_all-0-0-145-.html '>尾页 </a>
+            </div>
+        </div>
+        <div class="Cate_list_right fr">
+            <div class="Clright_1">
+                <div class="title">相关类目</div>
+                <ul>
+                    <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_agent-39-%25E4%25BB%25A3%25E7%2590%2586.html '>代理信息 : 祛痘养颜 </a></li>
+                    <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_agent-38-%25E4%25BB%25A3%25E7%2590%2586.html '>代理信息 : 稳压清脂</a></li>
+                    <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_agent-37-%25E4%25BB%25A3%25E7%2590%2586.html '>代理信息 : 晕痛清脑</a></li>
+                    <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_agent-36-%25E4%25BB%25A3%25E7%2590%2586.html '>代理信息 : 前列速康</a></li>
+                    <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_agent-35-%25E4%25BB%25A3%25E7%2590%2586.html '>代理信息 : 乳疾安 </a></li>
+                    <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_train-2-%25E5%259F%25B9%25E8%25AE%25AD.html '>培训信息 : 执业药师培训开...</a></li>
+                    <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_train-1-%25E5%259F%25B9%25E8%25AE%25AD.html '>培训信息 : 宁波执业药师培...</a></li>
+                    <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_transfer-55-%25E8%25BD%25AC%25E8%25AE%25A9.html '>转让信息 : （转让） 10...</a></li>
+                    <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_transfer-54-%25E8%25BD%25AC%25E8%25AE%25A9.html '>转让信息 : （出租）江北金...</a></li>
+                    <li><a href='http://www.goodyao.com/yyxx/loadDetails/classification_transfer-53-%25E8%25BD%25AC%25E8%25AE%25A9.html '>转让信息 : （出售）兰花小...</a></li>
+                </ul>
+            </div>
+            <div class="Clright_1">
+                广告位
+            </div>
+        </div>
+    </div>
+
+</div>

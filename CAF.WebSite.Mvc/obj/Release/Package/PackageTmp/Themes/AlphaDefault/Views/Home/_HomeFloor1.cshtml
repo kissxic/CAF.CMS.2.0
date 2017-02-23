@@ -1,0 +1,70 @@
+﻿@model HomeFloorModel
+@using CAF.Infrastructure.Core.Domain.Cms.PageSettings;
+@{
+    var leftOne = Model.ArticleLinks.Where(p => (int)p.Type == 26).FirstOrDefault();
+    var centerAd = Model.ArticleLinks.Where(p => (int)p.Type >= 27 && (int)p.Type <= 35);
+    int articleIndex = 0;
+    int articleContentIndex = 0;
+}
+
+<div class="importrecom">
+    <div class="recomtitle">
+        <span>重点推荐</span>
+    </div>
+    <div class="recomcontent">
+        <div class="recomcontent_a">
+            <a href="@leftOne.Url" target="_blank"><img alt="" src="@leftOne.ImageUrl" width="190px" height="360px"></a>
+        </div>
+        <div class="recomcontent_b">
+            <div class="content_blist">
+                <ul>
+                    @foreach (var item in centerAd)
+                    {
+                    <li><a href='@item.Url' target='_blank'><img alt='' src='@item.ImageUrl' /></a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="recomcontent_c">
+            <div class="recomcontent_c_nav">
+                <ul id="recom_nav">
+
+                    @foreach (var item in Model.Articles)
+                    {
+                        articleIndex++;
+                    <li class="@(articleIndex == 1?"itemfocus":"")">@item.Title.Truncate(10, "...")</li>
+                    }
+                </ul>
+            </div>
+            <div class="recomcontent_c_item">
+                @foreach (var item in Model.Articles)
+                {
+                    articleContentIndex++;
+                <div class="iteminfo @(articleContentIndex==1?"":"disappear")">
+                    <img src="@item.DefaultPictureModel.ImageUrl" alt="@item.DefaultPictureModel.AlternateText" title="@item.DefaultPictureModel.AlternateText" width="160" height="130">
+                    <div class="itemprice">
+                        <dl>
+                            <dt>
+                                <a href="@Url.RouteUrl("Article", new { SeName = item.SeName })">@item.Title.Truncate(10, "...")</a>
+                            </dt>
+                            <dd></dd>
+                            <dd>产品规格：</dd>
+                            <dd>生产厂家：</dd>
+                        </dl>
+                    </div>
+                    <div class="item_btn">
+                        <a class="btnapply" href="@Url.RouteUrl("Article", new { SeName = item.SeName })" rel="nofollow">申请代理</a>
+                        <a href="@Url.RouteUrl("Article", new { SeName = item.SeName })" rel="nofollow">详情介绍》</a>
+                    </div>
+                </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

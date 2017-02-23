@@ -1,0 +1,10 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\SellerAdministration\obj\Debug\CAF.WebSite.Mvc.Seller.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\ClearScript.V8\ClearScriptV8-32.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\ClearScript.V8\ClearScriptV8-64.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\ClearScript.V8\v8-ia32.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\ClearScript.V8\v8-x64.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\CAF.WebSite.Mvc.Seller.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\CAF.WebSite.Mvc.Seller.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\CAF.WebSite.Mvc.Seller.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\SellerAdministration\obj\Debug\CAF.WebSite.Mvc.Seller.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\SellerAdministration\obj\Debug\CAF.WebSite.Mvc.Seller.pdb

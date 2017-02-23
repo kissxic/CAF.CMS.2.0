@@ -1,0 +1,281 @@
+﻿@model CAF.WebSite.Mvc.Models.Users.LoginModel
+@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core;
+@using CAF.WebSite.Application.WebUI;
+@using CaptchaMvc.Models;
+@{
+    Layout = null;
+
+    Html.AddTitleParts(T("PageTitle.Login").Text);
+    var registerUrl = Url.RouteUrl("Register");
+    if (!String.IsNullOrEmpty(this.Context.Request.QueryString["returnUrl"]))
+    {
+        var webHelper = EngineContext.Current.Resolve<IWebHelper>();
+        registerUrl = webHelper.ModifyQueryString(registerUrl, "returnurl=" + HttpUtility.UrlEncode(this.Context.Request.QueryString["returnUrl"]), null);
+    }
+    // add css assets
+    var MediaRootPath = "~/Themes/White/";
+    Html.AppendCssFileParts(
+       MediaRootPath + "Content/public/css/core.css",
+       MediaRootPath + "Content/static/css/login.css"
+       );
+
+
+    // add js assets (Head)
+    Html.AppendScriptParts(ResourceLocation.Head,
+            MediaRootPath + "Content/public/js/jquery.js"
+       );
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    @Html.MetaAcceptLanguage()
+    @Html.WorkCssFiles(this.Url, ResourceLocation.Head)
+    @Html.WorkScripts(this.Url, ResourceLocation.Head)
+    <link rel="shortcut icon" href="~/favicon.ico" />
+</head>
+<body>
+
+    <div class="login_warp">
+        <div class="title clearfix">
+            <a href="/" target="_blank" title="@Html.WorkTitle(true)"><img class="logo" src='~/Themes/White/Content/public/images/logo.jpg' /></a>
+            @*<li class="survey fr"><a href="#" target="_blank">登录页面，问卷调查</a></li>*@
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="clearfix wap">
+
+            <div class="left-img fl">
+                <a href="#" target="_blank" title="药智数据app页面"><img src="~/Themes/White/Content/static/images/login/free1_5.png" title="app升级1.5，免费领取一个月VIP"></a>
+            </div>
+            <div class="right fr pc">
+                <div class="clearfix"><span class="tip fl">账号登录</span>@*<a href="#"><img class="tcode-icon icon fr" src="~/Themes/White/Content/static/images/login/tcode.png"></a> <div class="fr gif">扫描登录有惊喜</div>*@</div>
+
+                <form class="login_pc">
+                    <div class="pop_showmsg alert-error Mb_20 msg" id="J_login_msg" style="display: none;"></div>
+                    @if (Model.UserNamesEnabled)
+                    {
+                        <li class="li1 user"><input type="text" name="UserName" oninput="ifLoginName(this);" id="UserName" placeholder="请输入用户名/手机号码/邮箱"></li>
+                    }
+                    else
+                    {
+                        <li class="li1 user"><input type="text" name="Email" id="Email" placeholder="请输入用户名/手机号码/邮箱"></li>
+                    }
+                    <li class="li2 pass"><input type="Password" name="Password" oninput="ifPassword(this);" id="Password" placeholder="请输入您的密码"></li>
+                    <div style="display:none">
+                        <input class="Cinput" type="checkbox" name="remember" onclick="ClickMianDeng(this);" id="RememberMe" value="false" />
+                    </div>
+                    <div class="clearfix">
+                        <a class="forgot fl" href="/login/newforget/" target="_blank">忘记密码？</a>
+                        <a class="regin fr" target="_blank" href="/register/">免费注册</a>
+                    </div>
+                    <button id="LoginButton" class="in" type="button" value="登录" style="cursor: pointer">登 录</button>
+                    <div class="clearfix oways-w">@Html.Action("ExternalMethods", "ExternalAuthentication")</div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div style="display:none">
+        <input type="hidden" value="@ViewContext.HttpContext.Request.RawUrl" name="ReturnUrl" id="ReturnUrl" />
+    </div>
+
+
+    <div class="footer">
+        <p>
+            <a href="#">关于我们</a><span class="line">|</span>
+            <a href="#">联系我们</a><span class="line">|</span>
+            <a href="#">企业资质</a><span class="line">|</span>
+            <a href="#">诚聘英才</a><span class="line">|</span>
+            <a href="#">友情链接</a><span class="line">|</span>
+            <a href="#" target="_blank">帮助中心</a><span class="line">|</span>
+            <a href="#">媒体报道</a><span class="line">|</span>
+            <a href="#">药智论坛</a>
+        </p>
+        <p>互联网增值电信业务许可证编号：渝B2-000000 | 渝ICP备000000号  互联网药品信息服务资格证：(渝)-经营性-2000-0000 渝公网备：5555555</p>
+        <p>
+            康洲大数据   版权所有   Copyright © 2009-2016 1234.COM All Rights Reserved.   法律顾问：重庆德普律师事务所  彭林 主任律师
+        </p>
+        <p>客户服务热线：400-678-0000    E-mail：service@1234.com  商务合作QQ：1234</p>
+
+
+        <table align="center">
+            <tr>
+                <td>
+                    <iframe frameborder='0' height='90' width='90' allowtransparency='true' scrolling='no' src='http://www.cqgseb.cn/ztgsgl/WebMonitor/GUILayer/eImgMana/gshdimg.aspx?sfdm=120111104170019531945'></iframe>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        function ifLoginName(th) {//验证登录名
+            var loginName = $(th).val();
+            if (loginName == "") {
+                $("#J_login_msg").show();
+            }
+            else {
+                $("#J_login_msg").hide();
+            }
+        }
+        function ifPassword(th) {//验证密码
+            var password = $(th).val();
+            if (password.length < 6 || password.length > 20) {
+                $("#J_login_msg").text("密码长度应在6-20位之间！");
+                $("#J_login_msg").show();
+            }
+            else {
+                $("#J_login_msg").hide();
+            }
+        }
+
+        $(function () {
+
+            //回车登录 begin
+            $(document).on("keydown", "#UserName,#Password", function (e) {
+                if (e.keyCode == 13) {
+                    $("#LoginButton").click();
+                }
+            })
+            var isLogin = true;
+            //按钮登录
+            $("#LoginButton").click(function () {
+                if (!isLogin) {
+                    return;
+                }
+
+                if ($.trim($("#UserName").val()) == "" || $("#UserName").val() == "邮箱/手机号/用户名") {
+                    $("#UserName").val("");
+                }
+                //登录名验证
+                var userName = $("#UserName").val();
+                if (userName == '') {
+                    $("#J_login_msg").html("登录名不能为空！")
+                    $("#J_login_msg").show();
+                    return;
+                }
+                //密码验证
+                var pwd = $("#Password").val();
+                if (pwd == '') {
+                    $("#J_login_msg").html("请输入您的密码！");
+                    $("#J_login_msg").show();
+                    return;
+                }
+                else if (pwd.length < 6 || pwd.length > 20) {
+                    $("#J_login_msg").html("密码长度应在6-20位之间！");
+                    $("#J_login_msg").show();
+                    return;
+                }
+
+                isLogin = false;
+                $("#LoginButton").text("正在登录...");
+                var returnUrl = $("#ReturnUrl").val();
+                var isMianDeng = $("#RememberMe").val();
+                $.ajax({
+                    url: '/Login',
+                    data: { userName: userName, password: pwd, RememberMe: isMianDeng },
+                    type: "post",
+                    success: function (data) {
+                        if (data.Result) {
+                            ctr_land_button('land_button_succ');
+                            if (returnUrl == '') {
+                                location.href = '/';
+                                return;
+                            }
+                            location.href = returnUrl;
+                            return;
+                        }
+                        else {
+                            //没有绑定主帐号
+                            if (data.Code == "99") {
+                                location.href = "/Register/RegisterKadMain?guId=" + data.Code + "&returnUrl=" + document.URL;
+                            }
+                            //没有验证手机
+                            if (data.Code == "98") {
+                                window.location.href = "/Register/Verification?guId=" + data.Code + "&return=http://www.360kad.com/";
+                                return;
+                            }
+                            $("#LoginButton").html("登&nbsp;&nbsp;&nbsp;&nbsp;录");
+                            if (data.Code != 1) {
+                                ctr_land_button('land_button_fail');
+                                $("#J_login_msg").html(data.Message);
+                                $("#J_login_msg").show();
+                            }
+                            else {
+                                $("#J_login_msg").hide();
+                            }
+                        }
+                        isLogin = true;
+                    },
+                    error: function () {
+                        $("#LoginButton").html("登&nbsp;&nbsp;&nbsp;&nbsp;录");
+                        isLogin = true;
+                        ctr_land_button('land_button_fail');
+                        alert('系统异常，请重新刷新页面！');
+                        window.location.reload();
+                    }
+                });
+                return false;
+            });
+
+        });
+
+        function ClickMianDeng(obj) {
+            if (obj.value == "true") {
+                obj.value = "false";
+                $(".login-prompt").hide()
+            }
+            else {
+                obj.value = "true";
+                $(".login-prompt").show()
+            }
+        }
+
+
+        //辅助
+        //空格
+        function IsEmpty(evt) {
+            evt = (evt) ? evt : ((window.event) ? window.event : "")
+            var keyCode = evt.keyCode ? evt.keyCode : (evt.which ? evt.which : evt.charCode);
+            if (keyCode == 32) {
+                return false;
+            }
+        }
+
+        function setCookie(name, value, date) {
+            var Days = date;
+            var exp = new Date();
+            exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+            document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";
+        }
+
+        function getCookie(name) {
+            var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+            if (arr != null) return unescape(arr[2]);
+            return null;
+        }
+
+        function ctr_land_button() {
+            if (typeof ctrActionsend != 'undefined'
+                && ctrActionsend instanceof Function) {
+                ctrActionsend(arguments[0]);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

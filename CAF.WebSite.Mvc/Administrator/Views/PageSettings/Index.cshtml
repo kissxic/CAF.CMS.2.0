@@ -1,0 +1,75 @@
+﻿@model ImageAdInfoModel[]
+@using CAF.Infrastructure.Core.Domain.Cms.PageSettings;
+@{
+    Html.AppendCssFileParts(true, Url.Content("~/Content/assets/admin/pages/css/pagesettings.css"));
+    Html.AppendCssFileParts(true, Url.Content("~/Content/assets/global/plugins/layer/skin/layer.css"));
+
+    Html.AppendScriptParts(true, "~/Administrator/Scripts/pageSettings-index.js");
+    Html.AppendScriptParts(true, "~/Scripts/yaofang.smallUpload.js");
+    Html.AppendScriptParts(true, "~/Content/assets/global/plugins/nicescroll/jquery.nicescroll.min.js");
+    Html.AppendScriptParts(true, "~/Content/assets/global/plugins/nicescroll/jquery.nicescroll.plus.js");
+    Html.AppendScriptParts(true, "~/Administrator/Scripts/jquery.form.js");
+    Html.AppendScriptParts(true, "~/Content/assets/global/plugins/layer/layer.js");
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light">
+
+            <div class="portlet-body flip-scroll">
+                <div class="vis-view-area clearfix">
+                    <div class="head-area">
+                        <a class="logo-area" title="logo设置"></a>
+                        <a class="search-area" title="热门关键字设置"></a>
+                    </div>
+                    <div class="nav-area">
+                        <a href="@Url.Action("NavigationList")" title="导航条设置"></a>
+                    </div>
+                    <div class="first-screen-area">
+                        <a href="@Url.Action("HomeCategoryList")" class="categorys-area" title="商城分类设置"></a>
+                        <div class="scroll-area-center">
+                            <div class="scroll-area">
+                                <a href="@Url.Action("SlideAdInfoList",new { sTypeId=(int)SlideAdType.PlatformHome})" class="auto-scroll-area" title="自动轮播设置"></a>
+                            </div>
+                            <div class="scroll-area-right">
+                                <a class="article-area-max imageAdRecommend" title="小banner图一" pid="@(Model.Length>8?Model[0].PictureId:0)" pic="@(Model.Length>8?Model[0].PictureUrl:"")"
+                                   url="@(Model.Length>8?Model[0].Url:"")" value="1"></a>
+                            </div>
+                            <div class="first-right-area">
+                                <a class="article-area " title="企业入驻" href="@Url.Action("HomePageSettings")"></a>
+                                <a class="article-area " title="医药快讯" href="@Url.Action("HomePageSettings")"></a>
+                            </div>
+                            <div class="scroll-area-min">
+                                <a href="@Url.Action("SlideAdInfoList",new { sTypeId=(int)SlideAdType.PlatformMiniHome})" class="auto-scroll-area" title="自动轮播设置"></a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="branner-ad-area">
+                        <a class="imageAdRecommend" title="广告位一" pid="@(Model.Length>8?Model[1].PictureId:0)" pic="@(Model.Length>8?Model[1].PictureUrl:"")"
+                           url="@(Model.Length>8?Model[1].Url:"")" value="2"></a>
+                    </div>
+
+                    <div class="floors-area">
+                        <a title="楼层编辑" href="@Url.Action("HomeFloor")"></a>
+                    </div>
+                    <div class="branner-ad-area">
+                        <a href="@Url.Action("SlideAdInfoList",new { sTypeId=(int)SlideAdType.PlatformLimitTime})" class="auto-scroll-area" title="首页区域轮播图"></a>
+                    </div>
+                    <div class="branner-ad-area2">
+                        <a href="@Url.Action("SlideAdInfoList",new { sTypeId=(int)SlideAdType.PlatformAreaHome})" class="auto-scroll-area" title="首页区域轮播图"></a>
+                    </div>
+                    <div class="floors-area2">
+                        <a title="楼层编辑" href="@Url.Action("HomeFloor")"></a>
+                    </div>
+                    <div class="service-area">
+                        <a title="楼层编辑" href="@Url.Action("HomeFloor")"></a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

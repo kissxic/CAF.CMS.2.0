@@ -1,0 +1,6 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\04-Infrastructure\CAF.Infrastructure.SearchModule\obj\Debug\CAF.Infrastructure.SearchModule.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Infrastructure.SearchModule.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Infrastructure.SearchModule.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Infrastructure.SearchModule.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\04-Infrastructure\CAF.Infrastructure.SearchModule\obj\Debug\CAF.Infrastructure.SearchModule.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\04-Infrastructure\CAF.Infrastructure.SearchModule\obj\Debug\CAF.Infrastructure.SearchModule.pdb

@@ -1,0 +1,35 @@
+.become_vip_item {width: 100%; float: left; }
+.bg1{background-color: #f0f1eb;}
+#bg1{width:100%}
+
+.sub_title{ height: 60px; margin: 30px 0px; float: left; width: 100%; text-align: center;background: url("../images/vip_title_bg.png") no-repeat 50% 50%;}
+.sub_title span { float: left;width: 100%; text-align: center; color: #808080;}
+.sub_title .h1 { font:30px/35px "microsoft yahei";}
+.sub_title .h2 { font:12px/20px "Arial";}
+
+.process { width: 100%; height: 166px; float: left;background: url("../images/vip_liucheng.png") no-repeat 50% 0;}
+.privilege { float: left; width: 100%;}
+.privilege .demo1 { float: left; margin: 20px 40px;}
+.privilege .demo { float: left;  width: 100%; margin: 40px 0px;}
+.privilege .demo a { display: inline-block; margin-left: 35%; font:36px/89px "microsoft yahei"; color: #fff; background: url("../images/vip_btn.png") no-repeat; width: 384px; height: 89px; text-align: center;}
+.privilege .demo1 dl{ float: left; border-right: 1px solid #fff;}
+.privilege .demo1 dl dt{ float: left; height: 49px; width: 100%; text-align: center; color: #fff; font:18px/48px "microsoft yahei" }
+.privilege .demo1 dl dd{ float: left; height: 46px; border-bottom: 1px solid #fff; width: 100%; text-align: center; font:14px/46px "microsoft yahei" }
+.privilege .demo1 .dl1{ width: 227px; }
+.privilege .demo1 .dl1 dt{background-color: #363636;}
+.privilege .demo1 .dl1 dd{background-color:#eff3f4; color: #333;}
+
+.privilege .demo1 .dl2{ width: 464px;}
+.privilege .demo1 .dl2 dt{background-color: #b60000;}
+.privilege .demo1 .dl2 dd{background-color:#e96d6d; color: #fff;}
+
+.privilege .demo1 .dl3{ width: 430px; }
+.privilege .demo1 .dl3 dt{ background-color: #b3b3b3;}
+.privilege .demo1 .dl3 dd{background-color:#eff3f4; color: #777;}
+
+.marchants {float: left; width: 100%;}
+.marchants ul {width: 105%;}
+.marchants ul li {float: left; margin-right: 1px; margin-bottom: 1px; height:210px; width:300px;  }
+
+.information {float: left; width: 100%; margin-bottom: 50px;}
+.information p {font: 14px "microsoft yahei"; color: #3f3f3f;}

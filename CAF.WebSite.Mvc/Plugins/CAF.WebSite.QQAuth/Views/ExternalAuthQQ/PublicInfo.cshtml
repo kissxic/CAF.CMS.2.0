@@ -1,0 +1,9 @@
+﻿@{
+    Layout = "";
+
+}
+ 
+
+<a  title="QQ账号登录"  class="way_qq" id="wayforqq" href="@Url.RouteUrl("CAF.WebSite.QQAuth", new { ReturnUrl = HttpContext.Current.Request.QueryString["ReturnUrl"], action = "Login" })">
+    @*<img src="~/Content/assets/global/img/social/Connect_logo_7.png" alt="QQ账号登录" />*@
+</a><span></span>

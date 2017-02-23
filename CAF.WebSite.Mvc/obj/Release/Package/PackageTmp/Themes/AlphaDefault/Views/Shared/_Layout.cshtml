@@ -1,0 +1,188 @@
+﻿@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core;
+@{
+    Layout = "~/Views/Shared/_Layout.Head.cshtml";
+    var jqueryCssRootPath = "~/Themes/AlphaDefault/Content/";
+
+    //Html.AppendCssFileParts(ResourceLocation.Head,
+    //    jqueryCssRootPath + "css/index.css");
+
+
+    Html.AppendScriptParts(ResourceLocation.Head,
+        jqueryCssRootPath + "js/MSClass.js"
+        );
+}
+@if (IsSectionDefined("header"))
+{
+    @RenderSection("header")
+}
+else
+{
+    @Html.Action("SiteBar", "Common", new { area = "" })
+    @Html.Action("Header", "Common", new { area = "" })
+    @Html.Action("MegaMenu", "Common", new { area = "" })
+
+}
+
+@RenderBody()
+@if (IsSectionDefined("footer"))
+{
+    @RenderSection("footer")
+}
+else
+{
+    <div class="jkn_link">
+        <ul>
+            <li id="jk_li_1" class="active" onmouseover="click_tab('1')">健康资讯</li>
+            <li id="jk_li_2" onmouseover="click_tab('2')" class="">合作媒体</li>
+            <li id="jk_li_3" onmouseover="click_tab('3')" class="">友情链接</li>
+        </ul>
+        <div class="jk_con_links">
+            <!--健康资讯开始-->
+            <div class="jk_tcon_links" id="jk_div_1" style="display: block;">
+
+                <a title="爱趣商城" target="_blank" href="#>爱趣商城</a><a title="女性健康" target="_blank" href="#">女性健康</a><a title="糖尿病资讯" target="_blank" href="#">糖尿病资讯</a><a title="儿科资讯" target="_blank" href="#">儿科资讯</a><a title="肛肠资讯" target="_blank" href="#">肛肠资讯</a><a title="哮喘资讯" target="_blank" href="#">哮喘资讯</a><a title="精神病频道" target="_blank" href="#">精神病频道</a><a title="皮肤资讯" target="_blank" href="#">皮肤资讯</a>
+            </div>
+            <!--健康资讯结束-->
+            <!--友情链接开始-->
+            <div class="jk_tcon_links" id="jk_div_2" style="display: none;">
+
+                <a title="cps联盟" target="_blank" href="#">cps联盟</a><a title="开心人网上药店" target="_blank" href="#">开心人网上药店</a><a title="百济新特药房" target="_blank" href="#">百济新特药房</a><a title="百济健康商城" target="_blank" href="#">百济健康商城</a><a title="39药品库" target="_blank" href="#">39药品库</a><a title="药品价格网" target="_blank" href="#">药品价格网</a>
+            </div>
+            <!--友情链接结束-->
+            <!--合作媒体开始-->
+            <div class="jk_tcon_links" id="jk_div_3" style="display: none;">
+
+                <a title="保健品商城" target="_blank" href="#">保健品商城</a><a title="中华康网" target="_blank" href="#">中华康网</a><a title="心理咨询" target="_blank" href="http://www.yidianling.com/">心理咨询</a><a title="中华康网" target="_blank" href="#">中华康网</a><a title="中华康网" target="_blank" href="#">中华康网</a><a title="中华康网" target="_blank" href="#">中华康网</a><a title="中华康网" target="_blank" href="#">中华康网</a><a title="中华康网" target="_blank" href="#">中华康网</a><a title="中华康网" target="_blank" href="#">中华康网</a><a title="中华康网" target="_blank" href="#">中华康网</a>
+            </div>
+            <!--合作媒体开始-->
+        </div>
+        <script>
+         function click_tab(index)
+        {
+            for (var i=1;i<=3;i++)
+            {
+               document.getElementById ("jk_li_"+i).className ="";
+               document.getElementById ("jk_li_"+index).className ="active";
+               document.getElementById ("jk_div_"+i).style.display ="none";
+
+            }
+            document.getElementById ("jk_div_"+index).style.display ="block";
+       };
+        </script>
+
+    </div>
+    <div class="footer">
+        <div class="promise">
+            <div class="promise_item">
+                <span title="药坊网医药网,医药招商,药品招商">
+                    <i class="pro01"></i>
+                </span>
+                <span title="药坊网医药网,医药招商,药品招商">
+                    <i class="pro02"></i>
+                </span>
+                <span title="药坊网医药网,医药招商,药品招商">
+                    <i class="pro03"></i>
+                </span>
+                <span title="药坊网医药网,医药招商,药品招商">
+                    <i class="pro04"></i>
+                </span>
+            </div>
+        </div>
+       
+   
+        <div class="w">
+            <dl style="width: 190px;" class="fore0">
+                <dt>关于我们</dt>
+                <dd>
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="公司简介" rel="nofollow">公司简介</a></div>
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="资质证书" rel="nofollow">资质证书</a></div>
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="公司股票" rel="nofollow">公司股票</a></div>
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="平台优势" rel="nofollow">平台优势</a></div>
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="联系方式" rel="nofollow">联系方式</a></div>
+                </dd>
+            </dl>
+            <dl style="width: 190px;" class="fore1">
+                <dt>帮助中心</dt>
+                <dd>
+
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="网站地图">网站地图</a></div>
+
+
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="注册协议" rel="nofollow">注册协议</a></div>
+
+
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="医药QQ群" rel="nofollow">医药QQ群</a></div>
+
+
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="人才招聘" rel="nofollow">人才招聘</a></div>
+
+
+                </dd>
+            </dl>
+            <dl style="width: 190px;" class="fore2">
+                <dt>新手上路</dt>
+                <dd>
+
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="VIP服务" rel="nofollow">VIP服务</a></div>
+
+
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="广告服务" rel="nofollow">广告服务</a></div>
+
+
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="咨询服务" rel="nofollow">咨询服务</a></div>
+
+
+                </dd>
+            </dl>
+            <dl style="width: 190px;" class="fore3">
+                <dt>招商公告</dt>
+                <dd>
+
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="医药资讯">医药资讯</a></div>
+
+
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="服务宗旨" rel="nofollow">服务宗旨</a></div>
+
+
+                    <div style="height:21px;overflow:hidden"><a target="_blank" href="#" title="隐私声明" rel="nofollow">隐私声明</a></div>
+
+
+                </dd>
+            </dl>
+
+            <dl style="width: 320px;" class="fore5">
+                <dt>客服QQ</dt>
+
+                <dd>
+                    <div style="clear: both; float:left;">
+                        <a style="clear: both; float: left;margin-right: 5px;">代理客服:</a>
+                        <a href="tencent://message/?uin=3286619561&amp;Site=goodyao.com&amp;Menu=yes" target="_blank" title="代理客服" rel="nofollow"><img src="http://www.goodyao.com/application/views/images/qq_online.gif" alt="代理客服"></a>
+                    </div>
+                     
+                </dd>
+
+
+            </dl>
+            <dl class="fore6">
+                <dt>微信公众平台</dt>
+                <dd>
+                    <div class="service_qrcode"><img src="~/Themes/AlphaDefault/Content/images/yaofang.png" alt="药坊网医药网,医药招商,药品招商"></div>
+                </dd>
+            </dl>
+            <span class="clr"></span>
+        </div>
+    </div>
+    @Html.Action("Footer", "Common", new { area = "" })
+
+}
+@if (IsSectionDefined("FootScript"))
+{
+    @RenderSection("FootScript", required: false)
+  
+}
+else
+{
+
+}
+

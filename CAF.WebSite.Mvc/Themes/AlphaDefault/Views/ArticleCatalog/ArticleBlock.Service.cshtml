@@ -1,0 +1,11 @@
+﻿@model ArticleCategoryModel
+ 
+@if (Model.Articles.Count > 0)
+{
+    <ul class="list_ul" style="display: none;">
+        @foreach (var item in Model.Articles)
+        {
+            <li artId="@item.Id"><a href='@Url.RouteUrl("HelpeArticle", new { SeName = item.SeName })'>@item.Title</a></li>
+        }
+    </ul>
+}

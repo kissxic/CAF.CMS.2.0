@@ -1,0 +1,146 @@
+﻿@model List<HomeCategorySet>
+@using CAF.Infrastructure.Core.Domain.Cms.PageSettings;
+@using CAF.WebSite.Mvc.Models.HomeFloors;
+@{
+    List<BannerInfo> navigators = ViewBag.Navigators;
+    List<HomeCategorySet> categories = ViewBag.Categories;
+}
+<div class="menu">
+    <div class="menu_nav">
+        <div class="w">
+            <div class="category_menu ">
+                <div class="dt">
+                    <a href="javascript:;">全部服务分类</a>
+                </div>
+                <div class="dd dropdownmenu disappear">
+                    <div class="dd_inner">
+                        @foreach (var cateogry in categories)
+                        {
+
+                            <div class="dd_item">
+                                <div class="item_top">
+                                    <a href="@cateogry.Url" class="itemtop_a topa1">@cateogry.Name</a>
+                                </div>
+
+                                @if (cateogry.HomeCategories.Count() > 0)
+                                {
+
+                                    int index = 0;
+                                    var topCategories = cateogry.HomeCategories.Where(item => item.Depth == 1);
+                                    <div class="item_con">
+                                        @foreach (var topCateory in topCategories)
+                                        {
+                                            if (index <= 3)
+                                            {
+                                                <a href="@Url.RouteUrl("ProductCategory",new {channelId=1,categoryId=topCateory.CategoryId })">@topCateory.Name</a>
+                                            }
+                                            index++;
+                                        }
+                                    </div>
+
+                                    var subCategories = cateogry.HomeCategories.Where(item => item.Depth == 2);
+
+                                    var subIndex = 0;
+                                    <div class="dropdown_layer disappear" style="top: 40px;">
+                                        <div class="dditem">
+                                            <div class="subitems">
+                                
+                                                <div class="itemscontent">
+                                                    @if (topCategories.Count() > 0)
+                                                    {
+                                                        <p>
+                                                            @foreach (var topCateory in topCategories)
+                                                            {
+                                                                <a href="@Url.RouteUrl("ProductCategory",new {ChannelId=1,categoryId=topCateory.CategoryId })">@topCateory.Name</a>
+                                                            }
+                                                        </p>
+                                                    }
+                                                    @foreach (var subItem in subCategories)
+                                                    {
+                                                        var thirdCategories = cateogry.HomeCategories.Where(item => item.Depth == 3 && item.ParentId == subItem.CategoryId);
+
+                                                        if (subIndex == 0)
+                                                        {
+                                                            <dl>
+                                                                <dt><a href="@Url.RouteUrl("ProductCategory",new {ChannelId=1,categoryId=subItem.CategoryId })">@subItem.Name</a></dt>
+                                                                <dd>
+                                                                    @foreach (var subThirdCategoy in thirdCategories)
+                                                                    {
+                                                                        <a href="@Url.RouteUrl("ProductCategory",new {ChannelId=1,categoryId=subThirdCategoy.CategoryId })">@subThirdCategoy.Name</a>
+                                                                    }
+                                                                </dd>
+                                                            </dl>
+                                                        }
+                                                        else
+                                                        {
+                                                            <dt><a href="@Url.RouteUrl("ProductCategory",new {ChannelId=1,categoryId=subItem.CategoryId })">@subItem.Name</a></dt>
+                                                            <dd>
+                                                                @foreach (var subThirdCategoy in thirdCategories)
+                                                                {
+                                                                    <a href="@Url.RouteUrl("ProductCategory",new {ChannelId=1,categoryId=subThirdCategoy.CategoryId })">@subThirdCategoy.Name</a>
+                                                                }
+                                                            </dd>
+                                                        }
+
+                                                        subIndex++;
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="itemrecommond">
+                                                <div>
+                                                    <dl>
+                                                        <dt>热门品牌</dt>
+                                                        <dd>
+                                                            @foreach (var item in cateogry.Brands)
+                                                            {
+                                                                <a href="@item.Url"><img src="@item.ImageUrl"></a>
+                                                            }
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                                <div>
+                                                    <dl>
+                                                        <dt>推荐商家</dt>
+                                                        <dd class="tuijian_o">
+                                                            @foreach (var item in cateogry.Vendor)
+                                                            {
+                                                                <a href="@item.Url"><img src="@item.ImageUrl"></a>
+                                                            }
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="navitems">
+                <ul id="navtrade">
+                    <li class="lihover"><a href="@Url.RouteUrl("HomePage")">首页</a></li>
+                    <li class=""><a href="@Url.RouteUrl("AllCategory",new { channelId=3})">分类信息</a></li>
+                    <li class=""><a href="/shop">交易平台</a></li>
+                    @*<li class=""><a href="@Url.RouteUrl("AllCategory",new { channelId=2})">资讯</a></li>*@
+                    @foreach (var navigator in navigators)
+                    {
+                        <li><a href="@navigator.Url">@navigator.Name</a></li>
+                    }
+                </ul>
+            </div>
+            <span class="clr"></span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        $("#navtrade li").mouseover(function () {
+            $("#navtrade li").removeClass("lihover");
+            $(this).addClass("lihover");
+        });
+    });
+</script>

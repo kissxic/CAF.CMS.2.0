@@ -1,0 +1,95 @@
+﻿@model UserAvatarModel
+@{
+    Layout = "~/Themes/AlphaDefault/Views/Shared/_ColumnsTwoLeft.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Account").Text);
+
+    Html.AppendCssFileParts(ResourceLocation.Head,
+        "~/Themes/AlphaDefault/Content/css/uploadavater.css",
+         "~/Content/assets/global/plugins/jquery-html5-upload/cropper/cropper.min.css",
+         "~/Content/assets/global/plugins/jquery-html5-upload/sitelogo/sitelogo.css");
+
+    Html.AppendScriptParts(ResourceLocation.Head,
+      "~/Content/assets/global/plugins/jquery-html5-upload/cropper/cropper.js",
+      "~/Content/assets/global/plugins/jquery-html5-upload/sitelogo/sitelogo.js");
+}
+@section left
+{
+    @Html.Partial("MyAccountNavigation", Model.NavigationModel, new ViewDataDictionary())
+}
+<script>
+
+    //$(window).load(function () {
+    //    var defalutavater = "images/defaultavartar.jpg";
+    //    var useravater = "";
+    //    //判断是否用户是否有当前头像 有就加载
+    //    if (useravater == "") {
+    //        $('.cropped').html('');
+    //        $('.cropped').append('<img src="' + defalutavater + '" align="absmiddle" style="width:64px; height:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;" ><p>64px*64px</p>');
+    //        $('.cropped').append('<img src="' + defalutavater + '" align="absmiddle" style="width:128px; height:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;"><p>128px*128px</p>');
+    //        $('.cropped').append('<img src="' + defalutavater + '" align="absmiddle" style="width:180px; height:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;"><p>180px*180px</p>');
+    //    } else {
+    //        $('.cropped').html('');
+    //        $('.cropped').append('<img src="' + useravater + '" align="absmiddle" style="width:64px; height:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;" ><p>64px*64px</p>');
+    //        $('.cropped').append('<img src="' + useravater + '" align="absmiddle" style="width:128px; height:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;"><p>128px*128px</p>');
+    //        $('.cropped').append('<img src="' + useravater + '" align="absmiddle" style="width:180px; height:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;"><p>180px*180px</p>');
+    //    }
+    //});
+</script>
+<!--上传头像Start-->
+<div id="uploadavatar">
+    <div class="rightpane">
+        <div class="title01">上传头像</div>
+        <div class="avatar">
+            <h1>当前头像</h1>
+            <h2>如果您当前没有头像，系统会显示为默认头像，您需要自己上传一张新照片来作为自己的头像</h2>
+            <div class="" id="avatar-modal" aria-labelledby="avatar-modal-label">
+                <form class="avatar-form" action="/Member/UploadAvatar" enctype="multipart/form-data" method="post">
+
+                    <div class="div_avatar">
+                        <div class="imageBox">
+                            <div class="spinner avatar-wrapper"></div>
+                            <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+                        </div>
+                        <div class="action avatar-btns">
+
+                            <div class="avatar-upload">
+                                <input class="avatar-src" name="avatar_src" type="hidden">
+                                <input class="avatar-data" name="AvatarData" type="hidden">
+
+                            </div>
+                            <div class="new-contentarea tc ">
+                                @*<a href="javascript:void(0)" class="upload-img"><label for="upload-file">上传图像</label></a>
+                                    <input type="file" class="" name="upload-file" id="upload-file">*@
+                                <div class="fancy-file-upload fancy-file-primary">
+                                    <a href="javascript:void(0)" class="upload-img"><label for="upload-file">上传图像</label></a>
+                                    <input type="file" class="avatar-input" id="uploadedFile" name="uploadedFile" onchange="jQuery(this).next('input').val(this.value);" />
+                                </div>
+                            </div>
+                           
+                                <button class="avatar-save Btnsty_peyton" type="submit" name="upload-avatar" value="upload-avatar">保存修改</button>
+                                <button class="Btnsty_peyton" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees">向左旋转</button>
+                                <button class="Btnsty_peyton" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees">向右旋转</button>
+                            
+                        </div>
+                        <div class="cropped">
+                            <div class="avatar-preview preview-lg">
+                                <img src="@Model.AvatarUrl"  style=""><p>180px*180px</p>
+                            </div>
+                            <div class="avatar-preview preview-md">
+                                <img src="@Model.AvatarUrl" style=""><p>128px*128px</p>
+                            </div>
+                            <div class="avatar-preview preview-sm">
+                                <img src="@Model.AvatarUrl" style=""><p>64px*64px</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <span>图片仅支持jpg,jpeg、gif、png格式的图片文件，<label class="txtred">文件不能大于3M</label></span>
+        </div>
+    </div>
+</div>
+
+<!--上传头像End-->

@@ -1,0 +1,2 @@
+CAF Error: 2 : ERROR: Error while calling TaskScheduler endpoint 'http://localhost:45699/TaskScheduler/Sweep'. HTTP 500, Internal Server Error
+    DateTime=2016-09-29T09:50:48.5703161Z

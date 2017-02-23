@@ -1,0 +1,10 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\ClearScript.V8\ClearScriptV8-32.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\ClearScript.V8\ClearScriptV8-64.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\ClearScript.V8\v8-ia32.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\ClearScript.V8\v8-x64.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\CAF.WebSite.Mvc.Admin.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\CAF.WebSite.Mvc.Admin.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\bin\CAF.WebSite.Mvc.Admin.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Administrator\obj\Debug\CAF.WebSite.Mvc.Admin.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Administrator\obj\Debug\CAF.WebSite.Mvc.Admin.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Administrator\obj\Debug\CAF.WebSite.Mvc.Admin.pdb

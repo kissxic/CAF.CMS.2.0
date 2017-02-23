@@ -1,0 +1,220 @@
+﻿@model ArticlePostModel
+
+@{
+
+}
+
+<form id="MessageForm" action="/Article/ArticleAgencyAdd">
+    
+    <input type="hidden" name="VendorId" value="@Model.VendorId" />
+    <input type="hidden" name="ArticleId" value="@Model.Id" />
+    <table width="900" height="460" border="1" class="message_tab" style="border-collapse:collapse;">
+        <tr>
+            <td height="62" colspan="6">
+                <div style="margin:10px" class="message_box">
+                    <div class="message_title">您将同时给以下商品留言：</div>
+                    <div id="intentional_product_div">
+                        <div class="selected_message">
+                            <input type="checkbox" class="box" id="default_sele" disabled="disabled" /><span class="title">@Model.Title</span>
+                        </div>
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tab_title"><div style="width:80px;"><span class="key">*</span>联系人：</div></td>
+            <td width="172"><input name="truename" class="input_box contact_person" datatype="*3-20" , errormsg="商联系人至少6个字符,最多50个字符！" /></td>
+            <td class="tab_title"><div style="width:50px;"><span class="key">*</span>电话：</div></td>
+            <td width="172"><input name="telephone" class="input_box telephone" datatype="m" , errormsg="请填写手机号码！" /></td>
+            <td class="tab_title"><div style="width:40px;">手机：</div></td>
+            <td width="172"><input name="mobile" class="input_box" /></td>
+        </tr>
+        <tr>
+            <td class="tab_title">QQ：</td>
+            <td><input name="qq" class="input_box contact_person" /></td>
+            <td class="tab_title">邮箱：</td>
+            <td colspan="3"><input name="email" class="input_box" style="width:467px;" /></td>
+        </tr>
+        <tr>
+            <td class="tab_title"><span class="key">*</span>意向区域：</td>
+            <td colspan="5">
+
+                <input type="hidden" name="ProvinceName" id="ProvinceName">
+                <div class="intent_region">
+
+                    <select id="intentional_region_select" class="products_sele width_150" datatype="*"></select>
+
+                    <div class="intentional_region_box">
+                        <ul class="checkbox_ul not_show" id="intent_region"></ul>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="tab_title" height="34"><span class="key">*</span>销售渠道：</td>
+            <td colspan="5">
+                <div class="sales_channel_box">
+                    <ul>
+
+                        <li><input class="box" type="checkbox" name="DistributionChannelId" value="医院渠道" id="xsqd_0"> 医院渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li><input class="box" type="checkbox" name="DistributionChannelId" value="药店渠道" id="xsqd_1"> 药店渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li><input class="box" type="checkbox" name="DistributionChannelId" value="第三终端渠道" id="xsqd_2"> 第三终端渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li><input class="box" type="checkbox" name="DistributionChannelId" value="商超渠道" id="xsqd_3"> 商超渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li><input class="box" type="checkbox" name="DistributionChannelId" value="网络营销渠道" id="xsqd_4"> 网络营销渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li><input class="box" type="checkbox" name="DistributionChannelId" value="会议营销渠道" id="xsqd_5"> 会议营销渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li><input class="box" type="checkbox" name="DistributionChannelId" value="体验营销渠道" id="xsqd_6"> 体验营销渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li><input class="box" type="checkbox" name="DistributionChannelId" value="专卖店渠道" id="xsqd_7"> 专卖店渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li><input class="box" type="checkbox" name="DistributionChannelId" value="美容院渠道" id="xsqd_8"> 美容院渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li><input class="box" type="checkbox" name="DistributionChannelId" value="炒作渠道" id="xsqd_9"> 炒作渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li><input class="box" type="checkbox" name="DistributionChannelId" value="批发渠道" id="xsqd_10"> 批发渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li style="width:300px;"><input class="box" type="checkbox" name="DistributionChannelId" value="配送渠道" id="xsqd_11"> 配送渠道&nbsp;&nbsp;&nbsp;</li>
+                        <li><input type="checkbox" name="DistributionChannelId" value="其他渠道" id="other_channels" class="box" datatype="*" />其他渠道</li>
+                        <li><input name="OtherChannel" class="input_box sales_channel" /></li>
+                    </ul>
+                    <div style="clear:both;"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="tab_title"><span class="key">*</span>代理性质：</td>
+            <td colspan="5">
+                <input type="checkbox" class="box" name="AgentPropertyId" value="个人代理" datatype="*" />个人代理
+                <input type="checkbox" class="box" name="AgentPropertyId" value="公司代理" />公司代理
+                <input type="checkbox" class="box" name="AgentPropertyId" value="大包" />大包
+                <input type="checkbox" class="box" name="AgentPropertyId" value="全国总代理" />全国总代理
+                <input type="checkbox" class="box" name="AgentPropertyId" value="区域代理" />区域代理
+                <input type="checkbox" class="box" name="AgentPropertyId" value="经销" />经销
+            </td>
+        </tr>
+        <tr>
+            <td height="95" class="tab_title"><span class="key">*</span>留言内容：</td>
+            <td colspan="5">
+                <textarea name="Message" class="input_box message_content" datatype="*"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tab_title">查看权限：</td>
+            <td colspan="5">
+                <input checked type="radio" name="ShowAuthId" value="5" style="vertical-align:middle; margin:0 5px;" datatype="*" />对所有招商会员开放
+                <input type="radio" name="ShowAuthId" value="10" style="vertical-align:middle; margin:0 5px;" /> 对留言产品招商会员开放
+            </td>
+        </tr>
+        <tr>
+            <td class="tab_title"><span class="key">*</span>验证码：</td>
+            <td>
+                <input name="CheckCode" class="verification_code" id="CheckCode" maxlength="4" datatype="*" type="text" size="6" onkeyup="checkcaptcha(this.value);" onblur="checkcaptcha(this.value);" />
+                <img src="/Common/GetCheckCode" title="验证码,看不清楚?请点击刷新&#10;字母不区分大小写" alt="" id="captchapng" onclick="reloadcaptcha();" style="cursor:pointer;" />
+                <span id="ccaptcha"></span>
+                <div style="clear:both;"></div>
+            </td>
+            <td colspan="4">
+      
+                <input type="submit" value="提交" class="btnsure" @*id="agentButton"*@ />
+            </td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+    $(function () {
+        $("#default_sele").attr("checked", "checked");
+        var ddlStates = $("#intentional_region_select");
+        var drpCity = $("#intent_region");
+        $.ajax({
+            type: "GET",
+            url: "@(Url.Action("GetStatesByCountryId", "Country"))",
+            data: { "countryId": 23, "addEmptyStateIfRequired": "true" },
+        }).done(function (data) {
+            if ($.isArray(data)) {
+
+                $.each(data, function (id, option) {
+                    ddlStates.append($('<option></option>').val(option.id).html(option.name));
+                });
+
+            }
+        });
+        $("#intentional_region_select").change(function (evt, param) {
+            if ($("#intentional_region_select").val() == "0") {
+                $("#intent_region").hide();
+                $(".intentional_region_box").hide();
+            } else {
+                $("#intent_region").show();
+                $(".intentional_region_box").show();
+                var val = $("#intentional_region_select").val();
+                $("#ProvinceName").val($(this).find("option:selected").text());
+                var selectedItem = $(this).val();
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.Action("GetCitysByProvinceId", "Country"))",
+                    data: { "stateId": selectedItem, "addEmptyStateIfRequired": "true" },
+                    success: function (data) {
+                        drpCity.html('');
+                        $.each(data, function (id, option) {
+                            drpCity.append('<li ><input type="checkbox" name="CityName" value="' + option.name + '" class="box" />' + option.name + '</li>');
+                        });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('获取下属市失败.');
+                    }
+                });
+            }
+        });
+
+        var index;
+        var element = $("#MessageForm");
+        element.Validform({
+            tiptype: 1,
+            callback: function (form) {
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    data: element.serializeArray(),
+                    url: $(element).attr('action'),
+                    beforeSend: function () {
+                        index = layer.load();
+                    },
+                    success: function (response) {
+                        if (response.Result) {
+                            layer.msg('提交代理信息成功.');
+                           
+                        }
+                        else
+                            layer.msg(response.Message);
+                    },
+                    error: function (objXml) {
+                        layer.close(index);
+                    },
+                    complete: function () {
+                        layer.close(index);
+                        reloadcaptcha();
+
+                    }
+                });
+                return false;
+            }
+        });
+    });
+    function reloadcaptcha() {
+        $('#captchapng').attr('src', '/Common/GetCheckCode?time=' + new Date().getTime());
+        $('#ccaptcha').innerHTML = '';
+        $('#captcha').value = '';
+    }
+    function checkcaptcha(s) {
+        if (!is_captcha(s)) return;
+
+    }
+    function is_captcha(v) {
+        if (v == '') return false;
+        if (v.match(/^[a-z0-9A-Z]{1,}$/)) {
+            return v.match(/^[a-z0-9A-Z]{4,}$/);
+        } else {
+            return v.length > 1;
+        }
+    }
+
+
+
+</script>

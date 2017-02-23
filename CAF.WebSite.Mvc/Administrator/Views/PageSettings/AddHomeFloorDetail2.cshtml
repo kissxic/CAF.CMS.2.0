@@ -1,0 +1,337 @@
+﻿@model HomeFloorDetail
+@{
+    //page title
+    ViewBag.Title = "楼层二编辑";
+    Html.AppendCssFileParts(true, Url.Content("~/Content/assets/admin/pages/css/pagesettings.css"));
+
+    Html.AppendScriptParts(true, "~/Administrator/Scripts/pageSettings-floorDetail2.js");
+    Html.AppendScriptParts(true, "~/Scripts/system.smallUpload.js");
+    Html.AppendScriptParts(true, "~/Content/assets/global/plugins/nicescroll/jquery.nicescroll.min.js");
+    Html.AppendScriptParts(true, "~/Content/assets/global/plugins/nicescroll/jquery.nicescroll.plus.js");
+    Html.AppendScriptParts(true, "~/Administrator/Scripts/jquery.form.js");
+}
+
+@Html.ValidationSummary(false)
+<input data-val="true"  id="homeFloorId" name="homeFloorId" type="hidden" value="@Model.Id" />
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+    $(function () {
+        $(document).on('click', '#SearchRequiredManufacturerButton', function () {
+
+            $('#@(Html.FieldIdFor(x => x.ManufacturerIds))').entityPicker('loadDialog', {
+                url: '@Url.Action("EntityPicker", "Common", new { area = "" })',
+                caption: '推荐品牌',
+                entity: "manufacturer",
+                returnValueDelimiter: ',',
+                maxReturnValues: 10,
+                onLoadDialogBefore: function () {
+                    $('#SearchRequiredManufacturerButton').button('loading').prop('disabled', true);
+                },
+                onLoadDialogComplete: function () {
+                    $('#SearchRequiredManufacturerButton').prop('disabled', false).button('reset');
+                }
+            });
+
+        });
+        $(document).on('click', '#SearchRequiredVendorButton', function () {
+
+            $('#@(Html.FieldIdFor(x => x.VendorIds))').entityPicker('loadDialog', {
+                url: '@Url.Action("EntityPicker", "Common", new { area = "" })',
+                caption: '推荐品牌',
+                entity: "vendor",
+                returnValueDelimiter: ',',
+                maxReturnValues: 10,
+                onLoadDialogBefore: function () {
+                    $('#SearchRequiredVendorButton').button('loading').prop('disabled', true);
+                },
+                onLoadDialogComplete: function () {
+                    $('#SearchRequiredVendorButton').prop('disabled', false).button('reset');
+                }
+            });
+
+        });
+        
+    });
+
+
+
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light">
+            <div class="section-header sticky">
+                <div class="caption">
+                    <i class="icon-equalizer font-red-sunglo"></i>
+                    <span class="caption-subject font-red-sunglo bold uppercase">楼层管理 </span>
+                    <span class="caption-helper">@Html.ActionLink("(" + T("Admin.Common.BackToList") + ")", "HomeFloor")</span>
+                </div>
+                <div class="actions">
+                    <button type="submit" name="submit" value="submit" class="btn btn-primary"><i class="fa fa-check"></i>@T("Admin.Common.Save")</button>
+                </div>
+            </div>
+            <div class="portlet-body form form-horizontal form-bordered form-row-stripped">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            楼层名称
+                        </label>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name)
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                           更多URL
+                        </label>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Url, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Url)
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">推荐企业</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+
+                                @Html.EditorFor(model => model.ManufacturerIds, new { @class = "form-control" })
+
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn blue" id="SearchRequiredManufacturerButton" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;@T("Admin.Common.Search")</button>
+                                    @Html.ValidationMessageFor(model => model.ManufacturerIds)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">推荐商家</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+
+                                @Html.EditorFor(model => model.VendorIds, new { @class = "form-control" })
+
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn blue" id="SearchRequiredVendorButton" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;@T("Admin.Common.Search")</button>
+                                    @Html.ValidationMessageFor(model => model.VendorIds)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <label for="" class="col-sm-2 control-label">选项卡：</label>
+                        <div class="col-sm-10">
+                            <table id="tblArticles" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>名称</th>
+                                        <th>已选商品数量</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody type="Articles">
+                                    @foreach (var tab in Model.Slides)
+                                    {
+                                        <tr type="Articles" name="@tab.Id">
+                                            <td><input class="form-control input-xs" type="text" name="name" value="@tab.Name" /></td>
+                                            <td><span ids="@tab.Ids">@tab.Count</span></td>
+                                            <td class="td-operate"><span class="btn-a"><a>选择商品</a></span><span class="btn-del"><a href="#">删除</a></span></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <a class="add-atrr" id="addArticles"><span class="glyphicon glyphicon-plus-sign"></span>添加</a>&nbsp;<span>(最多增加4个)</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">默认选项卡名称：</label>
+                        <div class="col-sm-3 form-control-static">
+                            @Html.EditorFor(model => model.DefaultTabName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DefaultTabName)
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">文本模块：</label>
+                        <div class="col-sm-10">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>名称</th>
+                                        <th>跳转链接</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody type="textLink">
+                                   
+                                    @foreach (var textLink in Model.TextLinks)
+                                    {
+                                        <tr type="textLink" name="@textLink.Id">
+                                            <td><input class="form-control input-xs" type="text" name="name" value="@textLink.Name" /></td>
+                                            <td><div class="col-md-12 input-group"><input class="form-control input-xs" type="text" id="tLink@(Guid.NewGuid().ToString())" name="url" value="@textLink.Url" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                            <td class="td-operate"><span class="btn-a"><a>删除</a></span></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <a class="add-atrr" id="addTextLink"><span class="glyphicon glyphicon-plus-sign"></span>添加</a>&nbsp;<span>(最多增加8个)</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">图片：</label>
+                        <div class="col-sm-10">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            区域
+                                            <div class="floor-ex-img">
+                                                （<a class="ex-btn">区域划分图</a>）
+                                                @*<img src="/Images/floor-img2.jpg" />*@
+                                            </div>
+                                        </th>
+                                        <th>图片</th>
+                                        <th>跳转链接</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>轮播图左一</td>
+                                        <td><div class="upload-img" id="up16" url="@Model.ArticleLinks.ElementAt(14).Url" pid="@Model.ArticleLinks.ElementAt(14).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink16" position="16" name="url" value="@Model.ArticleLinks.ElementAt(14).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>轮播图左二</td>
+                                        <td><div class="upload-img" id="up17" url="@Model.ArticleLinks.ElementAt(15).Url" pid="@Model.ArticleLinks.ElementAt(15).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink17" position="17" name="url" value="@Model.ArticleLinks.ElementAt(15).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>轮播图左三</td>
+                                        <td><div class="upload-img" id="up18" url="@Model.ArticleLinks.ElementAt(16).Url" pid="@Model.ArticleLinks.ElementAt(16).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink18" position="18" name="url" value="@Model.ArticleLinks.ElementAt(16).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>轮播图左四</td>
+                                        <td><div class="upload-img" id="up19" url="@Model.ArticleLinks.ElementAt(17).Url" pid="@Model.ArticleLinks.ElementAt(17).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink19" position="19" name="url" value="@Model.ArticleLinks.ElementAt(17).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>轮播图左五</td>
+                                        <td><div class="upload-img" id="up20" url="@Model.ArticleLinks.ElementAt(18).Url" pid="@Model.ArticleLinks.ElementAt(18).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink20" position="20" name="url" value="@Model.ArticleLinks.ElementAt(18).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>轮播图右一</td>
+                                        <td><div class="upload-img" id="up21" url="@Model.ArticleLinks.ElementAt(19).Url" pid="@Model.ArticleLinks.ElementAt(19).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink21" position="21" name="url" value="@Model.ArticleLinks.ElementAt(19).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>轮播图右二</td>
+                                        <td><div class="upload-img" id="up22" url="@Model.ArticleLinks.ElementAt(20).Url" pid="@Model.ArticleLinks.ElementAt(20).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink22" position="22" name="url" value="@Model.ArticleLinks.ElementAt(20).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>轮播图右三</td>
+                                        <td><div class="upload-img" id="up23" url="@Model.ArticleLinks.ElementAt(21).Url" pid="@Model.ArticleLinks.ElementAt(21).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink23" position="23" name="url" value="@Model.ArticleLinks.ElementAt(21).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>轮播图右四</td>
+                                        <td><div class="upload-img" id="up24" url="@Model.ArticleLinks.ElementAt(22).Url" pid="@Model.ArticleLinks.ElementAt(22).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink24" position="24" name="url" value="@Model.ArticleLinks.ElementAt(22).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>轮播图右五</td>
+                                        <td><div class="upload-img" id="up25" url="@Model.ArticleLinks.ElementAt(23).Url" pid="@Model.ArticleLinks.ElementAt(23).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink25" position="25" name="url" value="@Model.ArticleLinks.ElementAt(23).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>左一</td>
+                                        <td><div class="upload-img" id="up1" url="@Model.ArticleLinks.ElementAt(0).Url" pid="@Model.ArticleLinks.ElementAt(0).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink1" position="1" name="url" value="@Model.ArticleLinks.ElementAt(0).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>左二</td>
+                                        <td><div class="upload-img" id="up2" url="@Model.ArticleLinks.ElementAt(1).Url" pid="@Model.ArticleLinks.ElementAt(1).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink2" position="2" name="url" value="@Model.ArticleLinks.ElementAt(1).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>左三</td>
+                                        <td><div class="upload-img" id="up3" url="@Model.ArticleLinks.ElementAt(2).Url" pid="@Model.ArticleLinks.ElementAt(2).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink3" position="3" name="url" value="@Model.ArticleLinks.ElementAt(2).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>左四</td>
+                                        <td><div class="upload-img" id="up4" url="@Model.ArticleLinks.ElementAt(3).Url" pid="@Model.ArticleLinks.ElementAt(3).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink3" position="4" name="url" value="@Model.ArticleLinks.ElementAt(3).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>中一</td>
+                                        <td><div class="upload-img" id="up5" url="@Model.ArticleLinks.ElementAt(4).Url" pid="@Model.ArticleLinks.ElementAt(4).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink4" position="5" name="url" value="@Model.ArticleLinks.ElementAt(4).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>中二</td>
+                                        <td><div class="upload-img" id="up6" url="@Model.ArticleLinks.ElementAt(5).Url" pid="@Model.ArticleLinks.ElementAt(5).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink6" position="6" name="url" value="@Model.ArticleLinks.ElementAt(5).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>中三</td>
+                                        <td><div class="upload-img" id="up7" url="@Model.ArticleLinks.ElementAt(6).Url" pid="@Model.ArticleLinks.ElementAt(6).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink7" position="7" name="url" value="@Model.ArticleLinks.ElementAt(6).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>中四</td>
+                                        <td><div class="upload-img" id="up8" url="@Model.ArticleLinks.ElementAt(7).Url" pid="@Model.ArticleLinks.ElementAt(7).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink8"  position="8" name="url" value="@Model.ArticleLinks.ElementAt(7).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>中五</td>
+                                        <td><div class="upload-img" id="up9" url="@Model.ArticleLinks.ElementAt(8).Url" pid="@Model.ArticleLinks.ElementAt(8).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink9" position="9" name="url" value="@Model.ArticleLinks.ElementAt(8).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>中六</td>
+                                        <td><div class="upload-img" id="up10" url="@Model.ArticleLinks.ElementAt(9).Url" pid="@Model.ArticleLinks.ElementAt(9).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink10" position="10" name="url" value="@Model.ArticleLinks.ElementAt(9).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>右一</td>
+                                        <td><div class="upload-img" id="up11" url="@Model.ArticleLinks.ElementAt(10).Url" pid="@Model.ArticleLinks.ElementAt(10).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink11" position="11" name="url" value="@Model.ArticleLinks.ElementAt(10).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>右二</td>
+                                        <td><div class="upload-img" id="up12" url="@Model.ArticleLinks.ElementAt(11).Url" pid="@Model.ArticleLinks.ElementAt(11).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink12" position="12" name="url" value="@Model.ArticleLinks.ElementAt(11).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>右三</td>
+                                        <td><div class="upload-img" id="up13" url="@Model.ArticleLinks.ElementAt(12).Url" pid="@Model.ArticleLinks.ElementAt(12).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink13" position="13" name="url" value="@Model.ArticleLinks.ElementAt(12).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>右四</td>
+                                        <td><div class="upload-img" id="up14" url="@Model.ArticleLinks.ElementAt(13).Url" pid="@Model.ArticleLinks.ElementAt(13).PictureId"></div></td>
+                                        <td><div class="col-md-12 input-group"><input class="form-control input-xs pLink" type="text" id="pLink14" position="14" name="url" value="@Model.ArticleLinks.ElementAt(13).Name" /><span class="input-group-btn"><button type="button" class="btn blue" data-loading-text="加载&hellip;"><i class="fa fa-search"></i>&nbsp;搜索</button></span></div></td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,20 @@
+﻿@model NavigationModel
+@using CAF.Infrastructure.Core.Collections
+@if (Model.Root.HasChildren)
+{
+    <div class="crumb">
+        <div class="wid980 crumb_p">
+            <a href="@Url.RouteUrl("HomePage")">首页</a>
+            @CreateMenu(Model.Path, "")
+        </div>
+    </div>
+}
+@helper CreateMenu(IEnumerable<MenuItem> nodes, string menuSelector)
+{
+foreach (var node in nodes)
+{
+    var url = node.GenerateUrl(this.Url);
+        <text>&gt;</text><a href='@Url.RouteUrl("ProductCategory",new {channelId=1,categoryId=node.EntityId })'>@node.Text</a>
+}
+
+}

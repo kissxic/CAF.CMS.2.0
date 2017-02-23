@@ -1,0 +1,1 @@
+E:\Tomny\权限中心\CAF.Framework-v2\CAF.Passport\07-Plugins\CAF.Sms\obj\Debug\CAF.Sms.csprojResolveAssemblyReference.cache

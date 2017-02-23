@@ -1,0 +1,62 @@
+﻿@model String
+@using CAF.Infrastructure.Core;
+@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core.Utilities;
+
+@functions {
+    private bool FullPage
+    {
+        get
+        {
+            if (ViewData.ContainsKey("fullPage"))
+            {
+                var x = ViewData["fullPage"].Convert<bool>();
+                return x;
+            }
+            return false;
+        }
+    }
+
+    private int Height
+    {
+        get
+        {
+            if (ViewData.ContainsKey("height"))
+            {
+                var x = ViewData["height"].Convert<int>();
+                return x;
+            }
+            return 420;
+        }
+    }
+}
+
+@{
+    var availableLangs = new string[] {  "en", "zh-cn" };
+    var lang = WorkContext.WorkingLanguage.LanguageCulture.ToLower();
+    if (!availableLangs.Contains(lang))
+    {
+        lang = "zh-cn";
+    }
+
+   Html.AddScriptParts(ResourceLocation.Head,true, "~/Content/editors/ueditor/ueditor.mini.config.js");
+   Html.AddScriptParts(ResourceLocation.Head, true, "~/Content/editors/ueditor/ueditor.all.min.js");
+   Html.AddScriptParts(ResourceLocation.Head, true, "~/Content/editors/ueditor/lang/zh-cn/zh-cn.js");
+}
+
+<script type="text/javascript">
+    window.UEDITOR_HOME_URL = '@Url.Content("~/Content/editors/ueditor/")';
+    var ue = UE.getEditor('@ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty)', {
+        initialFrameHeight: @Height, //初始化高度
+        initialFrameWidth: "100%" //初始化选项
+
+    });
+
+</script>
+
+@Html.TextArea(
+	string.Empty, /* Name suffix */
+	(string)ViewData.TemplateInfo.FormattedModelValue, /* Initial value */
+	new { @class = "", style = "",cols="5", rows="2"}
+)
+ 

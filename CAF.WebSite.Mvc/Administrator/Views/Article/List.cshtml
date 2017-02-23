@@ -1,0 +1,81 @@
+﻿@model  List<MenuModel>
+@{
+    Layout = "~/Administrator/Views/Shared/_AdminArticlePopupLayout.cshtml";
+    ViewBag.Title = T("Admin.ContentManagement.Articles").Text;
+
+}
+
+<ul id="menubar" class="nav nav-list" style="z-index:9999;">
+
+    @foreach (var node in Model)
+    {
+        var currentId = Guid.NewGuid().ToString();
+        var hasChildren = node.Childitems.Any();
+        <li name="PMenu" class="hsub @(hasChildren ? "" : "menuclick")">
+            @if (hasChildren)
+            {
+                <a name="item" href="#" class="@(hasChildren ? "dropdown-toggle" : "")" @Html.Attr("icon", " fa-list") @Html.Attr("objid", @Guid.NewGuid().ToString(), !hasChildren) tagid="@Guid.NewGuid().ToString()">
+                    <i class="menu-icon fa @(string.IsNullOrEmpty(node.IconName)? "fa-list" : node.IconName)"></i>
+
+                    <span name="item" class="lbl" icon="@(string.IsNullOrEmpty(node.IconName)? "fa-list" : node.IconName)" url="@node.Href" @Html.Attr("objid", Guid.NewGuid().ToString(), false) tagid="@Guid.NewGuid().ToString()">@node.Text</span>
+                    @if (hasChildren)
+                    {
+                        <b class="arrow fa fa-angle-down"></b>
+                    }
+                    else
+                    {
+                    }
+
+                </a>
+                <b class="arrow"></b>
+                <div class="submenu menuleft span3">
+                    @if (hasChildren)
+                    {
+                        <ul id="menu-group-@currentId" class="nav menu">
+
+                            @CreateDropdown(node.Childitems, true, currentId)
+                        </ul>
+                    }
+                </div>
+            }
+            else if (!string.IsNullOrEmpty(node.Href))
+            {
+                <a name="item" href="#" class="" icon="@(string.IsNullOrEmpty(node.IconName)? "fa-list" : node.IconName)" url="@node.Href.TrimStart('/')" @Html.Attr("objid", Guid.NewGuid().ToString(), false) objid="@Guid.NewGuid().ToString()" tagid="@Guid.NewGuid().ToString()">
+                    <i class="menu-icon fa @(string.IsNullOrEmpty(node.IconName)? "fa-list" : node.IconName)"></i>
+                    @node.Text
+                </a>
+            }
+
+        </li>
+    }
+</ul>
+
+@helper CreateDropdown(IEnumerable<MenuModel> nodes, bool isRoot, string parentId)
+{
+foreach (var node in nodes)
+{
+    var newParentId = parentId;
+    var currentId = Guid.NewGuid().ToString();
+    var hasChildren = node.Childitems.Any();
+        <li class="@(isRoot ? "item-1 " : "item-2") @(hasChildren ? "deeper parent " : "") ">
+            <a href="#">
+                <span @Html.Attr("data-toggle", "collapse", hasChildren) class="sign" @Html.Attr("data-parent", "#menu-group" + newParentId, hasChildren) href="#sub-item-@currentId">
+                    @if (hasChildren)
+                    {<i class="fa fa-plus fa-white"></i>}
+                    else
+                    {<i class="fa fa-play"></i> }
+                </span>
+                <span name="item" class=" lbl" icon=" fa-list" url="@node.Href" @Html.Attr("objid", Guid.NewGuid().ToString(), false) tagid="@Guid.NewGuid().ToString()">@node.Text</span>
+            </a>
+
+            @if (hasChildren)
+            {
+                <ul class="children nav-child unstyled small collapse" id="sub-item-@currentId">
+                    @CreateDropdown(node.Childitems, false, newParentId)
+                </ul>
+
+            }
+        </li>
+}
+
+}

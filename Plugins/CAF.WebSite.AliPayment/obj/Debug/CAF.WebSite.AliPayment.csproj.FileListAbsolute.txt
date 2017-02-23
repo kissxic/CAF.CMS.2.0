@@ -1,0 +1,9 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.AliPayment\obj\Debug\CAF.WebSite.AliPayment.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.AliPayment\web.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.AliPayment\Description.txt
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.AliPayment\icon.png
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.AliPayment\CAF.WebSite.AliPayment.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.AliPayment\CAF.WebSite.AliPayment.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.AliPayment\CAF.WebSite.AliPayment.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.AliPayment\obj\Debug\CAF.WebSite.AliPayment.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.AliPayment\obj\Debug\CAF.WebSite.AliPayment.pdb

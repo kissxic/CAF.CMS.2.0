@@ -1,0 +1,33 @@
+﻿<div class="header">
+    <div class="wrapper">
+        <div class="header-left">
+            <a target="_blank" class="item" href="#" onclick='SetHome(this,window.location,"非IE浏览器不支持此功能，请手动设置！");'>设为首页</a>
+            <a target="_blank" class="item" href="#" onclick='addFavorite("非IE浏览器不支持此功能，请手动设置！");'>收藏本站</a>
+            @Html.Action("LanguageSelector", "Common")
+        </div>
+        <div class="header-right">
+            <a target="_blank" class="item" href="@Url.RouteUrl("login")">登录</a>
+            <a target="_blank" class="item" href="@Url.RouteUrl("Register")">注册</a>
+            @*<span class="item app">
+                <i class="fa"></i>
+                <span><a target="_blank" href="#" style="color: #fff;">数据APP</a></span>
+                <div class="hover-layer">
+                    <div class="box">
+                        <a target="_blank" href="#" target='_blank' class="btn btn-sm ios btn-gray">
+                            <i class="fa"></i>
+                            <span>iPhone版下载</span>
+                        </a>
+                        <a target="_blank" href="#" class="btn btn-sm android mt10 btn-green">
+                            <i class="fa"></i>
+                            <span>android版下载</span>
+                        </a>
+                        <div class="tc mt10" style="display:none">
+                            <img src="/Themes/White/Content/public/images/app_qrcode.jpg" alt="">
+                        </div>
+                    </div>
+
+                </div>
+            </span>*@
+        </div>
+    </div>
+</div>

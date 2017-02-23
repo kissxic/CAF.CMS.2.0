@@ -1,0 +1,17 @@
+﻿@model ContentSliderSettings
+@using CAF.Infrastructure.Core.Domain.Cms;
+@using CAF.WebSite.Application.WebUI.Themes;
+
+@{
+    var isActive = Model.IsActive && Model.Slides.Where(x => x.Published).Any();
+}
+
+@if (isActive)
+{
+    foreach (ContentSliderSlideSettings slide in Model.Slides)
+    {
+        <a class="db" href="@slide.Button1.Url">
+            <img src="@slide.PictureUrl" alt="@slide.Title">
+        </a>
+    }
+}

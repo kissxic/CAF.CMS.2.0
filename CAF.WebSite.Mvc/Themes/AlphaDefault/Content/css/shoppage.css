@@ -1,0 +1,58 @@
+/*店铺页面样式*/
+.shoppage {width: 100%;background:#fafafa;}
+
+.shopinformation {width: 100%; float: left; }
+.shopinfo { float: left; width:360px; height:438px; overflow: hidden; border: 1px solid #eee; margin-top: 12px; margin-bottom: 15px;  background-color: #fff; }
+/*padding:23px 0px 0px 29px;*/
+.shopicon { float: left; width: 100%;}
+.shopicon img {width: 230px; height: 90px; border: 1px solid #eee; float: left; margin:23px 0px 0px 29px;}
+.shopname { float: left; width: 100%; text-align: center; font: 14px/50px "microsoft yahei";}
+
+.shopdetailinfo { float: left; width: 100%;}
+.indetail {width: 100%; float:left;padding-left: 29px;font:12px/20px "microsoft yahei";}
+.indetail span { width: 60px; float: left;  color:#999; text-align: right; }
+.indetail label {width: 230px; float: left;}
+.shoptips {float: left; padding: 20px 29px 0px 29px;font: 12px "microsoft yahei"; color:#333;}
+
+.shopbigimg { float: right; width: 822px; height: 438px;margin-top: 12px; overflow: hidden; border: 1px solid #eee;}
+.shopbigimg img {width: 822px; height: 438px;}
+
+.shopdetaildec { width: 1212px;margin-top: 12px; margin-bottom: 20px; background: #fff; border: 1px solid #eee; padding: 10px 20px 10px 20px;}
+.shopdetaildec h1 {font:18px/40px "microsoft yahei"; margin: 0px; border-bottom: 1px solid #eee; }
+
+/*产品列表*/
+.div_productlist{width: 1212px; overflow: hidden;  margin-bottom: 20px;}
+
+.inlist {position: relative; margin-top: 12px; margin-bottom: 20px; overflow: hidden;}
+.inlist ul { width: 1230px; margin-right: -20px;}
+.inlist ul li { width: 595px; float: left; height: 265px;margin-right: 20px; margin-bottom: 12px; border: 1px solid #eee;}
+.productimg { width: 263px;float: left; background: #fff; height: 100%; padding: 11px; border-right: 1px solid #eee; text-align: center;}
+.productimg img {width: 240px; height: 188px;}
+.btn { width: 105px; height: 32px; color: #fff; display: inline-block; text-align: center; margin-top: 10px; font: 16px/32px "microsoft yahei"; }
+.btn:hover{ color: #fff;}
+.btndetail {background: #ff9900; float: left;}
+.btndeputize {background: #009ce7; float: right;}
+
+.productexplain { background: #fff;width: 329px; float: left;}
+.inexplain {border-bottom: 1px solid #eee; width: 100%; float: left;  }
+.inexplain span {width: 106px; padding-left: 15px; float:left;font:14px/36px "microsoft yahei"; background: #fafafa; text-align: left;}
+.inexplain label{padding-left: 20px; width:220px; float: left;  font:14px/36px "microsoft yahei"; text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;}
+/*.inexplain .small {font:12px/26px "microsoft yahei";   height: 115px; overflow: hidden;}*/
+.inexplain .small {font:12px/26px "microsoft yahei"; height: 100px; overflow: hidden; white-space: normal;}
+.inexplain .small1{font:12px/26px "microsoft yahei"; height: 36px; line-height:36px; overflow: hidden;}
+.inexplain .red {color: #d10000;height: 36px; line-height:36px; overflow: hidden;}
+/*翻页*/
+.div_page {width:100%; float: left; height:30px;}
+.list_page{float: right; font: 12px/30px "microsoft yahei";}
+.list_page label,.list_page input ,.list_page a { border-radius: 4px; height:28px;float: left; margin: 0px 5px; text-align: center; line-height: 28px;}
+.list_page .pagenum {width: 28px; text-align: center; border: 1px solid #dfdfdf; }
+.list_page .btnsure {width: 49px;   font-size: 14px; border-radius: 4px; color: #fff; background-color: #009ce7;}
+.list_page .btnsure:hover {color: #fff;}
+.btnprev,.btnnext, .btnnum {background-color: #fafafa;}
+.btnprev,.btnnext { width: 56px;border: 1px solid #dfdfdf;}
+.btnnum {width: 28px;border: 1px solid #dfdfdf;}
+.btnprev:hover,.btnnext:hover, .btnnum:hover{background-color: #009ce7; color: #fff;}
+.btnfoucus {background-color: #009ce7; color: #fff;}
+.gnzz_h{height:100px}

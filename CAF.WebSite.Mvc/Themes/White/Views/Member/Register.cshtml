@@ -1,0 +1,155 @@
+﻿@model CAF.WebSite.Mvc.Models.Users.RegisterModel
+@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core;
+@using CAF.WebSite.Application.WebUI;
+@using CaptchaMvc.Models;
+@{
+    Layout = null;
+
+    Html.AddTitleParts(T("PageTitle.Login").Text);
+    var loginUrl = Url.RouteUrl("Login");
+    if (!String.IsNullOrEmpty(this.Context.Request.QueryString["returnUrl"]))
+    {
+        var webHelper = EngineContext.Current.Resolve<IWebHelper>();
+        loginUrl = webHelper.ModifyQueryString(loginUrl, "returnurl=" + HttpUtility.UrlEncode(this.Context.Request.QueryString["returnUrl"]), null);
+    }
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <link rel="stylesheet" href="~/Themes/White/Content/static/css/app.css">
+    <link rel="stylesheet" href="~/Themes/White/Content/public/css/index.new2.css">
+    <link href="~/Themes/White/Content/public/css/core.css" type="text/css" rel="stylesheet" />
+    <link href="~/Themes/White/Content/public/css/register.css" type="text/css" rel="stylesheet" />
+    <script src="/public/js/yaozh.js?v=20130531"></script>
+
+    <link rel="shortcut icon" href="~/favicon.ico" />
+</head>
+<body>
+
+    <!--[if lte IE 7]>
+    <div id="Y_top">
+        <div class="Y_all Y_top Y_tc clearfix">
+            你正在使用IE低级浏览器，为了您的药智网账号安全和更好的产品体验，强烈建议您立即 <a href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie" target="_blank">升级IE浏览器</a> 或者用更快更安全的 <a href="https://www.google.com/intl/zh-CN/chrome/browser/?hl=zh-CN" target="_blank">谷歌浏览器Chrome</a> 。
+        </div>
+    </div>
+    <![endif]-->
+    <script type="text/javascript" src="~/Themes/White/Content/public/js/index/jquery-1.11.0.min.js?v=010D43E91D"></script>
+
+    <!-- header -->
+    @Html.Partial("_Header")
+
+    <!-- nav-bar -->
+    @Html.Partial("_NavBar")
+
+    <div class="register_warp">
+        <div class="register">
+            <h1 class="Y_Yahei">新用户注册</h1>
+            <div class="reg clearfix">
+                <h3 class="Y_Yahei">注册一个"药智"账号</h3>
+                @*<form id="J_register_form" action="@ViewContext.HttpContext.Request.RawUrl" method="POST">*@
+                @using (Html.BeginForm("Register", "Member", new { returnUrl = this.Context.Request.QueryString["returnUrl"] }, FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    if (Model.UserNamesEnabled)
+                    {
+                            <dl class="clearfix">
+                                <dt class="Y_fl Y_Yahei"><i>*</i>用户名：</dt>
+                                <dd class="Y_fl">
+                                    @Html.TextBoxFor(model => model.UserName, new { @class = "input Y_fl Y_input", @for = "UserName" })
+                                </dd>
+                                <dd class="Y_fl" id="J_reg_tip_username" role="tooltip" aria-hidden="true"></dd>
+                            </dl>
+                    }
+                    <dl class="clearfix">
+                        <dt class="Y_fl Y_Yahei"><i>*</i>登录密码：</dt>
+                        <dd class="Y_fl" style="position:relative;">
+                            @Html.PasswordFor(model => model.Password, new { @class = "input Y_fl Y_input", @for = "Password" })
+                            <a class="show_pd" href="javascript:;"></a>
+                        </dd>
+                        <dd class="Y_fl" id="J_reg_tip_password" role="tooltip" aria-hidden="true"></dd>
+                    </dl>
+                    @*<dl class="aq clearfix">
+                        <dt class="Y_fl">&nbsp;</dt>
+                        <dd class="Y_fl clearfix">
+                            <span class="Y_fl">安全强度</span>
+                            <span class="anquan Y_fl" id="J_tip_password"></span>
+                        </dd>
+                    </dl>*@
+                    @*<dl class="clearfix">
+                        <dt class="Y_fl Y_Yahei"><i>*</i>验证码：</dt>
+                        <dd class="Y_fl">
+                            <input type="text" aria-required="true" id="J_reg_yancode" size="5" data-id="yancode" name="yancode" class="input Y_fl Y_input" style='width:64px;margin-right:0' />
+                            <img src='http://www.yaozh.com/ajax/vcode' style='margin:0 10px' onclick="javascript:this.src='http://www.yaozh.com/ajax/vcode?tm='+Math.random();" />
+                        </dd>
+                        <dd class="Y_fl" id="J_reg_tip_yancode" role="tooltip" aria-hidden="true"></dd>
+                    </dl>*@
+                    <dl class="aq clearfix">
+                        <dt class="Y_fl">&nbsp;</dt>
+                        <dd class="Y_fl clearfix"><input type="checkbox" checked="checked" name='agreement' id="J_reg_agreement" />我已阅读并同意<a href="/login/protocol/" target="_blank">《药智网用户须知》</a></dd>
+                        <dd class="Y_fl" style='margin-top: -15px;margin-left:5px' id="J_reg_tip_agreement" role="tooltip" aria-hidden="true"></dd>
+                    </dl>
+                    <dl class="aq clearfix">
+                        <dt class="Y_fl">&nbsp;</dt>
+                        <dd class="Y_fl clearfix">
+                            <button type="submit" class="btn btn_primary" style="display:block;width:302px">免费注册</button>
+                        </dd>
+                    </dl>
+                    @*<dl class="aq clearfix">
+                        <dt class="Y_fl">&nbsp;</dt>
+                        <dd class="Y_fl clearfix">没有手机号？<a href="/register/email?backurl=">用邮箱注册</a></dd>
+                    </dl>*@
+                }
+                @*</form>*@
+            </div>
+            @*<div class="or_reg Mt_20"><em class="Y_Yahei">或者</em></div>
+            <div class="other_reg clearfix">
+                <h3 class="Y_Yahei">使用以下账号快速登录</h3>
+                <ul class="clearfix">
+                    <li><a href="/connect/qq/?backurl=" class="icon_qqB">QQ账号登录</a></li>
+                    <li><a href="/connect/weibo/?backurl=" class="icon_sinaB">新郎微博登录</a></li>
+                </ul>
+            </div>*@
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>
+            <a href="http://about.yaozh.com/about.html">关于我们</a><span class="line">|</span>
+            <a href="http://about.yaozh.com/contact.html">联系我们</a><span class="line">|</span>
+            <a href="http://about.yaozh.com/qualification.html">企业资质</a><span class="line">|</span>
+            <a href="http://about.yaozh.com/join.html">诚聘英才</a><span class="line">|</span>
+            <a href="http://about.yaozh.com/link.html">友情链接</a><span class="line">|</span>
+            <a href="http://help.yaozh.com/" target="_blank">帮助中心</a><span class="line">|</span>
+            <a href="http://bbs.yaozh.com/forum-123-1.html">媒体报道</a><span class="line">|</span>
+            <a href="http://bbs.yaozh.com">药智论坛</a>
+        </p>
+        <p>互联网增值电信业务许可证编号：渝B2-20120028 | 渝ICP备10200070号  互联网药品信息服务资格证：(渝)-经营性-2011-0001 渝公网备：50010801500236</p>
+        <p>
+            康洲大数据   版权所有   Copyright © 2009-2016 药智网YAOZH.COM All Rights Reserved.   法律顾问：重庆德普律师事务所  彭林 主任律师
+        </p>
+        <p>客户服务热线：400-678-0778    E-mail：service@yaozh.com  商务合作QQ：845146016</p>
+
+
+        <table align="center">
+            <tr>
+                <td>
+                    <iframe frameborder='0' height='90' width='90' allowtransparency='true' scrolling='no' src='http://www.cqgseb.cn/ztgsgl/WebMonitor/GUILayer/eImgMana/gshdimg.aspx?sfdm=120111104170019531945'></iframe>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>

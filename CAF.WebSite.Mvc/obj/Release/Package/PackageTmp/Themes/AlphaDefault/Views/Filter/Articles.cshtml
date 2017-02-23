@@ -1,0 +1,129 @@
+﻿@using CAF.WebSite.Mvc.Models.Filter
+@using CAF.WebSite.Application.Services.Filter;
+@model ArticleFilterModel
+@{
+    Layout = null;
+}
+@helper FilterGroupContent(IEnumerable<FilterCriteria> criteria)
+{
+if (criteria == null)
+{
+    return;
+}
+
+    <ul class="right-con list-brand">
+        @foreach (var itm in criteria)
+    {
+            <li><a href="@Model.Context.GetUrl(itm)" title="@itm.ToDescription() (@itm.MatchCount)">@itm.ToDescription()</a></li>
+
+        }
+    </ul>
+
+if (criteria.Count() > 0)
+{
+}
+else
+{
+        <div class="note">@T("Products.Filter.NoneFound").</div>
+}
+}
+@helper FilterGroup(IEnumerable<FilterCriteria> criteria, string caption, bool show = true)
+{
+if (criteria == null || criteria.Any())
+{
+        <div class="list-con">
+            <div class="br-left">
+                <span>@caption：</span>
+            </div>
+            @FilterGroupContent(criteria)
+            <div class="lastdd morep"><a href="javascript:;"><em>更多</em><i class="mbg"></i></a></div>
+        </div>
+
+}
+}
+@{
+    var manufactures = Model.Context.Criteria.Where(c => c.Entity.IsCaseInsensitiveEqual("Manufacturer"));
+    var manufactureChooses = manufactures.Where(c => !c.IsInactive);
+    var prices = Model.Context.Criteria.Where(c => c.Entity.IsCaseInsensitiveEqual(FilterService.ShortcutPrice));
+    var priceChooses = prices.Where(c => !c.IsInactive);
+    var chooess = Model.Context.Criteria.Where(c => !c.IsInactive);
+    if (chooess.Count() > 0)
+    {
+     <!-- 已选开始 -->
+        <div class="list-con yet-select">
+            <div class="br-left">
+                <span>已选择：</span>
+            </div>
+            <ul class="yet-con">
+
+                @foreach (var itm in manufactureChooses)
+                {
+                    <li onclick="loadPage('@Model.Context.GetUrl(null, itm)')">
+                        <div class="yet-box">
+                            <b>品牌：</b><span>@itm.ToDescription()</span><em>×</em>
+                        </div>
+                    </li>
+                }
+
+                @foreach (var itm in priceChooses)
+                {
+                    <li onclick="loadPage('@Model.Context.GetUrl(null, itm)')">
+                        <div class="yet-box">
+                            <b>价格：</b><span>@itm.ToDescription()</span><em>×</em>
+                        </div>
+                    </li>
+                }
+                @foreach (var grp in Model.Context.Criteria.Where(c => c.Entity.IsCaseInsensitiveEqual(FilterService.ShortcutSpecAttribute)).GroupBy(c => c.Name))
+                {
+                    var first = grp.FirstOrDefault();
+                    // bool isActive = (Model.Context.Criteria.FirstOrDefault(c => c.Entity.IsCaseInsensitiveEqual(FilterService.ShortcutSpecAttribute) && c.Name.IsCaseInsensitiveEqual(grp.Key) && !c.IsInactive) != null);
+                    var criterias = grp.Where(c => !c.IsInactive);
+                    var caption = (first != null && first.NameLocalized.HasValue() ? first.NameLocalized : grp.Key);
+
+                    foreach (var itm in criterias)
+                    {
+                        <li onclick="loadPage('@Model.Context.GetUrl(null, itm)')">
+                            <div class="yet-box">
+                                <b>@caption：</b><span>@itm.ToDescription()</span><em>×</em>
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+            <a href="@Url.RouteUrl("ProductCategory",new {channelId=1,categoryId=Model.Context.ProductCategoryIds.FirstOrDefault() })"> <div class="lastdd"><p>全部撤销<span class="undo">×</span></p></div></a>
+        </div>
+    <!--  -->
+    }
+}
+@if (Model.Context.Criteria.Count <= 0)
+{
+
+}
+else
+{
+
+    if (manufactureChooses.Count() == 0)
+    {
+        @FilterGroup(manufactures, "品牌", true)
+
+    }
+    if (priceChooses.Count() == 0)
+    {
+        @FilterGroup(prices, "价格", true)
+
+    }
+
+    foreach (var grp in Model.Context.Criteria.Where(c => c.Entity.IsCaseInsensitiveEqual(FilterService.ShortcutSpecAttribute)).GroupBy(c => c.Name))
+    {
+        var first = grp.FirstOrDefault();
+        bool isActive = (Model.Context.Criteria.FirstOrDefault(c => c.Entity.IsCaseInsensitiveEqual(FilterService.ShortcutSpecAttribute) && c.Name.IsCaseInsensitiveEqual(grp.Key) && !c.IsInactive) != null);
+        var criterias = grp.Where(c => c.IsInactive != isActive);
+        var caption = (first != null && first.NameLocalized.HasValue() ? first.NameLocalized : grp.Key);
+        if (grp.Where(c => !c.IsInactive).Count() == 0)
+        {
+            @FilterGroup(isActive ? criterias : criterias.Take(Model.MaxFilterItemsToDisplay), caption, Model.ExpandAllFilterGroups ? true : isActive)
+        }
+    }
+}
+
+

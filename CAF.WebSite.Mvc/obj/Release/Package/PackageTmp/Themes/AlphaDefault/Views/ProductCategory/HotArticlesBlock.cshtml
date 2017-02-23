@@ -1,0 +1,33 @@
+﻿@model ProductCategoryModel
+
+<ul style="display: none;">
+    <div class="hotproduct">
+        <ul>
+            @if (Model.Articles.Count > 0)
+            {
+                foreach (var article in Model.Articles)
+                {
+                    string name = null, nameTitle = null;
+                    name = article.Title.Truncate(10, "...");
+                    if (article.Title.Length > name.Length)
+                    {
+                        nameTitle = article.Title;
+                    }
+                    <li>
+                        <a target="_blank" href="@Url.RouteUrl("Article", new { SeName = Model.SeName })" title="@name">
+                            <img src="@article.DefaultPictureModel.ImageUrl" alt="@article.DefaultPictureModel.AlternateText" title="@article.DefaultPictureModel.AlternateText">
+                        </a>
+                        <a target="_blank" href="@Url.RouteUrl("Article", new { SeName = Model.SeName })" class="txtname" title="@name">@name</a>
+                    </li>
+                }
+
+            }
+            else
+            {
+                <li>
+                    <p>无<p>
+                </li>
+            }
+        </ul>
+    </div>
+</ul>

@@ -1,0 +1,57 @@
+﻿@using CAF.WebSite.Mvc.Models.ShopProfile;
+@model ShopProfileModel
+@{
+    Layout = "~/Views/Shared/_ColumnsTwoLeft.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Account").Text);
+    var jqueryCssRootPath = "~/Themes/AlphaDefault/Content/";
+
+    Html.AppendScriptParts(ResourceLocation.Head, 
+        jqueryCssRootPath + "js/Validform_v5.3.2_min.js");
+
+}
+@section left
+{
+    @Html.Partial("MyAccountNavigation", Model.NavigationModel, new ViewDataDictionary())
+}
+<script>
+
+</script>
+@using (Html.BeginForm("Editprofile2", "Member", null, FormMethod.Post, new { @class = "form-horizontal",id= "editProFileform" }))
+{
+    @Html.HiddenFor(model => model.VendorAgreement.Id);
+
+    <div id="openseller">
+        <div class="rightpane">
+            <div class="title01"><h1>企业认证-基础信息</h1></div>
+            <div class="formcontent">
+                <ul>
+
+                    <li><span><em>*</em>商家名称：</span>@Html.TextBoxFor(model => model.VendorAgreement.Name,new { datatype = "s6-50", errormsg = "商家名称至少6个字符,最多50个字符！" })<label class="Validform_checktip"></label></li>
+                    <li><span><em>*</em>企业邮箱：</span>@Html.TextBoxFor(model => model.VendorAgreement.Email, new { datatype = "e", errormsg = "企业邮箱至少6个字符,最多50个字符！" })<label class="Validform_checktip"></label></li>
+                    <li><span><em>*</em>企业名称：</span>@Html.TextBoxFor(model => model.VendorAgreement.CompanyName, new { datatype = "s6-50", errormsg = "企业名称至少6个字符,最多50个字符！" })<label class="Validform_checktip"></label></li>
+
+                    <li>
+                        <span></span>&nbsp;<input type="submit" value="确认并提交"   class="btnsure btnsureandsubmit">
+
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+}
+<script type="text/javascript">
+$(function(){
+    $("#editProFileform").Validform({
+        tiptype: 3,
+        label: ".label",
+        showAllError: true,
+	});
+})
+</script>
+ <style>
+#editProFileform label{padding-left: 20px;}
+
+</style>

@@ -1,0 +1,136 @@
+﻿@model ArticleModel
+@using CAF.WebSite.Application.WebUI
+@if (Model.ShowPrice)
+{
+<script>
+
+    var fieldBasePriceMeasureUnit;
+    var fieldBasePriceAmount;
+    var fieldBasePriceBaseAmount;
+
+    $(function () {
+        $('input[id="@Html.FieldIdFor(model => model.CustomerEntersPrice)').on("change", toggleCustomerEntersPrice);
+
+
+        function toggleCustomerEntersPrice() {
+            if ($('#@Html.FieldIdFor(model => model.CustomerEntersPrice)').is(':checked')) {
+                $('#pnlMinimumCustomerEnteredPrice').show();
+                $('#pnlMaximumCustomerEnteredPrice').show();
+            }
+            else {
+                $('#pnlMinimumCustomerEnteredPrice').hide();
+                $('#pnlMaximumCustomerEnteredPrice').hide();
+            }
+        }
+    })
+</script>
+<div id="group-prices">
+    <div class="form-body">
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Sku)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Sku, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Sku)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.Price)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Price, new { prefix = "￥" })
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.OldPrice)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.OldPrice, new { prefix = "￥" })
+                @Html.ValidationMessageFor(model => model.OldPrice)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.ProductCost)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.ProductCost, new { prefix = "￥" })
+                @Html.ValidationMessageFor(model => model.ProductCost)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.SpecialPrice)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.SpecialPrice, new { prefix = "￥" })
+                @Html.ValidationMessageFor(model => model.SpecialPrice)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.SpecialPriceStartDateTimeUtc)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.SpecialPriceStartDateTimeUtc, new { pickTime = true })
+                @Html.ValidationMessageFor(model => model.SpecialPriceStartDateTimeUtc)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.SpecialPriceEndDateTimeUtc)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.SpecialPriceEndDateTimeUtc, new { pickTime = true })
+                @Html.ValidationMessageFor(model => model.SpecialPriceEndDateTimeUtc)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.DisableBuyButton)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.DisableBuyButton, new { @default = true })
+                @Html.ValidationMessageFor(model => model.DisableBuyButton)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.CustomerEntersPrice)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.CustomerEntersPrice, new { @default = true })
+                @Html.ValidationMessageFor(model => model.CustomerEntersPrice)
+            </div>
+        </div>
+
+        <div class="form-group" id="pnlMinimumCustomerEnteredPrice">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.MinimumCustomerEnteredPrice)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.MinimumCustomerEnteredPrice, new { prefix = "￥" })
+                @Html.ValidationMessageFor(model => model.MinimumCustomerEnteredPrice)
+            </div>
+        </div>
+
+        <div class="form-group" id="pnlMaximumCustomerEnteredPrice">
+            <label class="control-label col-md-2">
+                @Html.LangLabelFor(model => model.MaximumCustomerEnteredPrice)
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.MaximumCustomerEnteredPrice, new { prefix = "￥" })
+                @Html.ValidationMessageFor(model => model.MaximumCustomerEnteredPrice)
+            </div>
+        </div>
+
+
+    </div>
+</div>
+}
+

@@ -1,0 +1,93 @@
+﻿@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core;
+@{
+    Layout = "~/Views/Shared/_Layout.Head.cshtml";
+    var jqueryCssRootPath = "~/Themes/AlphaDefault/Content/";
+
+    Html.AppendCssFileParts(ResourceLocation.Head,
+        jqueryCssRootPath + "css/memberglobal.css");
+}
+
+
+
+@if (IsSectionDefined("header"))
+{
+    @RenderSection("header")
+}
+else
+{
+    @Html.Action("SiteBar", "Common", new { area = "" })
+    <div class="membertop">
+        <div class="membertopcontent">
+            <div class="member_logo" ></div>
+            <a href="@Url.RouteUrl("HomePage")">网站首页</a>
+            <a href='/Member/Agentcenter/' style='color:red'>个人中心</a>
+
+            @*<div class="member_search">
+                <input type="text" class="searchtext" value="" id="mq" /><div class="btnsearch" id="btnsearch">搜索</div>
+            </div>
+            <script>
+                $(function () {
+                    $(document).keydown(function (event) {
+                        if (event.keyCode == 13) {
+                            $("#btnsearch").click();
+                        }
+                    });
+                    $("#btnsearch").click(function () {
+                        var keywords = $.trim($("#mq").val());
+                        if (keywords == "") {
+                            alert("请输入药品名称或者疾病名称");
+                            return false;
+                        }
+                        window.location.href = "http://www.goodyao.com/Listpage?qw=" + keywords;
+                    });
+                });
+            </script>*@
+        </div>
+    </div>
+}
+<div class="memberbg">
+    <div class="membercontent">
+        <!--左侧导航及个人信息-->
+        <div class="member_left">
+            @if (IsSectionDefined("left"))
+            {
+                @Html.Action("MyAccount", "Member", new { area = "" })
+                @RenderSection("left")
+            }
+            else
+            {
+
+            }
+        </div>
+        <!--右侧内容-->
+        <!--中间内容S-->
+
+        <div class="member_right">
+            @RenderBody()
+        </div>
+        <!--中间内容E-->
+        <span class="clr"></span>
+    </div>
+</div>
+<!--中间内容E-->
+<!--底部-->
+@if (IsSectionDefined("footer"))
+{
+    @RenderSection("footer")
+}
+else
+{
+    @Html.Partial("_Footer");
+    @Html.Action("Footer", "Common", new { area = "" })
+}
+<!--底部-->
+@if (IsSectionDefined("FootScript"))
+{
+    @RenderSection("FootScript", required: false)
+}
+else
+{
+
+}
+

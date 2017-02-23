@@ -1,0 +1,36 @@
+﻿@model MemberGradeModel
+
+@Html.HiddenFor(model => model.Id)
+<div class="form-body">
+    <h2 class="margin-bottom-20">  @Html.ValidationSummary(true)</h2>
+
+    <div class="form-group">
+        <label class="control-label col-md-3">   @Html.LangLabelFor(model => model.SystemName)</label>
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.SystemName)
+            @Html.ValidationMessageFor(model => model.SystemName)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">  @Html.LangLabelFor(model => model.GradeName)</label>
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.GradeName)
+            @Html.ValidationMessageFor(model => model.GradeName)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">  @Html.LangLabelFor(model => model.Integral)</label>
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Integral)
+            @Html.ValidationMessageFor(model => model.Integral)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">  @Html.LangLabelFor(model => model.Comment)</label>
+        <div class="col-md-3">
+            @Html.TextAreaFor(model => model.Comment, new { @class = "form-control",row=4 })
+            @Html.ValidationMessageFor(model => model.Comment)
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,9 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\Libraries\CAF.Message.RabbitMQ.Extensions.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\Libraries\CAF.Message.RabbitMQ.Extensions.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\Libraries\CAF.Message.RabbitMQ.Extensions.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.Message.RabbitMQ.Extensions\obj\Debug\CAF.Message.RabbitMQ.Extensions.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.Message.RabbitMQ.Extensions\obj\Debug\CAF.Message.RabbitMQ.Extensions.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Message.RabbitMQ.Extensions.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Message.RabbitMQ.Extensions.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CAF.Message.RabbitMQ.Extensions.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.Message.RabbitMQ.Extensions\obj\Debug\CAF.Message.RabbitMQ.Extensions.csprojResolveAssemblyReference.cache

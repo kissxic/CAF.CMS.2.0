@@ -1,0 +1,109 @@
+﻿@model SlideAdInfoModel
+@using CAF.Infrastructure.Core.Domain.Cms.PageSettings;
+@{
+    string pictureSizeTip = "图片大小：";
+    switch (Model.SlideAdType)
+    {
+        case SlideAdType.PlatformHome:
+            pictureSizeTip += "580*300";
+            break;
+        case SlideAdType.PlatformLimitTime:
+            pictureSizeTip += "400*120";
+            break;
+        case SlideAdType.PlatformMiniHome:
+            pictureSizeTip += "250*160";
+            break;
+        case SlideAdType.PlatformAreaHome:
+            pictureSizeTip += "250*150";
+            break;
+        default:
+            break;
+    }
+}
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+@Html.HiddenFor(model => model.SlideAdTypeId)
+<script type="text/javascript">
+    $(function () {
+
+        // add required products
+        $(document).on('click', '#SearchRequiredArticleButton', function () {
+            $('#@(Html.FieldIdFor(x => x.Url))').entityPicker('loadDialog', {
+                url: '@Url.Action("EntityPicker", "Common", new { area = "" })',
+                caption: '推荐商品',
+                returnField: 'url',
+                maxReturnValues: 1,
+                returnValueDelimiter: ',',
+                onLoadDialogBefore: function () {
+                    $('#SearchRequiredArticleButton').button('loading').prop('disabled', true);
+                },
+                onLoadDialogComplete: function () {
+                    $('#SearchRequiredArticleButton').prop('disabled', false).button('reset');
+                }
+            });
+
+        });
+        $(document).on('click', '#SearchRequiredVendorButton', function () {
+
+            $('#@(Html.FieldIdFor(x => x.Url))').entityPicker('loadDialog', {
+                url: '@Url.Action("EntityPicker", "Common", new { area = "" })',
+                caption: '推荐商家',
+                entity: "vendor",
+                returnField: 'url',
+                maxReturnValues: 1,
+                returnValueDelimiter: ',',
+                onLoadDialogBefore: function () {
+                    $('#SearchRequiredVendorButton').button('loading').prop('disabled', true);
+                },
+                onLoadDialogComplete: function () {
+                    $('#SearchRequiredVendorButton').prop('disabled', false).button('reset');
+                }
+            });
+
+        });
+    });
+
+</script>
+<div class="form-body">
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            图片
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.PictureId, "Picture")
+            <span>@pictureSizeTip</span>
+            @Html.ValidationMessageFor(model => model.PictureId)
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Html.LangLabelFor(model => model.Url)
+        </label>
+        <div class="col-md-6">
+            <div class="input-group">
+                @Html.EditorFor(model => model.Url, new { @class = "form-control" })
+
+                <span class="input-group-btn">
+                    <button type="button" class="btn blue" id="SearchRequiredArticleButton" data-loading-text="加载&hellip;">
+                        <i class="fa fa-search"></i>&nbsp;商品
+                    </button>
+                    <button type="button" class="btn blue" id="SearchRequiredVendorButton" data-loading-text="加载&hellip;">
+                        <i class="fa fa-search"></i>&nbsp;商家
+                    </button>
+                    @Html.ValidationMessageFor(model => model.Url)
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Html.LangLabelFor(model => model.DisplayOrder)
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.DisplayOrder, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DisplayOrder)
+
+        </div>
+    </div>
+</div>

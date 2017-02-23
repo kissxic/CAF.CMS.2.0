@@ -1,0 +1,193 @@
+﻿@model SiteBarModel
+
+@{
+    string accountUrl = Model.IsAuthenticated ? Url.Action("Info", "User") : Url.RouteUrl("Login");
+    //register URL with return URL (if specified)
+    var registerUrl = Url.RouteUrl("Register");
+    if (!String.IsNullOrEmpty(this.Context.Request.QueryString["returnUrl"]))
+    {
+        var webHelper = EngineContext.Current.Resolve<IWebHelper>();
+        registerUrl = webHelper.ModifyQueryString(registerUrl, "returnurl=" + HttpUtility.UrlEncode(this.Context.Request.QueryString["returnUrl"]), null);
+    }
+}
+<div class="header01">
+    <div class="top_website">
+        <div class="website_left" id="loginstatus">
+            <a class="top_home" href="/">药坊网首页</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            @if (Model.IsAuthenticated)
+            {
+               <span>欢迎您:@Model.UserEmailUserName，<a href="@Url.Action("Agentcenter", "Member")">会员中心</a></span>
+               <a class="red" href="@Url.RouteUrl("Logout")">【退出登录】</a>
+            }
+            else
+            {
+                <a href="@Url.RouteUrl("login")" rel="nofollow" target="_blank">请登录</a><text>&nbsp;</text>
+                <a href="@Url.RouteUrl("register")" rel="nofollow" target="_blank">免费注册</a>
+
+            }
+        </div>
+        <div class="website_right">
+            <ul id="website_nav" class="website_nav">
+               
+                <li class="website_li_01 website_li" id="websitelevel">
+                    <a href="javascript:;">网站导航 <b class="caret"></b></a>
+                    <div class="disappear level_nav">
+                        <ul>
+                            <li><a href="/Productpublish/" rel="nofollow" target="_blank">发布药品</a></li>
+                            <li><a href="/Buyadv/" rel="nofollow" target="_blank">广告位购买</a></li>
+                        </ul>
+                    </div>
+                </li>
+              
+                @*<li class="website_li_03 website_li" id="qrcode">
+                        <i></i><a href="javascript::">手机药坊网</a>
+                        <div class="disappear website_qrcode">
+                        </div>
+                    </li>*@
+                @Html.Action("AccountDropdown", "Common")
+                <li class="blanks"></li>
+                <li><a href="javascript::">全国热线：<strong>400-888-8888</strong></a></li>
+                <li>
+                    @*<a>&nbsp;&nbsp;&nbsp;&nbsp;语言切换</a>
+                        <select onchange="yuyan(this[selectedIndex].value);">
+                            <option value="1">中文</option>
+                            <option value="2">한국어</option>
+                        </select>*@
+                </li>
+            </ul>
+
+            @*<ul class="jkn_head_t_r">
+                <li class="site_nav">
+                    <p class="jk_anniu"><em></em>网站导航</p>
+                    <div class="site_navbox clearfix">
+                        <!--健康资讯开始-->
+                        <dl class="jk_dl_5 clearfix">
+                            <dt>健康资讯</dt>
+                            <dd><a href="http://www.jianke.com/news/" target="_blank" title="健客资讯"><span>健客资讯</span></a></dd>
+                            <dd><a href="http://www.jianke.com/nrzl/" target="_blank" title="肿瘤资讯">肿瘤资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/ykpd/" target="_blank" title="眼科资讯">眼科资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/ebhpd/" target="_blank" title="耳鼻喉资讯">耳鼻喉资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/jsbpd/" target="_blank" title="精神病资讯">精神病资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/man/" target="_blank" title="男科资讯">男科资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/zxpd/" target="_blank" title="整形资讯">整形资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/gkpd/" target="_blank" title="骨科资讯">骨科资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/xxwk/" target="_blank" title="心胸外科资讯">心胸外科资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/xcpd/" target="_blank" title="哮喘资讯">哮喘资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/nrfkpd/" target="_blank" title="妇科资讯">妇科资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/nrazpd/" target="_blank" title="癌症资讯">癌症资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/lypd/" target="_blank" title="疗养资讯">疗养资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/mnpd/" target="_blank" title="泌尿资讯"><span>泌尿资讯</span></a></dd>
+                            <dd><a href="http://www.jianke.com/pfpd/" target="_blank" title="皮肤资讯">皮肤资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/xwpd/" target="_blank" title="新闻资讯">新闻资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/jfpd/" target="_blank" title="减肥资讯">减肥资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/xnxgpd/" target="_blank" title="心脑血管资讯">心脑血管资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/crbpd/" target="_blank" title="传染病资讯">传染病资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/ekpd/" target="_blank" title="儿科资讯">儿科资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/gcpd/" target="_blank" title="肛肠资讯">肛肠资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/tnbpd/" target="_blank" title="糖尿病资讯">糖尿病资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/jdpd/" target="_blank" title="戒毒资讯">戒毒资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/dxpd/" target="_blank" title="癫痫资讯">癫痫资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/xbpd/" target="_blank" title="性病资讯">性病资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/photo/" target="_blank" title="健康图库">健康图库</a></dd>
+                            <dd><a href="http://www.jianke.com/kqpd/" target="_blank" title="口腔资讯">口腔资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/zypd/" target="_blank" title="中医资讯">中医资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/yxbpd/" target="_blank" title="银屑病资讯">银屑病资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/nrgbpd/" target="_blank" title="肝病资讯">肝病资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/yuer/" target="_blank" title="育儿资讯">育儿资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/jiakang/" target="_blank" title="甲亢资讯">甲亢资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/baidianfeng/" target="_blank" title="白癜风资讯">白癜风资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/jianruishiyou/" target="_blank" title="尖锐湿疣资讯">尖锐湿疣资讯</a></dd>
+                            <dd><a href="http://www.jianke.com/bbs/" target="_blank" title="健客论坛">健客论坛</a></dd>
+                        </dl>
+                        <!--健康资讯结束-->
+                        <!--健康频道开始-->
+                        <dl class="jk_dl_3 clearfix">
+                            <dt>健康频道</dt>
+                            <dd><a href="http://www.jianke.com/tuan/" target="_blank" title="药划算"><span>药划算</span></a></dd>
+                            <dd><a href="http://www.jianke.com/newspec/" target="_blank" title="新药特药">新药特药</a></dd>
+                            <dd><a href="http://www.jianke.com/list-04.html" target="_blank" title="成人用品">成人用品</a></dd>
+                            <dd><a href="http://www.jianke.com/nanke/" target="_blank" title="男科频道">男科频道</a></dd>
+                            <dd><a href="http://www.jianke.com/list-0109.html" target="_blank" title="妇婴频道">妇婴频道</a></dd>
+                            <dd><a href="http://www.jianke.com/zhongliu/" target="_blank" title="肿瘤频道">肿瘤频道</a></dd>
+                            <dd><a href="http://www.jianke.com/list-0110.html" target="_blank" title="肝病疗养">肝病疗养</a></dd>
+                            <dd><a href="http://search.jianke.com/prod?wd=%E5%99%A8%E6%A2%B0&amp;lg=1" target="_blank" title="医疗器械">医疗器械</a></dd>
+                            <dd><a href="http://www.jianke.com/list-02.html" target="_blank" title="保健养生">保健养生</a></dd>
+                            <dd><a href="http://www.jianke.com/list-0305.html" target="_blank" title="美体瘦身">美体瘦身</a></dd>
+                            <dd><a href="http://www.jianke.com/list-0104.html" target="_blank" title="骨骼健康">骨骼健康</a></dd>
+                            <!--dd><a href="http://www.jianke.com/yinxingyanjing/" target="_blank" title="隐形眼镜">隐形眼镜</a></dd-->
+                            <dd><a href="http://search.jianke.com/prod?wd=%e5%8f%82%e8%8c%b8%e6%bb%8b%e8%a1%a5&amp;lg=1" target="_blank" title="参茸滋补">参茸滋补</a></dd>
+                        </dl>
+                        <!--健康频道结束-->
+                        <!--健康服务开始-->
+                        <dl class="jk_dl_1 clearfix">
+                            <dt>健康服务</dt>
+                            <dd><a href="http://www.jianke.com/ask/" target="_blank" title="健康问答"><span>健康问答</span></a></dd>
+                            <dd><a href="http://www.jianke.com/yyzd/" target="_blank" title="用药指南">用药指南</a></dd>
+                            <dd><a href="http://www.jianke.com/jibing/" target="_blank" title="疾病库">疾病库</a></dd>
+                            <dd><a href="http://www.jianke.com/zhengzhuang/" target="_blank" title="症状库">症状库</a></dd>
+                            <dd><a href="http://www.jianke.com/jiancha/" target="_blank" title="检查库">检查库</a></dd>
+                            <dd><a href="http://www.jianke.com/yaoqi/" target="_blank" title="药企库">药企库</a></dd>
+                            <dd><a href="http://www.jianke.com/doctor/" target="_blank" title="找医生">找医生</a></dd>
+                            <dd><a href="http://www.jianke.com/hospital/" target="_blank" title="找医院">找医院</a></dd>
+                        </dl>
+                        <!--健康服务结束-->
+                        <!--商城开始-->
+                        <dl class="jk_dl_last clearfix">
+                            <dt>商城</dt>
+                            <dd><a href="http://baojian.jianke.com/" target="_blank" title="保健商城">保健商城</a></dd>
+                            <dd><a href="http://ilife.jianke.com/" target="_blank" title="爱趣商城"><span>爱趣商城</span></a></dd>
+                        </dl>
+                        <!--商城结束-->
+                    </div>
+                </li>
+                <li class="shopping_cart" onmouseover="this.className='shopping_cart myshopping_cart'" onmouseout="this.className='shopping_cart'">
+                    <em></em>
+                    <a href="http://cart.jianke.com/purchase/shoppingcart"><div class="shopp_an"></div></a>
+                    <a class="jk_s_on" href="http://cart.jianke.com/purchase/shoppingcart " title="购物车" target="_blank">购物车<span class="jkn_red" id="topCount"><span>0</span>件</span></a>
+
+                    <div class="shopping_xx" id="shopcar"><ul>购物车暂无内容！</ul></div>
+
+                </li>
+                <li class="mobile_version" onmouseover="this.className='mobile_version mv_hover'" onmouseout="this.className='mobile_version'">
+                    <p class="mobile_anniu"><a href="http://www.jianke.com/app/" title="手机版" target="_blank"><em></em>手机版</a><span></span></p>
+                    <div class="bjqr_code">
+                        <div class="clearfix">
+                            <p class="qr_code icon_qr"></p>
+                            <div class="qr_other">
+                                <p><a href="http://www.jianke.com/app/" title="健客网上药店" target="_blank">健客网上药店</a></p>
+                                <p class="down_tips">首次下单立减10元</p>
+                                <a class="iphone_sys" title="下载iphone版" target="_blank" href="https://itunes.apple.com/cn/app/jian-ke-shang-cheng/id984804729?mt=8"><b></b><span>iphone</span></a>
+                                <a class="android_sys" title="下载android版" href="http://www.jianke.com/DownLoad/app?appName=JianKeMall.apk"><b></b><span>Android</span></a>
+                            </div>
+                        </div>
+                        <div class="clearfix code">
+                            <p class="qr_code icon_ew"></p>
+                            <div class="qr_other">
+                                <p>微信购药更方便</p>
+                                <p class="down_tips">微信扫一扫，领价值100元大礼包</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="my_jianke" onmouseover="this.className='my_jianke myjk_hover'" onmouseout="this.className='my_jianke'">
+                    <a href="http://www.jianke.com/help/ordway.html" target="_blank" title="客户服务">客户服务</a><span></span>
+                    <ul class="myjk">
+                        <li><a href="http://www.jianke.com/help/ordway.html" target="_blank" title="购物指南">购物指南</a></li>
+                        <li><a href="http://www.jianke.com/help/delivery.html" target="_blank" title="配送方式">配送方式</a></li>
+                        <li><a href="http://www.jianke.com/help/thirdpay.html" target="_blank" title="支付方式">支付方式</a></li>
+                        <li><a href="http://www.jianke.com/help/returnsx.html" target="_blank" title="售后服务">售后服务</a></li>
+                    </ul>
+                </li>
+                <li class="my_jianke" onmouseover="this.className='my_jianke myjk_hover'" onmouseout="this.className='my_jianke'">
+                    <a href="http://user.jianke.com/member/default#" target="_blank" title="我的健客">我的健客</a><span></span>
+                    <ul class="myjk">
+                        <li><a href="http://user.jianke.com/order/orderlist" id="myorder" target="_blank" title="我的订单">我的订单</a></li>
+                        <li><a href="http://user.jianke.com/member/integral" id="myintegral" target="_blank" title="我的积分">我的积分</a></li>
+                        <li><a href="http://user.jianke.com/member/user_quan" id="mycoupon" target="_blank" title="我的优惠券">我的优惠券</a></li>
+                        <li><a href="http://user.jianke.com/ask/askreply" id="myanswer" target="_blank" title="我的问答">我的问答</a></li>
+                    </ul>
+                </li>
+            </ul>*@
+        </div>
+    </div>
+</div>

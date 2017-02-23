@@ -1,0 +1,129 @@
+﻿@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core;
+@{
+    Layout = "~/Views/Shared/_Layout.Head.cshtml";
+    var jqueryCssRootPath = "~/Themes/AlphaDefault/Content/";
+
+    //Html.AppendCssFileParts(ResourceLocation.Head,
+    //    jqueryCssRootPath + "css/index.css");
+
+
+    Html.AppendScriptParts(ResourceLocation.Head,
+        jqueryCssRootPath + "js/jquery.SuperSlide.2.1.1.js",
+        jqueryCssRootPath + "js/MSClass.js"
+        );
+}
+@if (IsSectionDefined("header"))
+{
+    @RenderSection("header")
+}
+else
+{
+    @Html.Action("SiteBar", "Common", new { area = "" })
+    @Html.Partial("Header.Info");
+}
+
+@RenderBody()
+<div class="clear"></div>
+@if (IsSectionDefined("footer"))
+{
+    @RenderSection("footer")
+}
+else
+{
+
+    <div style="background:#fff">
+        <div class="footer_class">
+            <div class="footer_box w">
+                <dl>
+                    <dt>关于我们</dt>
+
+                    <dd>
+                        <a href="/Introduction/" alt="公司简介">公司简介</a>
+                    </dd>
+                    <dd>
+                        <a href="/show/119.html" alt="资质证书">资质证书</a>
+                    </dd>
+                    <dd>
+                        <a href="/show/446.html" alt="公司股票">公司股票</a>
+                    </dd>
+                    <dd>
+                        <a href="/show/21.html" alt="平台优势">平台优势</a>
+                    </dd>
+                    <dd>
+                        <a href="/show/65.html" alt="联系方式">联系方式</a>
+                    </dd>
+
+                </dl>
+                <dl>
+                    <dt>帮助中心</dt>
+
+                    <dd>
+                        <a href="/show/71.html" alt="网站地图">网站地图</a>
+                    </dd>
+                    <dd>
+                        <a href="/show/110.html" alt="注册协议">注册协议</a>
+                    </dd>
+                    <dd>
+                        <a href="/show/72.html" alt="医药QQ群">医药QQ群</a>
+                    </dd>
+                    <dd>
+                        <a href="/show/73.html" alt="人才招聘">人才招聘</a>
+                    </dd>
+
+                </dl>
+                <dl>
+                    <dt>新手上路</dt>
+
+                    <dd>
+                        <a href="/show/66.html" alt="VIP服务">VIP服务</a>
+                    </dd>
+                    <dd>
+                        <a href="/show/67.html" alt="广告服务">广告服务</a>
+                    </dd>
+                    <dd>
+                        <a href="/show/68.html" alt="咨询服务">咨询服务</a>
+                    </dd>
+
+                </dl>
+                <dl class="Ser_Contact">
+                    <dd>yao.mayisite.com</dd>
+                    <dd class="Ser_400" style="color:#ff4466">400-888-8888</dd>
+                    <dd>我们用心为您带来满意的服务</dd>
+                </dl>
+                <dl>
+                    <dd>
+                        <img alt="药坊网,股权转让" src="#">
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="w">
+            <ul class="Ser_link">
+                <li><a href="http://www.sy1677.com/" rel="nofollow">医疗器械公司</a>|</li>
+                <li><a href="http://www.zhongyixueyuan.com/" rel="nofollow">中药大全</a>|</li>
+                <li><a href="http://www.zytyao.com/" rel="nofollow">正园堂</a>|</li>
+                <li><a href="http://www.anjiankang.com" rel="nofollow">健康网</a>|</li>
+                <li><a href="http://www.zhiyao.cn" rel="nofollow">中国制药网</a>|</li>
+                <li><a href="http://www.qyt1902.com" rel="nofollow">四川网上药店</a>|</li>
+            </ul>
+            <div class="Copyright">
+                <p><span>药坊药品招商网yao.mayisite.com版权所有盗用必究</span></p>
+                <p>
+                    <span>网站备案信息：渝ICP备0000000 | 举报虚假信息电话：400-888-8888 | 广告招商热线：400-888-8888</span><br>
+                    <span>互联网药品信息服务资格证书编号：(渝)-经营性-2016-8888</span>
+                </p>
+            </div>
+        </div>
+    </div>
+}
+@if (IsSectionDefined("FootScript"))
+{
+    @RenderSection("FootScript", required: false)
+}
+else
+{
+
+}
+

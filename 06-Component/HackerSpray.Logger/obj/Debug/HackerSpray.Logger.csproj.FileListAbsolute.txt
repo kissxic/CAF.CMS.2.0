@@ -1,0 +1,5 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.Logger\bin\Debug\HackerSpray.Logger.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.Logger\bin\Debug\HackerSpray.Logger.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.Logger\obj\Debug\HackerSpray.Logger.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.Logger\obj\Debug\HackerSpray.Logger.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\HackerSpray.Logger\obj\Debug\HackerSpray.Logger.pdb

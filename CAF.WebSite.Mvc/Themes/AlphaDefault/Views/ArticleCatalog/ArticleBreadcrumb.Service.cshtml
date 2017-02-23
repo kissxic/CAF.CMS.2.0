@@ -1,0 +1,15 @@
+﻿@model ArticlePostModel.ArticleBreadcrumbModel
+
+
+
+  您的位置：<a href="@Url.RouteUrl("Homepage")">首页</a><span>&gt;</span>
+@for (int i = 0; i < Model.CategoryBreadcrumb.Count; i++)
+{
+    var menuItem = Model.CategoryBreadcrumb[i];
+    <a href="#">@menuItem.Text</a><span>&gt;</span>
+    @*<span style='font-size:15px;color:#333;'> > </span>
+        <a href='@menuItem.GenerateUrl(this.Url)' style='color:#ff4466;font-size:15px;cursor:pointer;'>@menuItem.Text</a>*@
+}
+
+<a href="#">@Model.ArticleName</a>
+

@@ -1,0 +1,203 @@
+﻿@model ArticleModel
+@using CAF.WebSite.Application.WebUI
+@using CAF.Infrastructure.Core.Domain.Cms.Channels;
+@if (Model.ShowSpecificationAttributes && Model.CategoryShowType != CategoryShowType.CheckBox)
+{
+    if (Model.AddSpecificationAttributeModel.AvailableAttributes.Count > 0)
+    {
+        <script type="text/javascript">
+        $(function () {
+            var count=@Model.ArticleSpecificationAttributeModels.Count;
+            if (count > 0)
+            {
+                getdata();
+            }
+            $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeId)").change(function () {
+
+                var selectedItem = $(this).val();
+                var ddlSpecOptions = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId)")
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.Action("GetOptionsByAttributeId", "SpecificationAttribute"))",
+                    data: { "attributeId": selectedItem },
+                    success: function (data) {
+                        ddlSpecOptions.html('');
+                        $.each(data, function (id, option) {
+                            ddlSpecOptions.append($('<option></option>').val(option.id).html(option.name));
+                        });
+                        ddlSpecOptions.trigger("change");
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Failed to retrieve specification options.')
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $('#addProductSpec').click(function () {
+                var specificationAttributeId = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeId)").text();
+                var specificationAttributeOptionId = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId)").val();
+                var allowFiltering = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.AllowFiltering)").is(':checked');
+                var showOnProductPage = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.ShowOnProductPage)").is(':checked');
+                var displayOrder = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.DisplayOrder)").val();
+                var selectoption = $("#@Html.FieldIdFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId)").html();
+                $('#addProductSpec').attr('disabled', true);
+                var num = new Date().valueOf();
+
+                var html = ""
+
+                html += '<tr id="tr' + num + '">'
+                    + '<td class=""><span class="text-dep1"></span></td>'
+                    + '<td><select style="width:260px" class="form-control spaoption-select">' + selectoption + '</select></td>'
+                    + '<td class=""><input type="checkbox" value="' + allowFiltering + '"  class="check-box s_allowfiltering"/></td>'
+                    + '<td class=""><input type="checkbox" value="' + showOnProductPage + '"  class="check-box s_showonarticlepage"/></td>'
+                    + '<td class=""><input type="text"  value="' + displayOrder + '" class="form-control s_displayorder"></td>'
+                    + '<td class=""><span class="pull-right"> <a href="javascript:;" class="text-info remove_fare">删除</a></span></td>'
+                    + '</tr>'
+
+                $("#addfare tbody").append(html);
+                var trObj = $("#addfare tbody").find("#tr" + num + "");
+                trObj.find(".text-dep1").html(specificationAttributeId);
+                trObj.find("select.spaoption-select").val(specificationAttributeOptionId);
+                trObj.find("input.s_allowfiltering").attr("checked", allowFiltering);
+                trObj.find("input.s_showonarticlepage").attr("checked", showOnProductPage);
+
+                $('#addProductSpec').attr('disabled', false);
+
+                getdata();
+            });
+
+            //删除
+            $(document).on('click', '.remove_fare', function (e) {
+                $(this).parents("tr").remove();
+                getdata();
+            })
+
+
+            //改变时修改数据
+            $(document).on("change", "#addfare tbody tr input,#addfare tbody tr select", function () {
+                getdata();
+            })
+        });
+
+
+        //拿数据
+        function getdata() {
+            var trs = $("#addfare tbody tr");
+            var trArr = [];
+            $.each(trs, function (e) {
+                var trObj = {};
+                trObj.SpecificationAttributeOptionId = $(this).find("select.spaoption-select").val();
+                trObj.AllowFiltering = $(this).find("input.s_allowfiltering").prop("checked")?"true":"false";
+                trObj.ShowOnArticlePage = $(this).find("input.s_showonarticlepage").prop("checked")?"true":"false";
+                trObj.DisplayOrder = $(this).find("input.s_displayorder").val();
+                trArr.push(trObj);
+            })
+            $("input[name='SpaValues']").val(JSON.stringify(trArr));
+        }
+        </script>
+        <div class="well">
+            <div class="form-group">
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Html.LangLabelFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeId)
+                    </label>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeId, Model.AddSpecificationAttributeModel.AvailableAttributes, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeId)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Html.LangLabelFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId)
+                    </label>
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId, Model.AddSpecificationAttributeModel.AvailableOptions, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AddSpecificationAttributeModel.SpecificationAttributeOptionId)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Html.LangLabelFor(model => model.AddSpecificationAttributeModel.AllowFiltering)
+                    </label>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.AddSpecificationAttributeModel.AllowFiltering)
+                        @Html.ValidationMessageFor(model => model.AddSpecificationAttributeModel.AllowFiltering)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Html.LangLabelFor(model => model.AddSpecificationAttributeModel.ShowOnProductPage)
+                    </label>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.AddSpecificationAttributeModel.ShowOnProductPage)
+                        @Html.ValidationMessageFor(model => model.AddSpecificationAttributeModel.ShowOnProductPage)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Html.LangLabelFor(model => model.AddSpecificationAttributeModel.DisplayOrder)
+                    </label>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.AddSpecificationAttributeModel.DisplayOrder)
+                        @Html.ValidationMessageFor(model => model.AddSpecificationAttributeModel.DisplayOrder)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                    </label>
+                    <div class="col-md-3">
+                        <button type="button" name="addProductSpec" id="addProductSpec" class="btn btn-warning">
+                            <i class="fa fa-plus"></i>
+                            新增
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="form-body">
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    <span class="help-block m-b-none text-muted"><i class="fa fa-info-circle text-info"></i>内容属性</span>
+                </label>
+                <div class="col-md-10">
+                    <input type="hidden" name="SpaValues" value="[]">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <section class="panel panel-default">
+
+                                <div class="table-responsive">
+                                    <table class="table  b-t b-light" id="addfare">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 60px">属性</th>
+                                                <th>属性值</th>
+                                                <th class="" style="width: 120px">允许过滤</th>
+                                                <th class="" style="width: 120px">在内容页面显示</th>
+                                                <th class="" style="width: 120px">排序</th>
+                                                <th class="" style="width: 120px">排序</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @Html.Partial("_SpecificationAttributes", Model.ArticleSpecificationAttributeModels)
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <footer class="panel-footer"></footer>
+                            </section>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+}
+
+

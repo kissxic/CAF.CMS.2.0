@@ -1,0 +1,56 @@
+﻿@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core;
+@{
+    Layout = "~/Views/Shared/_Layout.Head.cshtml";
+    var jqueryCssRootPath = "~/Themes/AlphaDefault/Content/";
+
+
+    Html.AppendScriptParts(ResourceLocation.Head,
+        jqueryCssRootPath + "js/jquery.SuperSlide.2.1.1.js",
+  jqueryCssRootPath + "js/news/new.js");
+    Html.AppendCssFileParts(ResourceLocation.Head,
+      jqueryCssRootPath + "css/news/style.css");
+}
+
+
+@Html.Action("SiteBar", "Common", new { area = "" })
+<div class="header">
+    @Html.Partial("Header.New");
+    @if (IsSectionDefined("header"))
+    {
+        @RenderSection("header")
+    }
+    else
+    {
+    }
+</div>
+
+
+@RenderBody()
+<div class="clear"></div>
+@if (IsSectionDefined("footer"))
+{
+    @RenderSection("footer")
+}
+else
+{
+
+    <div class="footer">
+        <div class="foot-con wm">
+            <p>
+                健客网－国家药监局认证的合法网上药店，致力于打造优质、低价、便捷的网上药店和做最值得信赖的智慧健康服务平台
+                <em><a href="http://www.jianke.com/help/about.html" target="_blank">关于健客</a><span>|</span><a href="http://www.jianke.com/help/contact.html" target="_blank">联系我们</a></em>
+            </p>
+            <img src="http://img.jianke.net/jk2016/news/images/phone.jpg" width="144" height="19" class="phone">
+        </div>
+    </div>
+}
+@if (IsSectionDefined("FootScript"))
+{
+    @RenderSection("FootScript", required: false)
+}
+else
+{
+
+}
+

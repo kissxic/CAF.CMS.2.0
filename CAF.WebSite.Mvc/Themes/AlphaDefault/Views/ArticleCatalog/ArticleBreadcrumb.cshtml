@@ -1,0 +1,16 @@
+﻿@model ArticlePostModel.ArticleBreadcrumbModel
+
+<div class="Cate_Route">
+    当前位置：<a href="@Url.RouteUrl("AllCategory",new { channelId=3})" title="分类信息首页">分类信息首页</a>
+
+    @for (int i = 0; i < Model.CategoryBreadcrumb.Count; i++)
+    {
+        var menuItem = Model.CategoryBreadcrumb[i];
+
+
+        <span style='font-size:15px;color:#333;'> > </span>
+            <a href='@menuItem.GenerateUrl(this.Url)' style='color:#ff4466;font-size:15px;cursor:pointer;'>@menuItem.Text</a>
+
+    }
+    <span style='font-size:15px;color:#333;'> > @Model.ArticleName</span>
+</div>

@@ -1,0 +1,11 @@
+﻿@model ArticleCategoryModel
+
+@if (Model.Articles.Count > 0)
+{
+    foreach (var item in Model.Articles)
+    {
+        <li><a href='@Url.RouteUrl("Article", new { SeName = item.SeName })'>@Html.Raw(item.Title)</a></li>
+
+    }
+
+}

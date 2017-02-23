@@ -1,0 +1,64 @@
+/* CSS Document */
+.header_login {width:1212px; height: 110px; margin: 0px auto;}
+.header_logo { float: left; }
+.header_logo > div  { float: left; font: 24px/110px "微软雅黑";}
+.login_logo { width: 214px; height: 110px; cursor: pointer;display: inline-block; float:left; background: url("../images/img_Logo.png") 0px 19px no-repeat;}
+.logo_line {width: 2px; height: 64px; margin-top: 20px; padding: 0; background: #c4c4c4; overflow: hidden;}
+.logo_text { padding-left: 20px;}
+
+
+.center { width: 100%; background-color: #f1f1f1;}
+.center01 { width: 1212px; margin: 0px auto;  padding: 40px 0px 60px 0px;position: relative; }
+.center_left {width: 752px; }
+
+.center_right {width:450px; height: 441px; position: absolute; top:40px; right: 0;  background: #fff;}
+.center_login_top { padding:0px 38px 0 34px; height: 68px; border-top: 6px solid #009ce7; border-bottom: 1px solid #eee;}
+.center_login_top .txt_login { font:18px/60px "微软雅黑"; }
+.center_login_top .engtxt_login { font:12px/60px "微软雅黑";padding-left: 5px;}
+.center_login_top > a {color:#ef0000; font:14px/60px "微软雅黑"; float: right;}
+.center_login_top > a:hover {color: #ef0000;}
+.center_login {  padding:16px 34px 0px 34px;  height: 307px; border-bottom: 1px solid #eee;}
+.text_username { border:1px solid;}
+.div_input { padding:10px 0px;}
+.div_input span { font:14px/40px "微软雅黑"; width: 40px; display: inline-block;}
+.input_username { background-position:  0px 0px ;}
+.input_pwd { background-position: 0px -37px ;}
+.input_long { border:1px solid #eee; width:334px; height: 40px; line-height: 40px; padding-left: 55px; background-image: url("../images/img_login.png"); background-repeat: no-repeat;}
+.input_true {border:1px solid #eee;}
+.input_false {border:1px solid #ef0000;}
+
+
+.div_checked {height:30px;line-height: 30px; padding-left: 45px;}
+.div_checked > a {float: right; }
+
+.div_code {height:45px; padding-left: 45px; line-height: 45px;}
+.input_code { width: 107px; height:33px; font:14px/33px "微软雅黑"; padding-left: 5px;}
+.code
+{
+    background-color:#8c8c8c;
+    font-family:Consolas;
+    font-style:italic;
+    color:#fff;
+    border:0;
+    padding:2px 3px;
+    letter-spacing:3px;
+    font-weight:bolder;
+    width: 100px;
+    height: 33px;
+    line-height: 34px;
+}
+.input_codeimg { border: none;}
+
+.div_submit { height: 90px; padding-left: 45px; line-height: 90px;}
+.input_submit {width:335px;background-color:#009ce7; color: #fff; border: none; font: 26px/60px "微软雅黑"; }
+.input_submit_l {width:335px;background-color:#009ce7; color: #fff; border: none; font: 26px/60px "微软雅黑"; }
+
+.center_otherway { padding-left: 55px ;  padding-top: 12px; height: 70px; }
+.center_otherway a { float: left; width: 46px; height: 46px; background-image: url("../images/img_otherwayLogin.png"); background-repeat: no-repeat;}
+.center_otherway span {width:110px;height:50px;float: left;}
+.way_qq{  background-position:  -95px -14px;}
+.way_qq:hover {background-position:-18px -14px;}
+.way_wechat{ background-position:  -248px -14px;}
+.way_wechat:hover {background-position:-171px -14px;}
+.way_weibo{ background-position:  -400px -14px;}
+.way_weibo:hover {background-position:-324px -14px;}

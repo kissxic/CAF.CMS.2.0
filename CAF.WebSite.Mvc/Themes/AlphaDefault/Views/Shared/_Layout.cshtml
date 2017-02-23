@@ -1,0 +1,49 @@
+﻿@using CAF.WebSite.Application.WebUI.UI;
+@using CAF.Infrastructure.Core;
+@{
+    Layout = "~/Views/Shared/_Layout.Head.cshtml";
+    var jqueryCssRootPath = "~/Themes/AlphaDefault/Content/";
+
+    //Html.AppendCssFileParts(ResourceLocation.Head,
+    //    jqueryCssRootPath + "css/index.css");
+
+
+    Html.AppendScriptParts(ResourceLocation.Head,
+        jqueryCssRootPath + "js/jquery.SuperSlide.2.1.1.js",
+        jqueryCssRootPath + "js/MSClass.js"
+        );
+}
+@if (IsSectionDefined("header"))
+{
+    @RenderSection("header")
+}
+else
+{
+    @Html.Action("SiteBar", "Common", new { area = "" })
+    @Html.Action("Header", "Common", new { area = "" })
+    @Html.Action("MegaMenu", "Common", new { area = "" })
+
+}
+
+@RenderBody()
+@if (IsSectionDefined("footer"))
+{
+    @RenderSection("footer")
+}
+else
+{
+    @Html.Action("LinkBlock", "Common")
+    @Html.Partial("_Footer");
+    @Html.Action("Footer", "Common", new { area = "" })
+
+}
+@if (IsSectionDefined("FootScript"))
+{
+    @RenderSection("FootScript", required: false)
+  
+}
+else
+{
+
+}
+

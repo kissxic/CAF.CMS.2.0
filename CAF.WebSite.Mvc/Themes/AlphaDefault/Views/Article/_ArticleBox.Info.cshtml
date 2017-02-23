@@ -1,0 +1,61 @@
+﻿@model ArticlePostModel
+
+@{
+    string desc = null, descTitle = null;
+    if (Model.ShortContent.HasValue())
+    {
+        desc = Model.ShortContent.Truncate(50, "...");
+        if (Model.ShortContent.Length > desc.Length)
+        {
+            descTitle = Model.ShortContent;
+        }
+    }
+    string name = null, nameTitle = null;
+    name = Model.Title.Truncate(10, "...");
+    if (Model.Title.Length > name.Length)
+    {
+        nameTitle = Model.Title;
+    }
+}
+
+<div class="title">
+    <h3>@Model.Title</h3><div class="f_title">
+        <div class="fl">@Model.CreatedOn &nbsp;&nbsp;&nbsp;信息编号：@Model.Id</div>
+        <div class="fr">
+            <a onclick='addcollection("招商","category","392","@Url.RouteUrl("HomePage")")' style="cursor: pointer;">收藏</a>
+        </div>
+    </div>
+</div>
+<dl class="C_show_Re C_show_Re_img">
+    <dd style="width:300px;margin-right:20px">
+        <div class="game163" style="margin:0 auto">
+            <div id="pd-gallery-container-outer" class="pic_main">
+                <div id="pd-gallery-container">
+                    @Html.Partial("_PictureGallery", Model.DetailsPictureModel)
+                </div>
+            </div>
+        </div>
+    </dd>
+    <dd>
+        <ul class="C_contact">
+            <li>联系人：@Model.VendorModel.ContactsName </li>
+            <li>公司名称： @Model.VendorModel.CompanyName </li>
+            <li>联系电话：<span id="hidden_mobile">@Model.VendorModel.CompanyPhone</span></li>
+        </ul>
+    </dd>
+</dl>
+<ul class="C_contact">
+    <li class="C_remind"><b>药坊网提醒您</b>：在交易或参与的过程中，以各种理由收取非正规费用，均有骗子嫌疑，请提高警惕，谨防上当受骗。<span>联系时请说明在药坊网看到的！</span></li>
+</ul>
+
+<div class="C_content">
+    <p class="title">简介</p>
+    <div class="C_content_show">
+        <p><strong>展会介绍</strong></p>
+        <p><br></p>
+        <p>
+            @Html.Raw(Model.FullContent)
+        </p>
+    </div>
+</div>
+

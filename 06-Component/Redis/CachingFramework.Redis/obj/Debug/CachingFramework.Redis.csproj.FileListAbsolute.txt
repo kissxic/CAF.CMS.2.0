@@ -1,0 +1,11 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis\bin\Debug\CachingFramework.Redis.XML
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis\bin\Debug\CachingFramework.Redis.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis\bin\Debug\CachingFramework.Redis.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis\bin\Debug\StackExchange.Redis.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis\bin\Debug\StackExchange.Redis.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CachingFramework.Redis.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CachingFramework.Redis.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Libraries\CachingFramework.Redis.XML
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis\obj\Debug\CachingFramework.Redis.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis\obj\Debug\CachingFramework.Redis.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\06-Component\Redis\CachingFramework.Redis\obj\Debug\CachingFramework.Redis.pdb

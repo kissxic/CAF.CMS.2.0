@@ -1,0 +1,202 @@
+
+.input_true {border:1px solid #eee;}
+.input_false {border:1px solid #ef0000;}
+.section {background-color: #fafafa;}
+
+.register {width: 1070px; height: 110px;margin: 0px auto; }
+.register_logo01 { float: left; }
+.register_logo01 > div  { float: left; font: 24px/110px "微软雅黑";}
+.register_logo { width: 214px; height: 110px; cursor: pointer;display: inline-block; float:left; background: url("../images/img_Logo.png") 0px 19px no-repeat;}
+.register_line {width: 2px; height: 64px; margin-top: 20px; padding: 0; background: #c4c4c4; overflow: hidden;}
+.register_text { padding-left: 20px;}
+
+.center { width: 1070px; margin: 0 auto;}
+#regist
+{
+    background: none repeat scroll 0 0 ;
+    margin: 10px auto 10px;
+    padding: 0;
+    width: 1070px;
+}
+#regist .mt
+{
+    border-bottom: 1px solid #DDDDDD;
+    margin-bottom: -1px;
+    overflow: visible;
+    padding-right: 10px;
+    position: relative;
+}
+body, #regist .mt
+{
+    background: none repeat scroll 0 0 ;
+}
+#regist .mt, #regist .mt h2, #regist .mt span
+{
+    height: 40px;
+    line-height: 40px;
+}
+#regist .tab
+{
+    height: 40px;
+    padding-left: 85px;
+    overflow: hidden;
+}
+#regist .tab li {
+    margin-right: 40px;
+    float: left;
+    width: 110px;
+    text-align: center;
+    font:16px/40px "微软雅黑";
+}
+#regist .tab .curr
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 2px 0 2px #DDDDDD;
+    height: 40px;
+    margin-top: 0;
+    position: relative;
+    border: 1px solid #DDDDDD;
+    border-top: 2px solid #009ce7;
+    border-bottom:none;
+}
+
+#regist .tab li {cursor: pointer;}
+
+#regist .mt .extra
+{
+    float: right;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+#regist .mc
+{
+    height: 475px;
+    border: solid #dddddd;
+    border-width: 0px 1px 1px;
+    background: none repeat scroll 0 0 #FFFFFF;
+    position: relative;
+}
+
+.form
+{
+    width: 744px;
+    margin: 1px 0 20px;
+    padding-top:30px;
+}
+#regist .item
+{
+    height: 55px;
+    line-height: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+#regist .label
+{
+    height:40px;
+    line-height: 40px;
+    color: #999999;
+    font-size: 14px;
+    padding-right: 10px;
+    text-align: right;
+    width: 120px;
+}
+.form label, .form input, .form select, .form textarea, .form button, .form .label
+{
+    float: left;
+    font-size: 12px;
+}
+#regist .label b
+{
+    font-weight: normal;
+    margin-right: 5px;
+}
+#regist .item .item-ifo
+{
+    position: relative;
+    /*width: 270px;*/
+}
+body .fl
+{
+    float: left;
+}
+.o-intelligent-regName
+{
+    z-index: 3;
+}
+#regist .text01
+{
+    width:334px;
+    height: 40px;
+    padding-left: 55px;
+    background-image: url("../images/img_login.png");
+    background-repeat: no-repeat;
+}
+#regist .text02
+{
+    width:120px;
+    height: 40px;
+    padding-left: 10px;
+}
+#regist .username
+{
+    background-position: 0px 0px;
+}
+#regist .password
+{
+    background-position: 0px -38px;
+}
+#regist .phone
+{
+    background-position: 0px -76px;
+}
+#regist .send_code
+ {
+     background-color: #e3e3e3;
+     width:105px;
+     height:40px;
+    border: none;
+    margin-left: 10px;
+    font:14px "微软雅黑";
+ }
+#regist .input_submit {width:340px; height:47px;background-color:#1da6e8; color: #fff; border: none; font: 22px/47px "微软雅黑"; }
+#regist .checkbox { line-height: 40px; margin-top: 12px;margin-right:5px;}
+
+#regist .mc_line{ height: 405px;width:1px; background-color: #999999; margin: 30px 0 ;position: absolute;right: 508px; top: 0px;}
+
+#regist .mc_info{float: left; padding:30px 0 0 63px;position: absolute;right: 0px; top: 0px;}
+
+#regist .mc_text {width:445px; height: 235px; border-bottom: 1px solid #e3e3e3; }
+
+#regist .mc_iteminfo01 span {font:20px "微软雅黑";}
+#regist .mc_iteminfo02 span {font:16px "微软雅黑";padding-right: 20px;}
+#regist .mc_iteminfo01{font:20px "微软雅黑"; color:#999;height: 50px;}
+#regist .mc_iteminfo02 {font:16px "微软雅黑"; line-height:45px; }
+#regist .mc_iteminfo03 { padding-left:95px; padding-top:10px;font:60px "Impact"; color:#1da6e8; line-height: 75px; background: url("../images/img_phone.png") 0 10px no-repeat; }
+#regist .txtred{ color:#e50000;}
+
+.code
+{
+    background-color:#8c8c8c;
+    font-family:Arial;
+    margin-left: 5px;
+    font-style:italic;
+    color:#fff;
+    border:0;
+    padding:2px 3px;
+    letter-spacing:3px;
+    font-weight:bolder;
+    width: 55px;
+    height: 33px;
+    line-height: 34px;
+}
+.input_codeimg { border: none;}
+#regist .phone_yanz{
+	height:40px
+
+}
+#regist .phone_yanz input{height:40px;width:240px;font-size:16px}
+
+.login_bd{margin:40px 0 0 70px;border:0}
+#regist .login_bd .mc_text{border-bottom:0}

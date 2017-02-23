@@ -1,0 +1,33 @@
+﻿@model ArticleCategoryModel
+@using CAF.Infrastructure.Core.Collections
+@{
+    var node = Model.CategoryBreadcrumb.LastOrDefault();
+    var url = node.GenerateUrl(this.Url);
+}
+@if (Model.Articles.Count > 0)
+{
+    <div class="ui-tab-panel">
+        @for (int i = 0; i < Model.Articles.Count; i++)
+        {
+            var article = Model.Articles[i];
+            if (i == 0)
+            {
+                <p class="mt10 text-overflow"><a target="_blank" href="@Url.RouteUrl("Article", new { SeName = article.SeName })" class="fs16 cl-blue">@article.Title</a></p>
+                <p class="summary">
+                    @article.ShortContent
+                </p>
+                <hr class="dashed">
+            }
+        }
+        <ul class="ul-yaozh">
+            @for (int i = 0; i < Model.Articles.Count; i++)
+            {
+                var article = Model.Articles[i];
+                if (i == 1)
+                {
+                    <li class='text-overflow'><a target="_blank" href="@Url.RouteUrl("Article", new { SeName = article.SeName })">@article.Title</a></li>
+                }
+            }
+        </ul>
+    </div>
+}

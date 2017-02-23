@@ -1,0 +1,14 @@
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.XLAuth\web.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.XLAuth\Views\Web.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.XLAuth\Description.txt
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.XLAuth\icon.png
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.XLAuth\Localization\resources.cn-zh.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.XLAuth\Localization\resources.en-us.xml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.XLAuth\Views\ExternalAuthXL\Configure.cshtml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.XLAuth\Views\ExternalAuthXL\PublicInfo.cshtml
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.XLAuth\CAF.WebSite.XLAuth.dll.config
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.XLAuth\CAF.WebSite.XLAuth.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\CAF.WebSite.Mvc\Plugins\CAF.WebSite.XLAuth\CAF.WebSite.XLAuth.pdb
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.XLangAuth\obj\Debug\CAF.WebSite.XLAuth.csprojResolveAssemblyReference.cache
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.XLangAuth\obj\Debug\CAF.WebSite.XLAuth.dll
+E:\Tomny\权限中心\Git\Caf.CMS\CAF.Cms.4.0\trunk\Plugins\CAF.WebSite.XLangAuth\obj\Debug\CAF.WebSite.XLAuth.pdb
