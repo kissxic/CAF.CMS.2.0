@@ -45,4 +45,4 @@ Caf.CMS 还很年轻，功能上等各方面还不完善，请大家能够包容
 
 ##演示地址 [药坊网](http://yao.02964.com/)
 
-##数据库备份文件[输入链接说明](http://pan.baidu.com/s/1kUKrv0N)
+##[数据库备份文件](http://pan.baidu.com/s/1kUKrv0N)
